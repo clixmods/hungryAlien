@@ -1,10 +1,12 @@
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
-using UnityEngine.Assertions.Must;
 using UnityEngine.InputSystem;
+using static UnityEngine.Rendering.DebugUI.Table;
+
 
 public class ShipController : MonoBehaviour
 {
@@ -38,9 +40,8 @@ public class ShipController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
         FollowCursor();
-
+        
     }
     
     public void FollowCursor()
@@ -50,8 +51,10 @@ public class ShipController : MonoBehaviour
         if(direction.magnitude >0.2f)
         {
             transform.position += direction.normalized * speed * Time.deltaTime;
+            
         }
         
+        transform.DORotate(new Vector3(direction.z, 0, -direction.x), 0.1f);
     }
         /// <summary> Retourne la position de la souris dans le monde 3D en fonction du hit du raycast</summary> 
     Vector3 MouseToWorldPosition()
