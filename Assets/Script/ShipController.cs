@@ -53,8 +53,8 @@ public class ShipController : MonoBehaviour
             transform.position += direction.normalized * speed * Time.deltaTime;
             
         }
-        Debug.DrawLine(transform.position + new Vector3(direction.z, 0, -direction.x), transform.position, Color.blue, 0.5f);
-        transform.DORotate(new Vector3(direction.z, 0, -direction.x), 1);
+        
+        transform.DORotate(new Vector3(direction.z, 0, -direction.x), 0.1f);
     }
         /// <summary> Retourne la position de la souris dans le monde 3D en fonction du hit du raycast</summary> 
     Vector3 MouseToWorldPosition()
