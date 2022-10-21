@@ -151,7 +151,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 151701192}
   m_LocalRotation: {x: 0.7086591, y: -0.02926797, z: 0.029089728, w: 0.7043433}
-  m_LocalPosition: {x: 0, y: -0.19, z: -0}
+  m_LocalPosition: {x: 0, y: -0.33, z: -0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -579,6 +579,7 @@ GameObject:
   - component: {fileID: 476047956}
   - component: {fileID: 476047955}
   - component: {fileID: 476047961}
+  - component: {fileID: 476047962}
   m_Layer: 2
   m_Name: SpaceShip
   m_TagString: Untagged
@@ -601,7 +602,7 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 8
-  speed: 7
+  speed: 5
 --- !u!135 &476047956
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -713,6 +714,20 @@ MonoBehaviour:
   m_DefaultActionMap: Game
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &476047962
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 476047954}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da7cffeb952606e4b9a2a3bac6dbcf5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scaleFactor: 1.5
+  heightOffset: 3
 --- !u!1 &510674575
 GameObject:
   m_ObjectHideFlags: 0
@@ -937,7 +952,7 @@ GameObject:
   - component: {fileID: 684015747}
   - component: {fileID: 684015746}
   m_Layer: 3
-  m_Name: Plane
+  m_Name: VaisseauControlZone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1586,7 +1601,7 @@ Light:
   m_Type: 1
   m_Shape: 0
   m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
-  m_Intensity: 1797.4467
+  m_Intensity: 48874.33
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -1663,7 +1678,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a68c43fe1f2a47cfa234b5eeaa98012, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Intensity: 1797.4467
+  m_Intensity: 48874.33
   m_EnableSpotReflector: 1
   m_LuxAtDistance: 1
   m_InnerSpotPercent: 0
