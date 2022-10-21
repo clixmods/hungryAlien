@@ -50,8 +50,7 @@ public class ShipController : MonoBehaviour
         Debug.Log(direction.magnitude);
         if(direction.magnitude >0.2f)
         {
-            transform.position += direction.normalized * speed * Time.deltaTime;
-            
+            transform.position += direction * speed * Time.deltaTime;
         }
         
         transform.DORotate(new Vector3(direction.z, 0, -direction.x), 0.1f);
