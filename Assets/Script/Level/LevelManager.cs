@@ -36,14 +36,19 @@ public class LevelManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        WatchObjectPhysicalAvailable();
+       
         Transform camTrans = _camera.transform;
         Transform wpTransform = waypoints[_currentLevel].transform;
-        if (camTrans.position != wpTransform.position &&  camTrans.rotation != wpTransform.rotation)
+        if (camTrans.position != wpTransform.position ||  camTrans.rotation != wpTransform.rotation)
         {
             camTrans.position = Vector3.MoveTowards(camTrans.position, wpTransform.position,
                 Time.deltaTime * _speedMoveCamera);
             camTrans.rotation = Quaternion.RotateTowards(camTrans.rotation , wpTransform.rotation, Time.deltaTime * _speedMoveCamera);
+            
+        }
+        else
+        {
+            WatchObjectPhysicalAvailable();
         }
     }
 
