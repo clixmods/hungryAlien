@@ -8,6 +8,8 @@ using UnityEngine;
 using UnityEngine.Playables;
 
 using System.Reflection;
+using UnityEditor.AnimatedValues;
+using UnityEngine.Windows;
 using Object = UnityEngine.Object;
 using Random = UnityEngine.Random;
 
@@ -53,16 +55,16 @@ namespace AudioAliase.Edit
         private string _message;
 
         private AudioSource _audioSource;
-
         // Method executed when we open the window
         [MenuItem("Clix Addons/Audio Aliases Editor")]
         public static void Open()
         {
             AliasesEditorWindow window = GetWindow<AliasesEditorWindow>("Audio Aliases Editor");
-            window.CreateAliasesFileList();
+            window.UpdateAliasesFileList();
             window.UpdateAliasesList();
             window.UpdateTagList();
             GameObject oof = new GameObject();
+            
             window._audioSource = oof.AddComponent<AudioSource>();
         }
 
@@ -101,17 +103,22 @@ namespace AudioAliase.Edit
         }
         void PlaySound()
         {
-            _audioSource.Play();
+            //_audioSource.Play();
+            //AudioManager.PlaySoundAtPosition(, Vector3.zero);
         }
-        void CreateAliasesFileList()
+        void UpdateAliasesFileList()
         {
             serializedObject = new List<SerializedObject>();
             // We get all aliases available in the project, to convert them into serializedObject
             _aliasesArray = GetAllInstances<Aliases>();
             foreach (Aliases asset in _aliasesArray)
             {
-                serializedObject.Add(new SerializedObject(asset));
+               
+                    var newSerializedObject = new SerializedObject(asset);
+                    serializedObject.Add(newSerializedObject);
+                  
             }
+         
             selectedSerializeObject = null;
             Repaint();
         }
@@ -126,25 +133,28 @@ namespace AudioAliase.Edit
             if (serializedObject == null)
             {
                 Debug.Log("Warning : Aliase Editor have no serializedObject");
-                CreateAliasesFileList();
+                UpdateAliasesFileList();
                 return;
             }
             // We draw the visual of the window
             // First Begin horizontal to draw : left to right
             using (new GUILayout.HorizontalScope())
             {
+             
                 DrawLeftPanel();
                 DrawMiddlePanel();
                 DrawRightPanel();
             }
+     
             Apply();
         }
 
         /// <summary>
         /// This method will update the list of aliases, need to be called when its required
         /// </summary>
-        private void UpdateAliasesList(bool includeNone = false)
+        private void UpdateAliasesList()
         {
+            
             _aliases = new List<string>();
             _aliasesOptions = new List<string>();
             _aliasesOptions.Add("None");
@@ -158,31 +168,35 @@ namespace AudioAliase.Edit
                 }
             }
             Debug.Log(_aliasesOptions.Count);
+            
+            Apply();
+            Repaint();
         }
         void DrawMiddlePanel()
         {
-
             // Middle part
             EditorGUILayout.BeginVertical("box", GUILayout.MinWidth(150), GUILayout.MaxWidth(750), GUILayout.ExpandHeight(true));
             // Allow the possibility to use a scrollbar to navigate
             scrollPos = EditorGUILayout.BeginScrollView(scrollPos, false, true);
-            // Options for playable test sound
-            //_options = new List<string>();
             
             EditorGUILayout.LabelField("Search");
             _searchValue = EditorGUILayout.TextField(_searchValue);
-
+            
             // if a Aliase file is selected, go draw all properties
             if (selectedSerializeObject != null)
             {
                 // Among serializeObjects, we search aliases list for the selected 
                 if(showAll)
                 {
-                    foreach(SerializedObject soee in serializedObject)
+                    for (int i = 0; i < serializedObject.Count; i++)
                     {
-                        currentProperty = soee.FindProperty(AliasesPropertyName);
+                        currentProperty = serializedObject[i].FindProperty(AliasesPropertyName);
                         DrawTheShit();
                     }
+                    // foreach(SerializedObject soee in serializedObject)
+                    // {
+                    //     
+                    // }
                 }
                 else
                 {
@@ -191,8 +205,9 @@ namespace AudioAliase.Edit
                     if (GUILayout.Button("Create aliase"))
                     {
                         currentProperty.InsertArrayElementAtIndex(currentProperty.arraySize);
+                        ApplyAliaseDefaultValue(currentProperty.GetArrayElementAtIndex(currentProperty.arraySize-1));
                         UpdateAliasesList();
-                         
+                        return;
                     }
                 }
             }
@@ -204,15 +219,30 @@ namespace AudioAliase.Edit
             EditorGUILayout.EndVertical();
         }
 
+        private void ApplyAliaseDefaultValue(SerializedProperty serializedProperty)
+        {
+            serializedProperty.FindPropertyRelative("minPitch").floatValue = 1;
+            serializedProperty.FindPropertyRelative("maxPitch").floatValue = 1.01f;
+            serializedProperty.FindPropertyRelative("MinDistance").floatValue = 0;
+            serializedProperty.FindPropertyRelative("MaxDistance").floatValue = 500;
+            serializedProperty.FindPropertyRelative("minVolume").floatValue = 0.8f;
+            serializedProperty.FindPropertyRelative("maxVolume").floatValue = 0.8f;
+            serializedProperty.FindPropertyRelative("reverbZoneMix").floatValue = 1;
+            serializedProperty.FindPropertyRelative("dopplerLevel").floatValue = 1;
+            serializedProperty.FindPropertyRelative("Spread").floatValue = 1;
+            serializedProperty.FindPropertyRelative("isPlaceholder").boolValue = true;
+        }
+
         void DrawTheShit()
         {
             // We draw the content of aliases    
-            //DrawProperties(currentProperty, true);
             // Navigate between each elem of the list aliases
-            foreach (SerializedProperty p in currentProperty)
+            //foreach (SerializedProperty p in currentProperty)
+            for (int i = 0; i < currentProperty.arraySize; i++)
             {
-                currentElemFromArraySelected = p;
-                if ( _searchValue != String.Empty && !currentElemFromArraySelected.FindPropertyRelative("name").stringValue.Contains(_searchValue))
+               SerializedProperty p = currentProperty.GetArrayElementAtIndex(i);
+               currentElemFromArraySelected = p;
+                if ( !String.IsNullOrEmpty(_searchValue) && !currentElemFromArraySelected.FindPropertyRelative("name").stringValue.Contains(_searchValue))
                 {
                     continue;
                 }
@@ -229,17 +259,16 @@ namespace AudioAliase.Edit
                 
                 EditorGUILayout.BeginVertical("HelpBox");
                 
-               GUIContent spatialRightLabel = EditorGUIUtility.TrTextContent("-","Remove the shi");
+                GUIContent spatialRightLabel = EditorGUIUtility.TrTextContent("-","Remove the shi");
 
                 // If I understand correctly, FindPropertyRelative try to find the property declared into arg,
                 // Maybe a way to check property inside the elem of the array etc 
-               // _options.Add(currentElemFromArraySelected.FindPropertyRelative("name").stringValue);
+                // _options.Add(currentElemFromArraySelected.FindPropertyRelative("name").stringValue);
                 EditorGUILayout.BeginHorizontal();
-
                 if (GUILayout.Button(spatialRightLabel, GUILayout.Width(30)))
                 {
                     var title = "Delete the selection";
-                    _message = "Are you sure you want to delete " + " on the surface?";
+                    _message = "Are you sure you want to delete?";
                     var ok = "Delete";
                     var cancel = "No";
                     if( EditorUtility.DisplayDialog(title, _message, ok, cancel))
@@ -251,12 +280,13 @@ namespace AudioAliase.Edit
                 p.isExpanded = EditorGUILayout.Foldout(p.isExpanded, p.displayName);
                 EditorGUILayout.EndHorizontal();
 
-                if (p.isExpanded)
+                if (  p.isExpanded )
                 {
                     EditorGUI.indentLevel++;
                     DrawSelectedPanel();
                     EditorGUI.indentLevel--;
                 }
+        
                 EditorGUILayout.EndVertical();
 
             }
@@ -278,7 +308,12 @@ namespace AudioAliase.Edit
                 _selectedTagIndex = EditorGUILayout.Popup("Tag", _selectedTagIndex, _tags);
 
                 // Aliases part
-                EditorGUILayout.LabelField("Aliases Files");
+                if (EditorGUILayout.BeginFadeGroup(1))
+                {
+                    EditorGUILayout.LabelField("Aliases Files");
+                }
+          
+               
                 // We draw a sidebar for each file converted into SerializedObject
                 EditorGUILayout.BeginHorizontal();
                 if (GUILayout.Button($" All Count : {_aliases.Count}"))
@@ -291,19 +326,19 @@ namespace AudioAliase.Edit
                 {
                     DrawSidebar(prop);
                 }
-
+                EditorGUILayout.EndFadeGroup();
                 // Begin to draw a line of button after the list of aliases file
-                EditorGUILayout.BeginHorizontal();
-                GUILayout.FlexibleSpace();
-                if (GUILayout.Button("+"))
+              
+
+                EditorGUILayout.Space(10);
+                if (GUILayout.Button("Create new aliases file"))
                 {
-                    CreateNewAliaseFile();
+                    CreateNewAliasesFile();
+                    
                     return;
                 }
-
-                newAliaseName = EditorGUILayout.TextField(newAliaseName); // We can write the name of our new aliase
-                EditorGUILayout.EndHorizontal();
-            } //EditorGUILayout.EndVertical();
+                
+            } 
         }
 
         private void DrawRightPanel()
@@ -313,9 +348,10 @@ namespace AudioAliase.Edit
             if (GUILayout.Button("Play sound"))
             {
                 string aliaseName = _aliasesOptions[_selected];
-                AudioManager.GetSoundByAliase(aliaseName, out Aliase dick);
-                SetupAudioSource(dick);
-                PlaySound();
+                //AudioManager.GetSoundByAliase(aliaseName, out Aliase dick);
+                //SetupAudioSource(dick);
+                AudioManager.PlaySoundAtPosition(aliaseName, Camera.main.transform.position);
+                //PlaySound();
                 this.ShowNotification(new GUIContent($"Sound {aliaseName} played"));
             }
 
@@ -395,21 +431,19 @@ namespace AudioAliase.Edit
             DrawField("MixerGroup", true);
             DrawField("audio", true);
             DrawField("randomizeClips", true);
-            int GetIndexFromName()
+            int GetIndexFromName(string strToSearch)
             {
-                string strToSearch = currentElemFromArraySelected.FindPropertyRelative("Secondary").stringValue;
                 for (int i = 0; i < _aliasesOptions.Count; i++)
                 {
                     if (_aliasesOptions[i] == strToSearch)
                         return i;
                 }
-
                 return 0;
             }
-
-            int selectedAll = GetIndexFromName();
-            selectedAll = EditorGUILayout.Popup("Secondary", selectedAll, _aliasesOptions.ToArray());
             var secondaryProp = currentElemFromArraySelected.FindPropertyRelative("Secondary");
+            int selectedAll = GetIndexFromName(secondaryProp.stringValue);
+            selectedAll = EditorGUILayout.Popup("Secondary", selectedAll, _aliasesOptions.ToArray());
+           
             if (selectedAll == 0)
                 secondaryProp.stringValue = string.Empty;
             else
@@ -441,8 +475,27 @@ namespace AudioAliase.Edit
             sP.boolValue = EditorGUILayout.BeginToggleGroup("Is Looping", sP.boolValue);
             //myBool = EditorGUILayout.Toggle("Toggle", myBool);
             //myFloat = EditorGUILayout.Slider("Slider", myFloat, -3, 3);
-            DrawField("startAliase", true);
-            DrawField("endAliase", true);
+           // DrawField("startAliase", true);
+           // DrawField("endAliase", true);
+            
+            var startProp = currentElemFromArraySelected.FindPropertyRelative("startAliase");
+            int selectedStartAll = GetIndexFromName(startProp.stringValue);
+            selectedStartAll = EditorGUILayout.Popup("Start Aliase", selectedStartAll, _aliasesOptions.ToArray());
+           
+            if (selectedStartAll == 0)
+                startProp.stringValue = string.Empty;
+            else
+                startProp.stringValue = _aliasesOptions[selectedStartAll];
+            
+            var endProp = currentElemFromArraySelected.FindPropertyRelative("endAliase");
+            int selectedendAll = GetIndexFromName(endProp.stringValue);
+            selectedendAll = EditorGUILayout.Popup("End Aliase", selectedendAll, _aliasesOptions.ToArray());
+           
+            if (selectedendAll == 0)
+                endProp.stringValue = string.Empty;
+            else
+                endProp.stringValue = _aliasesOptions[selectedendAll];
+            
             EditorGUILayout.EndToggleGroup();
 
             //DrawField("isLooping", true);
@@ -594,31 +647,24 @@ namespace AudioAliase.Edit
         /// Create a new file to contain aliase list,
         /// need to be created in the folder where the previous file is created
         /// </summary>
-        void CreateNewAliaseFile()
+        void CreateNewAliasesFile()
         {
             Aliases instance = ScriptableObject.CreateInstance<Aliases>();
             string path = $"Assets/{IsValidName(newAliaseName)}.asset";
             
-            
-            var oof  = EditorUtility.SaveFilePanel(
-                "Save texture as PNG",
-                $"Assets/",
-                "Aliases.asset",
+            var oof  = EditorUtility.SaveFilePanelInProject(
+                "Save aliase file",
+                $"oof",
+                "asset",
                 "asset");
-
-            if (oof.Length != 0)
+            
+            if (!string.IsNullOrEmpty(oof))
             {
-                var oofa = AssetDatabase.LoadAssetAtPath<Object>(oof);
-                oofa = instance;
+                UnityEditor.AssetDatabase.CreateAsset(CreateInstance<Aliases>(), oof);
+                AssetDatabase.Refresh();
             }
             
-            // //  Some verification before create the assets
-            //  if (AssetDatabase.LoadAssetAtPath<Aliases>(path) == null)
-            //      AssetDatabase.CreateAsset(instance, path);
-            //  else
-            //      Debug.LogWarning(ASSET_ALREADY_EXIST);
-
-            CreateAliasesFileList(); // Update the left panel
+            UpdateAliasesFileList(); // Update the left panel
         }
 
         // We will controls how to draw each property from each element of the list

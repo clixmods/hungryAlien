@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+
 using UnityEngine;
 using UnityEngine.Audio;
 
@@ -19,32 +21,34 @@ namespace AudioAliase
         {
             if (DontLoad == true)
                 return;
-
-            for (int i = 0; i < aliases.Count; i++)
-            {
-                if (!aliases[i].isInit)
-                {
-                    aliases[i].isInit = true;
-                    if (aliases[i].volume == 0)
-                        aliases[i] = new Aliase();
-                }
-
-                if (aliases[i].minPitch > aliases[i].maxPitch)
-                    aliases[i].minPitch = aliases[i].maxPitch - 0.01f;
-
-                if (aliases[i].MinDistance > aliases[i].MaxDistance)
-                    aliases[i].MinDistance = aliases[i].MaxDistance - 0.01f;
-
-                if (aliases[i].MixerGroup == null)
-                    aliases[i].MixerGroup = defaultMixerGroup;
-
-                if (!aliases[i].randomizeClips && aliases[i].audio.Length > 1)
-                {
-                    AudioClip tempClip = aliases[i].audio[0];
-                    aliases[i].audio = new AudioClip[1];
-                    aliases[i].audio[0] = tempClip;
-                }
-            }
+    
+            
+            // // TODO : need to be moved into editor because can cause gltich when you create the element on a new aliases file
+            // for (int i = 0; i < aliases.Count; i++)
+            // {
+            //     if (!aliases[i].isInit)
+            //     {
+            //         aliases[i].isInit = true;
+            //         if (aliases[i].volume == 0)
+            //             aliases[i] = new Aliase();
+            //     }
+            //
+            //     if (aliases[i].minPitch > aliases[i].maxPitch)
+            //         aliases[i].minPitch = aliases[i].maxPitch - 0.01f;
+            //
+            //     if (aliases[i].MinDistance > aliases[i].MaxDistance)
+            //         aliases[i].MinDistance = aliases[i].MaxDistance - 0.01f;
+            //
+            //     if (aliases[i].MixerGroup == null)
+            //         aliases[i].MixerGroup = defaultMixerGroup;
+            //
+            //     if (!aliases[i].randomizeClips && aliases[i].audio.Length > 1)
+            //     {
+            //         AudioClip tempClip = aliases[i].audio[0];
+            //         aliases[i].audio = new AudioClip[1];
+            //         aliases[i].audio[0] = tempClip;
+            //     }
+            // }
             AudioManager.AddAliases(this);
         }
         private void Awake()
@@ -55,4 +59,6 @@ namespace AudioAliase
 
     }
 
+    
+    
 }

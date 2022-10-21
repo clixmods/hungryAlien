@@ -1,0 +1,364 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cbe7e2c0a55730e4d8113d0fb85617fe, type: 3}
+  m_Name: weapons
+  m_EditorClassIdentifier: 
+  DontLoad: 0
+  defaultMixerGroup: {fileID: 0}
+  aliases:
+  - name: wpn_m4a1_firefuck
+    description: 
+    Tag: 
+    MixerGroup: {fileID: 0}
+    audio:
+    - {fileID: 8300000, guid: 5ce9e34b7d3495f4da0b19afdb743363, type: 3}
+    - {fileID: 8300000, guid: ed2a2a113d32b064e933a19b31e68019, type: 3}
+    - {fileID: 8300000, guid: f01629ddff6e1e94091b6252efe220f4, type: 3}
+    - {fileID: 8300000, guid: bd2df6396665a494fb422c8ecad2b624, type: 3}
+    - {fileID: 8300000, guid: fb72c9b9902745f4c80caed6a9d7cf49, type: 3}
+    - {fileID: 8300000, guid: 08f6938f1080d00489eb8f31f9fbb42e, type: 3}
+    soundType: 1
+    randomizeClips: 1
+    Secondary: 
+    bypassEffects: 0
+    bypassListenerEffects: 0
+    bypassReverbZones: 0
+    priority: 0
+    volume: 0
+    minVolume: 0.8
+    maxVolume: 0.8
+    isLooping: 0
+    startAliase: 
+    endAliase: 
+    minPitch: 1
+    maxPitch: 3
+    stereoPan: 0
+    spatialBlend: 1
+    reverbZoneMix: 1
+    dopplerLevel: 1
+    Spread: 1
+    MinDistance: 0
+    MaxDistance: 500
+    CurveType: 0
+    distanceCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 2
+        outSlope: 2
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 0
+    Text: 
+    customDuration: 0
+    isInit: 0
+    isPlaceholder: 1
+  - name: wpn_m4a1_fire
+    description: 
+    Tag: 
+    MixerGroup: {fileID: 0}
+    audio:
+    - {fileID: 8300000, guid: 5ce9e34b7d3495f4da0b19afdb743363, type: 3}
+    - {fileID: 8300000, guid: ed2a2a113d32b064e933a19b31e68019, type: 3}
+    - {fileID: 8300000, guid: f01629ddff6e1e94091b6252efe220f4, type: 3}
+    - {fileID: 8300000, guid: bd2df6396665a494fb422c8ecad2b624, type: 3}
+    - {fileID: 8300000, guid: fb72c9b9902745f4c80caed6a9d7cf49, type: 3}
+    - {fileID: 8300000, guid: 08f6938f1080d00489eb8f31f9fbb42e, type: 3}
+    soundType: 1
+    randomizeClips: 1
+    Secondary: wpn_m4a1_fire_second
+    bypassEffects: 0
+    bypassListenerEffects: 0
+    bypassReverbZones: 0
+    priority: 256
+    volume: 0
+    minVolume: 0.9471624
+    maxVolume: 1
+    isLooping: 0
+    startAliase: 
+    endAliase: 
+    minPitch: 0.9526866
+    maxPitch: 1.164179
+    stereoPan: 0.009
+    spatialBlend: 0
+    reverbZoneMix: 1
+    dopplerLevel: 0.97
+    Spread: 0
+    MinDistance: 0
+    MaxDistance: 309
+    CurveType: 0
+    distanceCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 1
+        outSlope: 1
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 1
+        outSlope: 1
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 0
+    Text: 
+    customDuration: 0
+    isInit: 0
+    isPlaceholder: 1
+  - name: wpn_m4a1_fire_second
+    description: 
+    Tag: 
+    MixerGroup: {fileID: 0}
+    audio:
+    - {fileID: 8300000, guid: 05cd1a8d01829a04785551e3b25ae355, type: 3}
+    - {fileID: 8300000, guid: 5e0c6c0a24c9a6a4b94c167ccf7b0404, type: 3}
+    - {fileID: 8300000, guid: 9478b3eac8feebd4b857c64583f001f3, type: 3}
+    - {fileID: 8300000, guid: 32faabaecefe8c14eb5e67310958d486, type: 3}
+    - {fileID: 8300000, guid: 6653fd9730f6c9d4181954557f10bb9c, type: 3}
+    - {fileID: 8300000, guid: 1d554926148d14343a96546798d9a2f9, type: 3}
+    soundType: 1
+    randomizeClips: 1
+    Secondary: 
+    bypassEffects: 0
+    bypassListenerEffects: 0
+    bypassReverbZones: 0
+    priority: 256
+    volume: 0
+    minVolume: 0.6931998
+    maxVolume: 0.73776907
+    isLooping: 0
+    startAliase: 
+    endAliase: 
+    minPitch: 0.993914
+    maxPitch: 1.2035227
+    stereoPan: 0.012
+    spatialBlend: 0
+    reverbZoneMix: 1
+    dopplerLevel: 1
+    Spread: 1
+    MinDistance: 0
+    MaxDistance: 500
+    CurveType: 0
+    distanceCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 2
+        outSlope: 2
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 0
+    Text: 
+    customDuration: 0
+    isInit: 0
+    isPlaceholder: 1
+  - name: wpn_m4a1_fire_secondfuck
+    description: 
+    Tag: 
+    MixerGroup: {fileID: 0}
+    audio:
+    - {fileID: 8300000, guid: 5ce9e34b7d3495f4da0b19afdb743363, type: 3}
+    - {fileID: 8300000, guid: ed2a2a113d32b064e933a19b31e68019, type: 3}
+    - {fileID: 8300000, guid: f01629ddff6e1e94091b6252efe220f4, type: 3}
+    - {fileID: 8300000, guid: bd2df6396665a494fb422c8ecad2b624, type: 3}
+    - {fileID: 8300000, guid: fb72c9b9902745f4c80caed6a9d7cf49, type: 3}
+    - {fileID: 8300000, guid: 08f6938f1080d00489eb8f31f9fbb42e, type: 3}
+    soundType: 1
+    randomizeClips: 1
+    Secondary: wpn_m4a1_firefuck
+    bypassEffects: 0
+    bypassListenerEffects: 0
+    bypassReverbZones: 0
+    priority: 167
+    volume: 0
+    minVolume: 0.8
+    maxVolume: 0.8
+    isLooping: 0
+    startAliase: 
+    endAliase: 
+    minPitch: 1
+    maxPitch: 1.01
+    stereoPan: 0.009
+    spatialBlend: 0
+    reverbZoneMix: 1
+    dopplerLevel: 1
+    Spread: 1
+    MinDistance: 0
+    MaxDistance: 500
+    CurveType: 0
+    distanceCurve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 0
+      m_PostInfinity: 0
+      m_RotationOrder: 0
+    Text: 
+    customDuration: 0
+    isInit: 0
+    isPlaceholder: 1
+  - name: wpn_minigun_spin_start
+    description: 
+    Tag: 
+    MixerGroup: {fileID: 0}
+    audio:
+    - {fileID: 8300000, guid: 93c16d5f1455dfd4e8427e7101fc9384, type: 3}
+    soundType: 1
+    randomizeClips: 1
+    Secondary: 
+    bypassEffects: 0
+    bypassListenerEffects: 0
+    bypassReverbZones: 0
+    priority: 167
+    volume: 0
+    minVolume: 0.8
+    maxVolume: 0.8
+    isLooping: 0
+    startAliase: 
+    endAliase: 
+    minPitch: 1
+    maxPitch: 1.01
+    stereoPan: 0.009
+    spatialBlend: 0
+    reverbZoneMix: 1
+    dopplerLevel: 1
+    Spread: 1
+    MinDistance: 0
+    MaxDistance: 500
+    CurveType: 0
+    distanceCurve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 0
+      m_PostInfinity: 0
+      m_RotationOrder: 0
+    Text: 
+    customDuration: 0
+    isInit: 0
+    isPlaceholder: 1
+  - name: wpn_minigun_spin_loop
+    description: 
+    Tag: 
+    MixerGroup: {fileID: 0}
+    audio:
+    - {fileID: 8300000, guid: d1edff91b401fa24f9d11a3b6a8201e8, type: 3}
+    soundType: 1
+    randomizeClips: 1
+    Secondary: 
+    bypassEffects: 0
+    bypassListenerEffects: 0
+    bypassReverbZones: 0
+    priority: 167
+    volume: 0
+    minVolume: 0.8
+    maxVolume: 0.8
+    isLooping: 1
+    startAliase: wpn_minigun_spin_start
+    endAliase: wpn_minigun_spin_end
+    minPitch: 1
+    maxPitch: 1.01
+    stereoPan: 0.009
+    spatialBlend: 0
+    reverbZoneMix: 1
+    dopplerLevel: 1
+    Spread: 1
+    MinDistance: 0
+    MaxDistance: 500
+    CurveType: 0
+    distanceCurve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 0
+      m_PostInfinity: 0
+      m_RotationOrder: 0
+    Text: 
+    customDuration: 0
+    isInit: 0
+    isPlaceholder: 1
+  - name: wpn_minigun_spin_end
+    description: 
+    Tag: 
+    MixerGroup: {fileID: 0}
+    audio:
+    - {fileID: 8300000, guid: 06f73a6970a64f64f8ce690d7f12c104, type: 3}
+    soundType: 1
+    randomizeClips: 1
+    Secondary: 
+    bypassEffects: 0
+    bypassListenerEffects: 0
+    bypassReverbZones: 0
+    priority: 167
+    volume: 0
+    minVolume: 0.8
+    maxVolume: 0.8
+    isLooping: 0
+    startAliase: 
+    endAliase: 
+    minPitch: 1
+    maxPitch: 1.01
+    stereoPan: 0.009
+    spatialBlend: 0
+    reverbZoneMix: 1
+    dopplerLevel: 1
+    Spread: 1
+    MinDistance: 0
+    MaxDistance: 500
+    CurveType: 0
+    distanceCurve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 0
+      m_PostInfinity: 0
+      m_RotationOrder: 0
+    Text: 
+    customDuration: 0
+    isInit: 0
+    isPlaceholder: 1

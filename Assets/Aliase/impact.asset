@@ -1,0 +1,963 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cbe7e2c0a55730e4d8113d0fb85617fe, type: 3}
+  m_Name: impact
+  m_EditorClassIdentifier: 
+  DontLoad: 0
+  defaultMixerGroup: {fileID: 0}
+  aliases:
+  - name: impactBell_heavy
+    description: 
+    Tag: 
+    MixerGroup: {fileID: 0}
+    audio:
+    - {fileID: 8300000, guid: a0e120a0a5f339d41ac94e4f1e2c046e, type: 3}
+    - {fileID: 8300000, guid: ed744a8e12463334cb17460984b2ff5e, type: 3}
+    - {fileID: 8300000, guid: 239dac162e239694f969d131605bd337, type: 3}
+    - {fileID: 8300000, guid: 614216d134b3e8848b70f01ce41c643e, type: 3}
+    - {fileID: 8300000, guid: 508779124355e6941af037ae9f6af9c2, type: 3}
+    soundType: 0
+    randomizeClips: 1
+    Secondary: 
+    bypassEffects: 0
+    bypassListenerEffects: 0
+    bypassReverbZones: 0
+    priority: 0
+    volume: 0
+    minVolume: 0.8
+    maxVolume: 0.8
+    isLooping: 0
+    startAliase: 
+    endAliase: 
+    minPitch: 1
+    maxPitch: 1.01
+    stereoPan: 0
+    spatialBlend: 0
+    reverbZoneMix: 1
+    dopplerLevel: 1
+    Spread: 1
+    MinDistance: 0
+    MaxDistance: 500
+    CurveType: 0
+    distanceCurve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 0
+      m_PostInfinity: 0
+      m_RotationOrder: 0
+    Text: 
+    customDuration: 0
+    isInit: 0
+    isPlaceholder: 1
+  - name: impactGeneric_light
+    description: 
+    Tag: 
+    MixerGroup: {fileID: 0}
+    audio:
+    - {fileID: 8300000, guid: 72b284456019bab4a9f6c307cb4310a2, type: 3}
+    - {fileID: 8300000, guid: e92af320a3cbc014ab72258d0b78d831, type: 3}
+    - {fileID: 8300000, guid: 3ba3d8be5708e7d4da3ccc5b945fa812, type: 3}
+    - {fileID: 8300000, guid: 94395adff7fd35e488971925cf340734, type: 3}
+    - {fileID: 8300000, guid: 3faace986f28e4d4098eb1f8a10aeacc, type: 3}
+    soundType: 0
+    randomizeClips: 1
+    Secondary: 
+    bypassEffects: 0
+    bypassListenerEffects: 0
+    bypassReverbZones: 0
+    priority: 0
+    volume: 0
+    minVolume: 0.8
+    maxVolume: 0.8
+    isLooping: 0
+    startAliase: 
+    endAliase: 
+    minPitch: 1
+    maxPitch: 1.01
+    stereoPan: 0
+    spatialBlend: 0
+    reverbZoneMix: 1
+    dopplerLevel: 1
+    Spread: 1
+    MinDistance: 0
+    MaxDistance: 500
+    CurveType: 0
+    distanceCurve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 0
+      m_PostInfinity: 0
+      m_RotationOrder: 0
+    Text: 
+    customDuration: 0
+    isInit: 0
+    isPlaceholder: 1
+  - name: impactGlass_light
+    description: 
+    Tag: 
+    MixerGroup: {fileID: 0}
+    audio:
+    - {fileID: 8300000, guid: 74209ce405934f2488876cfca4e16c2a, type: 3}
+    - {fileID: 8300000, guid: cf08ae9c38264a7479333e37c34598e8, type: 3}
+    - {fileID: 8300000, guid: 7b8be9c8d41ad60439450b1a4fdfc9bc, type: 3}
+    - {fileID: 8300000, guid: fa43a1096ff4b0e4b93a107b0db10988, type: 3}
+    - {fileID: 8300000, guid: 49a0dab11f2a66f48b68f7c24fe2c92d, type: 3}
+    soundType: 0
+    randomizeClips: 1
+    Secondary: 
+    bypassEffects: 0
+    bypassListenerEffects: 0
+    bypassReverbZones: 0
+    priority: 0
+    volume: 0
+    minVolume: 0.8
+    maxVolume: 0.8
+    isLooping: 0
+    startAliase: 
+    endAliase: 
+    minPitch: 1
+    maxPitch: 1.01
+    stereoPan: 0
+    spatialBlend: 0
+    reverbZoneMix: 1
+    dopplerLevel: 1
+    Spread: 1
+    MinDistance: 0
+    MaxDistance: 500
+    CurveType: 0
+    distanceCurve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 0
+      m_PostInfinity: 0
+      m_RotationOrder: 0
+    Text: 
+    customDuration: 0
+    isInit: 0
+    isPlaceholder: 1
+  - name: impactGlass_heavy
+    description: 
+    Tag: 
+    MixerGroup: {fileID: 0}
+    audio:
+    - {fileID: 8300000, guid: 1524824394f6bfe4c9ac4c9421b8ad5b, type: 3}
+    - {fileID: 8300000, guid: 7ebd2dd47e452114ea78702252b34838, type: 3}
+    - {fileID: 8300000, guid: 5d40eacf09ab61d4aa61fd95ee727f74, type: 3}
+    - {fileID: 8300000, guid: dc73900398a5c1d44b2f83e3bf702d93, type: 3}
+    - {fileID: 8300000, guid: c4de4fd0f74d52a49b3e170e6ca03a77, type: 3}
+    soundType: 0
+    randomizeClips: 1
+    Secondary: 
+    bypassEffects: 0
+    bypassListenerEffects: 0
+    bypassReverbZones: 0
+    priority: 0
+    volume: 0
+    minVolume: 0.8
+    maxVolume: 0.8
+    isLooping: 0
+    startAliase: 
+    endAliase: 
+    minPitch: 1
+    maxPitch: 1.01
+    stereoPan: 0
+    spatialBlend: 0
+    reverbZoneMix: 1
+    dopplerLevel: 1
+    Spread: 1
+    MinDistance: 0
+    MaxDistance: 500
+    CurveType: 0
+    distanceCurve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 0
+      m_PostInfinity: 0
+      m_RotationOrder: 0
+    Text: 
+    customDuration: 0
+    isInit: 0
+    isPlaceholder: 1
+  - name: impactGlass_medium
+    description: 
+    Tag: 
+    MixerGroup: {fileID: 0}
+    audio:
+    - {fileID: 8300000, guid: 69e7e4e53f7f5154da80a4199a0d6efe, type: 3}
+    - {fileID: 8300000, guid: 6d9862152b3fc5948abf9301ae23a627, type: 3}
+    - {fileID: 8300000, guid: bb670b6f80633654dbe336cf4c5028cd, type: 3}
+    - {fileID: 8300000, guid: 98cceddb0ec9958469c970b2dcc1ab3e, type: 3}
+    - {fileID: 8300000, guid: d5d3e3dbf9184f948bb6570ab5292fc7, type: 3}
+    soundType: 0
+    randomizeClips: 1
+    Secondary: 
+    bypassEffects: 0
+    bypassListenerEffects: 0
+    bypassReverbZones: 0
+    priority: 0
+    volume: 0
+    minVolume: 0.8
+    maxVolume: 0.8
+    isLooping: 0
+    startAliase: 
+    endAliase: 
+    minPitch: 1
+    maxPitch: 1.01
+    stereoPan: 0
+    spatialBlend: 0
+    reverbZoneMix: 1
+    dopplerLevel: 1
+    Spread: 1
+    MinDistance: 0
+    MaxDistance: 500
+    CurveType: 0
+    distanceCurve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 0
+      m_PostInfinity: 0
+      m_RotationOrder: 0
+    Text: 
+    customDuration: 0
+    isInit: 0
+    isPlaceholder: 1
+  - name: impactMetal_medium
+    description: 
+    Tag: 
+    MixerGroup: {fileID: 0}
+    audio:
+    - {fileID: 8300000, guid: b95dbcb9cff3da54dad556c9811d0b82, type: 3}
+    - {fileID: 8300000, guid: 9f756e4548320dd4b81cd0e9897a77fb, type: 3}
+    - {fileID: 8300000, guid: c0d0f59af090cb94a8b4acf59b41419f, type: 3}
+    - {fileID: 8300000, guid: 814b4edea04dcbb448e4307a7276f8ba, type: 3}
+    - {fileID: 8300000, guid: 31e6c99dddf91f2438b402013b9e5318, type: 3}
+    soundType: 0
+    randomizeClips: 1
+    Secondary: 
+    bypassEffects: 0
+    bypassListenerEffects: 0
+    bypassReverbZones: 0
+    priority: 0
+    volume: 0
+    minVolume: 0.8
+    maxVolume: 0.8
+    isLooping: 0
+    startAliase: 
+    endAliase: 
+    minPitch: 1
+    maxPitch: 1.01
+    stereoPan: 0
+    spatialBlend: 0
+    reverbZoneMix: 1
+    dopplerLevel: 1
+    Spread: 1
+    MinDistance: 0
+    MaxDistance: 500
+    CurveType: 0
+    distanceCurve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 0
+      m_PostInfinity: 0
+      m_RotationOrder: 0
+    Text: 
+    customDuration: 0
+    isInit: 0
+    isPlaceholder: 1
+  - name: impactMetal_light
+    description: 
+    Tag: 
+    MixerGroup: {fileID: 0}
+    audio:
+    - {fileID: 8300000, guid: b6d57c19ca006a0449170dbf68268540, type: 3}
+    - {fileID: 8300000, guid: b66de1885070f0148b052a6935bf3730, type: 3}
+    - {fileID: 8300000, guid: 4077e0d97720e484ba865a98b6543ac4, type: 3}
+    - {fileID: 8300000, guid: 736edc99f97ae9048914f2776aa5c133, type: 3}
+    - {fileID: 8300000, guid: 3c5b8fb8293eece469321458ad7feac0, type: 3}
+    soundType: 0
+    randomizeClips: 1
+    Secondary: 
+    bypassEffects: 0
+    bypassListenerEffects: 0
+    bypassReverbZones: 0
+    priority: 0
+    volume: 0
+    minVolume: 0.8
+    maxVolume: 0.8
+    isLooping: 0
+    startAliase: 
+    endAliase: 
+    minPitch: 1
+    maxPitch: 1.01
+    stereoPan: 0
+    spatialBlend: 0
+    reverbZoneMix: 1
+    dopplerLevel: 1
+    Spread: 1
+    MinDistance: 0
+    MaxDistance: 500
+    CurveType: 0
+    distanceCurve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 0
+      m_PostInfinity: 0
+      m_RotationOrder: 0
+    Text: 
+    customDuration: 0
+    isInit: 0
+    isPlaceholder: 1
+  - name: impactMetal_heavy
+    description: 
+    Tag: 
+    MixerGroup: {fileID: 0}
+    audio:
+    - {fileID: 8300000, guid: c32fe5b72e3ad2b459a0ea8a131d01df, type: 3}
+    - {fileID: 8300000, guid: 44bab66a7b9442b4eac63f7a2287bec5, type: 3}
+    - {fileID: 8300000, guid: fe94890d2d09ed64ba3ba5aa2a89f2df, type: 3}
+    - {fileID: 8300000, guid: d6d9e7f8c73d84642b3b2853fc0a852d, type: 3}
+    - {fileID: 8300000, guid: 4cff37516e0fc28499208b3da144cb6a, type: 3}
+    soundType: 0
+    randomizeClips: 1
+    Secondary: 
+    bypassEffects: 0
+    bypassListenerEffects: 0
+    bypassReverbZones: 0
+    priority: 0
+    volume: 0
+    minVolume: 0.8
+    maxVolume: 0.8
+    isLooping: 0
+    startAliase: 
+    endAliase: 
+    minPitch: 1
+    maxPitch: 1.01
+    stereoPan: 0
+    spatialBlend: 0
+    reverbZoneMix: 1
+    dopplerLevel: 1
+    Spread: 1
+    MinDistance: 0
+    MaxDistance: 500
+    CurveType: 0
+    distanceCurve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 0
+      m_PostInfinity: 0
+      m_RotationOrder: 0
+    Text: 
+    customDuration: 0
+    isInit: 0
+    isPlaceholder: 1
+  - name: impactMining
+    description: 
+    Tag: 
+    MixerGroup: {fileID: 0}
+    audio:
+    - {fileID: 8300000, guid: 1e5b786463cd7944e9c56ce486e2720b, type: 3}
+    - {fileID: 8300000, guid: e835e30b88d39cf468761a6f186941ff, type: 3}
+    - {fileID: 8300000, guid: 8515c16ac211bcc4691a97833c45fd53, type: 3}
+    - {fileID: 8300000, guid: 1862aa3bdd2b6ea47a98fefa38b974fb, type: 3}
+    - {fileID: 8300000, guid: 57903d59ab7e7a048a6aefae123f31f7, type: 3}
+    soundType: 0
+    randomizeClips: 1
+    Secondary: 
+    bypassEffects: 0
+    bypassListenerEffects: 0
+    bypassReverbZones: 0
+    priority: 0
+    volume: 0
+    minVolume: 0.80626225
+    maxVolume: 0.83953035
+    isLooping: 0
+    startAliase: 
+    endAliase: 
+    minPitch: 0.84127223
+    maxPitch: 1.1330726
+    stereoPan: 0
+    spatialBlend: 0
+    reverbZoneMix: 1
+    dopplerLevel: 1
+    Spread: 1
+    MinDistance: 0
+    MaxDistance: 500
+    CurveType: 0
+    distanceCurve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 0
+      m_PostInfinity: 0
+      m_RotationOrder: 0
+    Text: 
+    customDuration: 0
+    isInit: 0
+    isPlaceholder: 1
+  - name: impactPlank_medium
+    description: 
+    Tag: 
+    MixerGroup: {fileID: 0}
+    audio:
+    - {fileID: 8300000, guid: 0027a49ecad04d642a2162accb3f81f3, type: 3}
+    - {fileID: 8300000, guid: 6f3dd3510c7544143865a0c0589837a3, type: 3}
+    - {fileID: 8300000, guid: 1e2dd3858400d924cb440a481affbf04, type: 3}
+    - {fileID: 8300000, guid: 24c57e29f5415254d98304314e52ef9e, type: 3}
+    - {fileID: 8300000, guid: 0456668a8ad7d6e4ca4d999a3c6b19dd, type: 3}
+    soundType: 0
+    randomizeClips: 1
+    Secondary: 
+    bypassEffects: 0
+    bypassListenerEffects: 0
+    bypassReverbZones: 0
+    priority: 0
+    volume: 0
+    minVolume: 0.7765167
+    maxVolume: 0.8215264
+    isLooping: 0
+    startAliase: 
+    endAliase: 
+    minPitch: 0.5655577
+    maxPitch: 1.4679257
+    stereoPan: 0
+    spatialBlend: 0
+    reverbZoneMix: 1
+    dopplerLevel: 1
+    Spread: 1
+    MinDistance: 0
+    MaxDistance: 500
+    CurveType: 0
+    distanceCurve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 0
+      m_PostInfinity: 0
+      m_RotationOrder: 0
+    Text: 
+    customDuration: 0
+    isInit: 0
+    isPlaceholder: 1
+  - name: impactPlate_medium
+    description: 
+    Tag: 
+    MixerGroup: {fileID: 0}
+    audio:
+    - {fileID: 8300000, guid: edbb344d57118e4459a054e40343f8dc, type: 3}
+    - {fileID: 8300000, guid: d2ad96c5144b7924ebfc80f4936b4e36, type: 3}
+    - {fileID: 8300000, guid: f370120c75901b1449243171bdc2dbce, type: 3}
+    - {fileID: 8300000, guid: 5f0ac2be5444e3a4199e12979ca86a57, type: 3}
+    - {fileID: 8300000, guid: b20fd0da11b49a14abc76ed1f8ebd427, type: 3}
+    soundType: 0
+    randomizeClips: 1
+    Secondary: 
+    bypassEffects: 0
+    bypassListenerEffects: 0
+    bypassReverbZones: 0
+    priority: 0
+    volume: 0
+    minVolume: 0.8
+    maxVolume: 0.8
+    isLooping: 0
+    startAliase: 
+    endAliase: 
+    minPitch: 1
+    maxPitch: 1.01
+    stereoPan: 0
+    spatialBlend: 0
+    reverbZoneMix: 1
+    dopplerLevel: 1
+    Spread: 1
+    MinDistance: 0
+    MaxDistance: 500
+    CurveType: 0
+    distanceCurve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 0
+      m_PostInfinity: 0
+      m_RotationOrder: 0
+    Text: 
+    customDuration: 0
+    isInit: 0
+    isPlaceholder: 1
+  - name: impactPlate_light
+    description: 
+    Tag: 
+    MixerGroup: {fileID: 0}
+    audio:
+    - {fileID: 8300000, guid: cbaa9cde3a5a1a749bf8d731289e8018, type: 3}
+    - {fileID: 8300000, guid: 78fa6292c6c228b479e49d96eed2de3e, type: 3}
+    - {fileID: 8300000, guid: d75b80e1cdf4f2d40acf369aa7d90078, type: 3}
+    - {fileID: 8300000, guid: 41ad86eaea86d144c95575e8437bb881, type: 3}
+    - {fileID: 8300000, guid: f29c5a4df13625d47b76e459e51d674a, type: 3}
+    soundType: 0
+    randomizeClips: 1
+    Secondary: 
+    bypassEffects: 0
+    bypassListenerEffects: 0
+    bypassReverbZones: 0
+    priority: 0
+    volume: 0
+    minVolume: 0.8
+    maxVolume: 0.8
+    isLooping: 0
+    startAliase: 
+    endAliase: 
+    minPitch: 1
+    maxPitch: 1.01
+    stereoPan: 0
+    spatialBlend: 0
+    reverbZoneMix: 1
+    dopplerLevel: 1
+    Spread: 1
+    MinDistance: 0
+    MaxDistance: 500
+    CurveType: 0
+    distanceCurve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 0
+      m_PostInfinity: 0
+      m_RotationOrder: 0
+    Text: 
+    customDuration: 0
+    isInit: 0
+    isPlaceholder: 1
+  - name: impactPlate_heavy
+    description: 
+    Tag: 
+    MixerGroup: {fileID: 0}
+    audio:
+    - {fileID: 8300000, guid: 8c27f381cb83a034aba407aae444b07c, type: 3}
+    - {fileID: 8300000, guid: 6f7b38a3981a2ce4fae153afd47b6648, type: 3}
+    - {fileID: 8300000, guid: d483973d31bdf7c4ea63145098ac8f5e, type: 3}
+    - {fileID: 8300000, guid: 1038016294cf3ac448957e6c85918eef, type: 3}
+    - {fileID: 8300000, guid: 4058fc6a1ffffe648af5c5e11c0c21ca, type: 3}
+    soundType: 0
+    randomizeClips: 1
+    Secondary: 
+    bypassEffects: 0
+    bypassListenerEffects: 0
+    bypassReverbZones: 0
+    priority: 0
+    volume: 0
+    minVolume: 0.7690802
+    maxVolume: 0.8180039
+    isLooping: 0
+    startAliase: 
+    endAliase: 
+    minPitch: 1
+    maxPitch: 1.6323092
+    stereoPan: 0
+    spatialBlend: 0
+    reverbZoneMix: 1
+    dopplerLevel: 1
+    Spread: 1
+    MinDistance: 0
+    MaxDistance: 500
+    CurveType: 0
+    distanceCurve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 0
+      m_PostInfinity: 0
+      m_RotationOrder: 0
+    Text: 
+    customDuration: 0
+    isInit: 0
+    isPlaceholder: 1
+  - name: impactPunch_heavy
+    description: 
+    Tag: 
+    MixerGroup: {fileID: 0}
+    audio:
+    - {fileID: 8300000, guid: 8fd781f61204bb14d9a5759da606a81a, type: 3}
+    - {fileID: 8300000, guid: cbd2f38e0bed95d4a90dc3d06c246f17, type: 3}
+    - {fileID: 8300000, guid: cb10ef91a3d36364d8eec26a08e6a068, type: 3}
+    - {fileID: 8300000, guid: 2e1924e69aafa184a8045a43f95f1f97, type: 3}
+    - {fileID: 8300000, guid: 85f00ca873499b040a99cf7eb8dc1c74, type: 3}
+    soundType: 0
+    randomizeClips: 1
+    Secondary: 
+    bypassEffects: 0
+    bypassListenerEffects: 0
+    bypassReverbZones: 0
+    priority: 0
+    volume: 0
+    minVolume: 0.8
+    maxVolume: 0.8
+    isLooping: 0
+    startAliase: 
+    endAliase: 
+    minPitch: 1
+    maxPitch: 1.01
+    stereoPan: 0
+    spatialBlend: 0
+    reverbZoneMix: 1
+    dopplerLevel: 1
+    Spread: 1
+    MinDistance: 0
+    MaxDistance: 500
+    CurveType: 0
+    distanceCurve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 0
+      m_PostInfinity: 0
+      m_RotationOrder: 0
+    Text: 
+    customDuration: 0
+    isInit: 0
+    isPlaceholder: 1
+  - name: impactPunch_medium
+    description: 
+    Tag: 
+    MixerGroup: {fileID: 0}
+    audio:
+    - {fileID: 8300000, guid: e11b898cc7e303245853dd9a038702ad, type: 3}
+    - {fileID: 8300000, guid: 61f4bc7ca1665eb4c9a3dd3031ea7ccb, type: 3}
+    - {fileID: 8300000, guid: 9c44ef723eab62d4d81cf00245c9f488, type: 3}
+    - {fileID: 8300000, guid: 5d4dcfbdf019ee94b867ee5bfac8129b, type: 3}
+    - {fileID: 8300000, guid: 1a523271239c33347849f1d58a15ce36, type: 3}
+    soundType: 0
+    randomizeClips: 1
+    Secondary: 
+    bypassEffects: 0
+    bypassListenerEffects: 0
+    bypassReverbZones: 0
+    priority: 0
+    volume: 0
+    minVolume: 0.8
+    maxVolume: 0.8508806
+    isLooping: 0
+    startAliase: 
+    endAliase: 
+    minPitch: 0.7886497
+    maxPitch: 1.268317
+    stereoPan: 0
+    spatialBlend: 0
+    reverbZoneMix: 1
+    dopplerLevel: 1
+    Spread: 1
+    MinDistance: 0
+    MaxDistance: 500
+    CurveType: 0
+    distanceCurve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 0
+      m_PostInfinity: 0
+      m_RotationOrder: 0
+    Text: 
+    customDuration: 0
+    isInit: 0
+    isPlaceholder: 1
+  - name: impactSoft_medium
+    description: 
+    Tag: 
+    MixerGroup: {fileID: 0}
+    audio:
+    - {fileID: 8300000, guid: 0c2ea822f35f61246aec3f20c3314629, type: 3}
+    - {fileID: 8300000, guid: f736ab30eb8f9a9448a7438a5d43cb79, type: 3}
+    - {fileID: 8300000, guid: e09e9e44b2b373640930d13c7acb269a, type: 3}
+    - {fileID: 8300000, guid: 60e14f7aa9ba7a044821ed11e4f9e48f, type: 3}
+    - {fileID: 8300000, guid: 3392bf9558c04fe41aaa7c8ea02d43a3, type: 3}
+    soundType: 0
+    randomizeClips: 1
+    Secondary: 
+    bypassEffects: 0
+    bypassListenerEffects: 0
+    bypassReverbZones: 0
+    priority: 0
+    volume: 0
+    minVolume: 0.92720157
+    maxVolume: 0.9937377
+    isLooping: 0
+    startAliase: 
+    endAliase: 
+    minPitch: 1
+    maxPitch: 1.01
+    stereoPan: 0
+    spatialBlend: 0
+    reverbZoneMix: 1
+    dopplerLevel: 1
+    Spread: 1
+    MinDistance: 0
+    MaxDistance: 500
+    CurveType: 0
+    distanceCurve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 0
+      m_PostInfinity: 0
+      m_RotationOrder: 0
+    Text: 
+    customDuration: 0
+    isInit: 0
+    isPlaceholder: 1
+  - name: impactSoft_heavy
+    description: 
+    Tag: 
+    MixerGroup: {fileID: 0}
+    audio:
+    - {fileID: 8300000, guid: e5968f7f5a40d034396620d36389b715, type: 3}
+    - {fileID: 8300000, guid: ebc9b7402cd44c841873f4886ac3c449, type: 3}
+    - {fileID: 8300000, guid: 89cc9f583e65a3e4a9caf83d673cc64b, type: 3}
+    - {fileID: 8300000, guid: 6ef1fc332eab9484ba610f480f610183, type: 3}
+    - {fileID: 8300000, guid: 0d9ba09648d8501409406621f1cf966a, type: 3}
+    soundType: 0
+    randomizeClips: 1
+    Secondary: 
+    bypassEffects: 0
+    bypassListenerEffects: 0
+    bypassReverbZones: 0
+    priority: 0
+    volume: 0
+    minVolume: 0.93933463
+    maxVolume: 1
+    isLooping: 0
+    startAliase: 
+    endAliase: 
+    minPitch: 1
+    maxPitch: 1.01
+    stereoPan: 0
+    spatialBlend: 0
+    reverbZoneMix: 1
+    dopplerLevel: 1
+    Spread: 1
+    MinDistance: 0
+    MaxDistance: 500
+    CurveType: 0
+    distanceCurve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 0
+      m_PostInfinity: 0
+      m_RotationOrder: 0
+    Text: 
+    customDuration: 0
+    isInit: 0
+    isPlaceholder: 1
+  - name: impactTin_medium
+    description: 
+    Tag: 
+    MixerGroup: {fileID: 0}
+    audio:
+    - {fileID: 8300000, guid: 20be3562c5e63724983a4a3487e32afb, type: 3}
+    - {fileID: 8300000, guid: 9fb6c1e4e0afb0f46b823b6712dc4e42, type: 3}
+    - {fileID: 8300000, guid: ba0ad341d97f1da44877260cfa84d3be, type: 3}
+    - {fileID: 8300000, guid: dbafca5330b7c5c43adc3aba9dbfe815, type: 3}
+    - {fileID: 8300000, guid: cef6066b12c1141469f59380e2600b43, type: 3}
+    soundType: 0
+    randomizeClips: 1
+    Secondary: 
+    bypassEffects: 0
+    bypassListenerEffects: 0
+    bypassReverbZones: 0
+    priority: 0
+    volume: 0
+    minVolume: 0.7823875
+    maxVolume: 0.8176125
+    isLooping: 0
+    startAliase: 
+    endAliase: 
+    minPitch: 1
+    maxPitch: 1.1274168
+    stereoPan: 0
+    spatialBlend: 0
+    reverbZoneMix: 1
+    dopplerLevel: 1
+    Spread: 1
+    MinDistance: 0
+    MaxDistance: 500
+    CurveType: 0
+    distanceCurve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 0
+      m_PostInfinity: 0
+      m_RotationOrder: 0
+    Text: 
+    customDuration: 0
+    isInit: 0
+    isPlaceholder: 1
+  - name: impactWood_heavy
+    description: 
+    Tag: 
+    MixerGroup: {fileID: 0}
+    audio:
+    - {fileID: 8300000, guid: c702d9a53e5078c49b5799edeb471be2, type: 3}
+    - {fileID: 8300000, guid: 903e2f6558c958b4499f7254742d2eaf, type: 3}
+    - {fileID: 8300000, guid: dba5ba2b4aa411c449f2e761befffc28, type: 3}
+    - {fileID: 8300000, guid: 4fe9d0ca749d06740876d044588d6628, type: 3}
+    - {fileID: 8300000, guid: 7a886a6a100ddab4f9defeb07a36195d, type: 3}
+    soundType: 0
+    randomizeClips: 1
+    Secondary: 
+    bypassEffects: 0
+    bypassListenerEffects: 0
+    bypassReverbZones: 0
+    priority: 0
+    volume: 0
+    minVolume: 0.82544035
+    maxVolume: 0.8450098
+    isLooping: 0
+    startAliase: 
+    endAliase: 
+    minPitch: 0.84735817
+    maxPitch: 1.0921918
+    stereoPan: 0
+    spatialBlend: 0
+    reverbZoneMix: 1
+    dopplerLevel: 1
+    Spread: 1
+    MinDistance: 0
+    MaxDistance: 500
+    CurveType: 0
+    distanceCurve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 0
+      m_PostInfinity: 0
+      m_RotationOrder: 0
+    Text: 
+    customDuration: 0
+    isInit: 0
+    isPlaceholder: 1
+  - name: impactWood_light
+    description: 
+    Tag: 
+    MixerGroup: {fileID: 0}
+    audio:
+    - {fileID: 8300000, guid: 126635f3371703246ae80a9825d0b8c3, type: 3}
+    - {fileID: 8300000, guid: fd53111efe70bb04da3913b6be6a70e4, type: 3}
+    - {fileID: 8300000, guid: f4efb8f558b6b5d41883d39c9fdb64b8, type: 3}
+    - {fileID: 8300000, guid: 15deda1bf039f5f4d91c1294196c88de, type: 3}
+    - {fileID: 8300000, guid: 153aa8428c804f54e97cfe86b800f040, type: 3}
+    soundType: 0
+    randomizeClips: 1
+    Secondary: 
+    bypassEffects: 0
+    bypassListenerEffects: 0
+    bypassReverbZones: 0
+    priority: 0
+    volume: 0
+    minVolume: 0.8
+    maxVolume: 0.8
+    isLooping: 0
+    startAliase: 
+    endAliase: 
+    minPitch: 0.90606654
+    maxPitch: 1.1156751
+    stereoPan: 0
+    spatialBlend: 0
+    reverbZoneMix: 1
+    dopplerLevel: 1
+    Spread: 1
+    MinDistance: 0
+    MaxDistance: 500
+    CurveType: 0
+    distanceCurve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 0
+      m_PostInfinity: 0
+      m_RotationOrder: 0
+    Text: 
+    customDuration: 0
+    isInit: 0
+    isPlaceholder: 1
+  - name: impactWood_medium
+    description: 
+    Tag: Audio Aliase/Impact
+    MixerGroup: {fileID: 0}
+    audio:
+    - {fileID: 8300000, guid: db29435e3ca72c94eadec6bbf656668a, type: 3}
+    - {fileID: 8300000, guid: 78b77bd245f756447b903312a01564da, type: 3}
+    - {fileID: 8300000, guid: 92872a6d0e123b743901efaaab519930, type: 3}
+    - {fileID: 8300000, guid: 3a50562e059b2cd45adbb551f4b71772, type: 3}
+    - {fileID: 8300000, guid: 06f9d6a8a0ff3b64dac3b26402980060, type: 3}
+    soundType: 0
+    randomizeClips: 1
+    Secondary: 
+    bypassEffects: 0
+    bypassListenerEffects: 0
+    bypassReverbZones: 0
+    priority: 0
+    volume: 0
+    minVolume: 0.8
+    maxVolume: 0.8
+    isLooping: 0
+    startAliase: 
+    endAliase: 
+    minPitch: 0.95303327
+    maxPitch: 1.0687084
+    stereoPan: 0
+    spatialBlend: 0
+    reverbZoneMix: 1
+    dopplerLevel: 1
+    Spread: 1
+    MinDistance: 0
+    MaxDistance: 500
+    CurveType: 0
+    distanceCurve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 0
+      m_PostInfinity: 0
+      m_RotationOrder: 0
+    Text: 
+    customDuration: 0
+    isInit: 0
+    isPlaceholder: 1
+  - name: impactnone
+    description: 
+    Tag: Audio Aliase/Impact
+    MixerGroup: {fileID: 0}
+    audio:
+    - {fileID: 8300000, guid: db29435e3ca72c94eadec6bbf656668a, type: 3}
+    - {fileID: 8300000, guid: 78b77bd245f756447b903312a01564da, type: 3}
+    - {fileID: 8300000, guid: 92872a6d0e123b743901efaaab519930, type: 3}
+    - {fileID: 8300000, guid: 3a50562e059b2cd45adbb551f4b71772, type: 3}
+    - {fileID: 8300000, guid: 06f9d6a8a0ff3b64dac3b26402980060, type: 3}
+    soundType: 0
+    randomizeClips: 1
+    Secondary: 
+    bypassEffects: 0
+    bypassListenerEffects: 0
+    bypassReverbZones: 0
+    priority: 0
+    volume: 0
+    minVolume: 0.8
+    maxVolume: 0.8
+    isLooping: 0
+    startAliase: 
+    endAliase: 
+    minPitch: 1
+    maxPitch: 1.01
+    stereoPan: 0
+    spatialBlend: 0
+    reverbZoneMix: 1
+    dopplerLevel: 1
+    Spread: 1
+    MinDistance: 0
+    MaxDistance: 500
+    CurveType: 0
+    distanceCurve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 0
+      m_PostInfinity: 0
+      m_RotationOrder: 0
+    Text: 
+    customDuration: 0
+    isInit: 0
+    isPlaceholder: 1
