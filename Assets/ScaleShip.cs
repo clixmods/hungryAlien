@@ -4,9 +4,16 @@ using UnityEngine;
 
 public class ScaleShip : MonoBehaviour
 {
-    [Range(1f, 10f)]
-    [SerializeField] float scaleFactor;
+    float scaleFactor = 1;
     [SerializeField] float heightOffset;
+    public void SetScaleFactor(float h)
+    {
+        scaleFactor = h;
+    }
+    public float GetScaleFactor()
+    {
+        return scaleFactor;
+    }
 
     private void Update()
     {

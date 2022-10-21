@@ -16,6 +16,10 @@ public class Absorber : MonoBehaviour
     [SerializeField] private float radius;
 
     [SerializeField] private List<GameObject> inTheTrigger;
+    [SerializeField] Transform AbsorbePoint;
+    [SerializeField] ScaleShip scaleShip;
+    [SerializeField] float scaleMultiplier = 1.1f;
+    [SerializeField] float strengthMultiplier = 1.1f;
 
     // Start is called before the first frame update
     void Start()
@@ -37,22 +41,25 @@ public class Absorber : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (Mouse.current.leftButton.isPressed)
-        {
-            foreach (var gaby in inTheTrigger)
-            {
-                if (gaby.TryGetComponent<Rigidbody>(out Rigidbody rb))
-                {
-                    Vector3 direction = transform.position - gaby.transform.position;
-                    rb.AddForce(direction*strenght);
-                }
-            }
-        }
+        
     }
 
     private void OnTriggerStay(Collider other)
     {
-        if (!inTheTrigger.Contains(other.gameObject))
-            inTheTrigger.Add(other.gameObject);
+        if (Mouse.current.leftButton.isPressed)
+        {
+            if (other.TryGetComponent<Rigidbody>(out Rigidbody rb))
+            {
+                Vector3 direction = AbsorbePoint.position - other.transform.position;
+                rb.AddForce(direction * strenght);
+                rb.velocity = rb.velocity.normalized * Mathf.Clamp(rb.velocity.magnitude, 0, 5);
+                if (AbsorbePoint.position.y - other.transform.position.y < 1f)
+                {
+                    Destroy(other.gameObject);
+                    scaleShip.SetScaleFactor(scaleShip.GetScaleFactor() * scaleMultiplier);
+                    strenght *= strengthMultiplier;
+                }
+            }
+        }
     }
 }
