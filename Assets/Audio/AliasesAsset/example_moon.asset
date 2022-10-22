@@ -10,17 +10,95 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cbe7e2c0a55730e4d8113d0fb85617fe, type: 3}
-  m_Name: lowhealth
+  m_Name: example_moon
   m_EditorClassIdentifier: 
   DontLoad: 0
   defaultMixerGroup: {fileID: 0}
   aliases:
-  - name: lowhealth_enter
+  - name: helmet_active
     description: 
     Tag: 
     MixerGroup: {fileID: 0}
     audio:
-    - {fileID: 8300000, guid: 6aa0db6882ca9a94bb18e4e69998a965, type: 3}
+    - {fileID: 8300000, guid: 536da8a41ef94224288b3a290bd8ae99, type: 3}
+    soundType: 0
+    randomizeClips: 0
+    Secondary: 
+    bypassEffects: 0
+    bypassListenerEffects: 0
+    bypassReverbZones: 0
+    priority: 0
+    volume: 0
+    minVolume: 0.7847358
+    maxVolume: 0.90606654
+    isLooping: 1
+    startAliase: helmet_on
+    endAliase: helmet_off
+    minPitch: 0.88258314
+    maxPitch: 1.01
+    stereoPan: 0
+    spatialBlend: 0
+    reverbZoneMix: 1
+    dopplerLevel: 1
+    Spread: 1
+    MinDistance: 0
+    MaxDistance: 500
+    CurveType: 0
+    distanceCurve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 0
+      m_PostInfinity: 0
+      m_RotationOrder: 0
+    Text: 
+    customDuration: 0
+    isInit: 0
+    isPlaceholder: 0
+  - name: helmet_on
+    description: 
+    Tag: 
+    MixerGroup: {fileID: 0}
+    audio:
+    - {fileID: 8300000, guid: 8792dedb830f0e441acc515d998d8185, type: 3}
+    soundType: 0
+    randomizeClips: 0
+    Secondary: evt_stand_up
+    bypassEffects: 0
+    bypassListenerEffects: 0
+    bypassReverbZones: 0
+    priority: 0
+    volume: 0
+    minVolume: 0.8
+    maxVolume: 0.8
+    isLooping: 0
+    startAliase: 
+    endAliase: 
+    minPitch: 1
+    maxPitch: 1.01
+    stereoPan: 0
+    spatialBlend: 0
+    reverbZoneMix: 1
+    dopplerLevel: 1
+    Spread: 1
+    MinDistance: 0
+    MaxDistance: 500
+    CurveType: 0
+    distanceCurve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 0
+      m_PostInfinity: 0
+      m_RotationOrder: 0
+    Text: 
+    customDuration: 0
+    isInit: 0
+    isPlaceholder: 1
+  - name: helmet_off
+    description: 
+    Tag: 
+    MixerGroup: {fileID: 0}
+    audio:
+    - {fileID: 8300000, guid: 7d62e61c368550740887bf8494c88132, type: 3}
     soundType: 0
     randomizeClips: 0
     Secondary: 
@@ -54,51 +132,12 @@ MonoBehaviour:
     customDuration: 0
     isInit: 0
     isPlaceholder: 1
-  - name: lwohealth_lp
+  - name: evt_stand_up
     description: 
     Tag: 
     MixerGroup: {fileID: 0}
     audio:
-    - {fileID: 8300000, guid: 2b5e40ad83deaee499a359a0f179b85d, type: 3}
-    soundType: 0
-    randomizeClips: 0
-    Secondary: 
-    bypassEffects: 0
-    bypassListenerEffects: 0
-    bypassReverbZones: 0
-    priority: 0
-    volume: 0
-    minVolume: 0.8
-    maxVolume: 0.8
-    isLooping: 1
-    startAliase: lowhealth_enter
-    endAliase: lowhealth_exit
-    minPitch: 1
-    maxPitch: 1.01
-    stereoPan: 0
-    spatialBlend: 0
-    reverbZoneMix: 1
-    dopplerLevel: 1
-    Spread: 1
-    MinDistance: 0
-    MaxDistance: 500
-    CurveType: 0
-    distanceCurve:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 0
-      m_PostInfinity: 0
-      m_RotationOrder: 0
-    Text: 
-    customDuration: 0
-    isInit: 0
-    isPlaceholder: 1
-  - name: lowhealth_exit
-    description: 
-    Tag: 
-    MixerGroup: {fileID: 0}
-    audio:
-    - {fileID: 8300000, guid: 1f59583fad6ef00438776238332c8a32, type: 3}
+    - {fileID: 8300000, guid: 1f8ae502351f3f143b0e18c1d512fd85, type: 3}
     soundType: 0
     randomizeClips: 0
     Secondary: 

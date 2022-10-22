@@ -14,13 +14,25 @@ public class ObjectPhysics : MonoBehaviour
 
     [Range(0,10)]
     [SerializeField] private float magnitudeToStopLoop = 0;
-    
+
+    [Range(1,2)]
+    [SerializeField] private float scaleMultiplier = 1.05f ;
+
+    public float ScaleMultiplier
+    {
+        get { return scaleMultiplier; }
+    }
+
+
+
     [Header("Sound Aliases")]
     [SerializeField][Aliase] string aliaseAmbiant;
     [SerializeField][Aliase] string aliaseMoving;
     [SerializeField][Aliase] string aliaseDeath;
 
     private AudioPlayer _audioPlayer;
+    
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -58,7 +70,7 @@ public class ObjectPhysics : MonoBehaviour
 
     private void OnDestroy()
     {
-        //AudioManager.PlaySoundAtPosition(aliaseDeath, transform.position);
+      
         LevelManager.Instance.RemoveObjectPhysical(this);
     }
 }

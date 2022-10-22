@@ -10,23 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cbe7e2c0a55730e4d8113d0fb85617fe, type: 3}
-  m_Name: objectphysics
+  m_Name: example_lowhealth
   m_EditorClassIdentifier: 
   DontLoad: 0
   defaultMixerGroup: {fileID: 0}
   aliases:
-  - name: fsdfsfds
+  - name: lowhealth_enter
     description: 
     Tag: 
     MixerGroup: {fileID: 0}
     audio:
-    - {fileID: 8300000, guid: 72b284456019bab4a9f6c307cb4310a2, type: 3}
-    - {fileID: 8300000, guid: e92af320a3cbc014ab72258d0b78d831, type: 3}
-    - {fileID: 8300000, guid: 3ba3d8be5708e7d4da3ccc5b945fa812, type: 3}
-    - {fileID: 8300000, guid: 94395adff7fd35e488971925cf340734, type: 3}
-    - {fileID: 8300000, guid: 3faace986f28e4d4098eb1f8a10aeacc, type: 3}
+    - {fileID: 8300000, guid: 6aa0db6882ca9a94bb18e4e69998a965, type: 3}
     soundType: 0
-    randomizeClips: 1
+    randomizeClips: 0
     Secondary: 
     bypassEffects: 0
     bypassListenerEffects: 0
@@ -58,12 +54,12 @@ MonoBehaviour:
     customDuration: 0
     isInit: 0
     isPlaceholder: 1
-  - name: absorbing_airwhoosh
+  - name: lwohealth_lp
     description: 
     Tag: 
     MixerGroup: {fileID: 0}
     audio:
-    - {fileID: 8300000, guid: b40147ba39ff60d468abb7306e34215e, type: 3}
+    - {fileID: 8300000, guid: 2b5e40ad83deaee499a359a0f179b85d, type: 3}
     soundType: 0
     randomizeClips: 0
     Secondary: 
@@ -75,8 +71,8 @@ MonoBehaviour:
     minVolume: 0.8
     maxVolume: 0.8
     isLooping: 1
-    startAliase: evt_stand_up
-    endAliase: impactGeneric_light
+    startAliase: lowhealth_enter
+    endAliase: lowhealth_exit
     minPitch: 1
     maxPitch: 1.01
     stereoPan: 0
@@ -97,18 +93,14 @@ MonoBehaviour:
     customDuration: 0
     isInit: 0
     isPlaceholder: 1
-  - name: sfsfdsdf
+  - name: lowhealth_exit
     description: 
     Tag: 
     MixerGroup: {fileID: 0}
     audio:
-    - {fileID: 8300000, guid: 7ebd2dd47e452114ea78702252b34838, type: 3}
-    - {fileID: 8300000, guid: 5d40eacf09ab61d4aa61fd95ee727f74, type: 3}
-    - {fileID: 8300000, guid: dc73900398a5c1d44b2f83e3bf702d93, type: 3}
-    - {fileID: 8300000, guid: c4de4fd0f74d52a49b3e170e6ca03a77, type: 3}
-    - {fileID: 8300000, guid: 1524824394f6bfe4c9ac4c9421b8ad5b, type: 3}
+    - {fileID: 8300000, guid: 1f59583fad6ef00438776238332c8a32, type: 3}
     soundType: 0
-    randomizeClips: 1
+    randomizeClips: 0
     Secondary: 
     bypassEffects: 0
     bypassListenerEffects: 0
@@ -120,45 +112,6 @@ MonoBehaviour:
     isLooping: 0
     startAliase: 
     endAliase: 
-    minPitch: 1
-    maxPitch: 1.01
-    stereoPan: 0
-    spatialBlend: 0
-    reverbZoneMix: 1
-    dopplerLevel: 1
-    Spread: 1
-    MinDistance: 0
-    MaxDistance: 500
-    CurveType: 0
-    distanceCurve:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 0
-      m_PostInfinity: 0
-      m_RotationOrder: 0
-    Text: 
-    customDuration: 0
-    isInit: 0
-    isPlaceholder: 1
-  - name: asborbing_default
-    description: 
-    Tag: 
-    MixerGroup: {fileID: 0}
-    audio:
-    - {fileID: 8300000, guid: b40147ba39ff60d468abb7306e34215e, type: 3}
-    soundType: 0
-    randomizeClips: 0
-    Secondary: 
-    bypassEffects: 0
-    bypassListenerEffects: 0
-    bypassReverbZones: 0
-    priority: 0
-    volume: 0
-    minVolume: 0.8
-    maxVolume: 0.8
-    isLooping: 1
-    startAliase: impactGlass_heavy
-    endAliase: impactGlass_heavy
     minPitch: 1
     maxPitch: 1.01
     stereoPan: 0
