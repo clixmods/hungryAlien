@@ -8,46 +8,30 @@ using AudioAliase;
 [SelectionBase]
 public class ObjectPhysics : MonoBehaviour
 {
-    [SerializeField] private int sleepUntilLevel;
-
+    public ObjectPhysicsScriptableObject _settings;
+ 
     private Rigidbody _rb;
-
-    [Range(0,10)]
-    [SerializeField] private float magnitudeToStopLoop = 0;
-
-    [Range(1,2)]
-    [SerializeField] private float scaleMultiplier = 1.05f ;
-
-    public float ScaleMultiplier
-    {
-        get { return scaleMultiplier; }
-    }
-
-
-
-    [Header("Sound Aliases")]
-    [SerializeField][Aliase] string aliaseAmbiant;
-    [SerializeField][Aliase] string aliaseMoving;
-    [SerializeField][Aliase] string aliaseDeath;
-
     private AudioPlayer _audioPlayer;
     
+    public float ScaleMultiplier
+    {
+        get { return _settings.scaleMultiplier; }
+    }
     
     // Start is called before the first frame update
     void Start()
     {
         _rb = GetComponent<Rigidbody>();
         _rb.isKinematic = true;
-        
     }
 
     // Update is called once per frame
     void Update()
     {
         WatchLevel();
-        if (_rb.velocity.magnitude > magnitudeToStopLoop)
+        if (_rb.velocity.magnitude > _settings.magnitudeToStopLoop)
         {
-            AudioManager.PlayLoopSound(aliaseMoving, transform.position, ref _audioPlayer);
+            AudioManager.PlayLoopSound(_settings.aliaseMoving, transform.position, ref _audioPlayer);
         }
         else
         {
@@ -61,7 +45,7 @@ public class ObjectPhysics : MonoBehaviour
 
     void WatchLevel()
     {
-        if ( _rb.isKinematic && LevelManager.Instance.CurrentLevel == sleepUntilLevel)
+        if ( _rb.isKinematic && LevelManager.Instance.CurrentLevel == _settings.sleepUntilLevel)
         {
             _rb.isKinematic = false;
             LevelManager.Instance.AddObjectPhysical(this);

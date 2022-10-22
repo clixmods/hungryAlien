@@ -24,9 +24,12 @@ namespace AudioAliase.Edit
                 EditorGUI.TextField(position, property.name,property.stringValue);
                 return;
             }
-       
-            
-            _aliasesArray = GetAllInstances<Aliases>();
+
+            if (_aliasesArray == null || _aliasesArray.Length == 0)
+            {
+                _aliasesArray = GetAllInstances<Aliases>();
+                Debug.Log("Aliase get in attribute");
+            }
             nameScenes = new List<string>();
             foreach (Aliases asset in _aliasesArray)
             {
