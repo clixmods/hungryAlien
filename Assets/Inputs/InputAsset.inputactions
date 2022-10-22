@@ -1,0 +1,34 @@
+{
+    "name": "InputAsset",
+    "maps": [
+        {
+            "name": "Game",
+            "id": "8b77371a-2743-4f69-89fe-22b5c76a3845",
+            "actions": [
+                {
+                    "name": "Cursor",
+                    "type": "Value",
+                    "id": "b8d3f05f-8a96-462c-8575-34bd88fd66d9",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "c20867c9-d57d-44a0-beb1-518502d340f4",
+                    "path": "<Mouse>/position",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Cursor",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
