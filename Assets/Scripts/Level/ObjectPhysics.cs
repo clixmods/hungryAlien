@@ -12,6 +12,8 @@ public class ObjectPhysics : MonoBehaviour
  
     private Rigidbody _rb;
     private AudioPlayer _audioPlayer;
+
+    public GameObject placeholder;
     
     public float ScaleMultiplier
     {
@@ -23,6 +25,13 @@ public class ObjectPhysics : MonoBehaviour
     {
         _rb = GetComponent<Rigidbody>();
         _rb.isKinematic = true;
+
+        if (_settings == null)
+        {
+            Debug.Log("Settings object Physics not setup", gameObject);
+            gameObject.SetActive(false);
+        }
+
     }
 
     // Update is called once per frame
@@ -54,7 +63,7 @@ public class ObjectPhysics : MonoBehaviour
 
     private void OnDestroy()
     {
-      
+        AudioManager.StopLoopSound(_audioPlayer);
         LevelManager.Instance.RemoveObjectPhysical(this);
     }
 }

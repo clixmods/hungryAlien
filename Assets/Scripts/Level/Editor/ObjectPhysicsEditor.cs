@@ -14,7 +14,7 @@ public class ObjectPhysicsEditor : Editor
     {
         base.OnInspectorGUI();
          myTarget = (ObjectPhysics) target;
-        myTarget.gameObject.name = "ObjectPhysics";
+       
 
 
 
@@ -25,7 +25,7 @@ public class ObjectPhysicsEditor : Editor
 
         if (myTarget._settings != null)
         {
-            
+            myTarget.gameObject.name = $"ObjectPhysics Force Required: {myTarget._settings.ForceRequired}";
             // Draw ScriptableObject in the inspector
             var myAsset = serializedObject.FindProperty("_settings");
             _foldSO = EditorGUILayout.InspectorTitlebar(_foldSO, myTarget._settings);
@@ -35,6 +35,10 @@ public class ObjectPhysicsEditor : Editor
                 EditorGUI.indentLevel++;
                 _editor.OnInspectorGUI();
             }
+        }
+        else
+        {
+            myTarget.gameObject.name = $"ObjectPhysics Setting no setup";
         }
         
         

@@ -7,10 +7,9 @@ using AudioAliase;
 [CreateAssetMenu(fileName = "objphysics_", menuName = "Gameplay Element/Object Physics", order = 1)]
 public class ObjectPhysicsScriptableObject : ScriptableObject
 {
-    public float hellowork;
     
     [SerializeField] public int sleepUntilLevel;
-    
+    public float ForceRequired = 2;
     [Range(0,10)]
     [SerializeField] public float magnitudeToStopLoop = 0;
 
