@@ -70,52 +70,33 @@ public class ObjectPhysics : MonoBehaviour
     {
         ObjectRigidbody.mass = ForceRequired; // TODO : TEMP
         WatchLevelToWakeUp();
-
-        // if (ObjectRigidbody.SweepTest(ObjectRigidbody.velocity.normalized, out RaycastHit hitInfo,
-        //         ObjectRigidbody.velocity.magnitude))
-        // {
-        //     if(ObjectRigidbody.velocity.magnitude > 0.5f)
-        //     
-        // }
-        
-        // if (ObjectRigidbody.velocity.magnitude > settings.magnitudeToStopLoop)
-        // {
-        //     AudioManager.PlayLoopSound(settings.aliaseMoving, transform.position, ref _audioPlayer);
-        // }
-        // else
-        // {
-        //     AudioManager.StopLoopSound(ref _audioPlayer);
-        // }
     }
     
     void OnCollisionEnter(Collision collision)
     {
-        foreach (ContactPoint contact in collision.contacts)
-        {
-            Debug.DrawRay(contact.point, contact.normal, Color.white);
-        }
-
         if (collision.relativeVelocity.magnitude > 2)
         {
             collision.gameObject.GetComponent<CollisionSurface>().Play();
             AudioManager.PlaySoundAtPosition(settings.aliaseImpact,transform.position);
         }
-            
     }
+
+    
 
     private void OnDestroy()
     {
         AudioManager.PlaySoundAtPosition(settings.aliaseDeath, transform.position);
-//        FXManager.PlayFXAtPosition(settings.fxDeath,transform.position);
+        //FXManager.PlayFXAtPosition(settings.fxDeath,transform.position);
         AudioManager.StopLoopSound(ref _audioPlayer);
         LevelManager.Instance.RemoveObjectPhysical(this);
     }
     
     private void OnDrawGizmos()
     {
-       // Gizmos.DrawWireSphere(AbsorbePoint.position, 1);
         Handles.Label(transform.position, "Force Required :"+ForceRequired );
     }
+    
+    
     // TODO : We need to let the level manager manages that
     void WatchLevelToWakeUp()
     {

@@ -11,33 +11,38 @@ using AudioAliase;
 [RequireComponent(typeof(CameraShake))]
 public class ShipController : MonoBehaviour
 {
-    private Camera _camera;
-    [SerializeField] InputAsset input;
-    [SerializeField] LayerMask layerMask;
-
-    [SerializeField] float speed = 5;
-    Vector3 lastHitPoint;
+   
+   
+    [SerializeField] private InputAsset input;
+    [SerializeField] private LayerMask layerMask;
+    [SerializeField] private float speed = 5;
     
     [Header("Sound Aliases")]
-    [Aliase] public string aliaseIdle;
-    [Aliase] public string aliaseMoving;
-    [Aliase] public string aliaseUpToSky;
-    
+    [SerializeField, Aliase] private string aliaseIdle;
+    [SerializeField, Aliase] private string aliaseMoving;
+    [SerializeField, Aliase] private string aliaseUpToSky;
+
+    private Camera _camera;
+    private Vector3 _lastHitPoint;
     /// <summary>
     /// ref for the audioplayer used when the player move
     /// </summary>
     private AudioPlayer _audioMoving;
     private AudioPlayer _audioIdle;
 
+    #region MonoBehaviour
+
     private void Awake()
     {
         input = new InputAsset();
         _camera = Camera.main;
     }
+
     private void OnEnable()
     {
         input.Enable();
     }
+
     private void OnDisable()
     {
         input.Disable();
@@ -56,35 +61,39 @@ public class ShipController : MonoBehaviour
         {
             FollowCursor();
         }
-        
+
         if (LevelManager.Instance.State == GameState.CameraIsMoving)
         {
             Vector3 direction = new Vector3(0, 5, 0);
             transform.position += direction * speed * Time.deltaTime;
         }
-        
     }
-    
+
+    #endregion
+
     public void FollowCursor()
     {
-        Vector3 direction = new Vector3((MouseToWorldPosition().x - transform.position.x), 0, (MouseToWorldPosition().z - transform.position.z));
-//        Debug.Log(direction.magnitude);
-        if(direction.magnitude >0.2f)
+        var transformPosition = transform.position;
+        var mousePosition = MouseToWorldPosition();
+        var direction = new Vector3((mousePosition.x - transformPosition.x), 0,
+            (mousePosition.z - transformPosition.z));
+        if (direction.magnitude > 0.2f)
         {
             transform.position += direction * speed * Time.deltaTime;
-            AudioManager.PlayLoopSound(aliaseMoving, transform,ref _audioMoving);
+            AudioManager.PlayLoopSound(aliaseMoving, transform, ref _audioMoving);
             AudioManager.StopLoopSound(ref _audioIdle);
         }
         else
         {
-            AudioManager.PlayLoopSound(aliaseIdle, transform,ref _audioIdle);
+            AudioManager.PlayLoopSound(aliaseIdle, transform, ref _audioIdle);
             AudioManager.StopLoopSound(ref _audioMoving);
         }
-        
+
         transform.DORotate(new Vector3(direction.z, 0, -direction.x), 0.1f);
     }
-        /// <summary> Retourne la position de la souris dans le monde 3D en fonction du hit du raycast</summary> 
-    Vector3 MouseToWorldPosition()
+
+    /// <summary> Retourne la position de la souris dans le monde 3D en fonction du hit du raycast</summary> 
+    private Vector3 MouseToWorldPosition()
     {
         RaycastHit RayHit;
         Ray ray;
@@ -97,16 +106,10 @@ public class ShipController : MonoBehaviour
 
             if (Hitpoint != null)
                 Debug.DrawLine(_camera.transform.position, Hitpoint, Color.blue, 0.5f);
-            lastHitPoint = Hitpoint;
+            _lastHitPoint = Hitpoint;
             return Hitpoint;
         }
-        else
-        {
-            
-            return lastHitPoint;
-        }
 
-        
+        return _lastHitPoint;
     }
 }
-

@@ -10,7 +10,6 @@ using AudioAliase;
 public class Absorber : MonoBehaviour
 {
     private Light _light;
-
     private CapsuleCollider _collider;
     [SerializeField] private float strenght = 1;
     [SerializeField] private float radius= 3;
@@ -76,12 +75,6 @@ public class Absorber : MonoBehaviour
 
 
     }
-
-    private void FixedUpdate()
-    {
-        
-    }
-
     private void OnTriggerStay(Collider other)
     {
        
