@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
+
 namespace AudioAliase
 {
     [RequireComponent(typeof(AudioSource))]
@@ -12,7 +13,7 @@ namespace AudioAliase
         public Queue<Aliase> _clips = new();
         [SerializeField] private Aliase _lastAliasePlayed;
         [SerializeField] private bool forceStop;
-     
+
 
         #region Private Variable
         
@@ -20,6 +21,7 @@ namespace AudioAliase
         // TODO : Not good to use aliase in properties because it will be copied (serialize shit), we need to use simply string
         private Aliase _nextSound;
         private Transform _transformToFollow;
+        private float _timePlayed = 0;
 
         #endregion
        
@@ -48,6 +50,17 @@ namespace AudioAliase
             {
                 WatchToStopPlay();
                 FollowTransform();
+
+                // Make setting variation for looped sound
+                if (_lastAliasePlayed.isLooping)
+                {
+                    _timePlayed += Time.deltaTime;
+                    if (_timePlayed >= Source.clip.length)
+                    {
+                        SetupAudioSource(_lastAliasePlayed);
+                        _timePlayed = 0;
+                    }
+                }
             }
             private void OnDisable()
             {

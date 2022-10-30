@@ -267,7 +267,7 @@ namespace AudioAliase
             return null;
         }
 
-        static bool GetAudioPlayer(out AudioPlayer audioPlayer)
+        internal static bool GetAudioPlayer(out AudioPlayer audioPlayer)
         {
             audioPlayer = null;
            
@@ -380,22 +380,18 @@ namespace AudioAliase
         /// Play a loop sound on the desired transform
         /// </summary>
         /// <param name="aliaseName"></param>
-        /// <param name="transformToTarget"> transform to follow</param>
+        /// <param name="transformToTarget">transform to follow</param>
         /// <param name="audioPlayerLoop"> A ref to AudioPlayer, it can be used with the method StopLoopSound</param>
         public static void PlayLoopSound(string aliaseName, Transform transformToTarget, ref AudioPlayer audioPlayerLoop)
         {
-            if (audioPlayerLoop == null)
-            {
-                return;
-            }
-            audioPlayerLoop.SetTransformToFollow(transformToTarget);
             PlayLoopSound(aliaseName, transformToTarget.position, ref audioPlayerLoop);
+            audioPlayerLoop.SetTransformToFollow(transformToTarget);
         }
         /// <summary>
         /// Play a loop sound at the desired position
         /// </summary>
         /// <param name="aliaseName"></param>
-        /// <param name="position"></param>
+        /// <param name="position"> The position of the loop sound</param>
         /// <param name="audioPlayerLoop"> A ref to AudioPlayer, it can be used with the method StopLoopSound</param>
         public static void PlayLoopSound(string aliaseName, Vector3 position, ref AudioPlayer audioPlayerLoop )
         {
