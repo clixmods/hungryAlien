@@ -18,13 +18,6 @@ namespace AudioAliase.Edit
         
         public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
         {
-            if (Application.isPlaying)
-            {
-                GUI.enabled = false;
-                EditorGUI.TextField(position, property.name,property.stringValue);
-                return;
-            }
-
             if (_aliasesArray == null || _aliasesArray.Length == 0)
             {
                 _aliasesArray = GetAllInstances<Aliases>();

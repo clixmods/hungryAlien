@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEditor;
 using UnityEngine.Rendering;
 
-[CustomEditor(typeof(ObjectPhysics))]
+[CustomEditor(typeof(ObjectPhysics)), CanEditMultipleObjects()]
 public class ObjectPhysicsEditor : Editor
 {
     private Editor _editor;
@@ -14,10 +14,7 @@ public class ObjectPhysicsEditor : Editor
     {
         base.OnInspectorGUI();
          myTarget = (ObjectPhysics) target;
-       
-
-
-
+         
         if (GUILayout.Button("Create new setting"))
         {
             ButtonSaveAsset();
@@ -25,9 +22,10 @@ public class ObjectPhysicsEditor : Editor
 
         if (myTarget._settings != null)
         {
-            myTarget.gameObject.name = $"ObjectPhysics Force Required: {myTarget._settings.ForceRequired}";
+            
             // Draw ScriptableObject in the inspector
             var myAsset = serializedObject.FindProperty("_settings");
+            myTarget.gameObject.name = $"{myTarget._settings.name}";
             _foldSO = EditorGUILayout.InspectorTitlebar(_foldSO, myTarget._settings);
             if (_foldSO)
             {

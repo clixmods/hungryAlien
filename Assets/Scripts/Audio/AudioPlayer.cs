@@ -10,26 +10,52 @@ namespace AudioAliase
     public class AudioPlayer : MonoBehaviour
     {
         public Queue<Aliase> _clips = new();
-       [SerializeField] private Aliase _lastAliasePlayed;
+        [SerializeField] private Aliase _lastAliasePlayed;
         [SerializeField] private bool forceStop;
-        private bool _startWasPlayed;
+     
+
+        #region Private Variable
         
+        private bool _startWasPlayed;
         // TODO : Not good to use aliase in properties because it will be copied (serialize shit), we need to use simply string
         private Aliase _nextSound;
+        private Transform _transformToFollow;
+
+        #endregion
+       
 
         public AudioSource Source { get; private set; }
-        public bool IsUsable
+        /// <summary>
+        /// AudioPlayer is available ? 
+        /// </summary>
+        public bool IsUsable => _clips.Count == 0 && !Source.isPlaying && !gameObject.activeSelf;
+        public bool IsFollowingTransform => _transformToFollow != null;
+        
+        public void SetTransformToFollow(Transform transformTarget)
         {
-            get
+            _transformToFollow = transformTarget;
+        }
+
+        #region Event function
+        
+            private void Awake()
             {
-                return _clips.Count == 0 && !Source.isPlaying && !gameObject.activeSelf;
+                Source = transform.GetComponent<AudioSource>();
             }
-        }
-        // Start is called before the first frame update
-        private void Awake()
-        {
-            Source = transform.GetComponent<AudioSource>();
-        }
+
+            // Update is called once per frame
+            void Update()
+            {
+                WatchToStopPlay();
+                FollowTransform();
+            }
+            private void OnDisable()
+            {
+                _transformToFollow = null;
+            }
+
+
+        #endregion
         
         public void Play(Aliase aliaseToPlay)
         {
@@ -49,14 +75,7 @@ namespace AudioAliase
             Source.clip = aliaseToPlay.Audio; 
             Source.Play();
         }
-
-        // Update is called once per frame
-        void Update()
-        {
-            WatchToStopPlay();
-            
-        }
-
+        
         void WatchToStopPlay()
         {
             // We check if the AudioPlayer is stopped
@@ -77,11 +96,20 @@ namespace AudioAliase
                     StopLoopSound();
                     return;
                 }
+                
                 gameObject.SetActive(false);
             }
         }
-       
 
+      
+
+        void FollowTransform()
+        {
+            if (IsFollowingTransform)
+            {
+                transform.position = _transformToFollow.position;
+            } 
+        }
         public void StopLoopSound()
         {
             Source.Stop();

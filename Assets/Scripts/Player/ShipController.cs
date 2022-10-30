@@ -6,8 +6,9 @@ using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using static UnityEngine.Rendering.DebugUI.Table;
+using AudioAliase;
 
-
+[RequireComponent(typeof(CameraShake))]
 public class ShipController : MonoBehaviour
 {
     private Camera _camera;
@@ -16,6 +17,11 @@ public class ShipController : MonoBehaviour
 
     [SerializeField] float speed = 5;
     Vector3 lastHitPoint;
+    
+    [Header("Sound Aliases")]
+    [Aliase] public string aliaseIdle;
+    [Aliase] public string aliaseMoving;
+    [Aliase] public string aliaseUpToSky;
 
     private void Awake()
     {
@@ -40,14 +46,23 @@ public class ShipController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        FollowCursor();
+        if (LevelManager.Instance.State == GameState.Ingame)
+        {
+            FollowCursor();
+        }
+        
+        if (LevelManager.Instance.State == GameState.CameraIsMoving)
+        {
+            Vector3 direction = new Vector3(0, 5, 0);
+            transform.position += direction * speed * Time.deltaTime;
+        }
         
     }
     
     public void FollowCursor()
     {
         Vector3 direction = new Vector3((MouseToWorldPosition().x - transform.position.x), 0, (MouseToWorldPosition().z - transform.position.z));
-        Debug.Log(direction.magnitude);
+//        Debug.Log(direction.magnitude);
         if(direction.magnitude >0.2f)
         {
             transform.position += direction * speed * Time.deltaTime;

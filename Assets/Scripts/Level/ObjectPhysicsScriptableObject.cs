@@ -20,4 +20,10 @@ public class ObjectPhysicsScriptableObject : ScriptableObject
     [Aliase] public string aliaseAmbiant;
     [Aliase] public string aliaseMoving;
     [Aliase] public string aliaseDeath;
+
+    [Header("FX")] 
+    public FXScriptableObject fxHit;
+    public FXScriptableObject fxDeath;
+    public FXScriptableObject fxMovement;
+
 }

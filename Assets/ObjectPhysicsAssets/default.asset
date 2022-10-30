@@ -12,10 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb5c9cb29e53e6b4db8d5061a42fc1fd, type: 3}
   m_Name: default
   m_EditorClassIdentifier: 
-  hellowork: 5.97
   sleepUntilLevel: 0
+  ForceRequired: 0.74
   magnitudeToStopLoop: 0
   scaleMultiplier: 1.05
   aliaseAmbiant: impactBell_heavy
   aliaseMoving: impactBell_heavy
   aliaseDeath: impactBell_heavy
+  fxHit: {fileID: 11400000, guid: f14cf9402f4d84742a7df99c1badff6b, type: 2}
+  fxDeath: {fileID: 11400000, guid: f14cf9402f4d84742a7df99c1badff6b, type: 2}
+  fxMovement: {fileID: 0}

@@ -1,42 +1,67 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using AudioAliase;
 
 
-[RequireComponent(typeof(Light))]
-[RequireComponent(typeof(CapsuleCollider))]
 public class Absorber : MonoBehaviour
 {
     private Light _light;
 
     private CapsuleCollider _collider;
-    [SerializeField] private float strenght = 35;
-    [SerializeField] private float radius;
+    [SerializeField] private float strenght = 1;
+    [SerializeField] private float radius= 3;
 
     [SerializeField] private List<GameObject> inTheTrigger;
+    public List<GameObject> InTheTrigger
+    {
+        get { return inTheTrigger; }
+    }
+
     [SerializeField] Transform AbsorbePoint;
     [SerializeField] ScaleShip scaleShip;
     [SerializeField] float scaleMultiplier = 1.1f;
     [SerializeField] float strengthMultiplier = 1.1f;
 
+    private const float FailedCooldownStart = 2;
+    private float failedCooldown;
+    
+    [Header("Sound Aliases")]
+    [Aliase] public string aliaseLoopAbsorbing;
+    [Aliase] public string aliaseFail;
+    [Aliase] public string aliaseAbsorbReleased;
+    [Aliase] public string aliaseAbsorbSuccess;
+    private AudioPlayer _audioPlayer;
+
+
     // Start is called before the first frame update
     void Start()
     {
-        _light = GetComponent<Light>();
-        _collider = GetComponent<CapsuleCollider>();
+        _light = GetComponentInChildren<Light>();
+        _collider = GetComponentInChildren<CapsuleCollider>();
+        scaleShip = transform.parent.GetComponent<ScaleShip>();
+        
         _collider.direction = 2;
     }
 
     // Update is called once per frame
     void Update()
     {
+        
+        
         _light.range = radius;
         _collider.height = radius * 2;
         Vector3 centerCollider = _collider.center;
         centerCollider.z = radius;
         _collider.center = centerCollider;
+
+        if (failedCooldown > 0)
+            failedCooldown -= Time.deltaTime;
+        
+        
     }
 
     private void FixedUpdate()
@@ -46,20 +71,68 @@ public class Absorber : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if (Mouse.current.leftButton.isPressed)
-        {
-            if (other.TryGetComponent<Rigidbody>(out Rigidbody rb))
+       
+            if (other.TryGetComponent<ObjectPhysics>(out ObjectPhysics objectPhysics))
             {
-                Vector3 direction = AbsorbePoint.position - other.transform.position;
-                rb.AddForce(direction * strenght);
-                rb.velocity = rb.velocity.normalized * Mathf.Clamp(rb.velocity.magnitude, 0, 5);
-                if (AbsorbePoint.position.y - other.transform.position.y < 1f)
+                if(!inTheTrigger.Contains(other.gameObject))
+                    inTheTrigger.Add(other.gameObject);
+
+                float forceRemaining = strenght / objectPhysics._settings.ForceRequired;
+                
+                if (Mouse.current.leftButton.isPressed && failedCooldown <= 0)
                 {
-                    Destroy(other.gameObject);
-                    scaleShip.SetScaleFactor(scaleShip.GetScaleFactor() * scaleMultiplier);
-                    strenght *= strengthMultiplier;
+                    
+                    Rigidbody rb = objectPhysics.ObjectRigidbody;
+                    Vector3 destination = AbsorbePoint.position;
+                    AudioManager.PlayLoopSound(aliaseLoopAbsorbing, transform, ref _audioPlayer);
+                 
+                    Vector3 direction = (destination - other.transform.position);
+                    direction = direction * (forceRemaining) ;
+                    
+                   // rb.AddForce(direction * strenght);
+                    //rb.velocity = rb.velocity.normalized * Mathf.Clamp(rb.velocity.magnitude, 0, 5);
+                    rb.velocity = direction;
+
+                    if (forceRemaining < 1)
+                    {
+                        scaleShip.enabled = false;
+                        scaleShip.transform.position += -direction * forceRemaining * Time.deltaTime;
+                       
+                    }
+                    
+                    // Ship can absorb
+                    if (forceRemaining >= 1 && destination.y - other.transform.position.y < 2f * scaleShip.GetScaleFactor()/2)
+                    {
+                        Destroy(other.gameObject);
+                        scaleShip.SetScaleFactor(scaleShip.GetScaleFactor() * scaleMultiplier);
+                        strenght *= objectPhysics._settings.scaleMultiplier;
+                        AudioManager.PlaySoundAtPosition(aliaseAbsorbSuccess, transform.position);
+                    }
+                    else if (forceRemaining < 1 && destination.y - other.transform.position.y < 3f * scaleShip.GetScaleFactor()/2)
+                    {
+                        CameraShake.SetNoisier(1,1);
+                        AudioManager.PlaySoundAtPosition(aliaseFail, transform.position);
+                        failedCooldown = FailedCooldownStart;
+                    }
+                }
+                else
+                {
+                    scaleShip.enabled = true;
+                    AudioManager.StopLoopSound(_audioPlayer);
                 }
             }
-        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if(inTheTrigger.Contains(other.gameObject))
+            inTheTrigger.Remove(other.gameObject);
+       
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawWireSphere(AbsorbePoint.position, 1);
+        Handles.Label(transform.position, "Force :"+strenght );
     }
 }
