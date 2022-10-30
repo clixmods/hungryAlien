@@ -10,67 +10,35 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cbe7e2c0a55730e4d8113d0fb85617fe, type: 3}
-  m_Name: example_moon
+  m_Name: aliases_ship
   m_EditorClassIdentifier: 
   DontLoad: 0
   defaultMixerGroup: {fileID: 0}
   aliases:
-  - name: helmet_active
+  - name: ship_failed_loop
     description: 
     Tag: 
     MixerGroup: {fileID: 0}
     audio:
-    - {fileID: 8300000, guid: 536da8a41ef94224288b3a290bd8ae99, type: 3}
+    - {fileID: 8300000, guid: ff027d13bad5892438a67ab5d0932880, type: 3}
+    - {fileID: 8300000, guid: 438d090e6e07c3f4ebed8dd54fcc68c4, type: 3}
+    - {fileID: 8300000, guid: 2102096353b4a424084afa8783a7aa44, type: 3}
+    - {fileID: 8300000, guid: 7902e06e5f9eb16418c56f5a57923c88, type: 3}
+    - {fileID: 8300000, guid: 7ac11eb27dc90a24d919a78c6e0c535d, type: 3}
+    - {fileID: 8300000, guid: 79f25918ae7f3f54ba48ae47aac2611d, type: 3}
+    - {fileID: 8300000, guid: 76a8cf3f029c7bb41b8f73967596ab12, type: 3}
+    - {fileID: 8300000, guid: f690f40dd99436848b1eabba6fd61238, type: 3}
     soundType: 0
-    randomizeClips: 0
+    randomizeClips: 1
     Secondary: 
     bypassEffects: 0
     bypassListenerEffects: 0
     bypassReverbZones: 0
     priority: 0
     volume: 0
-    minVolume: 0.7847358
-    maxVolume: 0.90606654
+    minVolume: 0.9004854
+    maxVolume: 0.94174755
     isLooping: 1
-    startAliase: helmet_on
-    endAliase: helmet_off
-    minPitch: 0.88258314
-    maxPitch: 1.01
-    stereoPan: 0
-    spatialBlend: 0
-    reverbZoneMix: 1
-    dopplerLevel: 1
-    Spread: 1
-    MinDistance: 0
-    MaxDistance: 500
-    CurveType: 0
-    distanceCurve:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 0
-      m_PostInfinity: 0
-      m_RotationOrder: 0
-    Text: 
-    customDuration: 0
-    isInit: 0
-    isPlaceholder: 0
-  - name: helmet_on
-    description: 
-    Tag: 
-    MixerGroup: {fileID: 0}
-    audio:
-    - {fileID: 8300000, guid: 8792dedb830f0e441acc515d998d8185, type: 3}
-    soundType: 0
-    randomizeClips: 0
-    Secondary: evt_stand_up
-    bypassEffects: 0
-    bypassListenerEffects: 0
-    bypassReverbZones: 0
-    priority: 0
-    volume: 0
-    minVolume: 0.8
-    maxVolume: 0.8
-    isLooping: 0
     startAliase: 
     endAliase: 
     minPitch: 1
@@ -93,14 +61,19 @@ MonoBehaviour:
     customDuration: 0
     isInit: 0
     isPlaceholder: 1
-  - name: helmet_off
+  - name: ship_growingup
     description: 
     Tag: 
     MixerGroup: {fileID: 0}
     audio:
-    - {fileID: 8300000, guid: 7d62e61c368550740887bf8494c88132, type: 3}
+    - {fileID: 8300000, guid: 6412f8f9ece67e44d8ccd5ac28fde363, type: 3}
+    - {fileID: 8300000, guid: 0cff6870ef023b848a05170b514c9da2, type: 3}
+    - {fileID: 8300000, guid: e5df1fc190f279b4cad419c1132f9c05, type: 3}
+    - {fileID: 8300000, guid: 00b84b403c36c23458b1a6b459e584a1, type: 3}
+    - {fileID: 8300000, guid: 52de984c51152d94588c2f872c798834, type: 3}
+    - {fileID: 8300000, guid: 077e3a5395cbf014081ab96f49db8a07, type: 3}
     soundType: 0
-    randomizeClips: 0
+    randomizeClips: 1
     Secondary: 
     bypassEffects: 0
     bypassListenerEffects: 0
@@ -132,14 +105,14 @@ MonoBehaviour:
     customDuration: 0
     isInit: 0
     isPlaceholder: 1
-  - name: evt_stand_up
+  - name: ship_light_loop
     description: 
     Tag: 
     MixerGroup: {fileID: 0}
     audio:
-    - {fileID: 8300000, guid: 1f8ae502351f3f143b0e18c1d512fd85, type: 3}
+    - {fileID: 8300000, guid: 9cd691daed65e6440b77cfb008bfaaf6, type: 3}
     soundType: 0
-    randomizeClips: 0
+    randomizeClips: 1
     Secondary: 
     bypassEffects: 0
     bypassListenerEffects: 0
@@ -148,7 +121,7 @@ MonoBehaviour:
     volume: 0
     minVolume: 0.8
     maxVolume: 0.8
-    isLooping: 0
+    isLooping: 1
     startAliase: 
     endAliase: 
     minPitch: 1
