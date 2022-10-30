@@ -30,7 +30,7 @@ MonoBehaviour:
     - {fileID: 8300000, guid: f690f40dd99436848b1eabba6fd61238, type: 3}
     soundType: 0
     randomizeClips: 1
-    Secondary: 
+    Secondary: ship_warning
     bypassEffects: 0
     bypassListenerEffects: 0
     bypassReverbZones: 0
@@ -41,10 +41,10 @@ MonoBehaviour:
     isLooping: 1
     startAliase: 
     endAliase: 
-    minPitch: 1
-    maxPitch: 1.01
+    minPitch: 0.94382024
+    maxPitch: 1.1673033
     stereoPan: 0
-    spatialBlend: 0
+    spatialBlend: 0.886
     reverbZoneMix: 1
     dopplerLevel: 1
     Spread: 1
@@ -113,6 +113,123 @@ MonoBehaviour:
     - {fileID: 8300000, guid: 9cd691daed65e6440b77cfb008bfaaf6, type: 3}
     soundType: 0
     randomizeClips: 1
+    Secondary: 
+    bypassEffects: 0
+    bypassListenerEffects: 0
+    bypassReverbZones: 0
+    priority: 0
+    volume: 0
+    minVolume: 0.8
+    maxVolume: 0.8
+    isLooping: 1
+    startAliase: 
+    endAliase: 
+    minPitch: 1
+    maxPitch: 1.01
+    stereoPan: 0
+    spatialBlend: 0
+    reverbZoneMix: 1
+    dopplerLevel: 1
+    Spread: 1
+    MinDistance: 0
+    MaxDistance: 500
+    CurveType: 0
+    distanceCurve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 0
+      m_PostInfinity: 0
+      m_RotationOrder: 0
+    Text: 
+    customDuration: 0
+    isInit: 0
+    isPlaceholder: 1
+  - name: ship_warning
+    description: 
+    Tag: 
+    MixerGroup: {fileID: 0}
+    audio:
+    - {fileID: 8300000, guid: 76b8027eef062aa4da59d299f2270bdd, type: 3}
+    soundType: 0
+    randomizeClips: 1
+    Secondary: 
+    bypassEffects: 0
+    bypassListenerEffects: 0
+    bypassReverbZones: 0
+    priority: 0
+    volume: 0
+    minVolume: 0.95543075
+    maxVolume: 1
+    isLooping: 0
+    startAliase: 
+    endAliase: 
+    minPitch: 1.1348314
+    maxPitch: 1.3470786
+    stereoPan: 0
+    spatialBlend: 0.78
+    reverbZoneMix: 1
+    dopplerLevel: 1
+    Spread: 1
+    MinDistance: 0
+    MaxDistance: 500
+    CurveType: 0
+    distanceCurve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 0
+      m_PostInfinity: 0
+      m_RotationOrder: 0
+    Text: 
+    customDuration: 0
+    isInit: 0
+    isPlaceholder: 1
+  - name: ship_move_loop
+    description: 
+    Tag: 
+    MixerGroup: {fileID: 0}
+    audio:
+    - {fileID: 8300000, guid: 19815e234114ebd44aef522309fc8676, type: 3}
+    soundType: 0
+    randomizeClips: 0
+    Secondary: 
+    bypassEffects: 0
+    bypassListenerEffects: 0
+    bypassReverbZones: 0
+    priority: 0
+    volume: 0
+    minVolume: 0.8
+    maxVolume: 0.8
+    isLooping: 1
+    startAliase: 
+    endAliase: 
+    minPitch: 1
+    maxPitch: 1.01
+    stereoPan: 0
+    spatialBlend: 0
+    reverbZoneMix: 1
+    dopplerLevel: 1
+    Spread: 1
+    MinDistance: 0
+    MaxDistance: 500
+    CurveType: 0
+    distanceCurve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 0
+      m_PostInfinity: 0
+      m_RotationOrder: 0
+    Text: 
+    customDuration: 0
+    isInit: 0
+    isPlaceholder: 1
+  - name: gjghjghjghj
+    description: 
+    Tag: 
+    MixerGroup: {fileID: 0}
+    audio:
+    - {fileID: 8300000, guid: 19815e234114ebd44aef522309fc8676, type: 3}
+    soundType: 0
+    randomizeClips: 0
     Secondary: 
     bypassEffects: 0
     bypassListenerEffects: 0
