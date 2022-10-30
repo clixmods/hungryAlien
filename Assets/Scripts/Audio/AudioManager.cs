@@ -359,7 +359,7 @@ namespace AudioAliase
             {
                 audioPlayer.gameObject.transform.position = position;
                 audioPlayer.gameObject.SetActive(true);
-                audioPlayer.Play(clip);
+                audioPlayer.Setup(clip);
 
                 if (clip.isPlaceholder)
                 {
@@ -392,10 +392,10 @@ namespace AudioAliase
         /// </summary>
         /// <param name="aliaseName"></param>
         /// <param name="position"> The position of the loop sound</param>
-        /// <param name="audioPlayerLoop"> A ref to AudioPlayer, it can be used with the method StopLoopSound</param>
+        /// <param name="audioPlayerLoop"> A ref to <see cref="AudioPlayer"/>, it can be used with the method StopLoopSound</param>
         public static void PlayLoopSound(string aliaseName, Vector3 position, ref AudioPlayer audioPlayerLoop )
         {
-            if (audioPlayerLoop != null)
+            if (audioPlayerLoop != null && !audioPlayerLoop.IsUsable)
             {
                 Debug.Log("PlayLoop already played");
                 return;
@@ -417,7 +417,7 @@ namespace AudioAliase
             }
             audioPlayer.gameObject.transform.position = position;
             audioPlayer.gameObject.SetActive(true);
-            audioPlayer.Play(clip);
+            audioPlayer.Setup(clip);
             if (clip.isPlaceholder)
             {
                 Debug.LogWarning("[AudioManager] Placeholder sound was played, name " + aliaseName);
@@ -428,12 +428,14 @@ namespace AudioAliase
             }
             audioPlayerLoop = audioPlayer;
         }
-        public static void StopLoopSound(AudioPlayer audioPlayer)
+        public static void StopLoopSound(ref AudioPlayer audioPlayer)
         {
             if (audioPlayer != null)
             {
-                audioPlayer.StopLoopSound();
+                audioPlayer.StopSound();
             }
+
+            audioPlayer = null;
         }
     }
     

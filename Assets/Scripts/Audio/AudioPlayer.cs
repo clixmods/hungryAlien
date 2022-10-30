@@ -1,5 +1,4 @@
-using System;
-using System.Collections;
+
 using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -7,14 +6,22 @@ using Random = UnityEngine.Random;
 
 namespace AudioAliase
 {
+    public enum CurrentlyPlaying
+    {
+        /// <summary>
+        /// The start sound is defined
+        /// </summary>
+        Start,
+        Base,
+        End,
+    }
     [RequireComponent(typeof(AudioSource))]
     public class AudioPlayer : MonoBehaviour
     {
         public Queue<Aliase> _clips = new();
         [SerializeField] private Aliase _lastAliasePlayed;
         [SerializeField] private bool forceStop;
-
-
+        
         #region Private Variable
         
         private bool _startWasPlayed;
@@ -22,7 +29,7 @@ namespace AudioAliase
         private Aliase _nextSound;
         private Transform _transformToFollow;
         private float _timePlayed = 0;
-
+        private CurrentlyPlaying _state = CurrentlyPlaying.Start;
         #endregion
        
 
@@ -33,6 +40,8 @@ namespace AudioAliase
         public bool IsUsable => _clips.Count == 0 && !Source.isPlaying && !gameObject.activeSelf;
         public bool IsFollowingTransform => _transformToFollow != null;
         
+        
+
         public void SetTransformToFollow(Transform transformTarget)
         {
             _transformToFollow = transformTarget;
@@ -46,74 +55,91 @@ namespace AudioAliase
             }
 
             // Update is called once per frame
-            void Update()
+            private void Update()
             {
-                WatchToStopPlay();
+                if(_lastAliasePlayed == null)  gameObject.SetActive(false);
+                //WatchToStopPlay();
                 FollowTransform();
 
-                // Make setting variation for looped sound
-                if (_lastAliasePlayed.isLooping)
+               
+                if (_timePlayed >= Source.clip.length)
                 {
-                    _timePlayed += Time.deltaTime;
-                    if (_timePlayed >= Source.clip.length)
+                    if (_lastAliasePlayed.isLooping)
                     {
                         SetupAudioSource(_lastAliasePlayed);
                         _timePlayed = 0;
                     }
+                    else // End of the sound
+                    {
+                        switch(_state)
+                        {
+                            case CurrentlyPlaying.Start:
+                                //_state = CurrentlyPlaying.Base;
+                                SetupAudioSource(_nextSound);
+                                Source.clip = _nextSound.Audio; 
+                                Source.Play();
+                                break;
+                            case CurrentlyPlaying.Base:
+                                StopSound();
+                                break;
+                            case CurrentlyPlaying.End:
+                            default:
+                                gameObject.SetActive(false);
+                                Reset();
+                                break;
+                        }
+
+                        _timePlayed = 0;
+                        _state++;
+                    }
                 }
+                else
+                {
+                    _timePlayed += Time.deltaTime;
+                }
+    
             }
-            private void OnDisable()
+            private void Reset()
             {
+                Source.Stop();
+                _lastAliasePlayed = null;
                 _transformToFollow = null;
+                _state = CurrentlyPlaying.Start;
+                _timePlayed = 0;
+                _nextSound = null;
             }
 
 
         #endregion
         
-        public void Play(Aliase aliaseToPlay)
+        private void Play(Aliase aliaseToPlay)
         {
-            // If a start aliase is available, we need to play it before the main aliase
-            if (!_startWasPlayed && AudioManager.GetSoundByAliase(aliaseToPlay.startAliase, out Aliase startLoop))
+            
+            // If a start aliase is available, we need to play it before the base aliase
+            if (_state == CurrentlyPlaying.Start && AudioManager.GetSoundByAliase(aliaseToPlay.startAliase, out Aliase startLoop))
             {
+                //_state = CurrentlyPlaying.Start;
                 SetupAudioSource(startLoop);
                 Source.clip = startLoop.Audio;
                 Source.Play();
-                _startWasPlayed = true;
                 _nextSound = aliaseToPlay;
                 return;
             }
             
-            //Setup the main aliase
+            //Setup the base aliase
+            //_state = CurrentlyPlaying.Base;
             SetupAudioSource(aliaseToPlay);
             Source.clip = aliaseToPlay.Audio; 
             Source.Play();
         }
-        
-        void WatchToStopPlay()
-        {
-            // We check if the AudioPlayer is stopped
-            if (forceStop || !Source.isPlaying )
-            {
-                forceStop = false;
-                // If the start aliase was played, we need to play the owner of the startAliase
-                if (_startWasPlayed)
-                {
-                    Play(_nextSound);
-                    _startWasPlayed = false;
-                    return;
-                }
-                
-                // 
-                if (_lastAliasePlayed != null && _lastAliasePlayed.isLooping)
-                {
-                    StopLoopSound();
-                    return;
-                }
-                
-                gameObject.SetActive(false);
-            }
-        }
 
+        public void Setup(Aliase aliaseToPlay)
+        {
+            Reset();
+            Play(aliaseToPlay);
+        }
+        
+      
       
 
         void FollowTransform()
@@ -123,24 +149,40 @@ namespace AudioAliase
                 transform.position = _transformToFollow.position;
             } 
         }
-        public void StopLoopSound()
+        public void StopSound()
         {
             Source.Stop();
-            // If the stop happen when we play the start aliase, we stop it with a _startwasplayed false
-            if (_startWasPlayed)
+            if (_state == CurrentlyPlaying.Start)
             {
-                _startWasPlayed = false;
+                gameObject.SetActive(false);
+                return;
             }
-            if (!_startWasPlayed && _lastAliasePlayed != null && AudioManager.GetSoundByAliase(_lastAliasePlayed.endAliase, out Aliase stopLoop))
+            
+            if (_state == CurrentlyPlaying.Base 
+               // && _lastAliasePlayed != null
+                && !string.IsNullOrEmpty(_lastAliasePlayed.endAliase)
+                && AudioManager.GetSoundByAliase(_lastAliasePlayed.endAliase, out Aliase stopLoop) )
             {
-                SetupAudioSource( stopLoop);
+               // _state = CurrentlyPlaying.End;
+                SetupAudioSource(stopLoop);
                 Source.clip = stopLoop.Audio;
                 Source.Play();
             }
+            else
+            {
+                gameObject.SetActive(false);
+            }
+
+            _state++;
         }
 
         public void SetupAudioSource(Aliase aliase)
         {
+            if (aliase == null)
+            {
+                Debug.LogError("What the fuck ?");
+            }
+            _timePlayed = 0;
             _lastAliasePlayed = aliase;
             var audiosource = Source;
             audiosource.volume = Random.Range(aliase.minVolume, aliase.maxVolume);

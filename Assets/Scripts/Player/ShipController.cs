@@ -22,6 +22,12 @@ public class ShipController : MonoBehaviour
     [Aliase] public string aliaseIdle;
     [Aliase] public string aliaseMoving;
     [Aliase] public string aliaseUpToSky;
+    
+    /// <summary>
+    /// ref for the audioplayer used when the player move
+    /// </summary>
+    private AudioPlayer _audioMoving;
+    private AudioPlayer _audioIdle;
 
     private void Awake()
     {
@@ -66,6 +72,13 @@ public class ShipController : MonoBehaviour
         if(direction.magnitude >0.2f)
         {
             transform.position += direction * speed * Time.deltaTime;
+            AudioManager.PlayLoopSound(aliaseMoving, transform,ref _audioMoving);
+            AudioManager.StopLoopSound(ref _audioIdle);
+        }
+        else
+        {
+            AudioManager.PlayLoopSound(aliaseIdle, transform,ref _audioIdle);
+            AudioManager.StopLoopSound(ref _audioMoving);
         }
         
         transform.DORotate(new Vector3(direction.z, 0, -direction.x), 0.1f);

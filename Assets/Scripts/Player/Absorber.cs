@@ -30,12 +30,14 @@ public class Absorber : MonoBehaviour
     private float failedCooldown;
     
     [Header("Sound Aliases")]
+    [Aliase] public string aliaseLoopLight;
     [Aliase] public string aliaseLoopAbsorbing;
-    [Aliase] public string aliaseFail;
+    [Aliase] public string aliaseLoopFail;
     [Aliase] public string aliaseAbsorbReleased;
     [Aliase] public string aliaseAbsorbSuccess;
     private AudioPlayer _audioPlayer;
-
+    private AudioPlayer _audioPlayerLightLoop;
+    private AudioPlayer _audioPlayerFail;
 
     // Start is called before the first frame update
     void Start()
@@ -50,7 +52,7 @@ public class Absorber : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        AudioManager.PlayLoopSound(aliaseLoopLight,transform,ref _audioPlayerLightLoop);
         
         _light.range = radius;
         _collider.height = radius * 2;
@@ -60,8 +62,19 @@ public class Absorber : MonoBehaviour
 
         if (failedCooldown > 0)
             failedCooldown -= Time.deltaTime;
-        
-        
+        else
+        {
+            AudioManager.StopLoopSound(ref _audioPlayerFail);
+        }
+
+        if (Mouse.current.leftButton.isPressed && failedCooldown <= 0)
+        {
+            AudioManager.PlayLoopSound(aliaseLoopAbsorbing, transform, ref _audioPlayer);
+        }
+        else
+            AudioManager.StopLoopSound(ref _audioPlayer);
+
+
     }
 
     private void FixedUpdate()
@@ -77,14 +90,14 @@ public class Absorber : MonoBehaviour
                 if(!inTheTrigger.Contains(other.gameObject))
                     inTheTrigger.Add(other.gameObject);
 
-                float forceRemaining = strenght / objectPhysics._settings.ForceRequired;
+                float forceRemaining = strenght / objectPhysics.ForceRequired;
                 
                 if (Mouse.current.leftButton.isPressed && failedCooldown <= 0)
                 {
                     
                     Rigidbody rb = objectPhysics.ObjectRigidbody;
                     Vector3 destination = AbsorbePoint.position;
-                    AudioManager.PlayLoopSound(aliaseLoopAbsorbing, transform, ref _audioPlayer);
+                    
                  
                     Vector3 direction = (destination - other.transform.position);
                     direction = direction * (forceRemaining) ;
@@ -105,20 +118,21 @@ public class Absorber : MonoBehaviour
                     {
                         Destroy(other.gameObject);
                         scaleShip.SetScaleFactor(scaleShip.GetScaleFactor() * scaleMultiplier);
-                        strenght *= objectPhysics._settings.scaleMultiplier;
+                        strenght *= objectPhysics.ScaleMultiplier;
                         AudioManager.PlaySoundAtPosition(aliaseAbsorbSuccess, transform.position);
                     }
                     else if (forceRemaining < 1 && destination.y - other.transform.position.y < 3f * scaleShip.GetScaleFactor()/2)
                     {
                         CameraShake.SetNoisier(1,1);
-                        AudioManager.PlaySoundAtPosition(aliaseFail, transform.position);
+                        AudioManager.PlayLoopSound(aliaseLoopFail, transform, ref _audioPlayerFail);
                         failedCooldown = FailedCooldownStart;
                     }
                 }
                 else
                 {
                     scaleShip.enabled = true;
-                    AudioManager.StopLoopSound(_audioPlayer);
+            
+                    
                 }
             }
     }

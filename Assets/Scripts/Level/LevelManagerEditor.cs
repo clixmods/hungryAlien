@@ -57,14 +57,8 @@ namespace Level
             if (GUILayout.Button("Generate Cinemachine Travelling"))
             {
                 CinemachineSmoothPath cinemachineSmoothPath;
-                if (myObject.TryGetComponent<CinemachineSmoothPath>(out CinemachineSmoothPath smoothPath))
-                {
-                    cinemachineSmoothPath = smoothPath;
-                }
-                else
-                {
-                    cinemachineSmoothPath = myObject.AddComponent<CinemachineSmoothPath>();
-                }
+                cinemachineSmoothPath = myObject.TryGetComponent<CinemachineSmoothPath>(out CinemachineSmoothPath smoothPath) 
+                                        ? smoothPath : myObject.AddComponent<CinemachineSmoothPath>();
 
                 cinemachineSmoothPath.m_Waypoints = new CinemachineSmoothPath.Waypoint[myObject.waypoints.Count];
                 for (int i = 0; i < myObject.waypoints.Count; i++)
@@ -90,9 +84,9 @@ namespace Level
 
                 for (int i = 0; i < allObjectPhysics.Length; i++)
                 {
-                    if (allObjectPhysics[i]._settings.sleepUntilLevel > maxLevel)
+                    if (allObjectPhysics[i].SleepUntilLevel > maxLevel)
                     {
-                        maxLevel = allObjectPhysics[i]._settings.sleepUntilLevel;
+                        maxLevel = allObjectPhysics[i].SleepUntilLevel;
                     }
                 }
 
@@ -112,7 +106,7 @@ namespace Level
                     bool isVoid = true;
                     foreach (var VARIABLE in allObjectPhysics)
                     {
-                        if (i == VARIABLE._settings.sleepUntilLevel)
+                        if (i == VARIABLE.SleepUntilLevel)
                         {
                             isVoid = false;
                         }
@@ -132,7 +126,7 @@ namespace Level
                         {
                             var objectPhysic = allObjectPhysics[j];
 
-                            if (i == objectPhysic._settings.sleepUntilLevel)
+                            if (i == objectPhysic.SleepUntilLevel)
                             {
                                 isVoid = false;
                                 using (new GUILayout.HorizontalScope(EditorStyles.whiteLabel,
@@ -148,8 +142,11 @@ namespace Level
                                                GUILayout.ExpandWidth(true)))
                                     {
                                         EditorGUILayout.LabelField("Force Required :");
-                                        objectPhysic._settings.ForceRequired =
-                                            EditorGUILayout.FloatField(objectPhysic._settings.ForceRequired);
+                                        var so = new SerializedObject(objectPhysic);
+                                        var property =  so.FindProperty("forceRequired");
+                                        property.floatValue =  EditorGUILayout.FloatField( property.floatValue);
+                                        so.ApplyModifiedProperties();
+                                           
                                     }
                                 }
                             }

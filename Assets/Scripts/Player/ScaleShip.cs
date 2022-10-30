@@ -11,6 +11,7 @@ public class ScaleShip : MonoBehaviour
 
     public void SetScaleFactor(float h)
     {
+        AudioManager.PlaySoundAtPosition(aliaseGrowing, transform.position);
         scaleFactor = h;
     }
     public float GetScaleFactor()

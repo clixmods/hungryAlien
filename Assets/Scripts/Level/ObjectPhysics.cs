@@ -12,21 +12,40 @@ using UnityEditor;
 [SelectionBase]
 public class ObjectPhysics : MonoBehaviour
 {
-    public ObjectPhysicsScriptableObject _settings;
- 
-    #region Private Variable
+    #region SerializeField
+
+    /// <summary>
+    /// Settings of the object, contains sound, FX and some arts data info
+    /// </summary>
+    [SerializeField] private ObjectPhysicsScriptableObject settings;
+    /// <summary>
+    /// Indicate level related to this object.
+    /// </summary>
+    [SerializeField] private int sleepUntilLevel;
+    /// <summary>
+    /// Force required to absorb the object by the player
+    /// </summary>
+    [SerializeField] private float forceRequired;
+    /// <summary>
+    /// The gain of the absorbtion 
+    /// </summary>
+    [Range(1,2),SerializeField] private float scaleMultiplier = 1.05f ;
     
-    public Rigidbody ObjectRigidbody { get; private set; }
+
+    #endregion
+    #region Private Variable
+    /// <summary>
+    /// AudioPlayer used for loop sound etc, cached to be stopped when its desired
+    /// </summary>
     private AudioPlayer _audioPlayer;
     private MeshCollider _collider;
     #endregion
-    public GameObject placeholder;
-    
-    public float ScaleMultiplier
-    {
-        get { return _settings.scaleMultiplier; }
-    }
-    
+    #region Properties
+    public Rigidbody ObjectRigidbody { get; private set; }
+    public int SleepUntilLevel => sleepUntilLevel;
+    public float ScaleMultiplier => scaleMultiplier;
+    public float ForceRequired => forceRequired;
+    #endregion
     // Start is called before the first frame update
     void Start()
     {
@@ -37,8 +56,8 @@ public class ObjectPhysics : MonoBehaviour
         _collider.convex = true;
         ObjectRigidbody = GetComponent<Rigidbody>();
         ObjectRigidbody.isKinematic = true;
-        ObjectRigidbody.mass = _settings.ForceRequired;
-        if (_settings == null)
+        ObjectRigidbody.mass = ForceRequired;
+        if (settings == null)
         {
             Debug.Log("Settings object Physics not setup", gameObject);
             gameObject.SetActive(false);
@@ -49,41 +68,61 @@ public class ObjectPhysics : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        ObjectRigidbody.mass = _settings.ForceRequired; // TODO : TEMP
-        WatchLevel();
-        if (ObjectRigidbody.velocity.magnitude > _settings.magnitudeToStopLoop)
-        {
-            AudioManager.PlayLoopSound(_settings.aliaseMoving, transform.position, ref _audioPlayer);
-        }
-        else
-        {
-            if (_audioPlayer != null)
-            {
-                AudioManager.StopLoopSound(_audioPlayer);
-                _audioPlayer = null;
-            }
-        }
-    }
+        ObjectRigidbody.mass = ForceRequired; // TODO : TEMP
+        WatchLevelToWakeUp();
 
-    void WatchLevel()
+        // if (ObjectRigidbody.SweepTest(ObjectRigidbody.velocity.normalized, out RaycastHit hitInfo,
+        //         ObjectRigidbody.velocity.magnitude))
+        // {
+        //     if(ObjectRigidbody.velocity.magnitude > 0.5f)
+        //     
+        // }
+        
+        // if (ObjectRigidbody.velocity.magnitude > settings.magnitudeToStopLoop)
+        // {
+        //     AudioManager.PlayLoopSound(settings.aliaseMoving, transform.position, ref _audioPlayer);
+        // }
+        // else
+        // {
+        //     AudioManager.StopLoopSound(ref _audioPlayer);
+        // }
+    }
+    
+    void OnCollisionEnter(Collision collision)
     {
-        if ( ObjectRigidbody.isKinematic && LevelManager.Instance.CurrentLevel == _settings.sleepUntilLevel)
+        foreach (ContactPoint contact in collision.contacts)
         {
-            ObjectRigidbody.isKinematic = false;
-            LevelManager.Instance.AddObjectPhysical(this);
+            Debug.DrawRay(contact.point, contact.normal, Color.white);
         }
+
+        if (collision.relativeVelocity.magnitude > 2)
+        {
+            collision.gameObject.GetComponent<CollisionSurface>().Play();
+            AudioManager.PlaySoundAtPosition(settings.aliaseImpact,transform.position);
+        }
+            
     }
 
     private void OnDestroy()
     {
-//        FXManager.PlayFXAtPosition(_settings.fxDeath,transform.position);
-        AudioManager.StopLoopSound(_audioPlayer);
+        AudioManager.PlaySoundAtPosition(settings.aliaseDeath, transform.position);
+//        FXManager.PlayFXAtPosition(settings.fxDeath,transform.position);
+        AudioManager.StopLoopSound(ref _audioPlayer);
         LevelManager.Instance.RemoveObjectPhysical(this);
     }
     
     private void OnDrawGizmos()
     {
        // Gizmos.DrawWireSphere(AbsorbePoint.position, 1);
-        Handles.Label(transform.position, "Force Required :"+_settings.ForceRequired );
+        Handles.Label(transform.position, "Force Required :"+ForceRequired );
+    }
+    // TODO : We need to let the level manager manages that
+    void WatchLevelToWakeUp()
+    {
+        if ( ObjectRigidbody.isKinematic && LevelManager.Instance.CurrentLevel == sleepUntilLevel)
+        {
+            ObjectRigidbody.isKinematic = false;
+            LevelManager.Instance.AddObjectPhysical(this);
+        }
     }
 }

@@ -88,7 +88,7 @@ MonoBehaviour:
     minPitch: 1
     maxPitch: 1.01
     stereoPan: 0
-    spatialBlend: 0
+    spatialBlend: 0.796
     reverbZoneMix: 1
     dopplerLevel: 1
     Spread: 1
@@ -127,7 +127,7 @@ MonoBehaviour:
     minPitch: 1
     maxPitch: 1.01
     stereoPan: 0
-    spatialBlend: 0
+    spatialBlend: 0.94
     reverbZoneMix: 1
     dopplerLevel: 1
     Spread: 1
@@ -197,15 +197,15 @@ MonoBehaviour:
     bypassReverbZones: 0
     priority: 0
     volume: 0
-    minVolume: 0.8
-    maxVolume: 0.8
+    minVolume: 0.9719101
+    maxVolume: 1
     isLooping: 1
     startAliase: 
     endAliase: 
-    minPitch: 1
-    maxPitch: 1.01
+    minPitch: 1.0224719
+    maxPitch: 1.2908988
     stereoPan: 0
-    spatialBlend: 0
+    spatialBlend: 1
     reverbZoneMix: 1
     dopplerLevel: 1
     Spread: 1
@@ -222,7 +222,7 @@ MonoBehaviour:
     customDuration: 0
     isInit: 0
     isPlaceholder: 1
-  - name: gjghjghjghj
+  - name: ship_idle_loop
     description: 
     Tag: 
     MixerGroup: {fileID: 0}
@@ -244,7 +244,163 @@ MonoBehaviour:
     minPitch: 1
     maxPitch: 1.01
     stereoPan: 0
-    spatialBlend: 0
+    spatialBlend: 1
+    reverbZoneMix: 1
+    dopplerLevel: 1
+    Spread: 1
+    MinDistance: 0
+    MaxDistance: 500
+    CurveType: 0
+    distanceCurve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 0
+      m_PostInfinity: 0
+      m_RotationOrder: 0
+    Text: 
+    customDuration: 0
+    isInit: 0
+    isPlaceholder: 1
+  - name: ship_absorb
+    description: 
+    Tag: 
+    MixerGroup: {fileID: 0}
+    audio:
+    - {fileID: 8300000, guid: cb07d534c8675ca44bc1f8a874b2f1fd, type: 3}
+    soundType: 0
+    randomizeClips: 0
+    Secondary: ship_absorb_secondary
+    bypassEffects: 0
+    bypassListenerEffects: 0
+    bypassReverbZones: 0
+    priority: 0
+    volume: 0
+    minVolume: 0.8
+    maxVolume: 0.8
+    isLooping: 0
+    startAliase: 
+    endAliase: 
+    minPitch: 1
+    maxPitch: 1.01
+    stereoPan: 0
+    spatialBlend: 1
+    reverbZoneMix: 1
+    dopplerLevel: 1
+    Spread: 1
+    MinDistance: 0
+    MaxDistance: 500
+    CurveType: 0
+    distanceCurve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 0
+      m_PostInfinity: 0
+      m_RotationOrder: 0
+    Text: 
+    customDuration: 0
+    isInit: 0
+    isPlaceholder: 1
+  - name: ship_absorb_secondary
+    description: 
+    Tag: 
+    MixerGroup: {fileID: 0}
+    audio:
+    - {fileID: 8300000, guid: 313fb3dfe518cdb47823302393e15daf, type: 3}
+    soundType: 0
+    randomizeClips: 0
+    Secondary: 
+    bypassEffects: 0
+    bypassListenerEffects: 0
+    bypassReverbZones: 0
+    priority: 0
+    volume: 0
+    minVolume: 0.8
+    maxVolume: 0.8
+    isLooping: 0
+    startAliase: 
+    endAliase: 
+    minPitch: 1
+    maxPitch: 1.01
+    stereoPan: 0
+    spatialBlend: 1
+    reverbZoneMix: 1
+    dopplerLevel: 1
+    Spread: 1
+    MinDistance: 0
+    MaxDistance: 500
+    CurveType: 0
+    distanceCurve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 0
+      m_PostInfinity: 0
+      m_RotationOrder: 0
+    Text: 
+    customDuration: 0
+    isInit: 0
+    isPlaceholder: 1
+  - name: ship_absorb_loop
+    description: 
+    Tag: 
+    MixerGroup: {fileID: 0}
+    audio:
+    - {fileID: 8300000, guid: fb09d316a9704a64eb8515eb8e179c5f, type: 3}
+    soundType: 0
+    randomizeClips: 0
+    Secondary: 
+    bypassEffects: 0
+    bypassListenerEffects: 0
+    bypassReverbZones: 0
+    priority: 0
+    volume: 0
+    minVolume: 0.8
+    maxVolume: 0.8
+    isLooping: 1
+    startAliase: ship_absorb
+    endAliase: 
+    minPitch: 1
+    maxPitch: 1.01
+    stereoPan: 0
+    spatialBlend: 1
+    reverbZoneMix: 1
+    dopplerLevel: 1
+    Spread: 1
+    MinDistance: 0
+    MaxDistance: 500
+    CurveType: 0
+    distanceCurve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 0
+      m_PostInfinity: 0
+      m_RotationOrder: 0
+    Text: 
+    customDuration: 0
+    isInit: 0
+    isPlaceholder: 1
+  - name: ship_anew
+    description: 
+    Tag: 
+    MixerGroup: {fileID: 0}
+    audio:
+    - {fileID: 8300000, guid: 313fb3dfe518cdb47823302393e15daf, type: 3}
+    soundType: 0
+    randomizeClips: 0
+    Secondary: 
+    bypassEffects: 0
+    bypassListenerEffects: 0
+    bypassReverbZones: 0
+    priority: 0
+    volume: 0
+    minVolume: 0.8
+    maxVolume: 0.8
+    isLooping: 1
+    startAliase: 
+    endAliase: 
+    minPitch: 1
+    maxPitch: 1.01
+    stereoPan: 0
+    spatialBlend: 1
     reverbZoneMix: 1
     dopplerLevel: 1
     Spread: 1

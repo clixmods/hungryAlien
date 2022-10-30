@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sleepUntilLevel: 0
   ForceRequired: 0.8
-  magnitudeToStopLoop: 0
+  magnitudeToStopLoop: 0.5
   scaleMultiplier: 1.05
   aliaseAmbiant: impactBell_heavy
-  aliaseMoving: impactBell_heavy
+  aliaseMoving: asborbing_default
   aliaseDeath: impactBell_heavy
   fxHit: {fileID: 0}
   fxDeath: {fileID: 0}
