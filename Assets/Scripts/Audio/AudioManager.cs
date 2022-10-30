@@ -116,7 +116,21 @@ namespace AudioAliase
     //[RequireComponent(typeof(AudioSource))]
     public class AudioManager : MonoBehaviour
     {
-        public static AudioManager Util;
+        private static AudioManager _instance;
+        private static AudioManager Instance
+        {
+            get
+            {
+                if (_instance == null)
+                {
+                    _instance = new GameObject("AudioManager").AddComponent<AudioManager>();
+                }
+
+                return _instance;
+            }
+            set { _instance = value; }
+        }
+        
 
         public static Aliases[] aliasesArray = new Aliases[0];
         [SerializeField] private List<AudioPlayer> _audioSource;
@@ -126,7 +140,7 @@ namespace AudioAliase
         [SerializeField] Aliases[] TableAliasesLoaded = new Aliases[0];
 
         bool _isPaused;
-
+        
 
         public bool IsPaused
         {
@@ -157,7 +171,7 @@ namespace AudioAliase
 
         void Awake()
         {
-            Util = this;
+            Instance = this;
             InitAudioSources();
         }
 
@@ -169,7 +183,7 @@ namespace AudioAliase
                 GameObject newAudioSource = new GameObject("Audio Source " + i);
                 newAudioSource.transform.SetParent(transform);
                 AudioPlayer audioS = newAudioSource.AddComponent<AudioPlayer>();
-                Util._audioSource.Add(audioS);
+                Instance._audioSource.Add(audioS);
                 newAudioSource.SetActive(false);
             }
         }
@@ -183,9 +197,7 @@ namespace AudioAliase
         // Update is called once per frame
         void Update()
         {
-            if (Util != this)
-                Util = this;
-
+            
             if (TableAliasesLoaded != aliasesArray)
                 TableAliasesLoaded = aliasesArray;
 
@@ -245,7 +257,7 @@ namespace AudioAliase
 
         static AudioSource GetAudioSource()
         {
-            foreach (AudioPlayer aS in Util._audioSource)
+            foreach (AudioPlayer aS in Instance._audioSource)
             {
                 if (!aS.Source.isPlaying)
                 {
@@ -259,7 +271,7 @@ namespace AudioAliase
         {
             audioPlayer = null;
            
-            foreach (AudioPlayer aS in Util._audioSource)
+            foreach (AudioPlayer aS in Instance._audioSource)
             {
                 if (aS.IsUsable)
                 {
@@ -267,7 +279,7 @@ namespace AudioAliase
                     return true;
                 }
             }
-            Debug.LogWarning($"AudioManager : Limits exceded for _audioSource, maybe you need to increase your audioSourcePoolSize (Size = {Util.audioSourcePoolSize})");
+            Debug.LogWarning($"AudioManager : Limits exceded for _audioSource, maybe you need to increase your audioSourcePoolSize (Size = {Instance.audioSourcePoolSize})");
             return false;
         }
         /// <summary>
@@ -307,7 +319,7 @@ namespace AudioAliase
 
         public static void PauseAllAudio()
         {
-            foreach (AudioPlayer aS in Util._audioSource)
+            foreach (AudioPlayer aS in Instance._audioSource)
             {
                 if (aS.Source.isPlaying)
                 {
@@ -317,7 +329,7 @@ namespace AudioAliase
         }
         public static void UnPauseAllAudio()
         {
-            foreach (AudioPlayer aS in Util._audioSource)
+            foreach (AudioPlayer aS in Instance._audioSource)
             {
                 //if(audio.UnPause)
                 {
@@ -404,7 +416,7 @@ namespace AudioAliase
             }
             if (!GetAudioPlayer(out AudioPlayer audioPlayer))
             {
-                Debug.LogWarning($"AudioManager : Limits exceded for _audioSource, maybe you need to increase your audioSourcePoolSize (Size = {Util.audioSourcePoolSize})");
+                Debug.LogWarning($"AudioManager : Limits exceded for _audioSource, maybe you need to increase your audioSourcePoolSize (Size = {Instance.audioSourcePoolSize})");
                 return ;
             }
             audioPlayer.gameObject.transform.position = position;
