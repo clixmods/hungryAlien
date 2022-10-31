@@ -123,7 +123,9 @@ namespace AudioAliase
             {
                 if (_instance == null)
                 {
-                    _instance = new GameObject("AudioManager").AddComponent<AudioManager>();
+                    _instance = FindObjectOfType<AudioManager>();
+                    if(!_instance)
+                        _instance = new GameObject("AudioManager").AddComponent<AudioManager>();
                 }
 
                 return _instance;
@@ -241,13 +243,13 @@ namespace AudioAliase
 
             if (alias != null && alias.audio.Length == 0)
             {
-                Debug.LogError("AudioManager : Aliase: " + name + " contains no sounds.");
+                Debug.LogError("[AudioManager] : Aliase: " + name + " contains no sounds.");
                 return false;
             }
 
             if (alias == null)
             {
-                Debug.LogWarning("AudioManager : Aliase: " + name + " not found.");
+                Debug.LogWarning("[AudioManager] : Aliase: " + name + " not found.");
                 return false;
             }
 
@@ -397,14 +399,12 @@ namespace AudioAliase
         {
             if (audioPlayerLoop != null && !audioPlayerLoop.IsUsable)
             {
-                Debug.Log("PlayLoop already played");
+                Debug.Log($"[AudioManager] PlayLoop {aliaseName} already played");
                 return;
             }
             if (string.IsNullOrEmpty(aliaseName))
             {
-                //Debug.LogError( );
                 throw new InvalidAliasesException("AudioManager : No specified aliases");
-                //return;
             }
             if (!GetSoundByAliase(aliaseName, out Aliase clip))
             {

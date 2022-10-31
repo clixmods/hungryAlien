@@ -12,7 +12,19 @@ using AudioAliase;
 public class ShipController : MonoBehaviour
 {
     private Camera _camera;
-    [SerializeField] InputAsset input;
+    InputAsset _input;
+    public InputAsset Input
+    {
+        get
+        {
+            // Prevent null ref when the game reload script
+            if (_input == null)
+            {
+                _input = new InputAsset();
+            }
+            return _input;
+        }
+    }
     [SerializeField] LayerMask layerMask;
 
     [SerializeField] float speed = 5;
@@ -31,16 +43,15 @@ public class ShipController : MonoBehaviour
 
     private void Awake()
     {
-        input = new InputAsset();
         _camera = Camera.main;
     }
     private void OnEnable()
     {
-        input.Enable();
+        Input.Enable();
     }
     private void OnDisable()
     {
-        input.Disable();
+        Input.Disable();
     }
 
     // Start is called before the first frame update
@@ -65,10 +76,10 @@ public class ShipController : MonoBehaviour
         
     }
     
+    
     public void FollowCursor()
     {
-        Vector3 direction = new Vector3((MouseToWorldPosition().x - transform.position.x), 0, (MouseToWorldPosition().z - transform.position.z));
-//        Debug.Log(direction.magnitude);
+        var direction = new Vector3((MouseToWorldPosition().x - transform.position.x), 0, (MouseToWorldPosition().z - transform.position.z));
         if(direction.magnitude >0.2f)
         {
             transform.position += direction * speed * Time.deltaTime;
@@ -90,7 +101,7 @@ public class ShipController : MonoBehaviour
         Ray ray;
         Vector3 Hitpoint = Vector3.zero;
         // On trace un rayon avec la mousePosition de la souris
-        ray = _camera.ScreenPointToRay(input.Game.Cursor.ReadValue<Vector2>());
+        ray = _camera.ScreenPointToRay(Input.Game.Cursor.ReadValue<Vector2>());
         if (Physics.Raycast(ray, out RayHit, Mathf.Infinity, layerMask))
         {
             Hitpoint = new Vector3(RayHit.point.x, RayHit.point.y, RayHit.point.z);

@@ -12,6 +12,8 @@ using UnityEditor;
 [SelectionBase]
 public class ObjectPhysics : MonoBehaviour
 {
+    private const string MessageSettingsNotSetup = "Settings of object are not setup, please assign a setting.";
+
     #region SerializeField
 
     /// <summary>
@@ -25,7 +27,7 @@ public class ObjectPhysics : MonoBehaviour
     /// <summary>
     /// Force required to absorb the object by the player
     /// </summary>
-    [SerializeField] private float forceRequired;
+    [SerializeField,Range(0.01f, 2)] private float forceRequired;
     /// <summary>
     /// The gain of the absorbtion 
     /// </summary>
@@ -57,11 +59,14 @@ public class ObjectPhysics : MonoBehaviour
         ObjectRigidbody = GetComponent<Rigidbody>();
         ObjectRigidbody.isKinematic = true;
         ObjectRigidbody.mass = ForceRequired;
+        
         if (settings == null)
         {
-            Debug.Log("Settings object Physics not setup", gameObject);
-            gameObject.SetActive(false);
+            Debug.LogWarning(MessageSettingsNotSetup, gameObject);
+             //gameObject.SetActive(false);
         }
+
+        LevelManager.Instance.CallbackLevelChange += WatchLevelToWakeUp;
 
     }
 
@@ -69,7 +74,7 @@ public class ObjectPhysics : MonoBehaviour
     void Update()
     {
         ObjectRigidbody.mass = ForceRequired; // TODO : TEMP
-        WatchLevelToWakeUp();
+      //  WatchLevelToWakeUp(); // Its better in a callback
 
         // if (ObjectRigidbody.SweepTest(ObjectRigidbody.velocity.normalized, out RaycastHit hitInfo,
         //         ObjectRigidbody.velocity.magnitude))
@@ -105,6 +110,7 @@ public class ObjectPhysics : MonoBehaviour
 
     private void OnDestroy()
     {
+        
         AudioManager.PlaySoundAtPosition(settings.aliaseDeath, transform.position);
 //        FXManager.PlayFXAtPosition(settings.fxDeath,transform.position);
         AudioManager.StopLoopSound(ref _audioPlayer);

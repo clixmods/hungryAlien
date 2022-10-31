@@ -10,13 +10,13 @@ public class InputHelperManager : MonoBehaviour
 
     private bool _hasPressAbsorbed;
     private UIInputHelper _uiHelperAbsorbed;
-
+    [SerializeField] private string pressAbsorbedText = "Press Left Click to absorb";
+    
     private bool _hasPressMovement;
     private UIInputHelper _uiHelperMovement;
-
     [SerializeField] private string pressMovementText = "Use mouse to move";
-    [SerializeField] private string pressAbsorbedText = "Press Left Click to absorb";
-
+    
+  
     // Start is called before the first frame update
     void Start()
     {

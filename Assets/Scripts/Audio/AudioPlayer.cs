@@ -40,8 +40,6 @@ namespace AudioAliase
         public bool IsUsable => _clips.Count == 0 && !Source.isPlaying && !gameObject.activeSelf;
         public bool IsFollowingTransform => _transformToFollow != null;
         
-        
-
         public void SetTransformToFollow(Transform transformTarget)
         {
             _transformToFollow = transformTarget;
@@ -125,6 +123,8 @@ namespace AudioAliase
                 _nextSound = aliaseToPlay;
                 return;
             }
+          
+            _state = CurrentlyPlaying.Base; // Sinon ca fait le bug du next sound pas def
             
             //Setup the base aliase
             //_state = CurrentlyPlaying.Base;
