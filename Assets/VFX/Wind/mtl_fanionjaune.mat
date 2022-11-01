@@ -23,7 +23,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: WindFanionsRouges
+  m_Name: mtl_fanionjaune
   m_Shader: {fileID: -6465566751694194690, guid: d3ee91700add76b46a62c31a4594fb92,
     type: 3}
   m_ValidKeywords:
@@ -106,14 +106,14 @@ Material:
     - _UseShadowThreshold: 0
     - _WindArea: 1.13
     - _WindNoise: 6.42
-    - _WindPower: 0.21
+    - _WindPower: 0.18
     - _WindSpeed: 0.81
     - _ZTestDepthEqualForOpaque: 3
     - _ZTestGBuffer: 4
     - _ZTestTransparent: 4
     - _ZWrite: 1
     m_Colors:
-    - _Color: {r: 0.6132076, g: 0, b: 0, a: 0}
+    - _Color: {r: 0.9142978, g: 1, b: 0, a: 0}
     - _DoubleSidedConstants: {r: 1, g: 1, b: 1, a: 0}
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
     - _WindDirections: {r: -1.09, g: 1.84, b: 0, a: 0}
