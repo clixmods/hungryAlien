@@ -6,6 +6,7 @@ using AudioAliase;
 public class ScaleShip : MonoBehaviour
 {
     float scaleFactor = 1;
+    [SerializeField] private float speedHeightMove = 5;
     [SerializeField] float heightOffset;
     [Header("Sound Aliases")]
     [Aliase] public string aliaseGrowing;
@@ -14,7 +15,7 @@ public class ScaleShip : MonoBehaviour
     public void SetScaleFactor(float h)
     {
         AudioManager.PlaySoundAtPosition(aliaseGrowing, transform.position);
-        scaleFactor = h;
+        scaleFactor += h;
     }
     public float GetScaleFactor()
     {
@@ -34,8 +35,9 @@ public class ScaleShip : MonoBehaviour
             transform.localScale = Vector3.Lerp(transform.localScale, Vector3.one * scaleFactor, 1);
             Vector3 targetPos = new Vector3(transform.position.x, (scaleFactor/2) + (_heightFloor + heightOffset), transform.position.z);
 
-            transform.position = Vector3.MoveTowards(transform.position, targetPos, Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, targetPos, Time.deltaTime * speedHeightMove);
         }
+        
       
     }
 

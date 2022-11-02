@@ -16,6 +16,15 @@ public enum GameState
     Endgame
     
 }
+
+[System.Serializable]
+public struct DataLevel
+{
+    public float dollyCartPosition ;
+    public float cameraSpeed;
+    public GameObject floorCollision;
+    public Transform playerSpawnPoint;
+}
 [RequireComponent(typeof(CinemachineSmoothPath))]
 public class LevelManager : MonoBehaviour
 {
@@ -47,7 +56,7 @@ public class LevelManager : MonoBehaviour
 
     [field : SerializeField] public int CurrentLevel { get; private set; }
     public GameState State { get; private set; }
-    public List<Transform> waypoints;
+    public List<Transform> waypoints; // TODO : OBsolete ?
     
     /// <summary>
     /// List of GameObject where the ship can flew in the top
@@ -55,6 +64,8 @@ public class LevelManager : MonoBehaviour
     [SerializeField,Tooltip("Place all GameObject where the ship can flew on top")] 
     private List<GameObject> floorCollision;
 
+    [SerializeField] private DataLevel[] dataLevels;
+    
     #region Private Variable
 
     private CinemachineSmoothPath _smoothPath;
@@ -87,7 +98,8 @@ public class LevelManager : MonoBehaviour
             return floorCollision[CurrentLevel];
         }
     } 
-
+    
+    public Transform CurrentPlayerSpawnPoint => dataLevels[CurrentLevel].playerSpawnPoint;
     // Start is called before the first frame update
     void Start()
     {
@@ -142,7 +154,9 @@ public class LevelManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (_dollyCart.m_Position <= CurrentLevel)
+        //if (_dollyCart.m_Position <= CurrentLevel)
+
+        if (_dollyCart.m_Position <= dataLevels[CurrentLevel].dollyCartPosition)
         {
             // Force the camera to look a next object when it is moving to next level
             if( _objectPhysicsList.Count > 0 && _objectPhysicsList[0] != null)
@@ -152,7 +166,7 @@ public class LevelManager : MonoBehaviour
                 _virtualCamera.LookAt = null;
             }
             
-            _dollyCart.m_Speed = _speedMoveCamera;
+            _dollyCart.m_Speed = dataLevels[CurrentLevel].cameraSpeed;
             State = GameState.CameraIsMoving;
         }
         else
@@ -227,12 +241,10 @@ public class LevelManager : MonoBehaviour
             }
         }
 
-        if (rip)
-        {
-            RemoveAllObjectPhysical();
-            CurrentLevel++;
-            CallbackLevelChange();
-        }
+        if (!rip) return;
+        RemoveAllObjectPhysical();
+        CurrentLevel++;
+        CallbackLevelChange();
     }
 
     public void AddObjectPhysical(ObjectPhysics objectPhysics)

@@ -24,7 +24,7 @@ namespace Level
         ReorderableList[] list;
         
         private List<List<ObjectPhysics>> LevelObjectPhysics;
-        private int _maxLevel;
+        private int _maxLevel = 0;
         private int _currentDrawedLevel;
         private float scalePlayerSupposition = 1;
 
@@ -68,8 +68,9 @@ namespace Level
             
             for (int i = 0; i < lenght; i++)
             {
-                if (GetObjectsInLevel(i).Length == 0) continue;
-                 list[i] = new ReorderableList(GetObjectsInLevel(i), typeof(ObjectPhysics),true,true,true,true);
+                var objsInLevel = GetObjectsInLevel(i);
+                if (objsInLevel.Length == 0) continue;
+                 list[i] = new ReorderableList(objsInLevel, typeof(ObjectPhysics),true,true,true,true);
                  list[i].drawElementCallback = DrawElementItem; // Delegate to draw the elements on the list
                  list[i].drawHeaderCallback = DrawHeader; // Skip this line if you set displayHeader to 'false' in your ReorderableList constructor.
                  list[i].elementHeight = ElementHeight;
@@ -111,7 +112,7 @@ namespace Level
             
             // ForceRequired Slider
             Rect forceRect = new Rect(rect.x+32, rect.y+16, rect.width / 2, EditorGUIUtility.singleLineHeight);
-            EditorGUI.LabelField( forceRect, "Force Required");
+            EditorGUI.LabelField( forceRect, "Force required");
            
             forceRect.x += forceRect.width / 2;
             propertyForce.floatValue = EditorGUI.Slider(forceRect,propertyForce.floatValue,1,2);
@@ -120,7 +121,7 @@ namespace Level
             // MultiplierGain Slider
             Rect MultiplierRect = new Rect(rect.x + 32, forceRect.y + 16, rect.width / 2,
                 EditorGUIUtility.singleLineHeight);
-            EditorGUI.LabelField( MultiplierRect, "Multiplier Gain");
+            EditorGUI.LabelField( MultiplierRect, "Scale&Force Gain");
            
             MultiplierRect.x += MultiplierRect.width / 2;
             propertyMultiplier.floatValue = EditorGUI.Slider(MultiplierRect,propertyMultiplier.floatValue,0,2);
@@ -135,7 +136,7 @@ namespace Level
             ObjectPhysics[] obj = GetObjectsInLevel(_currentDrawedLevel);
             for (int i = 0; i < obj.Length; i++)
             {
-                scalePlayerSupposition *= 1.1f;
+                scalePlayerSupposition += obj[i].ScaleMultiplier;
             }
             string name = $"Objects available in level {_currentDrawedLevel} / TOTAL Scale player at the end : {scalePlayerSupposition} ";
             EditorGUI.LabelField(rect, name);
@@ -152,6 +153,22 @@ namespace Level
             myObject.transform.position = Vector3.zero; 
             myObject.transform.rotation = Quaternion.identity;
             GetMaxLevel();
+
+            if (GetMaxLevel() != list.Length)
+            {
+                int lenght = GetMaxLevel();
+                list = new ReorderableList[lenght];
+            
+                for (int i = 0; i < lenght; i++)
+                {
+                    var objsInLevel = GetObjectsInLevel(i);
+                    if (objsInLevel.Length == 0) continue;
+                    list[i] = new ReorderableList(objsInLevel, typeof(ObjectPhysics),true,true,true,true);
+                    list[i].drawElementCallback = DrawElementItem; // Delegate to draw the elements on the list
+                    list[i].drawHeaderCallback = DrawHeader; // Skip this line if you set displayHeader to 'false' in your ReorderableList constructor.
+                    list[i].elementHeight = ElementHeight;
+                }
+            }
             base.OnInspectorGUI();
             
             var soObject = new SerializedObject(myObject);
@@ -183,6 +200,8 @@ namespace Level
                 myObject.RemoveAllObjectPhysical();
             }
 
+            if (Application.isPlaying) return;
+            
             if (GUILayout.Button("Generate Cinemachine Travelling"))
             {
                 CinemachineSmoothPath cinemachineSmoothPath;
@@ -204,10 +223,15 @@ namespace Level
             {
                 _currentDrawedLevel = 0;
                 scalePlayerSupposition = 1;
-                int lenght = _maxLevel;
+                int lenght = GetMaxLevel();
                 for (int i = 0; i < lenght; i++)
                 {
-                    if (GetObjectsInLevel(i).Length == 0) continue;
+                    Debug.Log($"[LevelManagerEditor] Draw reorderable list [{i}]");
+                    if (GetObjectsInLevel(i).Length == 0)
+                    {
+                        _currentDrawedLevel++;
+                        continue;
+                    }
                     list[i].DoLayoutList();
                     _currentDrawedLevel++;
                 }
@@ -224,9 +248,9 @@ namespace Level
             _maxLevel = 0;
             for (int i = 0; i < allObjectPhysics.Length; i++)
             {
-                if (allObjectPhysics[i].SleepUntilLevel > _maxLevel)
+                if (allObjectPhysics[i].SleepUntilLevel+1 >= _maxLevel)
                 {
-                    _maxLevel = allObjectPhysics[i].SleepUntilLevel;
+                    _maxLevel = allObjectPhysics[i].SleepUntilLevel+1;
                 }
             }
 

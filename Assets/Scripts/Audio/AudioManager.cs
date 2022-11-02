@@ -124,13 +124,13 @@ namespace AudioAliase
                 if (_instance == null)
                 {
                     _instance = FindObjectOfType<AudioManager>();
-                    if(!_instance)
+                    if(_instance == null)
                         _instance = new GameObject("AudioManager").AddComponent<AudioManager>();
                 }
 
                 return _instance;
             }
-            set { _instance = value; }
+            set => _instance = value;
         }
         
 
@@ -386,6 +386,11 @@ namespace AudioAliase
         /// <param name="audioPlayerLoop"> A ref to AudioPlayer, it can be used with the method StopLoopSound</param>
         public static void PlayLoopSound(string aliaseName, Transform transformToTarget, ref AudioPlayer audioPlayerLoop)
         {
+            if (audioPlayerLoop == null)
+            {
+                Debug.LogError("[AudioManager] AudioPlayer undefined");
+                return;
+            }
             PlayLoopSound(aliaseName, transformToTarget.position, ref audioPlayerLoop);
             audioPlayerLoop.SetTransformToFollow(transformToTarget);
         }

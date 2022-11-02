@@ -70,8 +70,10 @@ public class ShipController : MonoBehaviour
         
         if (LevelManager.Instance.State == GameState.CameraIsMoving)
         {
-            Vector3 direction = new Vector3(0, 5, 0);
+            Vector3 nextPlayerSpawnPoint = LevelManager.Instance.CurrentPlayerSpawnPoint.position;
+            Vector3 direction = new Vector3( nextPlayerSpawnPoint.x-transform.position.x, 5, nextPlayerSpawnPoint.z-transform.position.z);
             transform.position += direction * speed * Time.deltaTime;
+            lastHitPoint = transform.position;
         }
         
     }
@@ -79,7 +81,9 @@ public class ShipController : MonoBehaviour
     
     public void FollowCursor()
     {
-        var direction = new Vector3((MouseToWorldPosition().x - transform.position.x), 0, (MouseToWorldPosition().z - transform.position.z));
+        var mousePosition = MouseToWorldPosition();
+        var shipPosition = transform.position;
+        var direction = new Vector3((mousePosition.x - shipPosition.x), 0, (mousePosition.z - shipPosition.z));
         if(direction.magnitude >0.2f)
         {
             transform.position += direction * speed * Time.deltaTime;

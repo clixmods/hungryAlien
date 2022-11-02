@@ -94,6 +94,7 @@ public class Absorber : MonoBehaviour
                 if(!inTheTrigger.Contains(other.gameObject))
                     inTheTrigger.Add(other.gameObject);
 
+                if (objectPhysics.IsAbsorbed) return;
                 float forceRemaining = strenght / objectPhysics.ForceRequired;
                 
                 if (Mouse.current.leftButton.isPressed && _failedCooldown <= 0)
@@ -116,9 +117,11 @@ public class Absorber : MonoBehaviour
                     if (forceRemaining >= 1 && destination.y - other.transform.position.y < 2f * scaleShip.GetScaleFactor()/2)
                     {
                         Destroy(other.gameObject);
-                        scaleShip.SetScaleFactor(scaleShip.GetScaleFactor() * scaleMultiplier);
-                        strenght *= objectPhysics.ScaleMultiplier;
+                        scaleShip.SetScaleFactor(objectPhysics.ScaleMultiplier);
+                        Debug.Log($"[Absorber] Gain {objectPhysics.ScaleMultiplier}  ==> {scaleShip.GetScaleFactor()}");
+                        strenght += objectPhysics.ScaleMultiplier;
                         AudioManager.PlaySoundAtPosition(aliaseAbsorbSuccess, transform.position);
+                        objectPhysics.IsAbsorbed = true;
                     }
                     else if (forceRemaining < 1 && destination.y - other.transform.position.y < 3f * scaleShip.GetScaleFactor()/2)
                     {

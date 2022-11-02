@@ -47,6 +47,7 @@ public class ObjectPhysics : MonoBehaviour
     public int SleepUntilLevel => sleepUntilLevel;
     public float ScaleMultiplier => scaleMultiplier;
     public float ForceRequired => forceRequired;
+    public bool IsAbsorbed { get; set; }
     #endregion
     // Start is called before the first frame update
     void Start()
@@ -63,7 +64,9 @@ public class ObjectPhysics : MonoBehaviour
         if (settings == null)
         {
             Debug.LogWarning(MessageSettingsNotSetup, gameObject);
-             //gameObject.SetActive(false);
+            // Prevent null ref
+            settings = new(); 
+            //gameObject.SetActive(false);
         }
 
         LevelManager.Instance.CallbackLevelChange += WatchLevelToWakeUp;
@@ -102,7 +105,10 @@ public class ObjectPhysics : MonoBehaviour
 
         if (collision.relativeVelocity.magnitude > 2)
         {
-            collision.gameObject.GetComponent<CollisionSurface>().Play();
+            if (collision.gameObject.TryGetComponent<CollisionSurface>(out var collisionSurface))
+            {
+                collisionSurface.Play();
+            }
             AudioManager.PlaySoundAtPosition(settings.aliaseImpact,transform.position);
         }
             
@@ -120,15 +126,19 @@ public class ObjectPhysics : MonoBehaviour
     private void OnDrawGizmos()
     {
        // Gizmos.DrawWireSphere(AbsorbePoint.position, 1);
-        Handles.Label(transform.position, "Force Required :"+ForceRequired );
+        Handles.Label(transform.position, 
+            $"Force Required {ForceRequired} // Gain : {scaleMultiplier}",
+            new GUIStyle());
     }
     // TODO : We need to let the level manager manages that
     void WatchLevelToWakeUp()
     {
         if ( ObjectRigidbody.isKinematic && LevelManager.Instance.CurrentLevel == sleepUntilLevel)
         {
+            Debug.Log("[ObjectPhysics] Object added to LevelManager", gameObject);
             ObjectRigidbody.isKinematic = false;
             LevelManager.Instance.AddObjectPhysical(this);
+            LevelManager.Instance.CallbackLevelChange -= WatchLevelToWakeUp;
         }
     }
 }
