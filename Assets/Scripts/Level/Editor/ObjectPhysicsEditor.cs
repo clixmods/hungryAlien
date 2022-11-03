@@ -12,7 +12,7 @@ public class ObjectPhysicsEditor : Editor
     private bool _foldSO;
     private ObjectPhysics myTarget;
     private SerializedProperty _serializedProperty;
-    private const string PropertyName = "_settings";
+    private const string PropertyName = "settings";
 
     public override void OnInspectorGUI()
     {
@@ -30,7 +30,7 @@ public class ObjectPhysicsEditor : Editor
             
             // Draw ScriptableObject in the inspector
             _serializedProperty = serializedObject.FindProperty(PropertyName);
-            myTarget.gameObject.name = $"{_serializedProperty.name}";
+            //myTarget.gameObject.name = $"{_serializedProperty.name}";
             _foldSO = EditorGUILayout.InspectorTitlebar(_foldSO, _serializedProperty.objectReferenceValue);
             if (_foldSO)
             {
@@ -39,10 +39,10 @@ public class ObjectPhysicsEditor : Editor
                 _editor.OnInspectorGUI();
             }
         }
-        else
-        {
-            myTarget.gameObject.name = $"ObjectPhysics Setting no setup";
-        }
+        // else
+        // {
+        //     myTarget.gameObject.name = $"ObjectPhysics Setting no setup";
+        // }
         
         
     }

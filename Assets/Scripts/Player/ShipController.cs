@@ -11,11 +11,24 @@ using AudioAliase;
 [RequireComponent(typeof(CameraShake))]
 public class ShipController : MonoBehaviour
 {
-   
-   
-    [SerializeField] private InputAsset input;
-    [SerializeField] private LayerMask layerMask;
-    [SerializeField] private float speed = 5;
+    private Camera _camera;
+    InputAsset _input;
+    public InputAsset Input
+    {
+        get
+        {
+            // Prevent null ref when the game reload script
+            if (_input == null)
+            {
+                _input = new InputAsset();
+            }
+            return _input;
+        }
+    }
+    [SerializeField] LayerMask layerMask;
+
+    [SerializeField] float speed = 5;
+    Vector3 lastHitPoint;
     
     [Header("Sound Aliases")]
     [SerializeField, Aliase] private string aliaseIdle;
@@ -34,18 +47,17 @@ public class ShipController : MonoBehaviour
 
     private void Awake()
     {
-        input = new InputAsset();
         _camera = Camera.main;
     }
 
     private void OnEnable()
     {
-        input.Enable();
+        Input.Enable();
     }
 
     private void OnDisable()
     {
-        input.Disable();
+        Input.Disable();
     }
 
     // Start is called before the first frame update
@@ -64,20 +76,20 @@ public class ShipController : MonoBehaviour
 
         if (LevelManager.Instance.State == GameState.CameraIsMoving)
         {
-            Vector3 direction = new Vector3(0, 5, 0);
+            Vector3 nextPlayerSpawnPoint = LevelManager.Instance.CurrentPlayerSpawnPoint.position;
+            Vector3 direction = new Vector3( nextPlayerSpawnPoint.x-transform.position.x, 5, nextPlayerSpawnPoint.z-transform.position.z);
             transform.position += direction * speed * Time.deltaTime;
+            lastHitPoint = transform.position;
         }
     }
-
-    #endregion
-
+    
+    
     public void FollowCursor()
     {
-        var transformPosition = transform.position;
         var mousePosition = MouseToWorldPosition();
-        var direction = new Vector3((mousePosition.x - transformPosition.x), 0,
-            (mousePosition.z - transformPosition.z));
-        if (direction.magnitude > 0.2f)
+        var shipPosition = transform.position;
+        var direction = new Vector3((mousePosition.x - shipPosition.x), 0, (mousePosition.z - shipPosition.z));
+        if(direction.magnitude >0.2f)
         {
             transform.position += direction * speed * Time.deltaTime;
             AudioManager.PlayLoopSound(aliaseMoving, transform, ref _audioMoving);
@@ -99,7 +111,7 @@ public class ShipController : MonoBehaviour
         Ray ray;
         Vector3 Hitpoint = Vector3.zero;
         // On trace un rayon avec la mousePosition de la souris
-        ray = _camera.ScreenPointToRay(input.Game.Cursor.ReadValue<Vector2>());
+        ray = _camera.ScreenPointToRay(Input.Game.Cursor.ReadValue<Vector2>());
         if (Physics.Raycast(ray, out RayHit, Mathf.Infinity, layerMask))
         {
             Hitpoint = new Vector3(RayHit.point.x, RayHit.point.y, RayHit.point.z);

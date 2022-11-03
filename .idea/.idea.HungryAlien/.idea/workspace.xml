@@ -6,29 +6,18 @@
   <component name="ChangeListManager">
     <list default="true" id="db6ae1ff-23e2-4f3b-9ceb-e60a307727cd" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.HungryAlien/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.HungryAlien/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Audio/AliasesAsset/aliases_objectphysics.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Audio/AliasesAsset/aliases_objectphysics.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Audio/AliasesAsset/aliases_ship.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Audio/AliasesAsset/aliases_ship.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ObjectPhysicsAssets/objphysetting_default.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ObjectPhysicsAssets/objphysetting_default.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/Test_PlayerController.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Test_PlayerController.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Audio/AudioManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Audio/AudioManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Audio/AudioPlayer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Audio/AudioPlayer.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Audio/Editor/AliasesEditorWindow.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Audio/Editor/AliasesEditorWindow.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Audio/Sound Test/weapons.asset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Audio/Sound Test/weapons.asset.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Level/Editor/ObjectPhysicsEditor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Level/Editor/ObjectPhysicsEditor.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Level/LevelManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Level/LevelManager.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Level/LevelManagerEditor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Level/LevelManagerEditor.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Level/ObjectPhysics.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Level/ObjectPhysics.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Level/ObjectPhysicsScriptableObject.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Level/ObjectPhysicsScriptableObject.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/Absorber.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player/Absorber.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/ScaleShip.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player/ScaleShip.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/ShipController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player/ShipController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/Packages/com.unity.testtools.codecoverage/Settings.json" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/Packages/com.unity.testtools.codecoverage/Settings.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ProjectSettings/RiderScriptEditorPersistedState.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/RiderScriptEditorPersistedState.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/ShaderGraphSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ShaderGraphSettings.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UserSettings/HDRPUserSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/HDRPUserSettings.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UserSettings/Layouts/CurrentMaximizeLayout.dwlt" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/Layouts/CurrentMaximizeLayout.dwlt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserSettings/Layouts/default-2021.dwlt" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/Layouts/default-2021.dwlt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,6 +47,7 @@
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.cinemachine@2.8.9/Runtime/Behaviours/CinemachineSmoothPath.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.render-pipelines.high-definition@12.1.6/Runtime/RenderPipeline/Camera/HDAdditionalCameraData.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ugui@1.0.0/Runtime/UI/Core/Layout/CanvasScaler.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.visualeffectgraph@12.1.6/Editor/Inspector/VFXAssetEditor.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -70,20 +60,20 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Discover.Launch.Via.Unity": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Discover.Launch.Via.Unity&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
     <configuration name="UnitTests (batch mode)" type="RunUnityExe" factoryName="Unity Executable">
       <option name="EXE_PATH" value="C:\Program Files\Unity\Hub\Editor\2021.3.2f1\Editor\Unity.exe" />
@@ -103,10 +93,10 @@
       </option>
       <method v="2" />
     </configuration>
-    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="17384">
+    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
-      <option name="pid" value="17384" />
+      <option name="pid" />
       <option name="projectPathOnTarget" />
       <option name="selectedOptions">
         <list />
@@ -143,6 +133,9 @@
       <workItem from="1666947434792" duration="7043000" />
       <workItem from="1666967460918" duration="2010000" />
       <workItem from="1667126115124" duration="28051000" />
+      <workItem from="1667202536039" duration="28168000" />
+      <workItem from="1667327621441" duration="7586000" />
+      <workItem from="1667373462138" duration="6046000" />
     </task>
     <servers />
   </component>
@@ -174,19 +167,6 @@
           <line>78</line>
           <properties documentPath="C:\Users\clixd\Documents\UnityProject\HungryAlien\Assets\Script\Audio\Editor\AliasesEditorWindow.cs" initialLine="77" containingFunctionPresentation="method 'UpdateTagList'" />
           <option name="timeStamp" value="1" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Scripts/Player/Absorber.cs</url>
-          <line>126</line>
-          <properties documentPath="C:\Users\clixd\Documents\UnityProject\hungryAlien\Assets\Scripts\Player\Absorber.cs" initialLine="119" containingFunctionPresentation="method 'OnTriggerStay'">
-            <startOffsets>
-              <option value="4414" />
-            </startOffsets>
-            <endOffsets>
-              <option value="4490" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="3" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

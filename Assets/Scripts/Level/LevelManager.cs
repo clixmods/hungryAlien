@@ -16,11 +16,21 @@ public enum GameState
     Endgame
     
 }
+
+[System.Serializable]
+public struct DataLevel
+{
+    public float dollyCartPosition ;
+    public float cameraSpeed;
+    public GameObject floorCollision;
+    public Transform playerSpawnPoint;
+}
 [RequireComponent(typeof(CinemachineSmoothPath))]
 public class LevelManager : MonoBehaviour
 {
     [SerializeField] private float _speedMoveCamera = 10;
-    private Camera _camera;
+    
+    #region Singleton
 
     private static LevelManager _instance;
     public static LevelManager Instance
@@ -29,7 +39,9 @@ public class LevelManager : MonoBehaviour
         {
             if (_instance == null)
             {
-                _instance = new GameObject("LevelManager").AddComponent<LevelManager>();
+                _instance = FindObjectOfType<LevelManager>();
+                if(!_instance)
+                    _instance = new GameObject("LevelManager").AddComponent<LevelManager>();
             }
 
             return _instance;
@@ -40,24 +52,54 @@ public class LevelManager : MonoBehaviour
         }
     }
 
+    #endregion
+
     [field : SerializeField] public int CurrentLevel { get; private set; }
     public GameState State { get; private set; }
-    public List<Transform> waypoints;
-    public List<GameObject> floorCollision;
+    public List<Transform> waypoints; // TODO : OBsolete ?
+    
+    /// <summary>
+    /// List of GameObject where the ship can flew in the top
+    /// </summary>
+    [SerializeField,Tooltip("Place all GameObject where the ship can flew on top")] 
+    private List<GameObject> floorCollision;
+
+    [SerializeField] private DataLevel[] dataLevels;
+    
+    #region Private Variable
+
     private CinemachineSmoothPath _smoothPath;
     private CinemachineDollyCart _dollyCart;
     private CinemachineVirtualCamera _virtualCamera;
     private ShipController _player;
+    private Camera _camera;
+
+    #endregion
+    
+    /// <summary>
+    /// Callback of methods when current level change
+    /// </summary>
+    public Action CallbackLevelChange;
+    
+ 
     public int MaxLevel
     {
         get { return waypoints.Count; }
     }
     private List<ObjectPhysics> _objectPhysicsList;
-    public GameObject GetCurrentFloor
-    {
-        get { return floorCollision[CurrentLevel]; }
-    }
-  
+    public GameObject GetCurrentFloor {
+        get
+        {
+            if (floorCollision == null || floorCollision.Count == 0)
+            {
+                Debug.LogWarning($"No floor detected for the level {CurrentLevel}");
+                return null;
+            }
+            return floorCollision[CurrentLevel];
+        }
+    } 
+    
+    public Transform CurrentPlayerSpawnPoint => dataLevels[CurrentLevel].playerSpawnPoint;
     // Start is called before the first frame update
     void Start()
     {
@@ -105,25 +147,26 @@ public class LevelManager : MonoBehaviour
         {
             VARIABLE.layer = LayerMask.NameToLayer("MoveZone");
         }
+        CallbackLevelChange();
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (_dollyCart.m_Position <= CurrentLevel)
+        //if (_dollyCart.m_Position <= CurrentLevel)
+
+        if (_dollyCart.m_Position <= dataLevels[CurrentLevel].dollyCartPosition)
         {
-            foreach (var floorTransform in floorCollision)
-            {
-                floorTransform.gameObject.SetActive(false);
-            }
-            if(_objectPhysicsList[0] != null)
+            // Force the camera to look a next object when it is moving to next level
+            if( _objectPhysicsList.Count > 0 && _objectPhysicsList[0] != null)
                 _virtualCamera.LookAt = _objectPhysicsList[0].transform;
             else
             {
                 _virtualCamera.LookAt = null;
             }
             
-            _dollyCart.m_Speed = _speedMoveCamera;
+            _dollyCart.m_Speed = dataLevels[CurrentLevel].cameraSpeed;
             State = GameState.CameraIsMoving;
         }
         else
@@ -131,7 +174,7 @@ public class LevelManager : MonoBehaviour
             _virtualCamera.LookAt = _player.transform;
             _dollyCart.m_Speed = 0;
             State = GameState.Ingame;
-            floorCollision[CurrentLevel].gameObject.SetActive(true);
+            SetFloorActive(CurrentLevel);
             WatchObjectPhysicalAvailable();
         }
         
@@ -160,6 +203,26 @@ public class LevelManager : MonoBehaviour
         // }
 
     }
+    /// <summary>
+    /// Active the indexed floor to allow player movement
+    /// </summary>
+    /// <param name="indexToActive"></param>
+    void SetFloorActive(int indexToActive)
+    {
+        if (floorCollision == null || floorCollision.Count == 0)
+        {
+            Debug.LogWarning("[LevelManager] FloorCollision undefined");
+            return;
+        }
+        
+        foreach (var floorTransform in floorCollision)
+        {
+            floorTransform.gameObject.SetActive(false);
+        }
+        
+        floorCollision[CurrentLevel].gameObject.SetActive(true);
+        
+    }
 
     public void AddWaypoint(Transform newWaypoint)
     {
@@ -178,11 +241,10 @@ public class LevelManager : MonoBehaviour
             }
         }
 
-        if (rip)
-        {
-            RemoveAllObjectPhysical();
-            CurrentLevel++;
-        }
+        if (!rip) return;
+        RemoveAllObjectPhysical();
+        CurrentLevel++;
+        CallbackLevelChange();
     }
 
     public void AddObjectPhysical(ObjectPhysics objectPhysics)

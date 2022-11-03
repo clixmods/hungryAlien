@@ -283,10 +283,9 @@ MonoBehaviour:
   AbsorbePoint: {fileID: 6961655015927970678}
   scaleShip: {fileID: 6961655016796113057}
   scaleMultiplier: 1.1
-  strengthMultiplier: 1.1
+  aliaseLoopLight: 
   aliaseLoopAbsorbing: 
-  aliaseFail: 
-  aliaseAbsorbReleased: 
+  aliaseLoopFail: 
   aliaseAbsorbSuccess: 
 --- !u!1 &6961655016796113065
 GameObject:
@@ -393,9 +392,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   speed: 5
-  aliaseIdle: 
-  aliaseMoving: 
-  aliaseUpToSky: 
+  aliaseIdle: impactBell_heavy
+  aliaseMoving: impactBell_heavy
+  aliaseUpToSky: impactBell_heavy
 --- !u!114 &6961655016796113058
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -440,7 +439,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   heightOffset: 3
-  aliaseGrowing: 
+  aliaseGrowing: impactBell_heavy
 --- !u!114 &4559491585803938523
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -12,6 +12,8 @@ using UnityEditor;
 [SelectionBase]
 public class ObjectPhysics : MonoBehaviour
 {
+    private const string MessageSettingsNotSetup = "Settings of object are not setup, please assign a setting.";
+
     #region SerializeField
 
     /// <summary>
@@ -25,7 +27,7 @@ public class ObjectPhysics : MonoBehaviour
     /// <summary>
     /// Force required to absorb the object by the player
     /// </summary>
-    [SerializeField] private float forceRequired;
+    [SerializeField,Range(0.01f, 2)] private float forceRequired;
     /// <summary>
     /// The gain of the absorbtion 
     /// </summary>
@@ -45,6 +47,7 @@ public class ObjectPhysics : MonoBehaviour
     public int SleepUntilLevel => sleepUntilLevel;
     public float ScaleMultiplier => scaleMultiplier;
     public float ForceRequired => forceRequired;
+    public bool IsAbsorbed { get; set; }
     #endregion
     // Start is called before the first frame update
     void Start()
@@ -57,11 +60,16 @@ public class ObjectPhysics : MonoBehaviour
         ObjectRigidbody = GetComponent<Rigidbody>();
         ObjectRigidbody.isKinematic = true;
         ObjectRigidbody.mass = ForceRequired;
+        
         if (settings == null)
         {
-            Debug.Log("Settings object Physics not setup", gameObject);
-            gameObject.SetActive(false);
+            Debug.LogWarning(MessageSettingsNotSetup, gameObject);
+            // Prevent null ref
+            settings = new(); 
+            //gameObject.SetActive(false);
         }
+
+        LevelManager.Instance.CallbackLevelChange += WatchLevelToWakeUp;
 
     }
 
@@ -69,14 +77,33 @@ public class ObjectPhysics : MonoBehaviour
     void Update()
     {
         ObjectRigidbody.mass = ForceRequired; // TODO : TEMP
-        WatchLevelToWakeUp();
+      //  WatchLevelToWakeUp(); // Its better in a callback
+
+        // if (ObjectRigidbody.SweepTest(ObjectRigidbody.velocity.normalized, out RaycastHit hitInfo,
+        //         ObjectRigidbody.velocity.magnitude))
+        // {
+        //     if(ObjectRigidbody.velocity.magnitude > 0.5f)
+        //     
+        // }
+        
+        // if (ObjectRigidbody.velocity.magnitude > settings.magnitudeToStopLoop)
+        // {
+        //     AudioManager.PlayLoopSound(settings.aliaseMoving, transform.position, ref _audioPlayer);
+        // }
+        // else
+        // {
+        //     AudioManager.StopLoopSound(ref _audioPlayer);
+        // }
     }
     
     void OnCollisionEnter(Collision collision)
     {
         if (collision.relativeVelocity.magnitude > 2)
         {
-            collision.gameObject.GetComponent<CollisionSurface>().Play();
+            if (collision.gameObject.TryGetComponent<CollisionSurface>(out var collisionSurface))
+            {
+                collisionSurface.Play();
+            }
             AudioManager.PlaySoundAtPosition(settings.aliaseImpact,transform.position);
         }
     }
@@ -85,6 +112,7 @@ public class ObjectPhysics : MonoBehaviour
 
     private void OnDestroy()
     {
+        
         AudioManager.PlaySoundAtPosition(settings.aliaseDeath, transform.position);
         //FXManager.PlayFXAtPosition(settings.fxDeath,transform.position);
         AudioManager.StopLoopSound(ref _audioPlayer);
@@ -93,7 +121,10 @@ public class ObjectPhysics : MonoBehaviour
     
     private void OnDrawGizmos()
     {
-        Handles.Label(transform.position, "Force Required :"+ForceRequired );
+       // Gizmos.DrawWireSphere(AbsorbePoint.position, 1);
+        Handles.Label(transform.position, 
+            $"Force Required {ForceRequired} // Gain : {scaleMultiplier}",
+            new GUIStyle());
     }
     
     
@@ -102,8 +133,10 @@ public class ObjectPhysics : MonoBehaviour
     {
         if ( ObjectRigidbody.isKinematic && LevelManager.Instance.CurrentLevel == sleepUntilLevel)
         {
+            Debug.Log("[ObjectPhysics] Object added to LevelManager", gameObject);
             ObjectRigidbody.isKinematic = false;
             LevelManager.Instance.AddObjectPhysical(this);
+            LevelManager.Instance.CallbackLevelChange -= WatchLevelToWakeUp;
         }
     }
 }

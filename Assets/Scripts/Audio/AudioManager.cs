@@ -123,12 +123,14 @@ namespace AudioAliase
             {
                 if (_instance == null)
                 {
-                    _instance = new GameObject("AudioManager").AddComponent<AudioManager>();
+                    _instance = FindObjectOfType<AudioManager>();
+                    if(_instance == null)
+                        _instance = new GameObject("AudioManager").AddComponent<AudioManager>();
                 }
 
                 return _instance;
             }
-            set { _instance = value; }
+            set => _instance = value;
         }
         
 
@@ -241,13 +243,13 @@ namespace AudioAliase
 
             if (alias != null && alias.audio.Length == 0)
             {
-                Debug.LogError("AudioManager : Aliase: " + name + " contains no sounds.");
+                Debug.LogError("[AudioManager] : Aliase: " + name + " contains no sounds.");
                 return false;
             }
 
             if (alias == null)
             {
-                Debug.LogWarning("AudioManager : Aliase: " + name + " not found.");
+                Debug.LogWarning("[AudioManager] : Aliase: " + name + " not found.");
                 return false;
             }
 
@@ -384,6 +386,11 @@ namespace AudioAliase
         /// <param name="audioPlayerLoop"> A ref to AudioPlayer, it can be used with the method StopLoopSound</param>
         public static void PlayLoopSound(string aliaseName, Transform transformToTarget, ref AudioPlayer audioPlayerLoop)
         {
+            if (audioPlayerLoop == null)
+            {
+                Debug.LogError("[AudioManager] AudioPlayer undefined");
+                return;
+            }
             PlayLoopSound(aliaseName, transformToTarget.position, ref audioPlayerLoop);
             audioPlayerLoop.SetTransformToFollow(transformToTarget);
         }
@@ -397,14 +404,12 @@ namespace AudioAliase
         {
             if (audioPlayerLoop != null && !audioPlayerLoop.IsUsable)
             {
-                Debug.Log("PlayLoop already played");
+                Debug.Log($"[AudioManager] PlayLoop {aliaseName} already played");
                 return;
             }
             if (string.IsNullOrEmpty(aliaseName))
             {
-                //Debug.LogError( );
                 throw new InvalidAliasesException("AudioManager : No specified aliases");
-                //return;
             }
             if (!GetSoundByAliase(aliaseName, out Aliase clip))
             {

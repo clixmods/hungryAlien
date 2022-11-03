@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 960.7627, g: 5833.4277, b: 6414.1445, a: 1}
+  m_IndirectSpecularColor: {r: 955.8363, g: 5834.9434, b: 6410.956, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -256,8 +256,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a4a4a7b00d2e4f4c83ad80d4aedced9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _settings: {fileID: 11400000, guid: 87349c09c23aad641a7b29ea79b93fb4, type: 2}
-  placeholder: {fileID: 0}
+  settings: {fileID: 11400000, guid: 87349c09c23aad641a7b29ea79b93fb4, type: 2}
+  sleepUntilLevel: 0
+  forceRequired: 1.165
+  scaleMultiplier: 1.546
 --- !u!54 &182831387
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -382,7 +384,7 @@ GameObject:
   - component: {fileID: 218172333}
   - component: {fileID: 218172338}
   m_Layer: 0
-  m_Name: objphysetting_cube_1
+  m_Name: ObjectPhysics Setting no setup
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -415,8 +417,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a4a4a7b00d2e4f4c83ad80d4aedced9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _settings: {fileID: 11400000, guid: 0d21a68b81cd1454dbbb56ff44053218, type: 2}
-  placeholder: {fileID: 0}
+  settings: {fileID: 11400000, guid: 87349c09c23aad641a7b29ea79b93fb4, type: 2}
+  sleepUntilLevel: 0
+  forceRequired: 1.144
+  scaleMultiplier: 1.114
 --- !u!54 &218172334
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -624,7 +628,7 @@ GameObject:
   - component: {fileID: 341359035}
   - component: {fileID: 341359041}
   m_Layer: 0
-  m_Name: objphysetting_cube
+  m_Name: ObjectPhysics Setting no setup
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -642,8 +646,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a4a4a7b00d2e4f4c83ad80d4aedced9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _settings: {fileID: 11400000, guid: 87349c09c23aad641a7b29ea79b93fb4, type: 2}
-  placeholder: {fileID: 0}
+  settings: {fileID: 11400000, guid: 87349c09c23aad641a7b29ea79b93fb4, type: 2}
+  sleepUntilLevel: 0
+  forceRequired: 1.135
+  scaleMultiplier: 1.106
 --- !u!54 &341359036
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -940,8 +946,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a4a4a7b00d2e4f4c83ad80d4aedced9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _settings: {fileID: 11400000, guid: 0d21a68b81cd1454dbbb56ff44053218, type: 2}
-  placeholder: {fileID: 0}
+  settings: {fileID: 11400000, guid: 87349c09c23aad641a7b29ea79b93fb4, type: 2}
+  sleepUntilLevel: 0
+  forceRequired: 1
+  scaleMultiplier: 1.026
 --- !u!54 &431000337
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1100,8 +1108,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a4a4a7b00d2e4f4c83ad80d4aedced9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _settings: {fileID: 11400000, guid: 87349c09c23aad641a7b29ea79b93fb4, type: 2}
-  placeholder: {fileID: 0}
+  settings: {fileID: 11400000, guid: 87349c09c23aad641a7b29ea79b93fb4, type: 2}
+  sleepUntilLevel: 0
+  forceRequired: 1.03
+  scaleMultiplier: 1.05
 --- !u!54 &457212327
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1385,9 +1395,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a4a4a7b00d2e4f4c83ad80d4aedced9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _settings: {fileID: 11400000, guid: 0d21a68b81cd1454dbbb56ff44053218, type: 2}
-  placeholder: {fileID: 6097297008057938501, guid: 2655797636d8aa84584af24968d8ab02,
-    type: 3}
+  settings: {fileID: 11400000, guid: 87349c09c23aad641a7b29ea79b93fb4, type: 2}
+  sleepUntilLevel: 1
+  forceRequired: 1.127
+  scaleMultiplier: 1.299
 --- !u!54 &574316905
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1528,7 +1539,7 @@ GameObject:
   - component: {fileID: 628119383}
   - component: {fileID: 628119389}
   m_Layer: 0
-  m_Name: objphysetting_cube
+  m_Name: un cube de mort
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1546,8 +1557,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a4a4a7b00d2e4f4c83ad80d4aedced9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _settings: {fileID: 11400000, guid: 87349c09c23aad641a7b29ea79b93fb4, type: 2}
-  placeholder: {fileID: 0}
+  settings: {fileID: 11400000, guid: 87349c09c23aad641a7b29ea79b93fb4, type: 2}
+  sleepUntilLevel: 0
+  forceRequired: 1
+  scaleMultiplier: 1.05
 --- !u!54 &628119384
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1705,8 +1718,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a4a4a7b00d2e4f4c83ad80d4aedced9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _settings: {fileID: 11400000, guid: 11425bf2aa74cf44d81ab2949091a125, type: 2}
-  placeholder: {fileID: 0}
+  settings: {fileID: 11400000, guid: 87349c09c23aad641a7b29ea79b93fb4, type: 2}
+  sleepUntilLevel: 0
+  forceRequired: 1
+  scaleMultiplier: 1.05
 --- !u!54 &660765301
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1929,9 +1944,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a4a4a7b00d2e4f4c83ad80d4aedced9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _settings: {fileID: 11400000, guid: 87349c09c23aad641a7b29ea79b93fb4, type: 2}
-  placeholder: {fileID: 6097297008057938501, guid: 2655797636d8aa84584af24968d8ab02,
-    type: 3}
+  settings: {fileID: 11400000, guid: 87349c09c23aad641a7b29ea79b93fb4, type: 2}
+  sleepUntilLevel: 0
+  forceRequired: 1
+  scaleMultiplier: 1.05
 --- !u!54 &755560715
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2184,8 +2200,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a4a4a7b00d2e4f4c83ad80d4aedced9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _settings: {fileID: 11400000, guid: 0d21a68b81cd1454dbbb56ff44053218, type: 2}
-  placeholder: {fileID: 0}
+  settings: {fileID: 11400000, guid: 87349c09c23aad641a7b29ea79b93fb4, type: 2}
+  sleepUntilLevel: 0
+  forceRequired: 1
+  scaleMultiplier: 1.05
 --- !u!54 &814410844
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2411,8 +2429,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a4a4a7b00d2e4f4c83ad80d4aedced9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _settings: {fileID: 11400000, guid: 87349c09c23aad641a7b29ea79b93fb4, type: 2}
-  placeholder: {fileID: 0}
+  settings: {fileID: 11400000, guid: 87349c09c23aad641a7b29ea79b93fb4, type: 2}
+  sleepUntilLevel: 0
+  forceRequired: 1
+  scaleMultiplier: 1.05
 --- !u!54 &844759888
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2747,8 +2767,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a4a4a7b00d2e4f4c83ad80d4aedced9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _settings: {fileID: 11400000, guid: 87349c09c23aad641a7b29ea79b93fb4, type: 2}
-  placeholder: {fileID: 0}
+  settings: {fileID: 11400000, guid: 87349c09c23aad641a7b29ea79b93fb4, type: 2}
+  sleepUntilLevel: 0
+  forceRequired: 1
+  scaleMultiplier: 1.05
 --- !u!54 &943706875
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2926,8 +2948,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a4a4a7b00d2e4f4c83ad80d4aedced9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _settings: {fileID: 11400000, guid: 0d21a68b81cd1454dbbb56ff44053218, type: 2}
-  placeholder: {fileID: 0}
+  settings: {fileID: 11400000, guid: 87349c09c23aad641a7b29ea79b93fb4, type: 2}
+  sleepUntilLevel: 0
+  forceRequired: 1
+  scaleMultiplier: 1.05
 --- !u!54 &974614216
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3070,8 +3094,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a4a4a7b00d2e4f4c83ad80d4aedced9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _settings: {fileID: 11400000, guid: 0d21a68b81cd1454dbbb56ff44053218, type: 2}
-  placeholder: {fileID: 0}
+  settings: {fileID: 11400000, guid: 87349c09c23aad641a7b29ea79b93fb4, type: 2}
+  sleepUntilLevel: 0
+  forceRequired: 1
+  scaleMultiplier: 1.05
 --- !u!54 &989054046
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -4319,8 +4345,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a4a4a7b00d2e4f4c83ad80d4aedced9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _settings: {fileID: 11400000, guid: 0d21a68b81cd1454dbbb56ff44053218, type: 2}
-  placeholder: {fileID: 0}
+  settings: {fileID: 11400000, guid: 87349c09c23aad641a7b29ea79b93fb4, type: 2}
+  sleepUntilLevel: 0
+  forceRequired: 1.236
+  scaleMultiplier: 1.102
 --- !u!54 &1561901342
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -4511,6 +4539,21 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6961655016796113068, guid: 6d4910768f931e04fa21496acb396cf2,
         type: 3}
+      propertyPath: m_LocalScale.x
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6961655016796113068, guid: 6d4910768f931e04fa21496acb396cf2,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6961655016796113068, guid: 6d4910768f931e04fa21496acb396cf2,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6961655016796113068, guid: 6d4910768f931e04fa21496acb396cf2,
+        type: 3}
       propertyPath: m_LocalPosition.x
       value: -8.991901
       objectReference: {fileID: 0}
@@ -4559,6 +4602,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6961655016796113068, guid: 6d4910768f931e04fa21496acb396cf2,
+        type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6d4910768f931e04fa21496acb396cf2, type: 3}
 --- !u!4 &1702347334 stripped
@@ -4579,8 +4627,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2b8b11f40d9253409ba77eddc23f273, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pressMovementText: Use mouse to move
   pressAbsorbedText: Press Left Click to absorb
+  pressMovementText: Use mouse to move
 --- !u!1 &1781470727
 GameObject:
   m_ObjectHideFlags: 0
@@ -4996,8 +5044,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a4a4a7b00d2e4f4c83ad80d4aedced9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _settings: {fileID: 11400000, guid: 87349c09c23aad641a7b29ea79b93fb4, type: 2}
-  placeholder: {fileID: 0}
+  settings: {fileID: 11400000, guid: 87349c09c23aad641a7b29ea79b93fb4, type: 2}
+  sleepUntilLevel: 0
+  forceRequired: 1
+  scaleMultiplier: 1.295
 --- !u!54 &1949613869
 Rigidbody:
   m_ObjectHideFlags: 0
