@@ -11,8 +11,11 @@ using AudioAliase;
 [RequireComponent(typeof(CameraShake))]
 public class ShipController : MonoBehaviour
 {
-    private Camera _camera;
-    InputAsset _input;
+   
+    private InputAsset _input;
+    /// <summary>
+    /// Input used by the player
+    /// </summary>
     public InputAsset Input
     {
         get
@@ -25,10 +28,8 @@ public class ShipController : MonoBehaviour
             return _input;
         }
     }
-    [SerializeField] LayerMask layerMask;
-
-    [SerializeField] float speed = 5;
-    Vector3 lastHitPoint;
+    [SerializeField] private LayerMask layerMask;
+    [SerializeField] private float speed = 5;
     
     [Header("Sound Aliases")]
     [SerializeField, Aliase] private string aliaseIdle;
@@ -36,6 +37,9 @@ public class ShipController : MonoBehaviour
     [SerializeField, Aliase] private string aliaseUpToSky;
 
     private Camera _camera;
+    /// <summary>
+    /// The last valid point for player movement
+    /// </summary>
     private Vector3 _lastHitPoint;
     /// <summary>
     /// ref for the audioplayer used when the player move
@@ -79,10 +83,10 @@ public class ShipController : MonoBehaviour
             Vector3 nextPlayerSpawnPoint = LevelManager.Instance.CurrentPlayerSpawnPoint.position;
             Vector3 direction = new Vector3( nextPlayerSpawnPoint.x-transform.position.x, 5, nextPlayerSpawnPoint.z-transform.position.z);
             transform.position += direction * speed * Time.deltaTime;
-            lastHitPoint = transform.position;
+            _lastHitPoint = transform.position;
         }
     }
-    
+    #endregion
     
     public void FollowCursor()
     {

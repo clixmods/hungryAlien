@@ -132,13 +132,12 @@ namespace Level
         //Draws the header
         void DrawHeader(Rect rect)
         {
-            float scale = 1;
             ObjectPhysics[] obj = GetObjectsInLevel(_currentDrawedLevel);
             for (int i = 0; i < obj.Length; i++)
             {
                 scalePlayerSupposition += obj[i].ScaleMultiplier;
             }
-            string name = $"Objects available in level {_currentDrawedLevel} / TOTAL Scale player at the end : {scalePlayerSupposition} ";
+            var name = $"Objects available in level {_currentDrawedLevel} / TOTAL Scale player at the end : {scalePlayerSupposition} ";
             EditorGUI.LabelField(rect, name);
         }
         

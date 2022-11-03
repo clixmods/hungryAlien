@@ -48,10 +48,15 @@ public class ObjectPhysics : MonoBehaviour
     public float ScaleMultiplier => scaleMultiplier;
     public float ForceRequired => forceRequired;
     public bool IsAbsorbed { get; set; }
+    public bool IsGrabable { get; private set; }
     #endregion
+
+    #region MonoBehaviour
+
     // Start is called before the first frame update
     void Start()
     {
+        
         _collider = GetComponent<MeshCollider>();
         if (_collider == null)
             _collider = transform.AddComponent<MeshCollider>();
@@ -65,11 +70,11 @@ public class ObjectPhysics : MonoBehaviour
         {
             Debug.LogWarning(MessageSettingsNotSetup, gameObject);
             // Prevent null ref
-            settings = new(); 
+            settings = ObjectPhysicsScriptableObject.CreateInstance<ObjectPhysicsScriptableObject>(); 
             //gameObject.SetActive(false);
         }
 
-        LevelManager.Instance.CallbackLevelChange += WatchLevelToWakeUp;
+        LevelManager.Instance.CallbackPreLevelChange += WatchLevelToWakeUp;
 
     }
 
@@ -77,23 +82,6 @@ public class ObjectPhysics : MonoBehaviour
     void Update()
     {
         ObjectRigidbody.mass = ForceRequired; // TODO : TEMP
-      //  WatchLevelToWakeUp(); // Its better in a callback
-
-        // if (ObjectRigidbody.SweepTest(ObjectRigidbody.velocity.normalized, out RaycastHit hitInfo,
-        //         ObjectRigidbody.velocity.magnitude))
-        // {
-        //     if(ObjectRigidbody.velocity.magnitude > 0.5f)
-        //     
-        // }
-        
-        // if (ObjectRigidbody.velocity.magnitude > settings.magnitudeToStopLoop)
-        // {
-        //     AudioManager.PlayLoopSound(settings.aliaseMoving, transform.position, ref _audioPlayer);
-        // }
-        // else
-        // {
-        //     AudioManager.StopLoopSound(ref _audioPlayer);
-        // }
     }
     
     void OnCollisionEnter(Collision collision)
@@ -107,9 +95,7 @@ public class ObjectPhysics : MonoBehaviour
             AudioManager.PlaySoundAtPosition(settings.aliaseImpact,transform.position);
         }
     }
-
     
-
     private void OnDestroy()
     {
         
@@ -121,12 +107,13 @@ public class ObjectPhysics : MonoBehaviour
     
     private void OnDrawGizmos()
     {
-       // Gizmos.DrawWireSphere(AbsorbePoint.position, 1);
+        // Gizmos.DrawWireSphere(AbsorbePoint.position, 1);
         Handles.Label(transform.position, 
             $"Force Required {ForceRequired} // Gain : {scaleMultiplier}",
             new GUIStyle());
     }
-    
+
+    #endregion
     
     // TODO : We need to let the level manager manages that
     void WatchLevelToWakeUp()
@@ -136,7 +123,11 @@ public class ObjectPhysics : MonoBehaviour
             Debug.Log("[ObjectPhysics] Object added to LevelManager", gameObject);
             ObjectRigidbody.isKinematic = false;
             LevelManager.Instance.AddObjectPhysical(this);
-            LevelManager.Instance.CallbackLevelChange -= WatchLevelToWakeUp;
+
+            int test = LevelManager.Instance.CallbackPreLevelChange.GetInvocationList().Length;
+            LevelManager.Instance.CallbackPreLevelChange -= WatchLevelToWakeUp;
+            Debug.LogWarning($"OH donc {test} est devenue { LevelManager.Instance.CallbackPreLevelChange.GetInvocationList().Length}");
+            IsGrabable = true;
         }
     }
 }

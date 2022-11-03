@@ -24,11 +24,12 @@ public struct DataLevel
     public float cameraSpeed;
     public GameObject floorCollision;
     public Transform playerSpawnPoint;
+    public PlayableVolume playableVolume;
 }
 [RequireComponent(typeof(CinemachineSmoothPath))]
 public class LevelManager : MonoBehaviour
 {
-    [SerializeField] private float _speedMoveCamera = 10;
+    //[SerializeField] private float _speedMoveCamera = 10; // TODO : Obsolete
     
     #region Singleton
 
@@ -54,7 +55,20 @@ public class LevelManager : MonoBehaviour
 
     #endregion
 
-    [field : SerializeField] public int CurrentLevel { get; private set; }
+
+    private int _currentLevel;
+    [field : SerializeField] public int CurrentLevel {
+        get
+        {
+            return _currentLevel;
+        }
+        private set
+        {
+            
+            _currentLevel = value;
+            
+        } 
+    }
     public GameState State { get; private set; }
     public List<Transform> waypoints; // TODO : OBsolete ?
     
@@ -76,26 +90,29 @@ public class LevelManager : MonoBehaviour
 
     #endregion
     
+    public Action CallbackLevelChange;
     /// <summary>
     /// Callback of methods when current level change
     /// </summary>
-    public Action CallbackLevelChange;
+    public Action CallbackPreLevelChange;
     
  
-    public int MaxLevel
+    public int MaxLevel // TODO : Obsolete
     {
         get { return waypoints.Count; }
     }
     private List<ObjectPhysics> _objectPhysicsList;
+
+    public List<ObjectPhysics> CurrentObjectList => _objectPhysicsList;
     public GameObject GetCurrentFloor {
         get
         {
-            if (floorCollision == null || floorCollision.Count == 0)
+            if (dataLevels[CurrentLevel].floorCollision == null )
             {
                 Debug.LogWarning($"No floor detected for the level {CurrentLevel}");
                 return null;
             }
-            return floorCollision[CurrentLevel];
+            return dataLevels[CurrentLevel].floorCollision;
         }
     } 
     
@@ -147,16 +164,24 @@ public class LevelManager : MonoBehaviour
         {
             VARIABLE.layer = LayerMask.NameToLayer("MoveZone");
         }
-        CallbackLevelChange();
         
+        CallbackLevelChange += SetFloorActive;
+        CallbackLevelChange += SetActivePlayableVolume;
+
+
+       
+        CallbackPreLevelChange();
+        CallbackLevelChange();
     }
 
     // Update is called once per frame
     void Update()
     {
+        Debug.Log( "List of actions : "+ CallbackPreLevelChange.GetInvocationList().Length);
+     
         //if (_dollyCart.m_Position <= CurrentLevel)
-
-        if (_dollyCart.m_Position <= dataLevels[CurrentLevel].dollyCartPosition)
+        
+        if (_dollyCart.m_Position < dataLevels[CurrentLevel].dollyCartPosition)
         {
             // Force the camera to look a next object when it is moving to next level
             if( _objectPhysicsList.Count > 0 && _objectPhysicsList[0] != null)
@@ -174,54 +199,44 @@ public class LevelManager : MonoBehaviour
             _virtualCamera.LookAt = _player.transform;
             _dollyCart.m_Speed = 0;
             State = GameState.Ingame;
-            SetFloorActive(CurrentLevel);
+           
+
             WatchObjectPhysicalAvailable();
         }
-        
-        
-        // if (_camera != null && (waypoints != null && MaxLevel != 0) )
-        // {
-        //     Transform camTrans = _camera.transform;
-        //     Transform wpTransform = waypoints[CurrentLevel].transform;
-        //     if (camTrans.position != wpTransform.position ||  camTrans.rotation != wpTransform.rotation)
-        //     {
-        //        
-        //         // float distance = Vector3.Distance(camTrans.position, wpTransform.position);
-        //         // camTrans.position = Vector3.MoveTowards(camTrans.position, wpTransform.position,
-        //         //     Time.deltaTime   );
-        //         // camTrans.rotation = Quaternion.RotateTowards(camTrans.rotation , wpTransform.rotation, Time.deltaTime * _speedMoveCamera);
-        //         
-        //     }
-        //     else
-        //     {
-        //         
-        //     }
-        // }
-        // else
-        // {
-        //     State = GameState.Ingame;
-        // }
-
     }
+
+    private void SetActivePlayableVolume()
+    {
+        if (dataLevels[CurrentLevel].playableVolume == null)
+        {
+            Debug.LogWarning($"[LevelManager] No playableVolume assign for Level {CurrentLevel}, assign it.");
+            return;
+        }
+        foreach (var dataLevel in dataLevels)
+        {
+            dataLevel.playableVolume.gameObject.SetActive(false);
+        }
+
+        dataLevels[CurrentLevel].playableVolume.gameObject.SetActive(true);
+        dataLevels[CurrentLevel].playableVolume.Activate();
+    }
+
     /// <summary>
     /// Active the indexed floor to allow player movement
     /// </summary>
-    /// <param name="indexToActive"></param>
-    void SetFloorActive(int indexToActive)
+    void SetFloorActive()
     {
-        if (floorCollision == null || floorCollision.Count == 0)
+        if (dataLevels[CurrentLevel].floorCollision == null)
         {
             Debug.LogWarning("[LevelManager] FloorCollision undefined");
             return;
         }
         
-        foreach (var floorTransform in floorCollision)
+        foreach (var dataLevel in dataLevels)
         {
-            floorTransform.gameObject.SetActive(false);
+            dataLevel.floorCollision.gameObject.SetActive(false);
         }
-        
-        floorCollision[CurrentLevel].gameObject.SetActive(true);
-        
+        dataLevels[CurrentLevel].floorCollision.SetActive(true);
     }
 
     public void AddWaypoint(Transform newWaypoint)
@@ -244,6 +259,7 @@ public class LevelManager : MonoBehaviour
         if (!rip) return;
         RemoveAllObjectPhysical();
         CurrentLevel++;
+        CallbackPreLevelChange();
         CallbackLevelChange();
     }
 
@@ -259,5 +275,5 @@ public class LevelManager : MonoBehaviour
     {
         _objectPhysicsList = new List<ObjectPhysics>();
     }
-    
+
 }

@@ -8,7 +8,7 @@ public class ScaleShip : MonoBehaviour
    /// <summary>
     /// Scale of the ship
     /// </summary>
-    float scaleFactor = 1;
+    float _scaleFactor = 1;
     [SerializeField] private float speedHeightMove = 5;
     [SerializeField] private float heightOffset;
  
@@ -21,7 +21,7 @@ public class ScaleShip : MonoBehaviour
     public void SetScaleFactor(float h)
     {
         AudioManager.PlaySoundAtPosition(aliaseGrowing, transform.position);
-        scaleFactor += h;
+        _scaleFactor += h;
     }
     public float GetScaleFactor()
     {
@@ -30,7 +30,7 @@ public class ScaleShip : MonoBehaviour
 
     private void Start()
     {
-        LevelManager.Instance.CallbackLevelChange += ChangeHeightFloor;
+        LevelManager.Instance.CallbackPreLevelChange += ChangeHeightFloor;
     }
 
     private void Update()
