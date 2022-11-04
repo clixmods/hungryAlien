@@ -151,6 +151,26 @@ namespace Level
             myObject = (LevelManager) target;
             myObject.transform.position = Vector3.zero; 
             myObject.transform.rotation = Quaternion.identity;
+            var soObject = new SerializedObject(myObject);
+            
+            // Create container for ObjectPhysics per level
+            var serializedProperty = soObject.FindProperty("dataLevels");
+            int length = serializedProperty.arraySize;
+            for (int i = 0; i < length; i++)
+            {
+                string containerName = "ObjectPhysics Level " + i;
+                GameObject container = GameObject.Find(containerName);
+                if (container == null)
+                {
+                    container = Instantiate(new GameObject(), Vector3.zero, Quaternion.identity,myObject.transform);
+                    container.name = containerName;
+                }
+                foreach (var objPhy in  GetObjectsInLevel(i))
+                {
+                    objPhy.transform.parent = container.transform;
+                }
+            }
+
             GetMaxLevel();
 
             if (GetMaxLevel() != list.Length)
@@ -170,13 +190,16 @@ namespace Level
             }
             base.OnInspectorGUI();
             
-            var soObject = new SerializedObject(myObject);
-            var propertyFloorCollision =  soObject.FindProperty("floorCollision");
             
-            for (int i = 0; i < propertyFloorCollision.arraySize; i++)
-            {
-                propertyFloorCollision.GetArrayElementAtIndex(i).objectReferenceValue.name = "Floor Collision Level " + i;
-            }
+            
+            
+                // TODO : Obsolete, need to use new variables
+                // var propertyFloorCollision =  soObject.FindProperty("floorCollision");
+            //
+            // for (int i = 0; i < propertyFloorCollision.arraySize; i++)
+            // {
+            //     propertyFloorCollision.GetArrayElementAtIndex(i).objectReferenceValue.name = "Floor Collision Level " + i;
+            // }
 
             if (GUILayout.Button("Create Waypoint Align to current view"))
             {

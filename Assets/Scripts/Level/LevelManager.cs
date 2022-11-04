@@ -80,6 +80,7 @@ public class LevelManager : MonoBehaviour
     private List<GameObject> floorCollision;
 
     [SerializeField] private DataLevel[] dataLevels;
+
     
     #region Private Variable
 
