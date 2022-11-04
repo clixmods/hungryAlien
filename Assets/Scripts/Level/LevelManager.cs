@@ -73,14 +73,8 @@ public class LevelManager : MonoBehaviour
     public GameState State { get; private set; }
     public List<Transform> waypoints; // TODO : OBsolete ?
     
-    /// <summary>
-    /// List of GameObject where the ship can flew in the top
-    /// </summary>
-    [SerializeField,Tooltip("Place all GameObject where the ship can flew on top")] 
-    private List<GameObject> floorCollision;
-
     [SerializeField] private DataLevel[] dataLevels;
-
+    public DataLevel[] DataLevels => dataLevels;
     
     #region Private Variable
 
@@ -162,9 +156,9 @@ public class LevelManager : MonoBehaviour
         _dollyCart.m_Path = _smoothPath;
         _dollyCart.m_PositionUnits = CinemachinePathBase.PositionUnits.PathUnits;
 
-        foreach (var VARIABLE in floorCollision)
+        foreach (var VARIABLE in DataLevels)
         {
-            VARIABLE.layer = LayerMask.NameToLayer("MoveZone");
+            VARIABLE.floorCollision.layer = LayerMask.NameToLayer("MoveZone");
         }
         
         CallbackLevelChange += SetFloorActive;

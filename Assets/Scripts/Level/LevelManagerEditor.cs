@@ -27,7 +27,9 @@ namespace Level
         private int _maxLevel = 0;
         private int _currentDrawedLevel;
         private float scalePlayerSupposition = 1;
-
+        private SerializedObject soObject;
+        
+        private const string ContainerNameFloorCollision = "Floor Collision container";
 
         int GetNumberOfObjectInLevel(int level)
         {
@@ -151,25 +153,52 @@ namespace Level
             myObject = (LevelManager) target;
             myObject.transform.position = Vector3.zero; 
             myObject.transform.rotation = Quaternion.identity;
-            var soObject = new SerializedObject(myObject);
+            soObject ??= new SerializedObject(myObject);
             
-            // Create container for ObjectPhysics per level
-            var serializedProperty = soObject.FindProperty("dataLevels");
-            int length = serializedProperty.arraySize;
-            for (int i = 0; i < length; i++)
+            base.OnInspectorGUI();
+            if (myObject.DataLevels.Length == 0)
             {
-                string containerName = "ObjectPhysics Level " + i;
-                GameObject container = GameObject.Find(containerName);
-                if (container == null)
+                EditorGUILayout.HelpBox("Data levels are not initialized, please create a level.",MessageType.Info);
+                Debug.LogError("Data levels are not initialized, please create a level.", target);
+                return;
+            }
+            
+            CreateContainerObjectPhysicsPerLevel();
+            CreateContainerPlayableVolume();
+            CreateContainerFloorCollision();
+
+            string badSetupMessage = "";
+            bool showit = false;
+            for (int i = 0; i < myObject.DataLevels.Length; i++)
+            {
+                DataLevel dataLevel = myObject.DataLevels[i];
+                string tempMessage = $"\n Level {i} :";
+                bool addit = !(dataLevel.floorCollision && dataLevel.playableVolume && dataLevel.playerSpawnPoint);
+                
+                if(addit)
                 {
-                    container = Instantiate(new GameObject(), Vector3.zero, Quaternion.identity,myObject.transform);
-                    container.name = containerName;
-                }
-                foreach (var objPhy in  GetObjectsInLevel(i))
-                {
-                    objPhy.transform.parent = container.transform;
+                    showit = true;
+                    if (!dataLevel.floorCollision)
+                    {
+                        tempMessage += "Floor collission missing // ";
+                    }
+                    if(!dataLevel.playableVolume)
+                    {
+                        tempMessage += "playableVolume missing // ";
+                    }
+
+                    if (!dataLevel.playerSpawnPoint)
+                    {
+                        tempMessage += "playerSpawnPoint missing // ";
+                    }
+
+                    badSetupMessage += tempMessage;
                 }
             }
+            if(showit)
+                EditorGUILayout.HelpBox(badSetupMessage,MessageType.Warning);
+            
+            
 
             GetMaxLevel();
 
@@ -188,18 +217,7 @@ namespace Level
                     list[i].elementHeight = ElementHeight;
                 }
             }
-            base.OnInspectorGUI();
-            
-            
-            
-            
-                // TODO : Obsolete, need to use new variables
-                // var propertyFloorCollision =  soObject.FindProperty("floorCollision");
-            //
-            // for (int i = 0; i < propertyFloorCollision.arraySize; i++)
-            // {
-            //     propertyFloorCollision.GetArrayElementAtIndex(i).objectReferenceValue.name = "Floor Collision Level " + i;
-            // }
+        
 
             if (GUILayout.Button("Create Waypoint Align to current view"))
             {
@@ -262,6 +280,85 @@ namespace Level
             
             EditorGUILayout.HelpBox($"The final Player scale is : {scalePlayerSupposition}", MessageType.Info);
         }
+
+        #region Container
+
+        private void CreateContainerObjectPhysicsPerLevel()
+        {
+            // Create container for ObjectPhysics per level
+            var serializedProperty = soObject.FindProperty("dataLevels");
+            int length = serializedProperty.arraySize;
+            if (length == 0)
+            {
+                // No data level, so not necessary to create container
+                return;
+            }
+
+            for (int i = 0; i < length; i++)
+            {
+                string containerName = "ObjectPhysics Level " + i;
+                var container = GetContainer(containerName);
+                foreach (var objPhy in GetObjectsInLevel(i))
+                {
+                    objPhy.transform.parent = container.transform;
+                }
+            }
+        }
+
+        GameObject GetContainer(string name)
+        {
+            GameObject container = GameObject.Find(name);
+            if (container == null)
+            {
+                container = Instantiate(new GameObject(), Vector3.zero, Quaternion.identity, myObject.transform);
+                container.name = name;
+            }
+
+            return container;
+        }
+        private void CreateContainerPlayableVolume()
+        {
+            int length = myObject.DataLevels.Length;
+            if (length == 0)
+            {
+                // No data level, so not necessary to create container
+                return;
+            }
+           
+            
+            string containerName = "Playable Volume container";
+            var container = GetContainer(containerName);
+            for (int i = 0; i < length; i++)
+            {
+                var playableVolume =  myObject.DataLevels[i].playableVolume;
+                if (playableVolume == null) continue;
+                playableVolume.name =  "Playable Volume Level " + i;
+                playableVolume.transform.parent = container.transform;
+            }
+        }
+        private void CreateContainerFloorCollision()
+        {
+            int length = myObject.DataLevels.Length;
+            if (length == 0)
+            {
+                // No data level, so not necessary to create container
+                return;
+            }
+
+            var container = GetContainer(ContainerNameFloorCollision);
+         
+            for (int i = 0; i < length; i++)
+            {
+                var floorCollision =  myObject.DataLevels[i].floorCollision;
+                if (floorCollision == null) continue;
+                floorCollision.name =  "Floor Collision Level " + i;
+                floorCollision.transform.parent = container.transform;
+            }
+        }
+        
+
+        #endregion
+        
         /// <summary>
         /// Get max level available for the scene
         /// </summary>
