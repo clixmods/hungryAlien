@@ -6,6 +6,9 @@ using AudioAliase;
 using FX;
 using Unity.VisualScripting;
 using UnityEditor;
+using Level;
+
+
 
 [RequireComponent(typeof(Rigidbody))]
 [RequireComponent(typeof(MeshCollider))]
@@ -23,7 +26,7 @@ public class ObjectPhysics : MonoBehaviour
     /// <summary>
     /// Indicate level related to this object.
     /// </summary>
-    [SerializeField] private int sleepUntilLevel;
+    [SerializeField,Level] private int sleepUntilLevel;
     /// <summary>
     /// Force required to absorb the object by the player
     /// </summary>

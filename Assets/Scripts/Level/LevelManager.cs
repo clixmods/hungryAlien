@@ -20,6 +20,7 @@ public enum GameState
 [System.Serializable]
 public struct DataLevel
 {
+    public string name;
     public float dollyCartPosition ;
     public float cameraSpeed;
     public GameObject floorCollision;
