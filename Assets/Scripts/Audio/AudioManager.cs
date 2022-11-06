@@ -386,13 +386,12 @@ namespace AudioAliase
         /// <param name="audioPlayerLoop"> A ref to AudioPlayer, it can be used with the method StopLoopSound</param>
         public static void PlayLoopSound(string aliaseName, Transform transformToTarget, ref AudioPlayer audioPlayerLoop)
         {
-            if (audioPlayerLoop == null)
-            {
-                Debug.LogError("[AudioManager] AudioPlayer undefined");
-                return;
-            }
             PlayLoopSound(aliaseName, transformToTarget.position, ref audioPlayerLoop);
-            audioPlayerLoop.SetTransformToFollow(transformToTarget);
+            if (audioPlayerLoop != null)
+            {
+                audioPlayerLoop.SetTransformToFollow(transformToTarget);
+            }
+           
         }
         /// <summary>
         /// Play a loop sound at the desired position
