@@ -17,21 +17,28 @@ public enum GameState
     
 }
 
+/// <summary>
+/// Struct with multiple informations about levels in the LevelManager
+/// </summary>
 [System.Serializable]
 public struct DataLevel
 {
+    [Tooltip("Name of the level")]
     public string name;
+    [Tooltip("The position of the dolly Camera when the player is in his level")]
     public float dollyCartPosition ;
+    [Tooltip("Speed of camera when it moves to the dollyCartPosition")]
     public float cameraSpeed;
+    [Tooltip("Collision boxs to indicate where the player can move")]
     public GameObject floorCollision;
+    [Tooltip("The position of player spawn")]
     public Transform playerSpawnPoint;
+    [Tooltip("A volume to secure position of ObjectPhysics")]
     public PlayableVolume playableVolume;
 }
 [RequireComponent(typeof(CinemachineSmoothPath))]
 public class LevelManager : MonoBehaviour
 {
-    //[SerializeField] private float _speedMoveCamera = 10; // TODO : Obsolete
-    
     #region Singleton
 
     private static LevelManager _instance;
@@ -55,9 +62,8 @@ public class LevelManager : MonoBehaviour
     }
 
     #endregion
-
-
-    private int _currentLevel;
+    
+   
     [field : SerializeField] public int CurrentLevel {
         get
         {
@@ -70,14 +76,15 @@ public class LevelManager : MonoBehaviour
             
         } 
     }
-    public GameState State { get; private set; }
-    public List<Transform> waypoints; // TODO : OBsolete ?
+  
+    //public List<Transform> waypoints; // TODO : OBsolete ?
     
     [SerializeField] private DataLevel[] dataLevels;
     public DataLevel[] DataLevels => dataLevels;
     
     #region Private Variable
-
+    private List<ObjectPhysics> _objectPhysicsList;
+    private int _currentLevel;
     private CinemachineSmoothPath _smoothPath;
     private CinemachineDollyCart _dollyCart;
     private CinemachineVirtualCamera _virtualCamera;
@@ -91,14 +98,8 @@ public class LevelManager : MonoBehaviour
     /// Callback of methods when current level change
     /// </summary>
     public Action CallbackPreLevelChange;
-    
- 
-    public int MaxLevel // TODO : Obsolete
-    {
-        get { return waypoints.Count; }
-    }
-    private List<ObjectPhysics> _objectPhysicsList;
-
+    public GameState State { get; private set; }
+    public int MaxLevel => dataLevels.Length; // TODO : Obsolete
     public List<ObjectPhysics> CurrentObjectList => _objectPhysicsList;
     public GameObject GetCurrentFloor {
         get
@@ -110,20 +111,19 @@ public class LevelManager : MonoBehaviour
             }
             return dataLevels[CurrentLevel].floorCollision;
         }
-    } 
-    
+    }
     public Transform CurrentPlayerSpawnPoint => dataLevels[CurrentLevel].playerSpawnPoint;
     // Start is called before the first frame update
     void Start()
     {
         Instance = this;
         _objectPhysicsList = new List<ObjectPhysics>();
-        _camera = Camera.main;
+        _camera ??= Camera.main;
         _smoothPath = GetComponent<CinemachineSmoothPath>();
         _player = GameObject.FindObjectOfType<ShipController>();
-        if (!Camera.main.TryGetComponent<CinemachineBrain>(out CinemachineBrain cinemachineBrain))
+        if (!_camera.TryGetComponent<CinemachineBrain>(out CinemachineBrain cinemachineBrain))
         {
-            Camera.main.AddComponent<CinemachineBrain>();
+            _camera.AddComponent<CinemachineBrain>();
         }
 
 
@@ -156,37 +156,31 @@ public class LevelManager : MonoBehaviour
         _dollyCart.m_Path = _smoothPath;
         _dollyCart.m_PositionUnits = CinemachinePathBase.PositionUnits.PathUnits;
 
-        foreach (var VARIABLE in DataLevels)
+        foreach (var dataLevel in DataLevels)
         {
-            VARIABLE.floorCollision.layer = LayerMask.NameToLayer("MoveZone");
+            dataLevel.floorCollision.layer = LayerMask.NameToLayer("MoveZone");
         }
         
         CallbackLevelChange += SetFloorActive;
         CallbackLevelChange += SetActivePlayableVolume;
-
-
-       
+        
         CallbackPreLevelChange();
         CallbackLevelChange();
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        Debug.Log( "List of actions : "+ CallbackPreLevelChange.GetInvocationList().Length);
-     
-        //if (_dollyCart.m_Position <= CurrentLevel)
-        
+        //Debug.Log( "List of actions : "+ CallbackPreLevelChange.GetInvocationList().Length);
+        // The camera need to go to the next postion 
         if (_dollyCart.m_Position < dataLevels[CurrentLevel].dollyCartPosition)
         {
             // Force the camera to look a next object when it is moving to next level
             if( _objectPhysicsList.Count > 0 && _objectPhysicsList[0] != null)
                 _virtualCamera.LookAt = _objectPhysicsList[0].transform;
             else
-            {
                 _virtualCamera.LookAt = null;
-            }
-            
+            // Set speed of camera and go pass state to isMoving
             _dollyCart.m_Speed = dataLevels[CurrentLevel].cameraSpeed;
             State = GameState.CameraIsMoving;
         }
@@ -195,8 +189,6 @@ public class LevelManager : MonoBehaviour
             _virtualCamera.LookAt = _player.transform;
             _dollyCart.m_Speed = 0;
             State = GameState.Ingame;
-           
-
             WatchObjectPhysicalAvailable();
         }
     }
@@ -234,25 +226,25 @@ public class LevelManager : MonoBehaviour
         }
         dataLevels[CurrentLevel].floorCollision.SetActive(true);
     }
-
-    public void AddWaypoint(Transform newWaypoint)
-    {
-        waypoints.Add(newWaypoint);
-        newWaypoint.name = "Waypoint : " + waypoints.Count;
-    }
+    //Obsolete
+    // public void AddWaypoint(Transform newWaypoint)
+    // {
+    //     waypoints.Add(newWaypoint);
+    //     newWaypoint.name = "Waypoint : " + waypoints.Count;
+    // }
     private void WatchObjectPhysicalAvailable()
     {
-        bool rip = true;
+        bool everythingIsAbsorbed = true;
         foreach(var myObject in _objectPhysicsList)
         {
             if (myObject != null)
             {
-                rip = false;
+                everythingIsAbsorbed = false;
                 break;
             }
         }
 
-        if (!rip) return;
+        if (!everythingIsAbsorbed) return;
         RemoveAllObjectPhysical();
         CurrentLevel++;
         CallbackPreLevelChange();

@@ -38,9 +38,9 @@ public class ScaleShip : MonoBehaviour
         if (LevelManager.Instance.State == GameState.Ingame)
         {
             var transformPosition = transform.position;
-            var heightFloor = LevelManager.Instance.GetCurrentFloor.transform.position.y;
+            var heightFloor = _heightFloor;
             transform.localScale = Vector3.Lerp(transform.localScale, Vector3.one * _scaleFactor, 1);
-            Vector3 targetPos = new Vector3(transformPosition.x, (_scaleFactor/2) + (heightFloor + heightOffset), transformPosition.z);
+            Vector3 targetPos = new Vector3(transformPosition.x, (_scaleFactor/2) + (heightFloor + heightOffset + _scaleFactor), transformPosition.z);
             transform.position = Vector3.MoveTowards(transform.position, targetPos, Time.deltaTime * speedHeightMove);
         }
         

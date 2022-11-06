@@ -7,9 +7,7 @@ using UnityEditorInternal;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-namespace Level
-{
-    [CustomEditor(typeof(LevelManager))]
+[CustomEditor(typeof(LevelManager))]
     public class LevelManagerEditor : Editor
     {
         private LevelManager myObject;
@@ -219,44 +217,47 @@ namespace Level
             }
         
 
-            if (GUILayout.Button("Create Waypoint Align to current view"))
+            // if (GUILayout.Button("Create Waypoint Align to current view"))
+            // {
+            //     GameObject myWaypoint = Instantiate(new GameObject(), myObject.transform);
+            //     var transformCamScene = SceneView.lastActiveSceneView.camera.transform;
+            //     if (transformCamScene != null)
+            //     {
+            //         myWaypoint.transform.position = transformCamScene.position;
+            //         myWaypoint.transform.rotation = transformCamScene.rotation;
+            //         myObject.AddWaypoint(myWaypoint.transform);
+            //     }
+            //     else
+            //     {
+            //         Debug.LogError("Failed to create waypoint");
+            //     }
+            // }
+            if (Application.isPlaying)
             {
-                GameObject myWaypoint = Instantiate(new GameObject(), myObject.transform);
-                var transformCamScene = SceneView.lastActiveSceneView.camera.transform;
-                if (transformCamScene != null)
+                if (GUILayout.Button("Next Level"))
                 {
-                    myWaypoint.transform.position = transformCamScene.position;
-                    myWaypoint.transform.rotation = transformCamScene.rotation;
-                    myObject.AddWaypoint(myWaypoint.transform);
-                }
-                else
-                {
-                    Debug.LogError("Failed to create waypoint");
+                    myObject.RemoveAllObjectPhysical();
                 }
             }
-
-            if (GUILayout.Button("Next Waypoint"))
-            {
-                myObject.RemoveAllObjectPhysical();
-            }
+            
 
             if (Application.isPlaying) return;
             
-            if (GUILayout.Button("Generate Cinemachine Travelling"))
-            {
-                CinemachineSmoothPath cinemachineSmoothPath;
-                cinemachineSmoothPath = myObject.TryGetComponent<CinemachineSmoothPath>(out CinemachineSmoothPath smoothPath) 
-                                        ? smoothPath : myObject.AddComponent<CinemachineSmoothPath>();
-
-                cinemachineSmoothPath.m_Waypoints = new CinemachineSmoothPath.Waypoint[myObject.waypoints.Count];
-                for (int i = 0; i < myObject.waypoints.Count; i++)
-                {
-                    CinemachineSmoothPath.Waypoint waypoint = new CinemachineSmoothPath.Waypoint();
-                    waypoint.position = myObject.waypoints[i].position;
-
-                    cinemachineSmoothPath.m_Waypoints[i] = waypoint;
-                }
-            }
+            // if (GUILayout.Button("Generate Cinemachine Travelling"))
+            // {
+            //     CinemachineSmoothPath cinemachineSmoothPath;
+            //     cinemachineSmoothPath = myObject.TryGetComponent<CinemachineSmoothPath>(out CinemachineSmoothPath smoothPath) 
+            //                             ? smoothPath : myObject.AddComponent<CinemachineSmoothPath>();
+            //
+            //     cinemachineSmoothPath.m_Waypoints = new CinemachineSmoothPath.Waypoint[myObject.waypoints.Count];
+            //     for (int i = 0; i < myObject.waypoints.Count; i++)
+            //     {
+            //         CinemachineSmoothPath.Waypoint waypoint = new CinemachineSmoothPath.Waypoint();
+            //         waypoint.position = myObject.waypoints[i].position;
+            //
+            //         cinemachineSmoothPath.m_Waypoints[i] = waypoint;
+            //     }
+            // }
 
             _foldListObject = EditorGUILayout.Foldout(_foldListObject, "List of Object");
             if (_foldListObject)
@@ -390,4 +391,3 @@ namespace Level
         }
         
     }
-}

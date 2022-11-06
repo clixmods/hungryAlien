@@ -9,7 +9,6 @@ using UnityEditor;
 using Level;
 
 
-
 [RequireComponent(typeof(Rigidbody))]
 [RequireComponent(typeof(MeshCollider))]
 [SelectionBase]
@@ -123,13 +122,13 @@ public class ObjectPhysics : MonoBehaviour
     {
         if ( ObjectRigidbody.isKinematic && LevelManager.Instance.CurrentLevel == sleepUntilLevel)
         {
-            Debug.Log("[ObjectPhysics] Object added to LevelManager", gameObject);
+           // Debug.Log("[ObjectPhysics] Object added to LevelManager", gameObject);
             ObjectRigidbody.isKinematic = false;
             LevelManager.Instance.AddObjectPhysical(this);
 
             int test = LevelManager.Instance.CallbackPreLevelChange.GetInvocationList().Length;
             LevelManager.Instance.CallbackPreLevelChange -= WatchLevelToWakeUp;
-            Debug.LogWarning($"OH donc {test} est devenue { LevelManager.Instance.CallbackPreLevelChange.GetInvocationList().Length}");
+         //   Debug.LogWarning($"OH donc {test} est devenue { LevelManager.Instance.CallbackPreLevelChange.GetInvocationList().Length}");
             IsGrabable = true;
         }
     }
