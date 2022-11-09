@@ -5,6 +5,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using AudioAliase;
+using UnityEngine.Windows;
 
 
 public class Absorber : MonoBehaviour
@@ -54,6 +55,21 @@ public class Absorber : MonoBehaviour
     private AudioPlayer _audioPlayer;
     private AudioPlayer _audioPlayerLightLoop;
     private AudioPlayer _audioPlayerFail;
+    private InputAsset _input;
+    public InputAsset Input
+    {
+        get
+        {
+            // Prevent null ref when the game reload script
+            if (_input == null)
+            {
+                _input = new InputAsset();
+            }
+            return _input;
+        }
+    }
+    private bool absorb;
+    
 
     // Start is called before the first frame update
     void Start()
@@ -63,6 +79,9 @@ public class Absorber : MonoBehaviour
         scaleShip = transform.parent.GetComponent<ScaleShip>();
 
         _collider.direction = 2;
+        Input.Game.Absorb.performed += ctx => Absorb();
+        Input.Game.Absorb.canceled += ctx => CancelAbsorb();
+
     }
 
     // Update is called once per frame
@@ -83,12 +102,22 @@ public class Absorber : MonoBehaviour
             AudioManager.StopLoopSound(ref _audioPlayerFail);
         }
 
-        if (Mouse.current.leftButton.isPressed && _failedCooldown <= 0)
+        if (absorb && _failedCooldown <= 0)
         {
             AudioManager.PlayLoopSound(aliaseLoopAbsorbing, transform, ref _audioPlayer);
         }
         else
             AudioManager.StopLoopSound(ref _audioPlayer);
+
+        if(LevelManager.Instance.State == GameState.Ingame)
+        {
+            Input.Enable();
+        }
+        else
+        {
+            Input.Disable();
+            absorb = false;
+        }
     }
 
     private void OnTriggerStay(Collider other)
@@ -106,7 +135,7 @@ public class Absorber : MonoBehaviour
             if (objectPhysics.IsAbsorbed) return;
             float forceRemaining = strenght / objectPhysics.ForceRequired;
 
-            if (Mouse.current.leftButton.isPressed && _failedCooldown <= 0)
+            if (absorb && _failedCooldown <= 0)
             {
                 Rigidbody rb = objectPhysics.ObjectRigidbody;
                 var destination = AbsorbePoint.position;
@@ -148,7 +177,14 @@ public class Absorber : MonoBehaviour
             }
         }
     }
-
+    public void Absorb()
+    {
+        absorb = true;
+    }
+    public void CancelAbsorb()
+    {
+        absorb = false;
+    }
     private void OnTriggerExit(Collider other)
     {
         if (inTheTrigger.Contains(other.gameObject))
