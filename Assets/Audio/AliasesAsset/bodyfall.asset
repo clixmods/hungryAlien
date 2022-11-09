@@ -1,0 +1,278 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cbe7e2c0a55730e4d8113d0fb85617fe, type: 3}
+  m_Name: bodyfall
+  m_EditorClassIdentifier: 
+  DontLoad: 0
+  defaultMixerGroup: {fileID: 0}
+  aliases:
+  - name: fall_concrete
+    description: 
+    Tag: 
+    MixerGroup: {fileID: 0}
+    audio:
+    - {fileID: 8300000, guid: 0a80fd44eab016e46b7f64e615d6a246, type: 3}
+    - {fileID: 8300000, guid: 9552551c95fcf4c44852ee4e09d7c8c5, type: 3}
+    - {fileID: 8300000, guid: bfab7dc0f6a5e054ca47123989b9b861, type: 3}
+    - {fileID: 8300000, guid: 24969787323f41347901d0a2650eb1ee, type: 3}
+    - {fileID: 8300000, guid: c52ea291e5fcc01459d66ae8058e7323, type: 3}
+    soundType: 0
+    randomizeClips: 1
+    Secondary: 
+    bypassEffects: 0
+    bypassListenerEffects: 0
+    bypassReverbZones: 0
+    priority: 0
+    volume: 0
+    minVolume: 0.8
+    maxVolume: 0.8
+    isLooping: 0
+    startAliase: 
+    endAliase: 
+    minPitch: 1
+    maxPitch: 1.01
+    stereoPan: 0
+    spatialBlend: 0
+    reverbZoneMix: 1
+    dopplerLevel: 1
+    Spread: 1
+    MinDistance: 0
+    MaxDistance: 500
+    CurveType: 0
+    distanceCurve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 0
+      m_PostInfinity: 0
+      m_RotationOrder: 0
+    Text: 
+    customDuration: 0
+    isInit: 0
+    isPlaceholder: 1
+  - name: fall_dirt
+    description: 
+    Tag: 
+    MixerGroup: {fileID: 0}
+    audio:
+    - {fileID: 8300000, guid: 09e5aef13ea8cd44f9bd3ba59018c565, type: 3}
+    - {fileID: 8300000, guid: 5b38b47a1a1b62b41b97446893dc3c9b, type: 3}
+    - {fileID: 8300000, guid: 69f07713c9f287f43bcf2d80aab51f26, type: 3}
+    - {fileID: 8300000, guid: e50c380cc2356e543aeccffde255c4bf, type: 3}
+    - {fileID: 8300000, guid: f66ce492087babc4cad76142cd3c31ba, type: 3}
+    soundType: 0
+    randomizeClips: 1
+    Secondary: 
+    bypassEffects: 0
+    bypassListenerEffects: 0
+    bypassReverbZones: 0
+    priority: 0
+    volume: 0
+    minVolume: 0.8
+    maxVolume: 0.8
+    isLooping: 0
+    startAliase: 
+    endAliase: 
+    minPitch: 1
+    maxPitch: 1.01
+    stereoPan: 0
+    spatialBlend: 0
+    reverbZoneMix: 1
+    dopplerLevel: 1
+    Spread: 1
+    MinDistance: 0
+    MaxDistance: 500
+    CurveType: 0
+    distanceCurve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 0
+      m_PostInfinity: 0
+      m_RotationOrder: 0
+    Text: 
+    customDuration: 0
+    isInit: 0
+    isPlaceholder: 1
+  - name: fall_generic
+    description: 
+    Tag: 
+    MixerGroup: {fileID: 0}
+    audio:
+    - {fileID: 8300000, guid: 5700e2a83fa842347a6862e6e0012adb, type: 3}
+    - {fileID: 8300000, guid: acb7bf51673de954ea358db5238f5ea7, type: 3}
+    - {fileID: 8300000, guid: 0bf01da6b341456498e6c33259a41e6b, type: 3}
+    - {fileID: 8300000, guid: 25bd34759442f3d44a5442b0120492d1, type: 3}
+    - {fileID: 8300000, guid: e46074adc970cb94cb46ce1621922bf0, type: 3}
+    - {fileID: 8300000, guid: dd87af22b001f2f42abe860079528c87, type: 3}
+    - {fileID: 8300000, guid: 4b399af31d1aa9246905fe77a70b39bf, type: 3}
+    - {fileID: 8300000, guid: e60b0e08d291691499aea7a540606722, type: 3}
+    - {fileID: 8300000, guid: 815fa7e838b7eae468a6e605d9ce11a4, type: 3}
+    - {fileID: 8300000, guid: 4c110a834d742fd478262ce2bd12f705, type: 3}
+    soundType: 0
+    randomizeClips: 1
+    Secondary: 
+    bypassEffects: 0
+    bypassListenerEffects: 0
+    bypassReverbZones: 0
+    priority: 0
+    volume: 0
+    minVolume: 0.8
+    maxVolume: 0.8
+    isLooping: 0
+    startAliase: 
+    endAliase: 
+    minPitch: 0.73711336
+    maxPitch: 1.195567
+    stereoPan: 0
+    spatialBlend: 0.828
+    reverbZoneMix: 1
+    dopplerLevel: 1
+    Spread: 1
+    MinDistance: 0
+    MaxDistance: 500
+    CurveType: 0
+    distanceCurve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 0
+      m_PostInfinity: 0
+      m_RotationOrder: 0
+    Text: 
+    customDuration: 0
+    isInit: 0
+    isPlaceholder: 1
+  - name: fall_grass
+    description: 
+    Tag: 
+    MixerGroup: {fileID: 0}
+    audio:
+    - {fileID: 8300000, guid: e2ef1796f998e2646a09e46095ce6db0, type: 3}
+    - {fileID: 8300000, guid: 099270bd006f0474694f90becaa243d4, type: 3}
+    - {fileID: 8300000, guid: a16715641774b27478981e78d48e37d0, type: 3}
+    - {fileID: 8300000, guid: 802ae7c5a236bb949865882b5d6138c4, type: 3}
+    - {fileID: 8300000, guid: 763ecf7c667b5964e9b029115e1f8772, type: 3}
+    soundType: 0
+    randomizeClips: 1
+    Secondary: 
+    bypassEffects: 0
+    bypassListenerEffects: 0
+    bypassReverbZones: 0
+    priority: 0
+    volume: 0
+    minVolume: 0.8
+    maxVolume: 0.8
+    isLooping: 0
+    startAliase: 
+    endAliase: 
+    minPitch: 1
+    maxPitch: 1.01
+    stereoPan: 0
+    spatialBlend: 1
+    reverbZoneMix: 1
+    dopplerLevel: 1
+    Spread: 1
+    MinDistance: 0
+    MaxDistance: 500
+    CurveType: 0
+    distanceCurve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 0
+      m_PostInfinity: 0
+      m_RotationOrder: 0
+    Text: 
+    customDuration: 0
+    isInit: 0
+    isPlaceholder: 1
+  - name: fall_sweets
+    description: 
+    Tag: 
+    MixerGroup: {fileID: 0}
+    audio:
+    - {fileID: 8300000, guid: 5f1b7037dbbad874ea437c1fbb1d9e97, type: 3}
+    - {fileID: 8300000, guid: ae96476eac2bdd74d856ef901a10903c, type: 3}
+    - {fileID: 8300000, guid: 0d27b6306d17b144d8498bdab8df6242, type: 3}
+    soundType: 0
+    randomizeClips: 1
+    Secondary: 
+    bypassEffects: 0
+    bypassListenerEffects: 0
+    bypassReverbZones: 0
+    priority: 0
+    volume: 0
+    minVolume: 0.8
+    maxVolume: 0.8
+    isLooping: 0
+    startAliase: 
+    endAliase: 
+    minPitch: 1
+    maxPitch: 1.01
+    stereoPan: 0
+    spatialBlend: 0
+    reverbZoneMix: 1
+    dopplerLevel: 1
+    Spread: 1
+    MinDistance: 0
+    MaxDistance: 500
+    CurveType: 0
+    distanceCurve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 0
+      m_PostInfinity: 0
+      m_RotationOrder: 0
+    Text: 
+    customDuration: 0
+    isInit: 0
+    isPlaceholder: 1
+  - name: fall_woods
+    description: 
+    Tag: 
+    MixerGroup: {fileID: 0}
+    audio:
+    - {fileID: 8300000, guid: 496f55ddf4a16824c8832179fa3010dd, type: 3}
+    - {fileID: 8300000, guid: 38a9284a9cb413143b2f36e1815c6fc5, type: 3}
+    - {fileID: 8300000, guid: 6258429cfc36f354fa069ef24932214a, type: 3}
+    - {fileID: 8300000, guid: ddc819bec956ce34087c8671d75e554c, type: 3}
+    - {fileID: 8300000, guid: 78f235bd23c5e6c4fb4e4800ccbcfb83, type: 3}
+    soundType: 0
+    randomizeClips: 1
+    Secondary: 
+    bypassEffects: 0
+    bypassListenerEffects: 0
+    bypassReverbZones: 0
+    priority: 0
+    volume: 0
+    minVolume: 0.8
+    maxVolume: 0.8
+    isLooping: 0
+    startAliase: 
+    endAliase: 
+    minPitch: 1
+    maxPitch: 1.01
+    stereoPan: 0
+    spatialBlend: 0
+    reverbZoneMix: 1
+    dopplerLevel: 1
+    Spread: 1
+    MinDistance: 0
+    MaxDistance: 500
+    CurveType: 0
+    distanceCurve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 0
+      m_PostInfinity: 0
+      m_RotationOrder: 0
+    Text: 
+    customDuration: 0
+    isInit: 0
+    isPlaceholder: 1
