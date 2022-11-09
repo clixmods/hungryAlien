@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 6961655016472437814}
   - component: {fileID: 6961655016472437815}
   - component: {fileID: 6961655016472437808}
-  - component: {fileID: 6961655016472437809}
+  - component: {fileID: 8933049205645045593}
   m_Layer: 2
   m_Name: Spot Light
   m_TagString: Untagged
@@ -265,7 +265,7 @@ CapsuleCollider:
   m_Height: 1
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &6961655016472437809
+--- !u!114 &8933049205645045593
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -278,12 +278,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   strenght: 1
-  radius: 28.4
+  radius: 3
   inTheTrigger: []
   AbsorbePoint: {fileID: 6961655015927970678}
   scaleShip: {fileID: 6961655016796113057}
   scaleMultiplier: 1.1
-  strengthMultiplier: 1.1
+  aliaseLoopLight: 
+  aliaseLoopAbsorbing: 
+  aliaseLoopFail: 
+  aliaseAbsorbSuccess: 
 --- !u!1 &6961655016796113065
 GameObject:
   m_ObjectHideFlags: 0
@@ -298,6 +301,7 @@ GameObject:
   - component: {fileID: 6961655016796113064}
   - component: {fileID: 6961655016796113058}
   - component: {fileID: 6961655016796113057}
+  - component: {fileID: 4559491585803938523}
   m_Layer: 2
   m_Name: SpaceShip
   m_TagString: Untagged
@@ -388,6 +392,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   speed: 5
+  aliaseIdle: impactBell_heavy
+  aliaseMoving: impactBell_heavy
+  aliaseUpToSky: impactBell_heavy
 --- !u!114 &6961655016796113058
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -432,6 +439,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   heightOffset: 3
+  aliaseGrowing: impactBell_heavy
+--- !u!114 &4559491585803938523
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6961655016796113065}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a60f75564f52406fae23cf5d82a5ab1e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _noiseValue: 0
+  DecreaseMultiplier: 1
 --- !u!1 &6961655016948612449
 GameObject:
   m_ObjectHideFlags: 0

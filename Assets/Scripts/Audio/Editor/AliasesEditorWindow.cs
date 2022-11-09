@@ -613,6 +613,7 @@ namespace AudioAliase.Edit
 
         protected override void Apply()
         {
+            
             foreach (SerializedObject asset in serializedObject)
             {   
                 asset.ApplyModifiedProperties();

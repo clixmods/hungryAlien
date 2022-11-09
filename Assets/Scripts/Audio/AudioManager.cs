@@ -1,6 +1,8 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
+using Random = UnityEngine.Random;
 
 
 namespace AudioAliase
@@ -114,7 +116,23 @@ namespace AudioAliase
     //[RequireComponent(typeof(AudioSource))]
     public class AudioManager : MonoBehaviour
     {
-        public static AudioManager Util;
+        private static AudioManager _instance;
+        private static AudioManager Instance
+        {
+            get
+            {
+                if (_instance == null)
+                {
+                    _instance = FindObjectOfType<AudioManager>();
+                    if(_instance == null)
+                        _instance = new GameObject("AudioManager").AddComponent<AudioManager>();
+                }
+
+                return _instance;
+            }
+            set => _instance = value;
+        }
+        
 
         public static Aliases[] aliasesArray = new Aliases[0];
         [SerializeField] private List<AudioPlayer> _audioSource;
@@ -124,7 +142,7 @@ namespace AudioAliase
         [SerializeField] Aliases[] TableAliasesLoaded = new Aliases[0];
 
         bool _isPaused;
-
+        
 
         public bool IsPaused
         {
@@ -155,7 +173,7 @@ namespace AudioAliase
 
         void Awake()
         {
-            Util = this;
+            Instance = this;
             InitAudioSources();
         }
 
@@ -167,7 +185,7 @@ namespace AudioAliase
                 GameObject newAudioSource = new GameObject("Audio Source " + i);
                 newAudioSource.transform.SetParent(transform);
                 AudioPlayer audioS = newAudioSource.AddComponent<AudioPlayer>();
-                Util._audioSource.Add(audioS);
+                Instance._audioSource.Add(audioS);
                 newAudioSource.SetActive(false);
             }
         }
@@ -181,9 +199,7 @@ namespace AudioAliase
         // Update is called once per frame
         void Update()
         {
-            if (Util != this)
-                Util = this;
-
+            
             if (TableAliasesLoaded != aliasesArray)
                 TableAliasesLoaded = aliasesArray;
 
@@ -227,13 +243,13 @@ namespace AudioAliase
 
             if (alias != null && alias.audio.Length == 0)
             {
-                Debug.LogError("AudioManager : Aliase: " + name + " contains no sounds.");
+                Debug.LogError("[AudioManager] : Aliase: " + name + " contains no sounds.");
                 return false;
             }
 
             if (alias == null)
             {
-                Debug.LogWarning("AudioManager : Aliase: " + name + " not found.");
+                Debug.LogWarning("[AudioManager] : Aliase: " + name + " not found.");
                 return false;
             }
 
@@ -243,7 +259,7 @@ namespace AudioAliase
 
         static AudioSource GetAudioSource()
         {
-            foreach (AudioPlayer aS in Util._audioSource)
+            foreach (AudioPlayer aS in Instance._audioSource)
             {
                 if (!aS.Source.isPlaying)
                 {
@@ -253,11 +269,11 @@ namespace AudioAliase
             return null;
         }
 
-        static bool GetAudioPlayer(out AudioPlayer audioPlayer)
+        internal static bool GetAudioPlayer(out AudioPlayer audioPlayer)
         {
             audioPlayer = null;
            
-            foreach (AudioPlayer aS in Util._audioSource)
+            foreach (AudioPlayer aS in Instance._audioSource)
             {
                 if (aS.IsUsable)
                 {
@@ -265,7 +281,7 @@ namespace AudioAliase
                     return true;
                 }
             }
-
+            Debug.LogWarning($"AudioManager : Limits exceded for _audioSource, maybe you need to increase your audioSourcePoolSize (Size = {Instance.audioSourcePoolSize})");
             return false;
         }
         /// <summary>
@@ -274,7 +290,7 @@ namespace AudioAliase
         /// <param name="aliasesName"></param>
         /// <param name="position"></param>
         /// <param name="waitFinish"></param>
-        public static void PlaySoundsAtPosition(string[] aliasesName, Vector3 position, bool waitFinish = true)
+        private static void PlaySoundsAtPosition(string[] aliasesName, Vector3 position, bool waitFinish = true)
         {
             if (waitFinish)
             {
@@ -305,7 +321,7 @@ namespace AudioAliase
 
         public static void PauseAllAudio()
         {
-            foreach (AudioPlayer aS in Util._audioSource)
+            foreach (AudioPlayer aS in Instance._audioSource)
             {
                 if (aS.Source.isPlaying)
                 {
@@ -315,7 +331,7 @@ namespace AudioAliase
         }
         public static void UnPauseAllAudio()
         {
-            foreach (AudioPlayer aS in Util._audioSource)
+            foreach (AudioPlayer aS in Instance._audioSource)
             {
                 //if(audio.UnPause)
                 {
@@ -336,87 +352,102 @@ namespace AudioAliase
         }
         public static Aliase PlaySoundAtPosition(string aliaseName, Vector3 position)
         {
-            if (aliaseName == System.String.Empty || aliaseName == null)
+            if (string.IsNullOrEmpty(aliaseName))
             {
                 Debug.LogError("AudioManager : Un son a voulu être jouer sans d'aliaseName, il faut en assigné un dans le script qui a exécuté la function");
                 return null;
             }
-            if (!GetSoundByAliase(aliaseName, out Aliase clip))
+            if(GetSoundByAliase(aliaseName, out Aliase clip) && GetAudioPlayer(out AudioPlayer audioPlayer))
             {
-                return null;
-            }
-            if (!GetAudioPlayer(out AudioPlayer audioPlayer))
-            {
-                Debug.LogWarning($"AudioManager : Limits exceded for _audioSource, maybe you need to increase your audioSourcePoolSize (Size = {Util.audioSourcePoolSize})");
-                return null;
-            }
+                audioPlayer.gameObject.transform.position = position;
+                audioPlayer.gameObject.SetActive(true);
+                audioPlayer.Setup(clip);
 
-            audioPlayer.gameObject.transform.position = position;
-            audioPlayer.gameObject.SetActive(true);
-            audioPlayer.Play(clip);
+                if (clip.isPlaceholder)
+                {
+                    Debug.LogWarning("Un son placeholder a été jouer, il faut le changer , nom de l'aliase " + aliaseName);
+                }
 
-            if (clip.isPlaceholder)
-            {
-                Debug.LogWarning("Un son placeholder a été jouer, il faut le changer , nom de l'aliase " + aliaseName);
-            }
+                if (clip.Secondary != System.String.Empty)
+                {
+                    PlaySoundAtPosition(clip.Secondary, position);
+                }
 
-            if (clip.Secondary != System.String.Empty)
-            {
-                PlaySoundAtPosition(clip.Secondary, position);
+                return clip;
             }
 
-            return clip;
-
-
+            return null;
         }
-
-        public static void PlayLoopSound(string aliaseName, Vector3 position, ref AudioPlayer audioPlayerLoop )
+        /// <summary>
+        /// Play a loop sound on the desired transform
+        /// </summary>
+        /// <param name="aliaseName"></param>
+        /// <param name="transformToTarget">transform to follow</param>
+        /// <param name="audioPlayerLoop"> A ref to AudioPlayer, it can be used with the method StopLoopSound</param>
+        public static void PlayLoopSound(string aliaseName, Transform transformToTarget, ref AudioPlayer audioPlayerLoop)
         {
+            PlayLoopSound(aliaseName, transformToTarget.position, ref audioPlayerLoop);
             if (audioPlayerLoop != null)
             {
-                Debug.Log("PlayLoop already played");
+                audioPlayerLoop.SetTransformToFollow(transformToTarget);
+            }
+           
+        }
+        /// <summary>
+        /// Play a loop sound at the desired position
+        /// </summary>
+        /// <param name="aliaseName"></param>
+        /// <param name="position"> The position of the loop sound</param>
+        /// <param name="audioPlayerLoop"> A ref to <see cref="AudioPlayer"/>, it can be used with the method StopLoopSound</param>
+        public static void PlayLoopSound(string aliaseName, Vector3 position, ref AudioPlayer audioPlayerLoop )
+        {
+            if (audioPlayerLoop != null && !audioPlayerLoop.IsUsable)
+            {
+                Debug.Log($"[AudioManager] PlayLoop {aliaseName} already played");
                 return;
             }
-            //audioPlayerLoop = null;
             if (string.IsNullOrEmpty(aliaseName))
             {
-                Debug.LogError("AudioManager : No specified aliases" );
-                return;
+                throw new InvalidAliasesException("AudioManager : No specified aliases");
             }
-
             if (!GetSoundByAliase(aliaseName, out Aliase clip))
             {
                 return ;
             }
-
-            //AudioPlayer audioPlayer = GetAudioPlayer();
             if (!GetAudioPlayer(out AudioPlayer audioPlayer))
             {
-                Debug.LogWarning($"AudioManager : Limits exceded for _audioSource, maybe you need to increase your audioSourcePoolSize (Size = {Util.audioSourcePoolSize})");
+                Debug.LogWarning($"AudioManager : Limits exceded for _audioSource, maybe you need to increase your audioSourcePoolSize (Size = {Instance.audioSourcePoolSize})");
                 return ;
             }
-
             audioPlayer.gameObject.transform.position = position;
             audioPlayer.gameObject.SetActive(true);
-            audioPlayer.Play(clip);
-
+            audioPlayer.Setup(clip);
             if (clip.isPlaceholder)
             {
                 Debug.LogWarning("[AudioManager] Placeholder sound was played, name " + aliaseName);
             }
-
-            if (clip.Secondary != System.String.Empty)
+            if (!String.IsNullOrEmpty(clip.Secondary))
             {
                 PlaySoundAtPosition(clip.Secondary, position);
             }
-
             audioPlayerLoop = audioPlayer;
-
-            //return;
         }
-        public static void StopLoopSound(AudioPlayer audioPlayer)
+        public static void StopLoopSound(ref AudioPlayer audioPlayer)
         {
-            audioPlayer.StopLoopSound();
+            if (audioPlayer != null)
+            {
+                audioPlayer.StopSound();
+            }
+
+            audioPlayer = null;
         }
+    }
+    
+    public class InvalidAliasesException : Exception {
+        public InvalidAliasesException() : base() { }
+
+        public InvalidAliasesException(string message) : base(message) { }
+
+        public InvalidAliasesException(string message, Exception innerException) : base(message, innerException) { }
     }
 }

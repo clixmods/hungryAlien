@@ -75,7 +75,7 @@ MonoBehaviour:
     minVolume: 0.8
     maxVolume: 0.8
     isLooping: 1
-    startAliase: evt_stand_up
+    startAliase: 
     endAliase: impactGeneric_light
     minPitch: 1
     maxPitch: 1.01
@@ -157,12 +157,12 @@ MonoBehaviour:
     minVolume: 0.8
     maxVolume: 0.8
     isLooping: 1
-    startAliase: impactGlass_heavy
-    endAliase: impactGlass_heavy
+    startAliase: 
+    endAliase: fall_generic
     minPitch: 1
     maxPitch: 1.01
     stereoPan: 0
-    spatialBlend: 0
+    spatialBlend: 0.87
     reverbZoneMix: 1
     dopplerLevel: 1
     Spread: 1
