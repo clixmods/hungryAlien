@@ -162,10 +162,10 @@ Material:
     - _AlphaToMask: 0
     - _AlphaToMaskInspectorValue: 0
     - _AmbiantOcclusion: 1
-    - _Amount: 0
+    - _Amount: 1
     - _Anisotropy: 0
     - _BlendMode: 0
-    - _BorderScale: 1.32
+    - _BorderScale: 0.23
     - _CoatMask: 0
     - _ConservativeDepthOffsetEnable: 0
     - _CullMode: 2
@@ -270,7 +270,7 @@ Material:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _BaseColorMap_MipInfo: {r: 0, g: 0, b: 0, a: 0}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _ColorDissolve: {r: 34.29675, g: 5.0212054, b: 4.3679824, a: 1}
+    - _ColorDissolve: {r: 2.3343334, g: 17.148373, b: 12.65927, a: 1}
     - _DiffusionProfileAsset: {r: 0, g: 0, b: 0, a: 0}
     - _DoubleSidedConstants: {r: 1, g: 1, b: -1, a: 0}
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
