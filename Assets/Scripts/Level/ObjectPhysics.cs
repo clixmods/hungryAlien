@@ -95,6 +95,7 @@ public class ObjectPhysics : MonoBehaviour
                 collisionSurface.Play();
             }
             AudioManager.PlaySoundAtPosition(settings.aliaseImpact,transform.position);
+            FXManager.PlayFXAtPosition(settings.fxHit, transform.position);
         }
     }
     

@@ -396,6 +396,7 @@ MonoBehaviour:
   aliaseLoopAbsorbing: impactBell_heavy
   aliaseLoopFail: impactBell_heavy
   aliaseAbsorbSuccess: impactBell_heavy
+  VEhasAbsorb: {fileID: 6604540578002184744}
 --- !u!1 &6961655016796113065
 GameObject:
   m_ObjectHideFlags: 0

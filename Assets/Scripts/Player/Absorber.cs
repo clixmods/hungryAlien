@@ -5,6 +5,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using AudioAliase;
+using UnityEngine.VFX;
 
 
 public class Absorber : MonoBehaviour
@@ -54,6 +55,8 @@ public class Absorber : MonoBehaviour
     private AudioPlayer _audioPlayer;
     private AudioPlayer _audioPlayerLightLoop;
     private AudioPlayer _audioPlayerFail;
+
+    [SerializeField] private VisualEffect VEhasAbsorb;
 
     // Start is called before the first frame update
     void Start()
@@ -112,9 +115,7 @@ public class Absorber : MonoBehaviour
                 var destination = AbsorbePoint.position;
                 var direction = (destination - other.transform.position);
                 direction *= (forceRemaining);
-
-                // rb.AddForce(direction * strenght);
-                //rb.velocity = rb.velocity.normalized * Mathf.Clamp(rb.velocity.magnitude, 0, 5);
+                
                 rb.velocity = direction;
 
                 if (forceRemaining < 1)
@@ -133,6 +134,7 @@ public class Absorber : MonoBehaviour
                     strenght += objectPhysics.ScaleMultiplier;
                     AudioManager.PlaySoundAtPosition(aliaseAbsorbSuccess, transform.position);
                     objectPhysics.IsAbsorbed = true;
+                    VEhasAbsorb.Play();
                 }
                 else if (forceRemaining < 1 &&
                          destination.y - other.transform.position.y < 3f * scaleShip.GetScaleFactor() / 2)

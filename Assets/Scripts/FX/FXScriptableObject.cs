@@ -14,10 +14,10 @@ public enum TypeFX
 public class FXScriptableObject : ScriptableObject
 { 
     public GameObject _fxPrefab;
-    public TypeFX TypeFX { get; private set; }
-    public VisualEffect _visualEffect;
+  
+   // public VisualEffect _visualEffect;
     public bool isPlaceholder = true;
-
+    public TypeFX TypeFX { get; private set; }
     private void OnValidate()
     {
         if (_fxPrefab.TryGetComponent<VisualEffect>( out VisualEffect ve))
