@@ -97,14 +97,14 @@ MonoBehaviour:
   m_LookaheadIgnoreY: 0
   m_HorizontalDamping: 0.5
   m_VerticalDamping: 0.5
-  m_ScreenX: 0.5
-  m_ScreenY: 0.5
-  m_DeadZoneWidth: 0.528
-  m_DeadZoneHeight: 0.676
+  m_ScreenX: 0.49687
+  m_ScreenY: 0.5527772
+  m_DeadZoneWidth: 0.6905004
+  m_DeadZoneHeight: 0.2926665
   m_SoftZoneWidth: 0.969
   m_SoftZoneHeight: 0.986
-  m_BiasX: 0.01300003
-  m_BiasY: -0.5
+  m_BiasX: 0.013
+  m_BiasY: 0.03600005
   m_CenterOnActivate: 1
 --- !u!114 &4789393864581100305
 MonoBehaviour:
@@ -177,7 +177,7 @@ MonoBehaviour:
   m_LookAt: {fileID: 0}
   m_Follow: {fileID: 0}
   m_Lens:
-    FieldOfView: 31.7
+    FieldOfView: 41.88
     OrthographicSize: 5
     NearClipPlane: 0.3
     FarClipPlane: 1000
