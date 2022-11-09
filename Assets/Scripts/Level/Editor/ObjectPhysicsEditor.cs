@@ -33,12 +33,15 @@ public class ObjectPhysicsEditor : Editor
             // Draw ScriptableObject in the inspector
             _serializedProperty = serializedObject.FindProperty(PropertyName);
             //myTarget.gameObject.name = $"{_serializedProperty.name}";
-            _foldSO = EditorGUILayout.InspectorTitlebar(_foldSO, _serializedProperty.objectReferenceValue);
-            if (_foldSO)
+            if(_serializedProperty != null && _serializedProperty.objectReferenceValue != null)
             {
-                CreateCachedEditor(_serializedProperty.objectReferenceValue, null, ref _editor);
-                EditorGUI.indentLevel++;
-                _editor.OnInspectorGUI();
+                _foldSO = EditorGUILayout.InspectorTitlebar(_foldSO, _serializedProperty.objectReferenceValue);
+                if (_foldSO)
+                {
+                    CreateCachedEditor(_serializedProperty.objectReferenceValue, null, ref _editor);
+                    EditorGUI.indentLevel++;
+                    _editor.OnInspectorGUI();
+                }
             }
         }
         // else
