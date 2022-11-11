@@ -5,8 +5,17 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using AudioAliase;
+using Level;
 using UnityEngine.VFX;
 
+
+public enum AbsorbingState
+{
+    Start,
+    InProgress,
+    Done,
+    Fail
+}
 
 public class Absorber : MonoBehaviour
 {
@@ -18,6 +27,16 @@ public class Absorber : MonoBehaviour
     /// </summary>
     [SerializeField] private float strenght = 1;
 
+    public float Strenght
+    {
+        get { return strenght; }
+        set
+        {
+            scaleShip.SetScaleFactor(value-strenght);
+            strenght = value;
+        }
+    }
+
     /// <summary>
     /// Used to influence the height of the ship and the radius of the light
     /// </summary>
@@ -26,8 +45,11 @@ public class Absorber : MonoBehaviour
     [SerializeField] private List<GameObject> inTheTrigger;
     public List<GameObject> InTheTrigger => inTheTrigger;
 
-    [SerializeField] Transform AbsorbePoint;
+    [SerializeField] Transform absorbePoint;
+    public Transform AbsorbePoint => absorbePoint;
     [SerializeField] ScaleShip scaleShip;
+
+    public Transform Ship => scaleShip.transform;
 
     //[SerializeField] float scaleMultiplier = 1.1f; // We use a value managed by the absorbedObject
     //[SerializeField] float strengthMultiplier = 1.1f;
@@ -58,6 +80,7 @@ public class Absorber : MonoBehaviour
 
     [SerializeField] private VisualEffect VEhasAbsorb;
 
+    public float AbsortionHeight => 2f * scaleShip.GetScaleFactor() / 2; 
     // Start is called before the first frame update
     void Start()
     {
@@ -96,7 +119,7 @@ public class Absorber : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if (other.TryGetComponent<ObjectPhysics>(out var objectPhysics))
+        if (other.TryGetComponent<IAbsorbable>(out var objectPhysics))
         {
             if (!objectPhysics.IsGrabable)
             {
@@ -107,42 +130,56 @@ public class Absorber : MonoBehaviour
                 inTheTrigger.Add(other.gameObject);
 
             if (objectPhysics.IsAbsorbed) return;
-            float forceRemaining = strenght / objectPhysics.ForceRequired;
+           
 
             if (Mouse.current.leftButton.isPressed && _failedCooldown <= 0)
             {
-                Rigidbody rb = objectPhysics.ObjectRigidbody;
-                var destination = AbsorbePoint.position;
-                var direction = (destination - other.transform.position);
-                direction *= (forceRemaining);
-                
-                rb.velocity = direction;
+                // float forceRemaining = strenght / objectPhysics.ForceRequired;
+                // Rigidbody rb = objectPhysics.ObjectRigidbody;
+                // var destination = AbsorbePoint.position;
+                // var direction = (destination - other.transform.position);
+                // direction *= (forceRemaining);
+                // rb.velocity = direction;
+                objectPhysics.OnAbsorb(this, out AbsorbingState absorbingState);
+                switch (absorbingState)
+                {
+                    case AbsorbingState.Start:
+                        break;
+                    case AbsorbingState.InProgress:
+                        break;
+                    case AbsorbingState.Done:
+                        AudioManager.PlaySoundAtPosition(aliaseAbsorbSuccess, transform.position);
+                        VEhasAbsorb.Play();
+                        break;
+                    case AbsorbingState.Fail:
+                        _failedCooldown = FailedCooldownStart;
+                        CameraShake.SetNoisier(1, 1);
+                        AudioManager.PlayLoopSound(aliaseLoopFail, transform, ref _audioPlayerFail);
 
-                if (forceRemaining < 1)
-                {
-                    scaleShip.enabled = false;
-                    scaleShip.transform.position += -direction * forceRemaining * Time.deltaTime;
+                        break;
+                    default:
+                        throw new ArgumentOutOfRangeException();
                 }
 
-                // Ship can absorb
-                if (forceRemaining >= 1 &&
-                    destination.y - other.transform.position.y < 2f * scaleShip.GetScaleFactor() / 2)
-                {
-                    Destroy(other.gameObject);
-                    scaleShip.SetScaleFactor(objectPhysics.ScaleMultiplier);
-                    Debug.Log($"[Absorber] Gain {objectPhysics.ScaleMultiplier}  ==> {scaleShip.GetScaleFactor()}");
-                    strenght += objectPhysics.ScaleMultiplier;
-                    AudioManager.PlaySoundAtPosition(aliaseAbsorbSuccess, transform.position);
-                    objectPhysics.IsAbsorbed = true;
-                    VEhasAbsorb.Play();
-                }
-                else if (forceRemaining < 1 &&
-                         destination.y - other.transform.position.y < 3f * scaleShip.GetScaleFactor() / 2)
-                {
-                    CameraShake.SetNoisier(1, 1);
-                    AudioManager.PlayLoopSound(aliaseLoopFail, transform, ref _audioPlayerFail);
-                    _failedCooldown = FailedCooldownStart;
-                }
+                // // Ship can absorb
+                // if (forceRemaining >= 1 &&
+                //     destination.y - other.transform.position.y < 2f * scaleShip.GetScaleFactor() / 2)
+                // {
+                //     Destroy(other.gameObject);
+                //     scaleShip.SetScaleFactor(objectPhysics.ScaleMultiplier);
+                //     Debug.Log($"[Absorber] Gain {objectPhysics.ScaleMultiplier}  ==> {scaleShip.GetScaleFactor()}");
+                //     strenght += objectPhysics.ScaleMultiplier;
+                //     AudioManager.PlaySoundAtPosition(aliaseAbsorbSuccess, transform.position);
+                //     objectPhysics.IsAbsorbed = true;
+                //     VEhasAbsorb.Play();
+                // }
+                // else if (forceRemaining < 1 &&
+                //          destination.y - other.transform.position.y < 3f * scaleShip.GetScaleFactor() / 2)
+                // {
+                //     CameraShake.SetNoisier(1, 1);
+                //     AudioManager.PlayLoopSound(aliaseLoopFail, transform, ref _audioPlayerFail);
+                //     _failedCooldown = FailedCooldownStart;
+                // }
             }
             else
             {
@@ -159,7 +196,7 @@ public class Absorber : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        Gizmos.DrawWireSphere(AbsorbePoint.position, 1);
+        Gizmos.DrawWireSphere(absorbePoint.position, 1);
         Handles.Label(transform.position, "Force :" + strenght);
     }
 }

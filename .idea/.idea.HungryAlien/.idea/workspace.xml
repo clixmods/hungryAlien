@@ -4,32 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="db6ae1ff-23e2-4f3b-9ceb-e60a307727cd" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.HungryAlien/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.HungryAlien/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/FX/Editor/FXEditorWindow.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/FX/Editor/FXEditorWindow.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/FX/FXScriptableObject.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/FX/FXScriptableObject.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/FX/FXScriptableObject.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/FX/FXScriptableObject.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/FX/FXScriptableObjectEditor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/FX/FXScriptableObjectEditor.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/FX/FXScriptableObjectEditor.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/FX/FXScriptableObjectEditor.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/SpaceShip.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/SpaceShip.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/FX/FXManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/FX/FXManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Level/ObjectPhysics.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Level/ObjectPhysics.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/Absorber.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player/Absorber.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/ScaleShip.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player/ScaleShip.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/RiderScriptEditorPersistedState.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/RiderScriptEditorPersistedState.asset" afterDir="false" />
-    </list>
+    <list default="true" id="db6ae1ff-23e2-4f3b-9ceb-e60a307727cd" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/5ddb5fa70dfe40d2818192400111b9ec2aa00/6f/5a0c1da6/DOTweenComponent.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/FX/FXScriptableObject.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/FX/FXScriptableObjectEditor.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Level/CollisionSurface.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Level/LevelManagerEditor.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Level/ObjectPhysics.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Level/ObjectPhysicsScriptableObject.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Level/PlayableVolume.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Player/Absorber.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Player/ScaleShip.cs" root0="FORCE_HIGHLIGHTING" />
@@ -68,6 +54,7 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
+    "rider.run.widget.enabled.cache": "false",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -140,6 +127,7 @@
       <workItem from="1667662417941" duration="2043000" />
       <workItem from="1667763274591" duration="4742000" />
       <workItem from="1668023922165" duration="5579000" />
+      <workItem from="1668181448428" duration="6913000" />
     </task>
     <servers />
   </component>
