@@ -50,6 +50,8 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
     public bool IsAbsorbed { get; set; }
     public bool IsAbsorbable { get; private set; }
     
+    public Vector3 InitialPosition { get;  set; }
+    
     public int SleepUntilLevel => sleepUntilLevel;
     public float ScaleMultiplier => scaleMultiplier;
     #endregion
@@ -59,7 +61,7 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
     // Start is called before the first frame update
     void Start()
     {
-        
+        InitialPosition = transform.position;
         _collider = GetComponent<MeshCollider>();
         if (_collider == null)
             _collider = transform.AddComponent<MeshCollider>();
@@ -135,6 +137,9 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
         }
     }
 
+    
+
+
     public void OnAbsorb(Absorber absorber, out AbsorbingState absorbingState)
     {
         absorbingState = AbsorbingState.InProgress;
@@ -170,5 +175,10 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
 
    
 
+    }
+
+    public void ResetToInitialPosition()
+    {
+        throw new NotImplementedException();
     }
 }

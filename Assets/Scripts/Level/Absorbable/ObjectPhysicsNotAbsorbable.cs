@@ -14,9 +14,12 @@ namespace Level
 
         private void Start()
         {
+            InitialPosition = transform.position;
             Rigidbody = GetComponent<Rigidbody>();
             IsAbsorbable = true;
         }
+
+        public Vector3 InitialPosition { get; set; }
 
         public void OnAbsorb(Absorber absorber, out AbsorbingState absorbingState)
         {
@@ -28,5 +31,6 @@ namespace Level
 
        
         }
+
     }
 }
