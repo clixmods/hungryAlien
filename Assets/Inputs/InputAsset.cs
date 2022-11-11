@@ -35,6 +35,15 @@ public partial class @InputAsset : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Absorb"",
+                    ""type"": ""Button"",
+                    ""id"": ""94d44685-e4d9-4f96-adce-415fcc7827a5"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -48,6 +57,17 @@ public partial class @InputAsset : IInputActionCollection2, IDisposable
                     ""action"": ""Cursor"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""74cb4a02-1420-486f-84df-83ea5f586524"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Absorb"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -57,6 +77,7 @@ public partial class @InputAsset : IInputActionCollection2, IDisposable
         // Game
         m_Game = asset.FindActionMap("Game", throwIfNotFound: true);
         m_Game_Cursor = m_Game.FindAction("Cursor", throwIfNotFound: true);
+        m_Game_Absorb = m_Game.FindAction("Absorb", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -117,11 +138,13 @@ public partial class @InputAsset : IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Game;
     private IGameActions m_GameActionsCallbackInterface;
     private readonly InputAction m_Game_Cursor;
+    private readonly InputAction m_Game_Absorb;
     public struct GameActions
     {
         private @InputAsset m_Wrapper;
         public GameActions(@InputAsset wrapper) { m_Wrapper = wrapper; }
         public InputAction @Cursor => m_Wrapper.m_Game_Cursor;
+        public InputAction @Absorb => m_Wrapper.m_Game_Absorb;
         public InputActionMap Get() { return m_Wrapper.m_Game; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -134,6 +157,9 @@ public partial class @InputAsset : IInputActionCollection2, IDisposable
                 @Cursor.started -= m_Wrapper.m_GameActionsCallbackInterface.OnCursor;
                 @Cursor.performed -= m_Wrapper.m_GameActionsCallbackInterface.OnCursor;
                 @Cursor.canceled -= m_Wrapper.m_GameActionsCallbackInterface.OnCursor;
+                @Absorb.started -= m_Wrapper.m_GameActionsCallbackInterface.OnAbsorb;
+                @Absorb.performed -= m_Wrapper.m_GameActionsCallbackInterface.OnAbsorb;
+                @Absorb.canceled -= m_Wrapper.m_GameActionsCallbackInterface.OnAbsorb;
             }
             m_Wrapper.m_GameActionsCallbackInterface = instance;
             if (instance != null)
@@ -141,6 +167,9 @@ public partial class @InputAsset : IInputActionCollection2, IDisposable
                 @Cursor.started += instance.OnCursor;
                 @Cursor.performed += instance.OnCursor;
                 @Cursor.canceled += instance.OnCursor;
+                @Absorb.started += instance.OnAbsorb;
+                @Absorb.performed += instance.OnAbsorb;
+                @Absorb.canceled += instance.OnAbsorb;
             }
         }
     }
@@ -148,5 +177,6 @@ public partial class @InputAsset : IInputActionCollection2, IDisposable
     public interface IGameActions
     {
         void OnCursor(InputAction.CallbackContext context);
+        void OnAbsorb(InputAction.CallbackContext context);
     }
 }
