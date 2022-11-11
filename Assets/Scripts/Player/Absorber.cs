@@ -121,7 +121,7 @@ public class Absorber : MonoBehaviour
     {
         if (other.TryGetComponent<IAbsorbable>(out var objectPhysics))
         {
-            if (!objectPhysics.IsGrabable)
+            if (!objectPhysics.IsAbsorbable)
             {
                 return;
             }

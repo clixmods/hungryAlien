@@ -46,11 +46,12 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
     #endregion
     #region Properties
     public Rigidbody Rigidbody { get; private set; }
-    public int SleepUntilLevel => sleepUntilLevel;
-    public float ScaleMultiplier => scaleMultiplier;
     public float ForceRequired => forceRequired;
     public bool IsAbsorbed { get; set; }
-    public bool IsGrabable { get; private set; }
+    public bool IsAbsorbable { get; private set; }
+    
+    public int SleepUntilLevel => sleepUntilLevel;
+    public float ScaleMultiplier => scaleMultiplier;
     #endregion
 
     #region MonoBehaviour
@@ -130,11 +131,11 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
             int test = LevelManager.Instance.CallbackPreLevelChange.GetInvocationList().Length;
             LevelManager.Instance.CallbackPreLevelChange -= WatchLevelToWakeUp;
          //   Debug.LogWarning($"OH donc {test} est devenue { LevelManager.Instance.CallbackPreLevelChange.GetInvocationList().Length}");
-            IsGrabable = true;
+            IsAbsorbable = true;
         }
     }
 
-    public bool OnAbsorb(Absorber absorber, out AbsorbingState absorbingState)
+    public void OnAbsorb(Absorber absorber, out AbsorbingState absorbingState)
     {
         absorbingState = AbsorbingState.InProgress;
         
@@ -160,14 +161,14 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
             IsAbsorbed = true;
             absorbingState = AbsorbingState.Done;
             Destroy(gameObject);
-            return true;
+       
         }
         else if (!forceIsSufficent && idkneedtobedefined < absorber.AbsortionHeight)
         {
             absorbingState = AbsorbingState.Fail;
         }
 
-        return false;
+   
 
     }
 }
