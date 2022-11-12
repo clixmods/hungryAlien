@@ -48,7 +48,7 @@ public class Absorber : MonoBehaviour
 
     [SerializeField] Transform absorbePoint;
     public Transform AbsorbePoint => absorbePoint;
-    [SerializeField] ScaleShip scaleShip;
+    [SerializeField] private ScaleShip scaleShip;
 
     public Transform Ship => scaleShip.transform;
 
@@ -230,9 +230,12 @@ public class Absorber : MonoBehaviour
             inTheTrigger.Remove(other.gameObject);
     }
 
-    private void OnDrawGizmos()
-    {
-        Gizmos.DrawWireSphere(absorbePoint.position, 1);
-        Handles.Label(transform.position, "Force :" + strenght);
-    }
+    #if UNITY_EDITOR
+        private void OnDrawGizmos()
+        {
+            Gizmos.DrawWireSphere(absorbePoint.position, 1);
+            Handles.Label(transform.position, "Force :" + strenght);
+        }
+    #endif
+    
 }

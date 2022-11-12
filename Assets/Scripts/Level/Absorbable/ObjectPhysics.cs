@@ -110,7 +110,8 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
         AudioManager.StopLoopSound(ref _audioPlayer);
         LevelManager.Instance.RemoveObjectPhysical(this);
     }
-    
+
+#if UNITY_EDITOR
     private void OnDrawGizmos()
     {
         // Gizmos.DrawWireSphere(AbsorbePoint.position, 1);
@@ -118,6 +119,7 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
             $"Force Required {ForceRequired} // Gain : {scaleMultiplier}",
             new GUIStyle());
     }
+#endif
 
     #endregion
     

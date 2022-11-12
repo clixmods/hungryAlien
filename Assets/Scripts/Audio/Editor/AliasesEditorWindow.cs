@@ -1,19 +1,11 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
+using AudioAliase;
 using UnityEditor;
-using UnityEditor.Profiling;
 using UnityEngine;
-using UnityEngine.Playables;
-
-using System.Reflection;
-using UnityEditor.AnimatedValues;
-using UnityEngine.Windows;
-using Object = UnityEngine.Object;
 using Random = UnityEngine.Random;
 
-namespace AudioAliase.Edit
+namespace Audio.Editor
 {
 
     public class AliasesEditorWindow : ExtendedEditorWindow
