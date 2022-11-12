@@ -186,7 +186,7 @@ public class LevelManager : MonoBehaviour
         }
         else
         {
-            _virtualCamera.LookAt = _player.transform;
+            _virtualCamera.LookAt = CurrentPlayerSpawnPoint;
             _dollyCart.m_Speed = 0;
             State = GameState.Ingame;
             WatchObjectPhysicalAvailable();
