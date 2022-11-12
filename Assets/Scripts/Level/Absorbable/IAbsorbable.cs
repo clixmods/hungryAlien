@@ -18,6 +18,8 @@ namespace Level
 
         public Transform transform { get;  }
         
+        public float Damage { get; }
+        
         /// <summary>
         /// Initial position when the object is activated for the first time
         /// </summary>

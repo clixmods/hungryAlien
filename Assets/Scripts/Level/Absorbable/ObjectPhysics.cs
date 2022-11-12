@@ -49,7 +49,17 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
     public float ForceRequired => forceRequired;
     public bool IsAbsorbed { get; set; }
     public bool IsAbsorbable { get; private set; }
-    
+
+    public float _damage;
+    public float Damage
+    {
+        get;
+        set
+        {
+                
+            _damage = value / 4;
+        }
+    }
     public Vector3 InitialPosition { get;  set; }
     
     public int SleepUntilLevel => sleepUntilLevel;

@@ -12,21 +12,24 @@ EditorUserSettings:
       value: 520456075657500e0c5a5d7b16715e44444e4e2b752a76347e711b6bb4b3676f
       flags: 0
     RecentlyUsedSceneGuid-2:
-      value: 5254035101540b0b5f5a542146225c4410161a2f7e7822622e791835e0b1306a
-      flags: 0
-    RecentlyUsedSceneGuid-3:
       value: 56030d070705510f595658754821064442151c292d7b25667c2b1864bbb0646f
       flags: 0
-    RecentlyUsedSceneGuid-4:
+    RecentlyUsedSceneGuid-3:
       value: 5007525555565f09585f5a7245725944414f1e2f782a73607b2d4a63b2e2316d
       flags: 0
-    RecentlyUsedSceneGuid-5:
+    RecentlyUsedSceneGuid-4:
       value: 0505525e51535f585c5f5f2040220f444f164a7f7a2a7032742a4d67bae3676c
       flags: 0
-    RecentlyUsedSceneGuid-6:
+    RecentlyUsedSceneGuid-5:
       value: 05070503550208025f59542314725b444e154d2f7b2d7f657b701b31bae3663d
       flags: 0
+    RecentlyUsedSceneGuid-6:
+      value: 5254035101540b0b5f5a542146225c4410161a2f7e7822622e791835e0b1306a
+      flags: 0
     RecentlyUsedSceneGuid-7:
+      value: 5106565f5553510f58080f7a4321094441161d79787d7f682c781836b6b06d6a
+      flags: 0
+    RecentlyUsedSceneGuid-8:
       value: 06065057500559035e5e587542760e4443164a2f7d7c2762292d4d36bab3633c
       flags: 0
     UnityEditor.ShaderGraph.Blackboard:

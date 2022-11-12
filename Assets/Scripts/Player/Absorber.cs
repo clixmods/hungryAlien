@@ -170,6 +170,8 @@ public class Absorber : MonoBehaviour
                 // direction *= (forceRemaining);
                 // rb.velocity = direction;
                 objectPhysics.OnAbsorb(this, out AbsorbingState absorbingState);
+
+                objectPhysics.Health -= objectPhysics.Damage;
                 switch (absorbingState)
                 {
                     case AbsorbingState.Start:

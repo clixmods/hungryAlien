@@ -19,6 +19,16 @@ namespace Level
             IsAbsorbable = true;
         }
 
+        public float _damage;
+        public float Damage
+        {
+            get;
+            set
+            {
+                
+                _damage = value / 2;
+            }
+        }
         public Vector3 InitialPosition { get; set; }
 
         public void OnAbsorb(Absorber absorber, out AbsorbingState absorbingState)
