@@ -75,8 +75,12 @@ public class ShipController : MonoBehaviour
         if (LevelManager.Instance.State == GameState.CameraIsMoving)
         {
             Vector3 nextPlayerSpawnPoint = LevelManager.Instance.CurrentPlayerSpawnPoint.position;
-            Vector3 direction = new Vector3( nextPlayerSpawnPoint.x-transform.position.x, 5, nextPlayerSpawnPoint.z-transform.position.z);
-            transform.position += direction * speed * Time.deltaTime;
+            if (transform.position.y < nextPlayerSpawnPoint.y + 10* transform.localScale.magnitude )
+            {
+                Vector3 direction = new Vector3( nextPlayerSpawnPoint.x-transform.position.x, 5, nextPlayerSpawnPoint.z-transform.position.z);
+                transform.position += direction * speed * Time.deltaTime;
+            }
+           
             _lastHitPoint = transform.position;
         }
     }
