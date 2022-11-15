@@ -9,7 +9,7 @@ namespace AudioAliase
     public class AudioManagerData : ScriptableObject
     {
         public Aliases[] aliases;
-        
+        public bool debugMessage;
         #if UNITY_EDITOR
             private void OnValidate()
             {

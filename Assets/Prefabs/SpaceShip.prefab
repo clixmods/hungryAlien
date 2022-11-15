@@ -390,7 +390,7 @@ MonoBehaviour:
   strenght: 1
   radius: 3
   inTheTrigger: []
-  AbsorbePoint: {fileID: 6961655015927970678}
+  absorbePoint: {fileID: 6961655015927970678}
   scaleShip: {fileID: 6961655016796113057}
   aliaseLoopLight: impactBell_heavy
   aliaseLoopAbsorbing: impactBell_heavy

@@ -35,6 +35,8 @@ public struct DataLevel
     public Transform playerSpawnPoint;
     [Tooltip("A volume to secure position of ObjectPhysics")]
     public PlayableVolume playableVolume;
+
+    public float heightOffset;
 }
 [RequireComponent(typeof(CinemachineSmoothPath))]
 public class LevelManager : MonoBehaviour
@@ -113,6 +115,8 @@ public class LevelManager : MonoBehaviour
         }
     }
     public Transform CurrentPlayerSpawnPoint => dataLevels[CurrentLevel].playerSpawnPoint;
+
+    public float GetCurrentHeightOffset => dataLevels[CurrentLevel].heightOffset;
     // Start is called before the first frame update
     void Start()
     {

@@ -33,7 +33,7 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
     /// <summary>
     /// The gain of the absorbtion 
     /// </summary>
-    [Range(1,2),SerializeField] private float scaleMultiplier = 1.05f ;
+    [Range(0,1f),SerializeField] private float scaleMultiplier = 0.05f ;
     
 
     #endregion
@@ -49,17 +49,7 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
     public float ForceRequired => forceRequired;
     public bool IsAbsorbed { get; set; }
     public bool IsAbsorbable { get; private set; }
-
-    public float _damage;
-    public float Damage
-    {
-        get;
-        set
-        {
-                
-            _damage = value / 4;
-        }
-    }
+    
     public Vector3 InitialPosition { get;  set; }
     
     public int SleepUntilLevel => sleepUntilLevel;
