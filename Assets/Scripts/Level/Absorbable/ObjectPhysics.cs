@@ -67,9 +67,11 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
             _collider = transform.AddComponent<MeshCollider>();
         
         _collider.convex = true;
+        _collider.enabled = false;
         Rigidbody = GetComponent<Rigidbody>();
         Rigidbody.isKinematic = true;
         Rigidbody.mass = ForceRequired;
+        
         
         if (settings == null)
         {
@@ -81,12 +83,12 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
 
         LevelManager.Instance.CallbackPreLevelChange += WatchLevelToWakeUp;
 
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        Rigidbody.mass = ForceRequired; // TODO : TEMP
+        if (ForceRequired == 0)
+        {
+            Debug.LogWarning("Warning : Force required = 0, assign a greater value.", gameObject);
+            forceRequired = 1;
+        }
+           
     }
     
     void OnCollisionEnter(Collision collision)
@@ -128,13 +130,11 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
     {
         if ( Rigidbody.isKinematic && LevelManager.Instance.CurrentLevel == sleepUntilLevel)
         {
-           // Debug.Log("[ObjectPhysics] Object added to LevelManager", gameObject);
+            _collider.enabled = true;
             Rigidbody.isKinematic = false;
             LevelManager.Instance.AddObjectPhysical(this);
-
             int test = LevelManager.Instance.CallbackPreLevelChange.GetInvocationList().Length;
             LevelManager.Instance.CallbackPreLevelChange -= WatchLevelToWakeUp;
-         //   Debug.LogWarning($"OH donc {test} est devenue { LevelManager.Instance.CallbackPreLevelChange.GetInvocationList().Length}");
             IsAbsorbable = true;
         }
     }
