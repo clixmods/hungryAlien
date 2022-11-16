@@ -5,15 +5,13 @@ using UnityEngine;
 using AudioAliase;
 public class ScaleShip : MonoBehaviour
 {
-   /// <summary>
+    /// <summary>
     /// Scale of the ship
     /// </summary>
     float _scaleFactor = 1;
     [SerializeField] private float speedHeightMove = 5;
     [SerializeField] private float heightOffset;
- 
-
-  
+    
     [Header("Sound Aliases")]
     [SerializeField,Aliase] private string aliaseGrowing;
 

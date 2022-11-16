@@ -20,6 +20,7 @@ namespace FX
                     break;
                 case TypeFX.ParticleSystem:
                     _particleSystem = GetComponent<ParticleSystem>();
+                    _particleSystem.Play();
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();

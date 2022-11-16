@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Level;
 using UnityEngine;
 
 [RequireComponent(typeof(Collider))]
@@ -9,7 +10,7 @@ public class PlayableVolume : MonoBehaviour
     private Collider _collider;
     private bool _triggerStayCheck;
 
-    private List<ObjectPhysics> _objectPhysicsList;
+    private List<IAbsorbable> _absorbableList;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,9 +24,9 @@ public class PlayableVolume : MonoBehaviour
         if (_triggerStayCheck)
         {
             _triggerStayCheck = false;
-            for (int i = 0; i < _objectPhysicsList.Count; i++)
+            for (int i = 0; i < _absorbableList.Count; i++)
             {
-                _objectPhysicsList[i].transform.position = LevelManager.Instance.CurrentPlayerSpawnPoint.position;
+                _absorbableList[i].transform.position = LevelManager.Instance.CurrentPlayerSpawnPoint.position;
             }
         }
         
@@ -35,15 +36,16 @@ public class PlayableVolume : MonoBehaviour
     {
         _triggerStayCheck = true;
 
-        _objectPhysicsList = new List<ObjectPhysics>();
-        _objectPhysicsList.AddRange(LevelManager.Instance.CurrentObjectList);
-        //_objectPhysicsList = LevelManager.Instance.CurrentObjectList; // Bug apparently, this line do a ref of the list and not a copy
+        _absorbableList = new List<IAbsorbable>();
+        _absorbableList.AddRange(LevelManager.Instance.CurrentObjectList);
+        // Bug apparently, this line do a ref of the list and not a copy
+        //_objectPhysicsList = LevelManager.Instance.CurrentObjectList; 
 
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.TryGetComponent<ObjectPhysics>(out var objectPhysics) && objectPhysics.IsGrabable)
+        if (other.TryGetComponent<IAbsorbable>(out var objectAbsorbable) && objectAbsorbable.IsAbsorbable)
         {
             other.transform.position = LevelManager.Instance.CurrentPlayerSpawnPoint.position;
         }
@@ -53,11 +55,11 @@ public class PlayableVolume : MonoBehaviour
     {
         if (_triggerStayCheck)
         {
-            if (other.TryGetComponent<ObjectPhysics>(out var objectPhysics))
+            if (other.TryGetComponent<IAbsorbable>(out var objectAbsorbable))
             {
-                if (_objectPhysicsList.Contains(objectPhysics))
+                if (_absorbableList.Contains(objectAbsorbable))
                 {
-                    _objectPhysicsList.Remove(objectPhysics);
+                    _absorbableList.Remove(objectAbsorbable);
                 }
             }
         }

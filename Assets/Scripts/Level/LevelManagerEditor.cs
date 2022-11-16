@@ -18,6 +18,7 @@ using UnityEngine.UI;
 
         // Object Preview
         Editor[] gameObjectsEditor;
+        private int _indexObjectPreview;
 
         ReorderableList[] list;
         
@@ -28,6 +29,8 @@ using UnityEngine.UI;
         private SerializedObject soObject;
         
         private const string ContainerNameFloorCollision = "Floor Collision container";
+
+        private bool _showIconPreview;
 
         int GetNumberOfObjectInLevel(int level)
         {
@@ -70,7 +73,7 @@ using UnityEngine.UI;
             {
                 var objsInLevel = GetObjectsInLevel(i);
                 if (objsInLevel.Length == 0) continue;
-                 list[i] = new ReorderableList(objsInLevel, typeof(ObjectPhysics),true,true,true,true);
+                 list[i] = new ReorderableList(objsInLevel, typeof(ObjectPhysics),true,true,false,false);
                  list[i].drawElementCallback = DrawElementItem; // Delegate to draw the elements on the list
                  list[i].drawHeaderCallback = DrawHeader; // Skip this line if you set displayHeader to 'false' in your ReorderableList constructor.
                  list[i].elementHeight = ElementHeight;
@@ -88,27 +91,31 @@ using UnityEngine.UI;
 
         void DrawElementItem(Rect rect, int index, bool isActive, bool isFocused)
         {
-           
+            var objectPhysics = GetObjectsInLevel(_currentDrawedLevel)[index];
             // Get serialize object and properties
             var serializeObjectPhy = new SerializedObject( GetObjectsInLevel(_currentDrawedLevel)[index]);
             var propertyForce = serializeObjectPhy.FindProperty("forceRequired");
             var propertyMultiplier = serializeObjectPhy.FindProperty("scaleMultiplier");
-            
-            // Draw object preview
-            if (allObjectPhysics[index].gameObject != null)
+
+
+            if (_showIconPreview)
             {
-                // Check if the object have his editor for the preview
-                if (gameObjectsEditor[index] == null)
-                    gameObjectsEditor[index] = CreateEditor(allObjectPhysics[index].gameObject);
+                // Draw object preview
+                if (objectPhysics.gameObject != null)
+                {
+                    // Check if the object have his editor for the preview
+                    if (gameObjectsEditor[_indexObjectPreview] == null)
+                        gameObjectsEditor[_indexObjectPreview] = CreateEditor(objectPhysics.gameObject);
                 
-                Rect previewRect = rect;
-                previewRect.width = 32;
-                gameObjectsEditor[index].OnInteractivePreviewGUI(previewRect, new GUIStyle());
+                    Rect previewRect = rect;
+                    previewRect.width = 32;
+                    gameObjectsEditor[_indexObjectPreview].OnInteractivePreviewGUI(previewRect, new GUIStyle());
+                }
             }
             
             // GameObject name field
             Rect textFieldRect = new Rect(rect.x+32 , rect.y, 150, EditorGUIUtility.singleLineHeight);
-            allObjectPhysics[index].gameObject.name = EditorGUI.TextField(textFieldRect, allObjectPhysics[index].gameObject.name);
+            objectPhysics.gameObject.name = EditorGUI.TextField(textFieldRect, objectPhysics.gameObject.name);
             
             // ForceRequired Slider
             Rect forceRect = new Rect(rect.x+32, rect.y+16, rect.width / 2, EditorGUIUtility.singleLineHeight);
@@ -126,7 +133,7 @@ using UnityEngine.UI;
             MultiplierRect.x += MultiplierRect.width / 2;
             propertyMultiplier.floatValue = EditorGUI.Slider(MultiplierRect,propertyMultiplier.floatValue,0,2);
             serializeObjectPhy.ApplyModifiedProperties();
-            
+            _indexObjectPreview++;
         }
 
         //Draws the header
@@ -196,8 +203,6 @@ using UnityEngine.UI;
             if(showit)
                 EditorGUILayout.HelpBox(badSetupMessage,MessageType.Warning);
             
-            
-
             GetMaxLevel();
 
             if (GetMaxLevel() != list.Length)
@@ -208,30 +213,14 @@ using UnityEngine.UI;
                 for (int i = 0; i < lenght; i++)
                 {
                     var objsInLevel = GetObjectsInLevel(i);
-                    if (objsInLevel.Length == 0) continue;
+                    //if (objsInLevel.Length == 0) continue;
                     list[i] = new ReorderableList(objsInLevel, typeof(ObjectPhysics),true,true,true,true);
                     list[i].drawElementCallback = DrawElementItem; // Delegate to draw the elements on the list
                     list[i].drawHeaderCallback = DrawHeader; // Skip this line if you set displayHeader to 'false' in your ReorderableList constructor.
                     list[i].elementHeight = ElementHeight;
                 }
             }
-        
-
-            // if (GUILayout.Button("Create Waypoint Align to current view"))
-            // {
-            //     GameObject myWaypoint = Instantiate(new GameObject(), myObject.transform);
-            //     var transformCamScene = SceneView.lastActiveSceneView.camera.transform;
-            //     if (transformCamScene != null)
-            //     {
-            //         myWaypoint.transform.position = transformCamScene.position;
-            //         myWaypoint.transform.rotation = transformCamScene.rotation;
-            //         myObject.AddWaypoint(myWaypoint.transform);
-            //     }
-            //     else
-            //     {
-            //         Debug.LogError("Failed to create waypoint");
-            //     }
-            // }
+            
             if (Application.isPlaying)
             {
                 if (GUILayout.Button("Next Level"))
@@ -239,42 +228,26 @@ using UnityEngine.UI;
                     myObject.RemoveAllObjectPhysical();
                 }
             }
-            
 
             if (Application.isPlaying) return;
             
-            // if (GUILayout.Button("Generate Cinemachine Travelling"))
-            // {
-            //     CinemachineSmoothPath cinemachineSmoothPath;
-            //     cinemachineSmoothPath = myObject.TryGetComponent<CinemachineSmoothPath>(out CinemachineSmoothPath smoothPath) 
-            //                             ? smoothPath : myObject.AddComponent<CinemachineSmoothPath>();
-            //
-            //     cinemachineSmoothPath.m_Waypoints = new CinemachineSmoothPath.Waypoint[myObject.waypoints.Count];
-            //     for (int i = 0; i < myObject.waypoints.Count; i++)
-            //     {
-            //         CinemachineSmoothPath.Waypoint waypoint = new CinemachineSmoothPath.Waypoint();
-            //         waypoint.position = myObject.waypoints[i].position;
-            //
-            //         cinemachineSmoothPath.m_Waypoints[i] = waypoint;
-            //     }
-            // }
-
             _foldListObject = EditorGUILayout.Foldout(_foldListObject, "List of Object");
             if (_foldListObject)
             {
+                _showIconPreview = EditorGUILayout.Toggle("Show icon preview", _showIconPreview);
                 _currentDrawedLevel = 0;
                 scalePlayerSupposition = 1;
                 int lenght = GetMaxLevel();
+                _indexObjectPreview = 0;
                 for (int i = 0; i < lenght; i++)
                 {
-                    Debug.Log($"[LevelManagerEditor] Draw reorderable list [{i}]");
-                    if (GetObjectsInLevel(i).Length == 0)
-                    {
-                        _currentDrawedLevel++;
-                        continue;
-                    }
-                    list[i].DoLayoutList();
-                    _currentDrawedLevel++;
+                    //Debug.Log($"[LevelManagerEditor] Draw reorderable list [{i}]");
+                     if (GetObjectsInLevel(i).Length == 0)
+                     {
+                         continue;
+                     }
+                     _currentDrawedLevel = i;
+                    list[_currentDrawedLevel].DoLayoutList();
                 }
                 
             }

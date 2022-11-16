@@ -51,18 +51,11 @@ namespace FXEditor
                 //using (new GUILayout.HorizontalScope(EditorStyles.whiteLabel,GUILayout.ExpandWidth(false),GUILayout.ExpandHeight(false)))
                 {
                     EditorGUILayout.BeginVertical(GUILayout.ExpandWidth(false),GUILayout.ExpandHeight(false) , GUILayout.Width(50));
-                      
-                      
-                        //Editor.DrawFoldoutInspector(_selectedSerializeObject.targetObject, ref _editor);
-                        Editor.CreateCachedEditor(_selectedSerializeObject.targetObject, null, ref _editor);
-                        EditorGUI.indentLevel++;
-                        _editor.OnInspectorGUI();
-                        
-                        //_editor.DrawDefaultInspector();
-                        EditorGUILayout.Space();
-
-                        //_editor.
-                   EditorGUILayout.EndVertical();
+                    Editor.CreateCachedEditor(_selectedSerializeObject.targetObject, null, ref _editor);
+                    EditorGUI.indentLevel++;
+                    _editor.OnInspectorGUI();
+                    EditorGUILayout.Space();
+                    EditorGUILayout.EndVertical();
                    
                 }
 
