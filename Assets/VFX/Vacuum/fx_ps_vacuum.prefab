@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6849871952397754514}
   - component: {fileID: 6849871952397754515}
   m_Layer: 0
-  m_Name: Vacuum
+  m_Name: fx_ps_vacuum
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
