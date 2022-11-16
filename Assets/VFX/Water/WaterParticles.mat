@@ -24,6 +24,7 @@ Material:
   m_Shader: {fileID: -6465566751694194690, guid: cb1320b6695e6084e9f46c5d6e28b6d5,
     type: 3}
   m_ValidKeywords:
+  - _DISABLE_SSR_TRANSPARENT
   - _ENABLE_FOG_ON_TRANSPARENT
   - _SURFACE_TYPE_TRANSPARENT
   m_InvalidKeywords: []
@@ -39,6 +40,7 @@ Material:
   - TransparentDepthPostpass
   - TransparentBackface
   - MOTIONVECTORS
+  - RayTracingPrepass
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
@@ -88,7 +90,12 @@ Material:
     - _OpaqueCullMode: 2
     - _QueueControl: 1
     - _QueueOffset: 0
+    - _RayTracing: 0
+    - _ReceivesSSR: 1
+    - _ReceivesSSRTransparent: 0
+    - _RefractionModel: 0
     - _RenderQueueType: 4
+    - _RequireSplitLighting: 0
     - _Size: 0.85
     - _SrcBlend: 1
     - _StencilRef: 0
@@ -101,6 +108,7 @@ Material:
     - _StencilWriteMaskDistortionVec: 4
     - _StencilWriteMaskGBuffer: 14
     - _StencilWriteMaskMV: 40
+    - _SupportDecals: 1
     - _SurfaceType: 1
     - _TransparentBackfaceEnable: 0
     - _TransparentCullMode: 2
