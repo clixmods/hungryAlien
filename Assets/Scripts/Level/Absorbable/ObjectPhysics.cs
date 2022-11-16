@@ -12,7 +12,7 @@ using Level;
 [RequireComponent(typeof(Rigidbody))]
 [RequireComponent(typeof(MeshCollider))]
 [SelectionBase]
-public class ObjectPhysics : MonoBehaviour
+public class ObjectPhysics : MonoBehaviour , IAbsorbable
 {
     private const string MessageSettingsNotSetup = "Settings of object are not setup, please assign a setting.";
 
@@ -45,12 +45,13 @@ public class ObjectPhysics : MonoBehaviour
     private MeshCollider _collider;
     #endregion
     #region Properties
-    public Rigidbody ObjectRigidbody { get; private set; }
-    public int SleepUntilLevel => sleepUntilLevel;
-    public float ScaleMultiplier => scaleMultiplier;
+    public Rigidbody Rigidbody { get; private set; }
     public float ForceRequired => forceRequired;
     public bool IsAbsorbed { get; set; }
-    public bool IsGrabable { get; private set; }
+    public bool IsAbsorbable { get; private set; }
+    
+    public int SleepUntilLevel => sleepUntilLevel;
+    public float ScaleMultiplier => scaleMultiplier;
     #endregion
 
     #region MonoBehaviour
@@ -64,9 +65,9 @@ public class ObjectPhysics : MonoBehaviour
             _collider = transform.AddComponent<MeshCollider>();
         
         _collider.convex = true;
-        ObjectRigidbody = GetComponent<Rigidbody>();
-        ObjectRigidbody.isKinematic = true;
-        ObjectRigidbody.mass = ForceRequired;
+        Rigidbody = GetComponent<Rigidbody>();
+        Rigidbody.isKinematic = true;
+        Rigidbody.mass = ForceRequired;
         
         if (settings == null)
         {
@@ -83,7 +84,7 @@ public class ObjectPhysics : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        ObjectRigidbody.mass = ForceRequired; // TODO : TEMP
+        Rigidbody.mass = ForceRequired; // TODO : TEMP
     }
     
     void OnCollisionEnter(Collision collision)
@@ -95,6 +96,7 @@ public class ObjectPhysics : MonoBehaviour
                 collisionSurface.Play();
             }
             AudioManager.PlaySoundAtPosition(settings.aliaseImpact,transform.position);
+            FXManager.PlayFXAtPosition(settings.fxHit, transform.position);
         }
     }
     
@@ -120,16 +122,53 @@ public class ObjectPhysics : MonoBehaviour
     // TODO : We need to let the level manager manages that
     void WatchLevelToWakeUp()
     {
-        if ( ObjectRigidbody.isKinematic && LevelManager.Instance.CurrentLevel == sleepUntilLevel)
+        if ( Rigidbody.isKinematic && LevelManager.Instance.CurrentLevel == sleepUntilLevel)
         {
            // Debug.Log("[ObjectPhysics] Object added to LevelManager", gameObject);
-            ObjectRigidbody.isKinematic = false;
+            Rigidbody.isKinematic = false;
             LevelManager.Instance.AddObjectPhysical(this);
 
             int test = LevelManager.Instance.CallbackPreLevelChange.GetInvocationList().Length;
             LevelManager.Instance.CallbackPreLevelChange -= WatchLevelToWakeUp;
          //   Debug.LogWarning($"OH donc {test} est devenue { LevelManager.Instance.CallbackPreLevelChange.GetInvocationList().Length}");
-            IsGrabable = true;
+            IsAbsorbable = true;
         }
+    }
+
+    public void OnAbsorb(Absorber absorber, out AbsorbingState absorbingState)
+    {
+        absorbingState = AbsorbingState.InProgress;
+        
+        float forceRemaining = absorber.Strenght / ForceRequired;
+        var destination = absorber.AbsorbePoint.position;
+        var direction = destination - transform.position;
+        direction *= (forceRemaining);
+        Rigidbody.velocity = direction;
+
+        bool forceIsSufficent = forceRemaining >= 1;
+
+        float idkneedtobedefined = destination.y - transform.position.y;
+        
+        if (forceRemaining < 1)
+        {
+           // absorber.Ship.enabled = false;
+            absorber.Ship.transform.position += -direction * forceRemaining * Time.deltaTime;
+        }
+        // Ship can absorb
+        if (forceIsSufficent && idkneedtobedefined < absorber.AbsortionHeight)
+        {
+            absorber.Strenght += ScaleMultiplier;
+            IsAbsorbed = true;
+            absorbingState = AbsorbingState.Done;
+            Destroy(gameObject);
+       
+        }
+        else if (!forceIsSufficent && idkneedtobedefined < absorber.AbsortionHeight)
+        {
+            absorbingState = AbsorbingState.Fail;
+        }
+
+   
+
     }
 }

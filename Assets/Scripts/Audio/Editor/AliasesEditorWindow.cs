@@ -639,10 +639,7 @@ namespace AudioAliase.Edit
         string IsValidName(string nameToValidate)
         {
             return nameToValidate;
-            foreach (Aliases asset in _aliasesArray)
-            {
-                //s if (nameToValidate == aliasesArray.)
-            }
+            
         }
         /// <summary>
         /// Create a new file to contain aliase list,
