@@ -215,7 +215,7 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
                 // Get the current value of the material properties in the renderer.
                 _meshRenderer.GetPropertyBlock(_propBlocks[i],i);
                 //Assign our new value.
-                _propBlocks[i].SetFloat("_Amount",  _propBlocks[i].GetFloat("_Amount")+Time.deltaTime*_regenMultiplier);
+                _propBlocks[i].SetFloat("_Amount",  _propBlocks[i].GetFloat("_Amount")+Time.deltaTime);
                 // Apply the edited values to the renderer.
                 _meshRenderer.SetPropertyBlock(_propBlocks[i], i);
             }
@@ -256,10 +256,10 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
         bool forceIsSufficent = forceRemaining >= 1;
 
         float idkneedtobedefined = destination.y - transform.position.y;
-        if (idkneedtobedefined < 5)
-        {
-            SetDissolve(1-(idkneedtobedefined/5));
-        }
+         if (idkneedtobedefined < 5)
+         {
+             SetDissolve(1-(idkneedtobedefined/5));
+         }
         
         
         if (forceRemaining < 1)
