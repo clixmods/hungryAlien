@@ -60,6 +60,15 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
     
     public int SleepUntilLevel => sleepUntilLevel;
     public float ScaleMultiplier => scaleMultiplier;
+
+    [SerializeField] private bool _sleepUntilAbsorb;
+
+    public bool SleepUntilAbsorb
+    {
+        get { return _sleepUntilAbsorb; }
+        set { _sleepUntilAbsorb = value; }
+    }
+
     public PlayableVolume PlayableVolume { get; set; }
     #endregion
 
@@ -169,14 +178,15 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
     // TODO : We need to let the level manager manages that
     void WatchLevelToWakeUp()
     {
-        if ( Rigidbody.isKinematic && LevelManager.Instance.CurrentLevel == sleepUntilLevel)
+        if ( !IsAbsorbable && LevelManager.Instance.CurrentLevel == sleepUntilLevel)
         {
             _collider.enabled = true;
-            Rigidbody.isKinematic = false;
+           
             LevelManager.Instance.AddObjectPhysical(this);
-            int test = LevelManager.Instance.CallbackPreLevelChange.GetInvocationList().Length;
             LevelManager.Instance.CallbackPreLevelChange -= WatchLevelToWakeUp;
             IsAbsorbable = true;
+            Rigidbody.isKinematic = SleepUntilAbsorb;
+           
         }
     }
 
@@ -246,6 +256,9 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
     {
         IsInAbsorbing = true;
         absorbingState = AbsorbingState.InProgress;
+       
+        Rigidbody.isKinematic = false;
+        
         
         float forceRemaining = absorber.Strenght / ForceRequired;
         var destination = absorber.AbsorbePoint.position;
