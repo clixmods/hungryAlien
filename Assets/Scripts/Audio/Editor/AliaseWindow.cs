@@ -1,8 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+using AudioAliase;
 using UnityEditor;
-namespace AudioAliase.Edit
+using UnityEngine;
+
+namespace Audio.Editor
 {
 
 
@@ -10,7 +10,7 @@ namespace AudioAliase.Edit
     {
         [SerializeField] static Aliases[] aliasesArray = new Aliases[0];
         private Object asset;
-        private Editor assetEditor;
+        private UnityEditor.Editor assetEditor;
         // Add a menu item named "Do Something" to MyMenu in the menu bar.
         [MenuItem("MyMenu/Do Something")]
         static void DoSomething()
@@ -91,7 +91,7 @@ namespace AudioAliase.Edit
         void OpenInspector()
         {
             // Retrieve the existing Inspector tab, or create a new one if none is open
-            EditorWindow inspectorWindow = GetWindow(typeof(Editor).Assembly.GetType("UnityEditor.InspectorWindow"));
+            EditorWindow inspectorWindow = GetWindow(typeof(UnityEditor.Editor).Assembly.GetType("UnityEditor.InspectorWindow"));
             // Get the size of the currently window
             Vector2 size = new Vector2(inspectorWindow.position.width, inspectorWindow.position.height);
             if (inspectorWindow == null) inspectorWindow = Instantiate(inspectorWindow);

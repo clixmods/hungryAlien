@@ -1,11 +1,9 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
+using AudioAliase;
 using UnityEditor;
 using UnityEngine;
-using UnityEngine.Audio;
 
-namespace AudioAliase.Edit
+namespace Audio.Editor
 {
    
     

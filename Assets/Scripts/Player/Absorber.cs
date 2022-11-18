@@ -7,6 +7,7 @@ using UnityEngine.InputSystem;
 using AudioAliase;
 using UnityEngine.Windows;
 using Level;
+using Player;
 using UnityEngine.VFX;
 
 
@@ -23,11 +24,16 @@ public class Absorber : MonoBehaviour
     private Light _light;
     private CapsuleCollider _collider;
 
+    private AbsorberColor _absorberColor;
+    [SerializeField] private Color colorIdle = Color.white;
+    [SerializeField] private Color colorIsAbsorbing = Color.cyan;
+    [SerializeField] private Color colorFailed = Color.red;
+
+   
     /// <summary>
     /// Strenght applied when the player absorb object
     /// </summary>
     [SerializeField] private float strenght = 1;
-
     public float Strenght
     {
         get { return strenght; }
@@ -42,19 +48,13 @@ public class Absorber : MonoBehaviour
     /// Used to influence the height of the ship and the radius of the light
     /// </summary>
     [SerializeField] private float radius = 3;
-
     [SerializeField] private List<GameObject> inTheTrigger;
     public List<GameObject> InTheTrigger => inTheTrigger;
-
     [SerializeField] Transform absorbePoint;
     public Transform AbsorbePoint => absorbePoint;
-    [SerializeField] ScaleShip scaleShip;
-
+    [SerializeField] private ScaleShip scaleShip;
     public Transform Ship => scaleShip.transform;
-
-    //[SerializeField] float scaleMultiplier = 1.1f; // We use a value managed by the absorbedObject
-    //[SerializeField] float strengthMultiplier = 1.1f;
-
+   
     private const float FailedCooldownStart = 2;
     private float _failedCooldown;
 
@@ -103,6 +103,8 @@ public class Absorber : MonoBehaviour
         _light = GetComponentInChildren<Light>();
         _collider = GetComponentInChildren<CapsuleCollider>();
         scaleShip = transform.parent.GetComponent<ScaleShip>();
+        
+        _absorberColor = GetComponentInChildren<AbsorberColor>();
 
         _collider.direction = 2;
         Input.Game.Absorb.performed += ctx => Absorb();
@@ -122,7 +124,10 @@ public class Absorber : MonoBehaviour
         _collider.center = centerCollider;
 
         if (_failedCooldown > 0)
+        {
+            _absorberColor.color = colorFailed;
             _failedCooldown -= Time.deltaTime;
+        }
         else
         {
             AudioManager.StopLoopSound(ref _audioPlayerFail);
@@ -144,6 +149,7 @@ public class Absorber : MonoBehaviour
             Input.Disable();
             absorb = false;
         }
+        
     }
 
     private void OnTriggerStay(Collider other)
@@ -159,8 +165,7 @@ public class Absorber : MonoBehaviour
                 inTheTrigger.Add(other.gameObject);
 
             if (objectPhysics.IsAbsorbed) return;
-           
-
+            
             if (absorb && _failedCooldown <= 0)
             {
                 // float forceRemaining = strenght / objectPhysics.ForceRequired;
@@ -175,12 +180,15 @@ public class Absorber : MonoBehaviour
                     case AbsorbingState.Start:
                         break;
                     case AbsorbingState.InProgress:
+                        _absorberColor.color = colorIsAbsorbing;
                         break;
                     case AbsorbingState.Done:
+                        _absorberColor.color = colorIdle;
                         AudioManager.PlaySoundAtPosition(aliaseAbsorbSuccess, transform.position);
                         VEhasAbsorb.Play();
                         break;
                     case AbsorbingState.Fail:
+                        _absorberColor.color = colorFailed;
                         _failedCooldown = FailedCooldownStart;
                         CameraShake.SetNoisier(1, 1);
                         AudioManager.PlayLoopSound(aliaseLoopFail, transform, ref _audioPlayerFail);
@@ -189,26 +197,6 @@ public class Absorber : MonoBehaviour
                     default:
                         throw new ArgumentOutOfRangeException();
                 }
-
-                // // Ship can absorb
-                // if (forceRemaining >= 1 &&
-                //     destination.y - other.transform.position.y < 2f * scaleShip.GetScaleFactor() / 2)
-                // {
-                //     Destroy(other.gameObject);
-                //     scaleShip.SetScaleFactor(objectPhysics.ScaleMultiplier);
-                //     Debug.Log($"[Absorber] Gain {objectPhysics.ScaleMultiplier}  ==> {scaleShip.GetScaleFactor()}");
-                //     strenght += objectPhysics.ScaleMultiplier;
-                //     AudioManager.PlaySoundAtPosition(aliaseAbsorbSuccess, transform.position);
-                //     objectPhysics.IsAbsorbed = true;
-                //     VEhasAbsorb.Play();
-                // }
-                // else if (forceRemaining < 1 &&
-                //          destination.y - other.transform.position.y < 3f * scaleShip.GetScaleFactor() / 2)
-                // {
-                //     CameraShake.SetNoisier(1, 1);
-                //     AudioManager.PlayLoopSound(aliaseLoopFail, transform, ref _audioPlayerFail);
-                //     _failedCooldown = FailedCooldownStart;
-                // }
             }
             else
             {
@@ -227,12 +215,19 @@ public class Absorber : MonoBehaviour
     private void OnTriggerExit(Collider other)
     {
         if (inTheTrigger.Contains(other.gameObject))
+        {
             inTheTrigger.Remove(other.gameObject);
+            _absorberColor.color = colorIdle;
+        }
+           
     }
 
-    private void OnDrawGizmos()
-    {
-        Gizmos.DrawWireSphere(absorbePoint.position, 1);
-        Handles.Label(transform.position, "Force :" + strenght);
-    }
+    #if UNITY_EDITOR
+        private void OnDrawGizmos()
+        {
+            Gizmos.DrawWireSphere(absorbePoint.position, 1);
+            Handles.Label(transform.position, "Force :" + strenght);
+        }
+    #endif
+    
 }

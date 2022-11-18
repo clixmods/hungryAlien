@@ -23,8 +23,10 @@ public enum GameState
 [System.Serializable]
 public struct DataLevel
 {
+    
     [Tooltip("Name of the level")]
     public string name;
+    public bool skip;
     [Tooltip("The position of the dolly Camera when the player is in his level")]
     public float dollyCartPosition ;
     [Tooltip("Speed of camera when it moves to the dollyCartPosition")]
@@ -35,7 +37,12 @@ public struct DataLevel
     public Transform playerSpawnPoint;
     [Tooltip("A volume to secure position of ObjectPhysics")]
     public PlayableVolume playableVolume;
+    [Tooltip("Collisions for objects when the level is active. Can be [Optional]")]
+    public Collider collision;
+    public float heightOffset;
+    public float shipScaleAtTheEnd;
 }
+
 [RequireComponent(typeof(CinemachineSmoothPath))]
 public class LevelManager : MonoBehaviour
 {
@@ -71,14 +78,12 @@ public class LevelManager : MonoBehaviour
         }
         private set
         {
+           
             
             _currentLevel = value;
             
         } 
     }
-  
-    //public List<Transform> waypoints; // TODO : OBsolete ?
-    
     [SerializeField] private DataLevel[] dataLevels;
     public DataLevel[] DataLevels => dataLevels;
     
@@ -99,7 +104,6 @@ public class LevelManager : MonoBehaviour
     /// </summary>
     public Action CallbackPreLevelChange;
     public GameState State { get; private set; }
-    public int MaxLevel => dataLevels.Length; // TODO : Obsolete
     public List<ObjectPhysics> CurrentObjectList => _objectPhysicsList;
     public GameObject GetCurrentFloor {
         get
@@ -113,6 +117,8 @@ public class LevelManager : MonoBehaviour
         }
     }
     public Transform CurrentPlayerSpawnPoint => dataLevels[CurrentLevel].playerSpawnPoint;
+
+    public float GetCurrentHeightOffset => dataLevels[CurrentLevel].heightOffset;
     // Start is called before the first frame update
     void Start()
     {
@@ -163,9 +169,18 @@ public class LevelManager : MonoBehaviour
         
         CallbackLevelChange += SetFloorActive;
         CallbackLevelChange += SetActivePlayableVolume;
+        CallbackLevelChange += SetCollisionActive;
         
         CallbackPreLevelChange();
         CallbackLevelChange();
+        _lookAtTransform = new GameObject().transform;
+    }
+
+    private Transform _lookAtTransform;
+    Transform GetLookAtPoint()
+    {
+        _lookAtTransform.position = Vector3.Lerp(_lookAtTransform.position, CurrentPlayerSpawnPoint.position, Time.deltaTime);
+        return _lookAtTransform;
     }
 
     // Update is called once per frame
@@ -176,8 +191,8 @@ public class LevelManager : MonoBehaviour
         if (_dollyCart.m_Position < dataLevels[CurrentLevel].dollyCartPosition)
         {
             // Force the camera to look a next object when it is moving to next level
-            if( _objectPhysicsList.Count > 0 && _objectPhysicsList[0] != null)
-                _virtualCamera.LookAt = _objectPhysicsList[0].transform;
+            if( CurrentPlayerSpawnPoint != null)
+                _virtualCamera.LookAt = GetLookAtPoint();
             else
                 _virtualCamera.LookAt = null;
             // Set speed of camera and go pass state to isMoving
@@ -186,7 +201,7 @@ public class LevelManager : MonoBehaviour
         }
         else
         {
-            _virtualCamera.LookAt = _player.transform;
+            _virtualCamera.LookAt = GetLookAtPoint();
             _dollyCart.m_Speed = 0;
             State = GameState.Ingame;
             WatchObjectPhysicalAvailable();
@@ -210,6 +225,23 @@ public class LevelManager : MonoBehaviour
     }
 
     /// <summary>
+    /// Active the indexed collision to build collision for environnement </summary>
+    void SetCollisionActive()
+    {
+        foreach (var dataLevel in dataLevels)
+        {
+            if(dataLevel.collision != null)   
+                dataLevel.collision.gameObject.SetActive(false);
+        }
+        
+        if (dataLevels[CurrentLevel].collision == null)
+        {
+            Debug.LogWarning("[LevelManager] collision undefined");
+            return;
+        }
+        dataLevels[CurrentLevel].collision.gameObject.SetActive(true);
+    }
+    /// <summary>
     /// Active the indexed floor to allow player movement
     /// </summary>
     void SetFloorActive()
@@ -226,12 +258,6 @@ public class LevelManager : MonoBehaviour
         }
         dataLevels[CurrentLevel].floorCollision.SetActive(true);
     }
-    //Obsolete
-    // public void AddWaypoint(Transform newWaypoint)
-    // {
-    //     waypoints.Add(newWaypoint);
-    //     newWaypoint.name = "Waypoint : " + waypoints.Count;
-    // }
     private void WatchObjectPhysicalAvailable()
     {
         bool everythingIsAbsorbed = true;
@@ -247,10 +273,13 @@ public class LevelManager : MonoBehaviour
         if (!everythingIsAbsorbed) return;
         RemoveAllObjectPhysical();
         CurrentLevel++;
+        while( dataLevels[CurrentLevel].skip)
+        {
+            CurrentLevel++;
+        }
         CallbackPreLevelChange();
         CallbackLevelChange();
     }
-
     public void AddObjectPhysical(ObjectPhysics objectPhysics)
     {
         _objectPhysicsList.Add(objectPhysics);

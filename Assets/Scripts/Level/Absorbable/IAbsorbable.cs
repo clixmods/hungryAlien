@@ -17,6 +17,13 @@ namespace Level
         public float ForceRequired { get; }
 
         public Transform transform { get;  }
+        
+        public PlayableVolume PlayableVolume { get; set; }
+        
+        /// <summary>
+        /// Initial position when the object is activated for the first time
+        /// </summary>
+        public Vector3 InitialPosition { get; set; }
         /// <summary>
         /// Behaviour when the object is absorbing
         /// </summary>
@@ -25,5 +32,6 @@ namespace Level
         /// <returns> Absorb is completed?</returns>
         public void OnAbsorb(Absorber absorber, out AbsorbingState absorbingState);
         
+
     }
 }

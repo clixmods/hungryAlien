@@ -1,20 +1,37 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEditor;
 
 namespace AudioAliase
 {
     [CreateAssetMenu(fileName = "AudioManager Data", menuName = "Audio/Audio Manager Data", order = 2)]
     public class AudioManagerData : ScriptableObject
     {
-        public List<Aliase> aliases;
-        public Dictionary<string, Queue<Aliase>> aliasesDictionnary;
-        public List<string> tagsAliases;
+        public Aliases[] aliases;
+        public bool debugMessage;
+        #if UNITY_EDITOR
+            private void OnValidate()
+            {
+                aliases = GetAllInstances();
+            }
+            private static Aliases[] GetAllInstances()
+            {
+                string[] guids = AssetDatabase.FindAssets("t:" + typeof(Aliases).Name);  //FindAssets uses tags check documentation for more info
+                int count = guids.Length;
+                Aliases[] a = new Aliases[count];
+                for (int i = 0; i < count; i++)         //probably could get optimized 
+                {
+                    string path = AssetDatabase.GUIDToAssetPath(guids[i]);
+                    var asset = (Aliases) AssetDatabase.LoadAssetAtPath<Aliases>(path);
+                    if(!asset.DontLoad)
+                        a[i] = AssetDatabase.LoadAssetAtPath<Aliases>(path);
+                }
 
-        private void OnValidate()
-        {
-            tagsAliases = UnityEditorInternal.InternalEditorUtility.tags.ToList();
-            //UnityEditorInternal.InternalEditorUtility.AddTag();
-        }
+                return a;
+
+            }
+        #endif
+       
     }
 }

@@ -158,15 +158,15 @@ MonoBehaviour:
     bypassReverbZones: 0
     priority: 0
     volume: 0
-    minVolume: 0.95543075
-    maxVolume: 1
+    minVolume: 0.43017823
+    maxVolume: 0.47474745
     isLooping: 0
     startAliase: 
     endAliase: 
-    minPitch: 1.1348314
-    maxPitch: 1.3470786
+    minPitch: 1
+    maxPitch: 1
     stereoPan: 0
-    spatialBlend: 0.78
+    spatialBlend: 0.848
     reverbZoneMix: 1
     dopplerLevel: 1
     Spread: 1

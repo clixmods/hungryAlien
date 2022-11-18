@@ -180,7 +180,7 @@ namespace AudioAliase
         {
             if (aliase == null)
             {
-                Debug.LogError("What the fuck ?");
+                if(AudioManager.ShowDebugText) Debug.LogError("What the fuck ?");
             }
             _timePlayed = 0;
             _lastAliasePlayed = aliase;
