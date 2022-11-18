@@ -11,6 +11,9 @@ public class PlayableVolume : MonoBehaviour
     private bool _triggerStayCheck;
 
     private List<IAbsorbable> _absorbableList;
+    
+    
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -26,7 +29,7 @@ public class PlayableVolume : MonoBehaviour
             _triggerStayCheck = false;
             for (int i = 0; i < _absorbableList.Count; i++)
             {
-                _absorbableList[i].transform.position = LevelManager.Instance.CurrentPlayerSpawnPoint.position;
+               // _absorbableList[i].transform.position = LevelManager.Instance.CurrentPlayerSpawnPoint.position;
             }
         }
         
@@ -47,20 +50,22 @@ public class PlayableVolume : MonoBehaviour
     {
         if (other.TryGetComponent<IAbsorbable>(out var objectAbsorbable) && objectAbsorbable.IsAbsorbable)
         {
-            other.transform.position = LevelManager.Instance.CurrentPlayerSpawnPoint.position;
+            objectAbsorbable.PlayableVolume = null;
+           // other.transform.position = objectAbsorbable.InitialPosition;
         }
     }
 
     private void OnTriggerStay(Collider other)
     {
-        if (_triggerStayCheck)
+        //if (_triggerStayCheck)
         {
             if (other.TryGetComponent<IAbsorbable>(out var objectAbsorbable))
             {
-                if (_absorbableList.Contains(objectAbsorbable))
-                {
-                    _absorbableList.Remove(objectAbsorbable);
-                }
+                objectAbsorbable.PlayableVolume = this;
+                // if (_absorbableList.Contains(objectAbsorbable))
+                // {
+                //     _absorbableList.Remove(objectAbsorbable);
+                // }
             }
         }
     }

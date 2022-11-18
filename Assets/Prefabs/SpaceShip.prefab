@@ -154,6 +154,7 @@ GameObject:
   - component: {fileID: 6961655016472437815}
   - component: {fileID: 6961655016472437808}
   - component: {fileID: 8933049205645045593}
+  - component: {fileID: 5521916273470801495}
   m_Layer: 2
   m_Name: Spot Light
   m_TagString: Untagged
@@ -189,8 +190,8 @@ Light:
   m_Type: 0
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 2408996.2
-  m_Range: 20
+  m_Intensity: 143851040
+  m_Range: 3.1
   m_SpotAngle: 54
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -220,7 +221,7 @@ Light:
       e32: 0
       e33: 1
     m_UseCullingMatrixOverride: 0
-  m_Cookie: {fileID: 0}
+  m_Cookie: {fileID: 10300, guid: 0000000000000000f000000000000000, type: 0}
   m_DrawHalo: 0
   m_Flare: {fileID: 0}
   m_RenderMode: 0
@@ -232,7 +233,7 @@ Light:
   m_LightShadowCasterMode: 2
   m_AreaSize: {x: 0.5, y: 0.5}
   m_BounceIntensity: 1
-  m_ColorTemperature: 6570
+  m_ColorTemperature: 18986
   m_UseColorTemperature: 1
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
@@ -251,13 +252,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a68c43fe1f2a47cfa234b5eeaa98012, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Intensity: 24.2
+  m_Intensity: 30.1
   m_EnableSpotReflector: 1
   m_LuxAtDistance: 1
   m_InnerSpotPercent: 0
   m_SpotIESCutoffPercent: 100
   m_LightDimmer: 1
-  m_VolumetricDimmer: 1
+  m_VolumetricDimmer: 16
   m_LightUnit: 4
   m_FadeDistance: 10000
   m_VolumetricFadeDistance: 10000
@@ -387,16 +388,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3af3c506f13e36443ae4d26eb070afca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  colorIdle: {r: 1, g: 1, b: 1, a: 1}
+  colorIsAbsorbing: {r: 0, g: 1, b: 1, a: 1}
+  colorFailed: {r: 1, g: 0, b: 0, a: 1}
   strenght: 1
   radius: 3
   inTheTrigger: []
-  AbsorbePoint: {fileID: 6961655015927970678}
+  absorbePoint: {fileID: 6961655015927970678}
   scaleShip: {fileID: 6961655016796113057}
   aliaseLoopLight: impactBell_heavy
   aliaseLoopAbsorbing: impactBell_heavy
   aliaseLoopFail: impactBell_heavy
   aliaseAbsorbSuccess: impactBell_heavy
   VEhasAbsorb: {fileID: 6604540578002184744}
+--- !u!114 &5521916273470801495
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6961655016472437811}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ae282e0ff7849af9cabb054227e09c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &6961655016796113065
 GameObject:
   m_ObjectHideFlags: 0
@@ -502,7 +519,7 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 8
-  speed: 5
+  speed: 50
   aliaseIdle: impactBell_heavy
   aliaseMoving: impactBell_heavy
   aliaseUpToSky: impactBell_heavy
@@ -550,7 +567,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speedHeightMove: 5
-  heightOffset: 3
   aliaseGrowing: impactBell_heavy
 --- !u!114 &4559491585803938523
 MonoBehaviour:

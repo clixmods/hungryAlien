@@ -1,9 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-namespace AudioAliase.Edit
+namespace Audio.Editor
 {
 
     public class AddTagWindow : EditorWindow

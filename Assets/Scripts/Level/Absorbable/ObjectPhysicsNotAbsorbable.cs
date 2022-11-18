@@ -11,12 +11,17 @@ namespace Level
         public bool IsAbsorbed { get; }
         public Rigidbody Rigidbody { get; private set; }
         public float ForceRequired { get; }
+        public PlayableVolume PlayableVolume { get; set; }
 
         private void Start()
         {
+            InitialPosition = transform.position;
             Rigidbody = GetComponent<Rigidbody>();
             IsAbsorbable = true;
         }
+
+        
+        public Vector3 InitialPosition { get; set; }
 
         public void OnAbsorb(Absorber absorber, out AbsorbingState absorbingState)
         {
@@ -28,5 +33,6 @@ namespace Level
 
        
         }
+
     }
 }

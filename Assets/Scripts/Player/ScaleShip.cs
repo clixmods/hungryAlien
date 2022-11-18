@@ -10,7 +10,7 @@ public class ScaleShip : MonoBehaviour
     /// </summary>
     float _scaleFactor = 1;
     [SerializeField] private float speedHeightMove = 5;
-    [SerializeField] private float heightOffset;
+    //[SerializeField] private float heightOffset;
     
     [Header("Sound Aliases")]
     [SerializeField,Aliase] private string aliaseGrowing;
@@ -37,6 +37,7 @@ public class ScaleShip : MonoBehaviour
         {
             var transformPosition = transform.position;
             var heightFloor = _heightFloor;
+            var heightOffset = LevelManager.Instance.GetCurrentHeightOffset;
             transform.localScale = Vector3.Lerp(transform.localScale, Vector3.one * _scaleFactor, 1);
             Vector3 targetPos = new Vector3(transformPosition.x, (_scaleFactor/2) + (heightFloor + heightOffset + _scaleFactor), transformPosition.z);
             transform.position = Vector3.MoveTowards(transform.position, targetPos, Time.deltaTime * speedHeightMove);

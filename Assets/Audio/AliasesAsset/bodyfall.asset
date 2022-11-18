@@ -167,13 +167,13 @@ MonoBehaviour:
     bypassReverbZones: 0
     priority: 0
     volume: 0
-    minVolume: 0.8
-    maxVolume: 0.8
+    minVolume: 0.95824915
+    maxVolume: 1
     isLooping: 0
     startAliase: 
     endAliase: 
-    minPitch: 1
-    maxPitch: 1.01
+    minPitch: 0.8787879
+    maxPitch: 1.090808
     stereoPan: 0
     spatialBlend: 1
     reverbZoneMix: 1

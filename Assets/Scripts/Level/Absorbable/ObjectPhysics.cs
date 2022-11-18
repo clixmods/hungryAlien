@@ -33,7 +33,7 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
     /// <summary>
     /// The gain of the absorbtion 
     /// </summary>
-    [Range(1,2),SerializeField] private float scaleMultiplier = 1.05f ;
+    [Range(0,1f),SerializeField] private float scaleMultiplier = 0.05f ;
     
 
     #endregion
@@ -43,6 +43,7 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
     /// </summary>
     private AudioPlayer _audioPlayer;
     private MeshCollider _collider;
+    private PlayableVolume _playableVolume;
     #endregion
     #region Properties
     public Rigidbody Rigidbody { get; private set; }
@@ -50,8 +51,11 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
     public bool IsAbsorbed { get; set; }
     public bool IsAbsorbable { get; private set; }
     
+    public Vector3 InitialPosition { get;  set; }
+    
     public int SleepUntilLevel => sleepUntilLevel;
     public float ScaleMultiplier => scaleMultiplier;
+    public PlayableVolume PlayableVolume { get; set; }
     #endregion
 
     #region MonoBehaviour
@@ -59,32 +63,34 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
     // Start is called before the first frame update
     void Start()
     {
-        
+        InitialPosition = transform.position;
         _collider = GetComponent<MeshCollider>();
         if (_collider == null)
             _collider = transform.AddComponent<MeshCollider>();
         
         _collider.convex = true;
+        _collider.enabled = false;
         Rigidbody = GetComponent<Rigidbody>();
         Rigidbody.isKinematic = true;
         Rigidbody.mass = ForceRequired;
+        
         
         if (settings == null)
         {
             Debug.LogWarning(MessageSettingsNotSetup, gameObject);
             // Prevent null ref
             settings = ObjectPhysicsScriptableObject.CreateInstance<ObjectPhysicsScriptableObject>(); 
-            //gameObject.SetActive(false);
+           
         }
 
         LevelManager.Instance.CallbackPreLevelChange += WatchLevelToWakeUp;
 
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        Rigidbody.mass = ForceRequired; // TODO : TEMP
+        if (ForceRequired == 0)
+        {
+            Debug.LogWarning("Warning : Force required = 0, assign a greater value.", gameObject);
+            forceRequired = 1;
+        }
+           
     }
     
     void OnCollisionEnter(Collision collision)
@@ -96,10 +102,26 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
                 collisionSurface.Play();
             }
             AudioManager.PlaySoundAtPosition(settings.aliaseImpact,transform.position);
-            FXManager.PlayFXAtPosition(settings.fxHit, transform.position);
+//            FXManager.PlayFXAtPosition(settings.fxHit, transform.position);
         }
     }
-    
+
+    private void Update()
+    {
+        if (PlayableVolume == null)
+        {
+            
+            transform.position = InitialPosition;
+            Rigidbody.Sleep();
+            
+        }
+        else
+        {
+            Rigidbody.WakeUp();
+        }
+            
+    }
+
     private void OnDestroy()
     {
         
@@ -108,7 +130,8 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
         AudioManager.StopLoopSound(ref _audioPlayer);
         LevelManager.Instance.RemoveObjectPhysical(this);
     }
-    
+
+#if UNITY_EDITOR
     private void OnDrawGizmos()
     {
         // Gizmos.DrawWireSphere(AbsorbePoint.position, 1);
@@ -116,6 +139,7 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
             $"Force Required {ForceRequired} // Gain : {scaleMultiplier}",
             new GUIStyle());
     }
+#endif
 
     #endregion
     
@@ -124,15 +148,19 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
     {
         if ( Rigidbody.isKinematic && LevelManager.Instance.CurrentLevel == sleepUntilLevel)
         {
-           // Debug.Log("[ObjectPhysics] Object added to LevelManager", gameObject);
+            _collider.enabled = true;
             Rigidbody.isKinematic = false;
             LevelManager.Instance.AddObjectPhysical(this);
-
             int test = LevelManager.Instance.CallbackPreLevelChange.GetInvocationList().Length;
             LevelManager.Instance.CallbackPreLevelChange -= WatchLevelToWakeUp;
-         //   Debug.LogWarning($"OH donc {test} est devenue { LevelManager.Instance.CallbackPreLevelChange.GetInvocationList().Length}");
             IsAbsorbable = true;
         }
+    }
+
+
+    void SetDissolve(float amount)
+    {
+        
     }
 
     public void OnAbsorb(Absorber absorber, out AbsorbingState absorbingState)
@@ -170,5 +198,10 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
 
    
 
+    }
+
+    public void ResetToInitialPosition()
+    {
+        throw new NotImplementedException();
     }
 }
