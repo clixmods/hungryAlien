@@ -154,6 +154,7 @@ GameObject:
   - component: {fileID: 6961655016472437815}
   - component: {fileID: 6961655016472437808}
   - component: {fileID: 8933049205645045593}
+  - component: {fileID: 5521916273470801495}
   m_Layer: 2
   m_Name: Spot Light
   m_TagString: Untagged
@@ -387,6 +388,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3af3c506f13e36443ae4d26eb070afca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  colorIdle: {r: 1, g: 1, b: 1, a: 1}
+  colorIsAbsorbing: {r: 0, g: 1, b: 1, a: 1}
+  colorFailed: {r: 1, g: 0, b: 0, a: 1}
   strenght: 1
   radius: 3
   inTheTrigger: []
@@ -397,6 +401,19 @@ MonoBehaviour:
   aliaseLoopFail: impactBell_heavy
   aliaseAbsorbSuccess: impactBell_heavy
   VEhasAbsorb: {fileID: 6604540578002184744}
+--- !u!114 &5521916273470801495
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6961655016472437811}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ae282e0ff7849af9cabb054227e09c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &6961655016796113065
 GameObject:
   m_ObjectHideFlags: 0

@@ -38,6 +38,8 @@ namespace AudioAliase
 
         #endregion
 
+        public bool debugText = false;
+        public static bool ShowDebugText => Instance.debugText;
         public static Aliases[] aliasesArray
         {
             get { return Instance._audioManagerData.aliases; }
@@ -153,13 +155,14 @@ namespace AudioAliase
 
             if (alias != null && alias.audio.Length == 0)
             {
+                if(ShowDebugText)
                 Debug.LogError("[AudioManager] : Aliase: " + name + " contains no sounds.");
                 return false;
             }
 
             if (alias == null)
             {
-                Debug.LogWarning("[AudioManager] : Aliase: " + name + " not found.");
+                if(ShowDebugText)Debug.LogWarning("[AudioManager] : Aliase: " + name + " not found.");
                 return false;
             }
 
@@ -191,7 +194,7 @@ namespace AudioAliase
                     return true;
                 }
             }
-            Debug.LogWarning($"AudioManager : Limits exceded for _audioSource, maybe you need to increase your audioSourcePoolSize (Size = {Instance.audioSourcePoolSize})");
+            if(ShowDebugText)Debug.LogWarning($"AudioManager : Limits exceded for _audioSource, maybe you need to increase your audioSourcePoolSize (Size = {Instance.audioSourcePoolSize})");
             return false;
         }
         /// <summary>
@@ -264,7 +267,7 @@ namespace AudioAliase
         {
             if (string.IsNullOrEmpty(aliaseName))
             {
-                Debug.LogError("AudioManager : Un son a voulu être jouer sans d'aliaseName, il faut en assigné un dans le script qui a exécuté la function");
+                if(ShowDebugText)  Debug.LogError("AudioManager : Un son a voulu être jouer sans d'aliaseName, il faut en assigné un dans le script qui a exécuté la function");
                 return null;
             }
             if(GetSoundByAliase(aliaseName, out Aliase clip) && GetAudioPlayer(out AudioPlayer audioPlayer))
@@ -275,7 +278,7 @@ namespace AudioAliase
 
                 if (clip.isPlaceholder)
                 {
-                    Debug.LogWarning("Un son placeholder a été jouer, il faut le changer , nom de l'aliase " + aliaseName);
+                    if(ShowDebugText) Debug.LogWarning("Un son placeholder a été jouer, il faut le changer , nom de l'aliase " + aliaseName);
                 }
 
                 if (clip.Secondary != System.String.Empty)
@@ -313,7 +316,7 @@ namespace AudioAliase
         {
             if (audioPlayerLoop != null && !audioPlayerLoop.IsUsable)
             {
-                //Debug.Log($"[AudioManager] PlayLoop {aliaseName} already played");
+                if(ShowDebugText) //Debug.Log($"[AudioManager] PlayLoop {aliaseName} already played");
                 return;
             }
             if (string.IsNullOrEmpty(aliaseName))
@@ -326,7 +329,7 @@ namespace AudioAliase
             }
             if (!GetAudioPlayer(out AudioPlayer audioPlayer))
             {
-                Debug.LogWarning($"AudioManager : Limits exceded for _audioSource, maybe you need to increase your audioSourcePoolSize (Size = {Instance.audioSourcePoolSize})");
+                if(ShowDebugText) Debug.LogWarning($"AudioManager : Limits exceded for _audioSource, maybe you need to increase your audioSourcePoolSize (Size = {Instance.audioSourcePoolSize})");
                 return ;
             }
             audioPlayer.gameObject.transform.position = position;
@@ -334,7 +337,7 @@ namespace AudioAliase
             audioPlayer.Setup(clip);
             if (clip.isPlaceholder)
             {
-                Debug.LogWarning("[AudioManager] Placeholder sound was played, name " + aliaseName);
+                if(ShowDebugText) Debug.LogWarning("[AudioManager] Placeholder sound was played, name " + aliaseName);
             }
             if (!String.IsNullOrEmpty(clip.Secondary))
             {

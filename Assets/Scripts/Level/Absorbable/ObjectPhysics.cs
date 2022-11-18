@@ -157,8 +157,11 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
         }
     }
 
-    
 
+    void SetDissolve(float amount)
+    {
+        
+    }
 
     public void OnAbsorb(Absorber absorber, out AbsorbingState absorbingState)
     {
