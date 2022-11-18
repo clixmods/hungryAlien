@@ -37,10 +37,12 @@ public struct DataLevel
     public Transform playerSpawnPoint;
     [Tooltip("A volume to secure position of ObjectPhysics")]
     public PlayableVolume playableVolume;
-
+    [Tooltip("Collisions for objects when the level is active. Can be [Optional]")]
     public Collider collision;
     public float heightOffset;
+    public float shipScaleAtTheEnd;
 }
+
 [RequireComponent(typeof(CinemachineSmoothPath))]
 public class LevelManager : MonoBehaviour
 {
@@ -82,9 +84,6 @@ public class LevelManager : MonoBehaviour
             
         } 
     }
-  
-    //public List<Transform> waypoints; // TODO : OBsolete ?
-    
     [SerializeField] private DataLevel[] dataLevels;
     public DataLevel[] DataLevels => dataLevels;
     
@@ -105,7 +104,6 @@ public class LevelManager : MonoBehaviour
     /// </summary>
     public Action CallbackPreLevelChange;
     public GameState State { get; private set; }
-    public int MaxLevel => dataLevels.Length; // TODO : Obsolete
     public List<ObjectPhysics> CurrentObjectList => _objectPhysicsList;
     public GameObject GetCurrentFloor {
         get
@@ -175,6 +173,14 @@ public class LevelManager : MonoBehaviour
         
         CallbackPreLevelChange();
         CallbackLevelChange();
+        _lookAtTransform = new GameObject().transform;
+    }
+
+    private Transform _lookAtTransform;
+    Transform GetLookAtPoint()
+    {
+        _lookAtTransform.position = Vector3.Lerp(_lookAtTransform.position, CurrentPlayerSpawnPoint.position, Time.deltaTime);
+        return _lookAtTransform;
     }
 
     // Update is called once per frame
@@ -186,7 +192,7 @@ public class LevelManager : MonoBehaviour
         {
             // Force the camera to look a next object when it is moving to next level
             if( CurrentPlayerSpawnPoint != null)
-                _virtualCamera.LookAt = CurrentPlayerSpawnPoint;
+                _virtualCamera.LookAt = GetLookAtPoint();
             else
                 _virtualCamera.LookAt = null;
             // Set speed of camera and go pass state to isMoving
@@ -195,7 +201,7 @@ public class LevelManager : MonoBehaviour
         }
         else
         {
-            _virtualCamera.LookAt = CurrentPlayerSpawnPoint;
+            _virtualCamera.LookAt = GetLookAtPoint();
             _dollyCart.m_Speed = 0;
             State = GameState.Ingame;
             WatchObjectPhysicalAvailable();
