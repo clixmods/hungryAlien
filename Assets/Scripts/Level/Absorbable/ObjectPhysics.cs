@@ -43,6 +43,7 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
     /// </summary>
     private AudioPlayer _audioPlayer;
     private MeshCollider _collider;
+    private PlayableVolume _playableVolume;
     #endregion
     #region Properties
     public Rigidbody Rigidbody { get; private set; }
@@ -54,6 +55,7 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
     
     public int SleepUntilLevel => sleepUntilLevel;
     public float ScaleMultiplier => scaleMultiplier;
+    public PlayableVolume PlayableVolume { get; set; }
     #endregion
 
     #region MonoBehaviour
@@ -78,7 +80,7 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
             Debug.LogWarning(MessageSettingsNotSetup, gameObject);
             // Prevent null ref
             settings = ObjectPhysicsScriptableObject.CreateInstance<ObjectPhysicsScriptableObject>(); 
-            //gameObject.SetActive(false);
+           
         }
 
         LevelManager.Instance.CallbackPreLevelChange += WatchLevelToWakeUp;
@@ -100,10 +102,26 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
                 collisionSurface.Play();
             }
             AudioManager.PlaySoundAtPosition(settings.aliaseImpact,transform.position);
-            FXManager.PlayFXAtPosition(settings.fxHit, transform.position);
+//            FXManager.PlayFXAtPosition(settings.fxHit, transform.position);
         }
     }
-    
+
+    private void Update()
+    {
+        if (PlayableVolume == null)
+        {
+            
+            transform.position = InitialPosition;
+            Rigidbody.Sleep();
+            
+        }
+        else
+        {
+            Rigidbody.WakeUp();
+        }
+            
+    }
+
     private void OnDestroy()
     {
         

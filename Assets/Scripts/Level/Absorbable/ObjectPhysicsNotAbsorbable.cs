@@ -11,6 +11,7 @@ namespace Level
         public bool IsAbsorbed { get; }
         public Rigidbody Rigidbody { get; private set; }
         public float ForceRequired { get; }
+        public PlayableVolume PlayableVolume { get; set; }
 
         private void Start()
         {
