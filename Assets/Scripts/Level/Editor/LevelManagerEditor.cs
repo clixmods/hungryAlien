@@ -131,21 +131,58 @@ using UnityEngine.UI;
             EditorGUI.LabelField( MultiplierRect, "Scale&Force Gain");
            
             MultiplierRect.x += MultiplierRect.width / 2;
-            propertyMultiplier.floatValue = EditorGUI.Slider(MultiplierRect,propertyMultiplier.floatValue,0,2);
+            propertyMultiplier.floatValue = EditorGUI.Slider(MultiplierRect,propertyMultiplier.floatValue,0,1);
+            MultiplierRect.x += MultiplierRect.width;
+            EditorGUI.LabelField(MultiplierRect, GetAdditionalScale(index).ToString() );
+            
             serializeObjectPhy.ApplyModifiedProperties();
             _indexObjectPreview++;
+        }
+
+        float GetAdditionalScale(int index)
+        {
+            float startScale = 1;
+            float endScale;
+            if (_currentDrawedLevel >= 1)
+            {
+                startScale = myObject.DataLevels[_currentDrawedLevel-1].shipScaleAtTheEnd;
+                endScale = myObject.DataLevels[_currentDrawedLevel].shipScaleAtTheEnd - startScale;
+            }
+            else
+            {
+                endScale = myObject.DataLevels[_currentDrawedLevel].shipScaleAtTheEnd;
+            }
+          
+            
+             ObjectPhysics[] rewards = GetObjectsInLevel(_currentDrawedLevel);
+            float sommeTotal = 0;
+      
+            foreach(var reward in rewards) sommeTotal += reward.ScaleMultiplier;
+            
+            float addition = 0;
+            addition +=  (rewards[index].ScaleMultiplier / sommeTotal)*endScale;
+            
+
+            return addition;
         }
 
         //Draws the header
         void DrawHeader(Rect rect)
         {
+            rect.width -= 30;
             ObjectPhysics[] obj = GetObjectsInLevel(_currentDrawedLevel);
+       
             for (int i = 0; i < obj.Length; i++)
             {
                 scalePlayerSupposition += obj[i].ScaleMultiplier;
             }
             var name = $"Objects available in level {_currentDrawedLevel} / TOTAL Scale player at the end : {scalePlayerSupposition} ";
+            
+            
             EditorGUI.LabelField(rect, name);
+            rect.x += 250;
+            rect.width -=250;
+            myObject.DataLevels[_currentDrawedLevel].shipScaleAtTheEnd = EditorGUI.FloatField(rect,     myObject.DataLevels[_currentDrawedLevel].shipScaleAtTheEnd);
         }
         
 
@@ -156,6 +193,24 @@ using UnityEngine.UI;
         public override void OnInspectorGUI()
         {
             myObject = (LevelManager) target;
+
+            if (myObject.DataLevels.Length > 1)
+            {
+                float firstEndScale = myObject.DataLevels[0].shipScaleAtTheEnd;
+                // Manage Data Level End scale
+                for (int i = 1; i < myObject.DataLevels.Length; i++)
+                {
+                    if (firstEndScale >= myObject.DataLevels[i].shipScaleAtTheEnd)
+                    {
+                        myObject.DataLevels[i].shipScaleAtTheEnd = firstEndScale + 0.1f;
+                        
+                    }
+                    firstEndScale = myObject.DataLevels[i].shipScaleAtTheEnd;
+                }
+            }
+          
+            
+            
             myObject.transform.position = Vector3.zero; 
             myObject.transform.rotation = Quaternion.identity;
             soObject ??= new SerializedObject(myObject);

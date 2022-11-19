@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 957.7178, g: 5843.879, b: 6426.2344, a: 1}
+  m_IndirectSpecularColor: {r: 957.7178, g: 5843.879, b: 6426.2812, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -722,7 +722,7 @@ MonoBehaviour:
   settings: {fileID: 11400000, guid: dd480153723a36744b8a9cfc7f02edb8, type: 2}
   sleepUntilLevel: 1
   forceRequired: 1
-  scaleMultiplier: 0.05
+  scaleMultiplier: 0.265
   _sleepUntilAbsorb: 0
 --- !u!64 &176021551
 MeshCollider:
@@ -876,7 +876,7 @@ MonoBehaviour:
   settings: {fileID: 11400000, guid: dd480153723a36744b8a9cfc7f02edb8, type: 2}
   sleepUntilLevel: 2
   forceRequired: 1.013
-  scaleMultiplier: 0.11
+  scaleMultiplier: 0.58
   _sleepUntilAbsorb: 0
 --- !u!64 &196309705
 MeshCollider:
@@ -1153,7 +1153,7 @@ MonoBehaviour:
   settings: {fileID: 11400000, guid: 5195d25a1e4de774faa8c5b49f788908, type: 2}
   sleepUntilLevel: 0
   forceRequired: 1
-  scaleMultiplier: 0.05
+  scaleMultiplier: 0.334
   _sleepUntilAbsorb: 1
 --- !u!64 &240318414
 MeshCollider:
@@ -1595,7 +1595,7 @@ MonoBehaviour:
   settings: {fileID: 11400000, guid: dd480153723a36744b8a9cfc7f02edb8, type: 2}
   sleepUntilLevel: 1
   forceRequired: 1
-  scaleMultiplier: 0.05
+  scaleMultiplier: 0.381
   _sleepUntilAbsorb: 0
 --- !u!64 &327522952
 MeshCollider:
@@ -1835,7 +1835,7 @@ MonoBehaviour:
     playableVolume: {fileID: 1799199575}
     collision: {fileID: 954732850}
     heightOffset: 2.5
-    shipScaleAtTheEnd: 0
+    shipScaleAtTheEnd: 2.35
   - name: Bac a sable Zone
     skip: 0
     dollyCartPosition: 1
@@ -1845,7 +1845,7 @@ MonoBehaviour:
     playableVolume: {fileID: 1974005922}
     collision: {fileID: 0}
     heightOffset: 4
-    shipScaleAtTheEnd: 0
+    shipScaleAtTheEnd: 3.14
   - name: Caillou
     skip: 0
     dollyCartPosition: 2
@@ -1854,8 +1854,8 @@ MonoBehaviour:
     playerSpawnPoint: {fileID: 1471744148}
     playableVolume: {fileID: 153132719}
     collision: {fileID: 0}
-    heightOffset: 0
-    shipScaleAtTheEnd: 0
+    heightOffset: 2
+    shipScaleAtTheEnd: 4.13
   - name: Jardin
     skip: 0
     dollyCartPosition: 3
@@ -1865,7 +1865,7 @@ MonoBehaviour:
     playableVolume: {fileID: 1092337485}
     collision: {fileID: 0}
     heightOffset: 0
-    shipScaleAtTheEnd: 0
+    shipScaleAtTheEnd: 5
 --- !u!114 &376550928
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2445,7 +2445,7 @@ MonoBehaviour:
   settings: {fileID: 11400000, guid: dd480153723a36744b8a9cfc7f02edb8, type: 2}
   sleepUntilLevel: 1
   forceRequired: 1
-  scaleMultiplier: 0.05
+  scaleMultiplier: 0.436
   _sleepUntilAbsorb: 0
 --- !u!64 &529883406
 MeshCollider:
@@ -2887,7 +2887,7 @@ MonoBehaviour:
   settings: {fileID: 11400000, guid: 5195d25a1e4de774faa8c5b49f788908, type: 2}
   sleepUntilLevel: 0
   forceRequired: 1
-  scaleMultiplier: 0.05
+  scaleMultiplier: 0.438
   _sleepUntilAbsorb: 0
 --- !u!64 &689435598
 MeshCollider:
@@ -3384,7 +3384,7 @@ MonoBehaviour:
   settings: {fileID: 11400000, guid: dd480153723a36744b8a9cfc7f02edb8, type: 2}
   sleepUntilLevel: 1
   forceRequired: 1
-  scaleMultiplier: 0.05
+  scaleMultiplier: 0.452
   _sleepUntilAbsorb: 0
 --- !u!64 &769005804
 MeshCollider:
@@ -5430,7 +5430,7 @@ MonoBehaviour:
   settings: {fileID: 11400000, guid: 5195d25a1e4de774faa8c5b49f788908, type: 2}
   sleepUntilLevel: 0
   forceRequired: 1
-  scaleMultiplier: 0.05
+  scaleMultiplier: 0.632
   _sleepUntilAbsorb: 0
 --- !u!64 &1140393975
 MeshCollider:
@@ -6312,7 +6312,7 @@ MonoBehaviour:
   settings: {fileID: 11400000, guid: dd480153723a36744b8a9cfc7f02edb8, type: 2}
   sleepUntilLevel: 1
   forceRequired: 1
-  scaleMultiplier: 0.05
+  scaleMultiplier: 0.343
   _sleepUntilAbsorb: 0
 --- !u!64 &1260359042
 MeshCollider:
@@ -6595,7 +6595,7 @@ MonoBehaviour:
   settings: {fileID: 11400000, guid: dd480153723a36744b8a9cfc7f02edb8, type: 2}
   sleepUntilLevel: 1
   forceRequired: 1
-  scaleMultiplier: 0.05
+  scaleMultiplier: 0.391
   _sleepUntilAbsorb: 0
 --- !u!64 &1283798329
 MeshCollider:
@@ -7618,7 +7618,7 @@ MonoBehaviour:
   settings: {fileID: 11400000, guid: dd480153723a36744b8a9cfc7f02edb8, type: 2}
   sleepUntilLevel: 1
   forceRequired: 1
-  scaleMultiplier: 0.05
+  scaleMultiplier: 0.336
   _sleepUntilAbsorb: 0
 --- !u!64 &1400494009
 MeshCollider:
@@ -8755,7 +8755,7 @@ MonoBehaviour:
   settings: {fileID: 11400000, guid: 5195d25a1e4de774faa8c5b49f788908, type: 2}
   sleepUntilLevel: 0
   forceRequired: 1
-  scaleMultiplier: 0.05
+  scaleMultiplier: 0.568
   _sleepUntilAbsorb: 0
 --- !u!64 &1570655553
 MeshCollider:
@@ -9356,7 +9356,7 @@ MonoBehaviour:
   settings: {fileID: 11400000, guid: dd480153723a36744b8a9cfc7f02edb8, type: 2}
   sleepUntilLevel: 1
   forceRequired: 1
-  scaleMultiplier: 0.05
+  scaleMultiplier: 0.231
   _sleepUntilAbsorb: 0
 --- !u!64 &1660090239
 MeshCollider:
@@ -9631,7 +9631,7 @@ MonoBehaviour:
   settings: {fileID: 11400000, guid: dd480153723a36744b8a9cfc7f02edb8, type: 2}
   sleepUntilLevel: 1
   forceRequired: 1
-  scaleMultiplier: 0.05
+  scaleMultiplier: 0.224
   _sleepUntilAbsorb: 0
 --- !u!64 &1715074739
 MeshCollider:
@@ -10041,7 +10041,7 @@ MonoBehaviour:
   settings: {fileID: 11400000, guid: dd480153723a36744b8a9cfc7f02edb8, type: 2}
   sleepUntilLevel: 1
   forceRequired: 1
-  scaleMultiplier: 0.05
+  scaleMultiplier: 0.242
   _sleepUntilAbsorb: 0
 --- !u!64 &1813449020
 MeshCollider:
@@ -10234,7 +10234,7 @@ MonoBehaviour:
   settings: {fileID: 11400000, guid: 5195d25a1e4de774faa8c5b49f788908, type: 2}
   sleepUntilLevel: 0
   forceRequired: 1
-  scaleMultiplier: 0.05
+  scaleMultiplier: 0.66
   _sleepUntilAbsorb: 0
 --- !u!64 &1822507238
 MeshCollider:
@@ -10948,7 +10948,7 @@ MonoBehaviour:
   settings: {fileID: 11400000, guid: dd480153723a36744b8a9cfc7f02edb8, type: 2}
   sleepUntilLevel: 1
   forceRequired: 1
-  scaleMultiplier: 0.05
+  scaleMultiplier: 0.256
   _sleepUntilAbsorb: 0
 --- !u!64 &1904879385
 MeshCollider:
@@ -11914,7 +11914,7 @@ MonoBehaviour:
   settings: {fileID: 11400000, guid: dd480153723a36744b8a9cfc7f02edb8, type: 2}
   sleepUntilLevel: 1
   forceRequired: 1
-  scaleMultiplier: 0.05
+  scaleMultiplier: 0.274
   _sleepUntilAbsorb: 0
 --- !u!64 &2035968409
 MeshCollider:
@@ -12003,7 +12003,7 @@ MonoBehaviour:
   settings: {fileID: 11400000, guid: 5195d25a1e4de774faa8c5b49f788908, type: 2}
   sleepUntilLevel: 0
   forceRequired: 1
-  scaleMultiplier: 0.05
+  scaleMultiplier: 0.466
   _sleepUntilAbsorb: 0
 --- !u!64 &2059304407
 MeshCollider:
@@ -12112,7 +12112,7 @@ MonoBehaviour:
   settings: {fileID: 11400000, guid: dd480153723a36744b8a9cfc7f02edb8, type: 2}
   sleepUntilLevel: 1
   forceRequired: 1
-  scaleMultiplier: 0.05
+  scaleMultiplier: 0.247
   _sleepUntilAbsorb: 0
 --- !u!64 &2061293560
 MeshCollider:
@@ -12195,7 +12195,7 @@ MonoBehaviour:
   settings: {fileID: 11400000, guid: 5195d25a1e4de774faa8c5b49f788908, type: 2}
   sleepUntilLevel: 0
   forceRequired: 1
-  scaleMultiplier: 0.05
+  scaleMultiplier: 0.767
   _sleepUntilAbsorb: 0
 --- !u!64 &2082459158
 MeshCollider:

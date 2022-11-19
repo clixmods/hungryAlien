@@ -30,7 +30,7 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
     /// <summary>
     /// Force required to absorb the object by the player
     /// </summary>
-    [SerializeField,Range(0.01f, 2)] private float forceRequired;
+    [SerializeField,Range(0f, 1)] private float forceRequired;
     /// <summary>
     /// The gain of the absorbtion 
     /// </summary>
@@ -47,6 +47,7 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
     private PlayableVolume _playableVolume;
     private MeshRenderer _meshRenderer;
     private MaterialPropertyBlock[] _propBlocks;
+  
     #endregion
     #region Properties
     public Rigidbody Rigidbody { get; private set; }
@@ -59,6 +60,8 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
     public Vector3 InitialPosition { get;  set; }
     
     public int SleepUntilLevel => sleepUntilLevel;
+
+    public float InitialScaleMultiplier { get; private set; }
     public float ScaleMultiplier => scaleMultiplier;
 
     [SerializeField] private bool _sleepUntilAbsorb;
@@ -82,24 +85,12 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
         {
             _propBlocks[i] = new MaterialPropertyBlock();
         }
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        InitialPosition = transform.position;
-        
         _collider = GetComponent<MeshCollider>();
         if (_collider == null)
             _collider = transform.AddComponent<MeshCollider>();
         
-        _collider.convex = true;
-        _collider.enabled = false;
         Rigidbody = GetComponent<Rigidbody>();
-        Rigidbody.isKinematic = true;
-        Rigidbody.mass = ForceRequired;
-        
-        
+         
         if (settings == null)
         {
             Debug.LogWarning(MessageSettingsNotSetup, gameObject);
@@ -108,7 +99,22 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
            
         }
 
+        InitialScaleMultiplier = ScaleMultiplier;
+    }
+
+    public void Init()
+    {
+        InitialPosition = transform.position;
+        
+        _collider.convex = true;
+        _collider.enabled = false;
+        
+        Rigidbody.isKinematic = true;
+        Rigidbody.mass = ForceRequired;
+        
+
         LevelManager.Instance.CallbackPreLevelChange += WatchLevelToWakeUp;
+        LevelManager.Instance.CallbackLevelChange += GenerateScaleMultiplier;
 
         if (ForceRequired == 0)
         {
@@ -190,6 +196,32 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
         }
     }
 
+    public void GenerateScaleMultiplier()
+    {
+        float startScale = 1f;
+        float endScale;
+        int currentLevel = LevelManager.Instance.CurrentLevel;
+        var oof = LevelManager.Instance.CurrentObjectList;
+        var myObject = LevelManager.Instance;
+        if (currentLevel >= 1)
+        {
+            startScale = myObject.DataLevels[currentLevel-1].shipScaleAtTheEnd;
+            endScale = myObject.DataLevels[currentLevel].shipScaleAtTheEnd - startScale;
+        }
+      
+        endScale = myObject.DataLevels[currentLevel].shipScaleAtTheEnd - startScale;
+        
+        
+        float sommeTotal = 0;
+      
+        foreach(var reward in oof) sommeTotal += reward.InitialScaleMultiplier;
+            
+        float addition = 0;
+        addition +=  (InitialScaleMultiplier / sommeTotal)*endScale;
+
+        scaleMultiplier = addition;
+
+    }
 
     void SetDissolve(float amount)
     {
