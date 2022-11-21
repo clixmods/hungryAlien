@@ -75,11 +75,13 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
     public PlayableVolume PlayableVolume { get; set; }
     #endregion
 
+
+    private Mesh GeneratedCollider;
     #region MonoBehaviour
 
     private void Awake()
     {
-        _meshRenderer = GetComponent<MeshRenderer>();
+        _meshRenderer = GetComponentInChildren<MeshRenderer>();
         _propBlocks = new MaterialPropertyBlock[_meshRenderer.materials.Length];
         for (int i = 0; i < _propBlocks.Length; i++)
         {
@@ -87,8 +89,35 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
         }
         _collider = GetComponent<MeshCollider>();
         if (_collider == null)
+        {
             _collider = transform.AddComponent<MeshCollider>();
+        }
+
+        if (_collider.sharedMesh == null)
+        {
+            MeshFilter[] meshFilters = GetComponentsInChildren<MeshFilter>();
+            CombineInstance[] combine = new CombineInstance[meshFilters.Length];
+            int index = 0;
+            while (index < meshFilters.Length)
+            {
+                combine[index].mesh = meshFilters[index].sharedMesh;
+                var bound = new Bounds();
+                var ogpos = meshFilters[index].transform.position; 
+                meshFilters[index].transform.position = Vector3.zero;
+                combine[index].transform = meshFilters[index].transform.localToWorldMatrix  ;
+                bound.size = meshFilters[index].transform.localScale;
+                combine[index].mesh.bounds = bound;
+                meshFilters[index].transform.position = ogpos;
+                index++;
+            }
+
+             GeneratedCollider = new Mesh();
+             GeneratedCollider.CombineMeshes(combine);
+            _collider.sharedMesh = GeneratedCollider;
+        }
         
+       
+
         Rigidbody = GetComponent<Rigidbody>();
          
         if (settings == null)
@@ -158,7 +187,7 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
     private void OnDestroy()
     {
         
-      
+        GeneratedCollider.Clear();
     }
 
     void EndObject()

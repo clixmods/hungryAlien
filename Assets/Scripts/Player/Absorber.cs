@@ -29,7 +29,7 @@ public class Absorber : MonoBehaviour
     [SerializeField] private Color colorIsAbsorbing = Color.cyan;
     [SerializeField] private Color colorFailed = Color.red;
 
-   
+    [SerializeField] private ParticleSystem particleSystemVaccum;
     /// <summary>
     /// Strenght applied when the player absorb object
     /// </summary>
@@ -117,7 +117,7 @@ public class Absorber : MonoBehaviour
     {
         AudioManager.PlayLoopSound(aliaseLoopLight, transform, ref _audioPlayerLightLoop);
 
-        _light.range = radius;
+        _light.range = radius * Ship.localScale.magnitude;
         _collider.height = radius * 2;
         Vector3 centerCollider = _collider.center;
         centerCollider.z = radius;
@@ -135,10 +135,17 @@ public class Absorber : MonoBehaviour
 
         if (absorb && _failedCooldown <= 0)
         {
+            if(!particleSystemVaccum.isPlaying)
+                particleSystemVaccum.Play();
+            
             AudioManager.PlayLoopSound(aliaseLoopAbsorbing, transform, ref _audioPlayer);
         }
         else
+        {
+            particleSystemVaccum.Stop();
             AudioManager.StopLoopSound(ref _audioPlayer);
+        }
+            
 
         if(LevelManager.Instance.State == GameState.Ingame)
         {
@@ -178,9 +185,11 @@ public class Absorber : MonoBehaviour
                 switch (absorbingState)
                 {
                     case AbsorbingState.Start:
+                        
                         break;
                     case AbsorbingState.InProgress:
                         _absorberColor.color = colorIsAbsorbing;
+                        
                         break;
                     case AbsorbingState.Done:
                         _absorberColor.color = colorIdle;

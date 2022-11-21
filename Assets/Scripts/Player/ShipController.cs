@@ -75,10 +75,10 @@ public class ShipController : MonoBehaviour
         if (LevelManager.Instance.State == GameState.CameraIsMoving)
         {
             Vector3 nextPlayerSpawnPoint = LevelManager.Instance.CurrentPlayerSpawnPoint.position;
-            if (transform.position.y < nextPlayerSpawnPoint.y + 10* transform.localScale.magnitude )
+            if (transform.position.y < (nextPlayerSpawnPoint.y + 10 + transform.localScale.magnitude)  )
             {
                 Vector3 direction = new Vector3( nextPlayerSpawnPoint.x-transform.position.x, 5, nextPlayerSpawnPoint.z-transform.position.z);
-                transform.position += direction * speed * Time.deltaTime;
+                transform.position += direction * speed * Time.deltaTime ;
             }
            
             _lastHitPoint = transform.position;
@@ -86,21 +86,21 @@ public class ShipController : MonoBehaviour
     }
     #endregion
     
-    public void FollowCursor()
+    private void FollowCursor()
     {
         var mousePosition = MouseToWorldPosition();
         var shipPosition = transform.position;
         var direction = new Vector3((mousePosition.x - shipPosition.x), 0, (mousePosition.z - shipPosition.z));
         if(direction.magnitude >0.2f)
         {
-            transform.position += direction * speed * Time.deltaTime;
-            AudioManager.PlayLoopSound(aliaseMoving, transform, ref _audioMoving);
-            AudioManager.StopLoopSound(ref _audioIdle);
+            transform.position += direction * speed * Time.deltaTime ;
+            //AudioManager.PlayLoopSound(aliaseMoving, transform, ref _audioMoving);
+            //AudioManager.StopLoopSound(ref _audioIdle);
         }
         else
         {
             AudioManager.PlayLoopSound(aliaseIdle, transform, ref _audioIdle);
-            AudioManager.StopLoopSound(ref _audioMoving);
+            //AudioManager.StopLoopSound(ref _audioMoving);
         }
 
         transform.DORotate(new Vector3(direction.z, 0, -direction.x), 0.1f);
