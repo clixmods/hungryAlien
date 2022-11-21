@@ -26,19 +26,28 @@ public struct DataLevel
     
     [Tooltip("Name of the level")]
     public string name;
+    [Header("Debug")]
     public bool skip;
+    [Header("Camera")]
+    [Prefix("[REQUIRED]")]
     [Tooltip("The position of the dolly Camera when the player is in his level")]
     public float dollyCartPosition ;
     [Tooltip("Speed of camera when it moves to the dollyCartPosition")]
     public float cameraSpeed;
+    [Header("Gameplay")]
+    [Prefix("[REQUIRED]")]
     [Tooltip("Collision boxs to indicate where the player can move")]
     public GameObject floorCollision;
+    [Prefix("[REQUIRED]")]
     [Tooltip("The position of player spawn")]
     public Transform playerSpawnPoint;
+    [Prefix("[REQUIRED]")]
     [Tooltip("A volume to secure position of ObjectPhysics")]
     public PlayableVolume playableVolume;
     [Tooltip("Collisions for objects when the level is active. Can be [Optional]")]
     public Collider collision;
+    
+    [Header("Player")]
     public float heightOffset;
     public float shipScaleAtTheEnd;
 }
@@ -170,6 +179,14 @@ public class LevelManager : MonoBehaviour
         CallbackLevelChange += SetFloorActive;
         CallbackLevelChange += SetActivePlayableVolume;
         CallbackLevelChange += SetCollisionActive;
+
+        // Init Object physics
+        var allObjectPhysics = FindObjectsOfType<ObjectPhysics>();
+        foreach (var objPhysics in allObjectPhysics)
+        {
+            objPhysics.Init();
+        }
+        
         
         CallbackPreLevelChange();
         CallbackLevelChange();

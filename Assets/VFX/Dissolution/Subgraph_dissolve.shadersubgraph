@@ -1564,8 +1564,8 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -1370.0,
-            "y": 43.99998474121094,
+            "x": -1369.0,
+            "y": 44.000022888183597,
             "width": 150.0,
             "height": 34.000038146972659
         }
@@ -2530,7 +2530,7 @@
     ],
     "synonyms": [],
     "m_Precision": 0,
-    "m_PreviewExpanded": false,
+    "m_PreviewExpanded": true,
     "m_PreviewMode": 0,
     "m_CustomColors": {
         "m_SerializableColors": []

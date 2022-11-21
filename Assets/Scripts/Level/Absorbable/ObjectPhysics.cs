@@ -15,6 +15,7 @@ using Level;
 public class ObjectPhysics : MonoBehaviour , IAbsorbable
 {
     private const string MessageSettingsNotSetup = "Settings of object are not setup, please assign a setting.";
+    private const float _regenMultiplier = 0.2f;
 
     #region SerializeField
 
@@ -29,7 +30,7 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
     /// <summary>
     /// Force required to absorb the object by the player
     /// </summary>
-    [SerializeField,Range(0.01f, 2)] private float forceRequired;
+    [SerializeField,Range(0f, 1)] private float forceRequired;
     /// <summary>
     /// The gain of the absorbtion 
     /// </summary>
@@ -44,6 +45,9 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
     private AudioPlayer _audioPlayer;
     private MeshCollider _collider;
     private PlayableVolume _playableVolume;
+    private MeshRenderer _meshRenderer;
+    private MaterialPropertyBlock[] _propBlocks;
+  
     #endregion
     #region Properties
     public Rigidbody Rigidbody { get; private set; }
@@ -51,30 +55,42 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
     public bool IsAbsorbed { get; set; }
     public bool IsAbsorbable { get; private set; }
     
+    public bool IsInAbsorbing { get; set; }
+    
     public Vector3 InitialPosition { get;  set; }
     
     public int SleepUntilLevel => sleepUntilLevel;
+
+    public float InitialScaleMultiplier { get; private set; }
     public float ScaleMultiplier => scaleMultiplier;
+
+    [SerializeField] private bool _sleepUntilAbsorb;
+
+    public bool SleepUntilAbsorb
+    {
+        get { return _sleepUntilAbsorb; }
+        set { _sleepUntilAbsorb = value; }
+    }
+
     public PlayableVolume PlayableVolume { get; set; }
     #endregion
 
     #region MonoBehaviour
 
-    // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
-        InitialPosition = transform.position;
+        _meshRenderer = GetComponent<MeshRenderer>();
+        _propBlocks = new MaterialPropertyBlock[_meshRenderer.materials.Length];
+        for (int i = 0; i < _propBlocks.Length; i++)
+        {
+            _propBlocks[i] = new MaterialPropertyBlock();
+        }
         _collider = GetComponent<MeshCollider>();
         if (_collider == null)
             _collider = transform.AddComponent<MeshCollider>();
         
-        _collider.convex = true;
-        _collider.enabled = false;
         Rigidbody = GetComponent<Rigidbody>();
-        Rigidbody.isKinematic = true;
-        Rigidbody.mass = ForceRequired;
-        
-        
+         
         if (settings == null)
         {
             Debug.LogWarning(MessageSettingsNotSetup, gameObject);
@@ -83,7 +99,22 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
            
         }
 
+        InitialScaleMultiplier = ScaleMultiplier;
+    }
+
+    public void Init()
+    {
+        InitialPosition = transform.position;
+        
+        _collider.convex = true;
+        _collider.enabled = false;
+        
+        Rigidbody.isKinematic = true;
+        Rigidbody.mass = ForceRequired;
+        
+
         LevelManager.Instance.CallbackPreLevelChange += WatchLevelToWakeUp;
+        LevelManager.Instance.CallbackLevelChange += GenerateScaleMultiplier;
 
         if (ForceRequired == 0)
         {
@@ -119,53 +150,147 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
         {
             Rigidbody.WakeUp();
         }
+        
+    
             
     }
 
     private void OnDestroy()
     {
         
+      
+    }
+
+    void EndObject()
+    {
         AudioManager.PlaySoundAtPosition(settings.aliaseDeath, transform.position);
         //FXManager.PlayFXAtPosition(settings.fxDeath,transform.position);
         AudioManager.StopLoopSound(ref _audioPlayer);
         LevelManager.Instance.RemoveObjectPhysical(this);
     }
 
-#if UNITY_EDITOR
-    private void OnDrawGizmos()
-    {
-        // Gizmos.DrawWireSphere(AbsorbePoint.position, 1);
-        Handles.Label(transform.position, 
-            $"Force Required {ForceRequired} // Gain : {scaleMultiplier}",
-            new GUIStyle());
-    }
-#endif
+    #if UNITY_EDITOR
+        private void OnDrawGizmos()
+        {
+            // Gizmos.DrawWireSphere(AbsorbePoint.position, 1);
+            Handles.Label(transform.position, 
+                $"Force Required {ForceRequired} // Gain : {scaleMultiplier}",
+                new GUIStyle());
+        }
+    #endif
 
     #endregion
     
     // TODO : We need to let the level manager manages that
     void WatchLevelToWakeUp()
     {
-        if ( Rigidbody.isKinematic && LevelManager.Instance.CurrentLevel == sleepUntilLevel)
+        if ( !IsAbsorbable && LevelManager.Instance.CurrentLevel == sleepUntilLevel)
         {
             _collider.enabled = true;
-            Rigidbody.isKinematic = false;
+           
             LevelManager.Instance.AddObjectPhysical(this);
-            int test = LevelManager.Instance.CallbackPreLevelChange.GetInvocationList().Length;
             LevelManager.Instance.CallbackPreLevelChange -= WatchLevelToWakeUp;
             IsAbsorbable = true;
+            Rigidbody.isKinematic = SleepUntilAbsorb;
+           
         }
     }
 
+    public void GenerateScaleMultiplier()
+    {
+        float startScale = 1f;
+        float endScale;
+        int currentLevel = LevelManager.Instance.CurrentLevel;
+        var oof = LevelManager.Instance.CurrentObjectList;
+        var myObject = LevelManager.Instance;
+        if (currentLevel >= 1)
+        {
+            startScale = myObject.DataLevels[currentLevel-1].shipScaleAtTheEnd;
+            endScale = myObject.DataLevels[currentLevel].shipScaleAtTheEnd - startScale;
+        }
+      
+        endScale = myObject.DataLevels[currentLevel].shipScaleAtTheEnd - startScale;
+        
+        
+        float sommeTotal = 0;
+      
+        foreach(var reward in oof) sommeTotal += reward.InitialScaleMultiplier;
+            
+        float addition = 0;
+        addition +=  (InitialScaleMultiplier / sommeTotal)*endScale;
+
+        scaleMultiplier = addition;
+
+    }
 
     void SetDissolve(float amount)
     {
-        
+        for (int i = 0; i < _propBlocks.Length ; i++)
+        {
+            // Get the current value of the material properties in the renderer.
+            _meshRenderer.GetPropertyBlock(_propBlocks[i]);
+            // Assign our new value.
+            _propBlocks[i].SetFloat("_Amount", amount);
+            // Apply the edited values to the renderer.
+            _meshRenderer.SetPropertyBlock(_propBlocks[i], i);
+        }
+    }
+
+    private void FixedUpdate()
+    {
+        if (!IsInAbsorbing)
+        {
+            for (int i = 0; i < _propBlocks.Length ; i++)
+            {
+                // Get the current value of the material properties in the renderer.
+                _meshRenderer.GetPropertyBlock(_propBlocks[i],i);
+                 //Assign our new value.
+                _propBlocks[i].SetFloat("_Amount",  _propBlocks[i].GetFloat("_Amount")-Time.deltaTime*_regenMultiplier);
+                // Apply the edited values to the renderer.
+                _meshRenderer.SetPropertyBlock(_propBlocks[i], i);
+            }
+        }
+        else
+        {
+            for (int i = 0; i < _propBlocks.Length ; i++)
+            {
+                // Get the current value of the material properties in the renderer.
+                _meshRenderer.GetPropertyBlock(_propBlocks[i],i);
+                //Assign our new value.
+                _propBlocks[i].SetFloat("_Amount",  _propBlocks[i].GetFloat("_Amount")+Time.deltaTime);
+                // Apply the edited values to the renderer.
+                _meshRenderer.SetPropertyBlock(_propBlocks[i], i);
+            }
+        }
+
+        if (IsAbsorbed)
+        {
+            bool destroyIt = true;
+            for (int i = 0; i < _propBlocks.Length ; i++)
+            {
+                _meshRenderer.GetPropertyBlock(_propBlocks[i],i);
+                if (_propBlocks[i].GetFloat("_Amount") < 1)
+                    destroyIt = false;
+                _meshRenderer.SetPropertyBlock(_propBlocks[i], i);
+            }
+            if(destroyIt)
+                Destroy(gameObject);
+        }
+    }
+
+    private void LateUpdate()
+    {
+        if(!IsAbsorbed)
+            IsInAbsorbing = false;
     }
 
     public void OnAbsorb(Absorber absorber, out AbsorbingState absorbingState)
     {
+        IsInAbsorbing = true;
         absorbingState = AbsorbingState.InProgress;
+       
+        Rigidbody.isKinematic = false;
+        
         
         float forceRemaining = absorber.Strenght / ForceRequired;
         var destination = absorber.AbsorbePoint.position;
@@ -176,6 +301,11 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
         bool forceIsSufficent = forceRemaining >= 1;
 
         float idkneedtobedefined = destination.y - transform.position.y;
+         if (idkneedtobedefined < 5)
+         {
+             SetDissolve(1-(idkneedtobedefined/5));
+         }
+        
         
         if (forceRemaining < 1)
         {
@@ -187,13 +317,15 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
         {
             absorber.Strenght += ScaleMultiplier;
             IsAbsorbed = true;
+            EndObject();
             absorbingState = AbsorbingState.Done;
-            Destroy(gameObject);
+          
        
         }
         else if (!forceIsSufficent && idkneedtobedefined < absorber.AbsortionHeight)
         {
             absorbingState = AbsorbingState.Fail;
+            //SetDissolve(0);
         }
 
    

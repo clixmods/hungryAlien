@@ -18,6 +18,8 @@ namespace Level
 
         public Transform transform { get;  }
         
+        public bool SleepUntilAbsorb { get; set; }
+        
         public PlayableVolume PlayableVolume { get; set; }
         
         /// <summary>
