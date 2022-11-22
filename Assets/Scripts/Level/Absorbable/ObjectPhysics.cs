@@ -47,6 +47,7 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
     private PlayableVolume _playableVolume;
     private MeshRenderer _meshRenderer;
     private MaterialPropertyBlock[] _propBlocks;
+    private Vector3 _baseScale;
   
     #endregion
     #region Properties
@@ -82,6 +83,7 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
     private void Awake()
     {
         _meshRenderer = GetComponentInChildren<MeshRenderer>();
+        
         _propBlocks = new MaterialPropertyBlock[_meshRenderer.materials.Length];
         for (int i = 0; i < _propBlocks.Length; i++)
         {
@@ -95,7 +97,7 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
 
         if (_collider is MeshCollider meshCollider && meshCollider.sharedMesh == null)
         {
-            Vector3 ogScale = transform.localScale;
+            _baseScale = transform.localScale;
             transform.localScale = Vector3.one;
             MeshFilter[] meshFilters = GetComponentsInChildren<MeshFilter>();
             CombineInstance[] combine = new CombineInstance[meshFilters.Length];
@@ -116,7 +118,7 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
              GeneratedCollider = new Mesh();
              GeneratedCollider.CombineMeshes(combine);
              meshCollider.sharedMesh = GeneratedCollider;
-             transform.localScale = ogScale;
+             transform.localScale = _baseScale;
         }
         
        
@@ -183,8 +185,19 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
         {
             Rigidbody.WakeUp();
         }
+
         
-    
+        if (Rigidbody.velocity.y < 0 && transform.position.y < LevelManager.Instance.Player.transform.position.y-5)
+        {
+           
+                var materials = _meshRenderer.materials;
+                foreach (var mtl in materials)
+                {
+                    mtl.renderQueue = 3000;
+                }
+                _meshRenderer.materials = materials; 
+            
+        }
             
     }
 
@@ -230,6 +243,12 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
         LevelManager.Instance.AddObjectPhysical(this);
         IsAbsorbable = true;
         Rigidbody.isKinematic = SleepUntilAbsorb;
+        var materials = _meshRenderer.materials;
+        foreach (var mtl in materials)
+        {
+            mtl.renderQueue = 3000;
+        }
+        _meshRenderer.materials = materials; 
     }
 
     public void GenerateScaleMultiplier()
@@ -261,6 +280,7 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
 
     protected void SetDissolve(float amount)
     {
+        
         for (int i = 0; i < _propBlocks.Length ; i++)
         {
             // Get the current value of the material properties in the renderer.
@@ -276,6 +296,7 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
     {
         if (!IsInAbsorbing)
         {
+            transform.localScale = Vector3.Lerp(transform.localScale, _baseScale, Time.deltaTime);
             if (CanRegenerateFromDissolve)
             {
                 for (int i = 0; i < _propBlocks.Length; i++)
@@ -287,12 +308,13 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
                         _propBlocks[i].GetFloat("_Amount") - Time.deltaTime * _regenMultiplier);
                     // Apply the edited values to the renderer.
                     _meshRenderer.SetPropertyBlock(_propBlocks[i], i);
+                   
                 }
+                
             }
         }
-        else
+        else // Absorbtion in progress
         {
-            
                 for (int i = 0; i < _propBlocks.Length ; i++)
                 {
                     _meshRenderer.GetPropertyBlock(_propBlocks[i],i);
@@ -327,6 +349,12 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
 
     public virtual void OnAbsorb(Absorber absorber, out AbsorbingState absorbingState)
     {
+        var materials = _meshRenderer.materials;
+        foreach (var mtl in materials)
+        {
+            mtl.renderQueue = 3002;
+        }
+        _meshRenderer.materials = materials; 
         IsInAbsorbing = true;
         absorbingState = AbsorbingState.InProgress;
        
@@ -338,6 +366,8 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
         var direction = destination - transform.position;
         direction *= (forceRemaining);
         Rigidbody.velocity = direction;
+        transform.localScale = Vector3.Lerp(transform.localScale, Vector3.zero, Time.deltaTime); 
+
 
         bool forceIsSufficent = forceRemaining >= 1;
 
