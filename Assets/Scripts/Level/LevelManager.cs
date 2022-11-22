@@ -253,7 +253,7 @@ public class LevelManager : MonoBehaviour
         
         if (dataLevels[CurrentLevel].collision == null)
         {
-            Debug.LogWarning("[LevelManager] collision undefined");
+           // Debug.LogWarning("[LevelManager] collision undefined");
             return;
         }
         dataLevels[CurrentLevel].collision.gameObject.SetActive(true);

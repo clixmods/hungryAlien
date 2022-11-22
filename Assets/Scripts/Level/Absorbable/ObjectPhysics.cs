@@ -10,7 +10,6 @@ using Level;
 
 
 [RequireComponent(typeof(Rigidbody))]
-[RequireComponent(typeof(MeshCollider))]
 [SelectionBase]
 public class ObjectPhysics : MonoBehaviour , IAbsorbable
 {
@@ -35,7 +34,8 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
     /// The gain of the absorbtion 
     /// </summary>
     [Range(0,1f),SerializeField] private float scaleMultiplier = 0.05f ;
-    
+
+    [SerializeField] protected bool CanRegenerateFromDissolve = true;
 
     #endregion
     #region Private Variable
@@ -43,7 +43,7 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
     /// AudioPlayer used for loop sound etc, cached to be stopped when its desired
     /// </summary>
     private AudioPlayer _audioPlayer;
-    private MeshCollider _collider;
+    private Collider _collider;
     private PlayableVolume _playableVolume;
     private MeshRenderer _meshRenderer;
     private MaterialPropertyBlock[] _propBlocks;
@@ -87,14 +87,16 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
         {
             _propBlocks[i] = new MaterialPropertyBlock();
         }
-        _collider = GetComponent<MeshCollider>();
+        _collider = GetComponent<Collider>();
         if (_collider == null)
         {
             _collider = transform.AddComponent<MeshCollider>();
         }
 
-        if (_collider.sharedMesh == null)
+        if (_collider is MeshCollider meshCollider && meshCollider.sharedMesh == null)
         {
+            Vector3 ogScale = transform.localScale;
+            transform.localScale = Vector3.one;
             MeshFilter[] meshFilters = GetComponentsInChildren<MeshFilter>();
             CombineInstance[] combine = new CombineInstance[meshFilters.Length];
             int index = 0;
@@ -110,10 +112,11 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
                 meshFilters[index].transform.position = ogpos;
                 index++;
             }
-
+            
              GeneratedCollider = new Mesh();
              GeneratedCollider.CombineMeshes(combine);
-            _collider.sharedMesh = GeneratedCollider;
+             meshCollider.sharedMesh = GeneratedCollider;
+             transform.localScale = ogScale;
         }
         
        
@@ -134,8 +137,9 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
     public void Init()
     {
         InitialPosition = transform.position;
+        if(_collider is MeshCollider meshCollider)
+            meshCollider.convex = true;
         
-        _collider.convex = true;
         _collider.enabled = false;
         
         Rigidbody.isKinematic = true;
@@ -186,11 +190,11 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
 
     private void OnDestroy()
     {
-        
-        GeneratedCollider.Clear();
+        if(GeneratedCollider)
+            GeneratedCollider.Clear();
     }
 
-    void EndObject()
+    protected void EndObject()
     {
         AudioManager.PlaySoundAtPosition(settings.aliaseDeath, transform.position);
         //FXManager.PlayFXAtPosition(settings.fxDeath,transform.position);
@@ -211,18 +215,21 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
     #endregion
     
     // TODO : We need to let the level manager manages that
-    void WatchLevelToWakeUp()
+     private void WatchLevelToWakeUp()
     {
         if ( !IsAbsorbable && LevelManager.Instance.CurrentLevel == sleepUntilLevel)
         {
-            _collider.enabled = true;
-           
-            LevelManager.Instance.AddObjectPhysical(this);
             LevelManager.Instance.CallbackPreLevelChange -= WatchLevelToWakeUp;
-            IsAbsorbable = true;
-            Rigidbody.isKinematic = SleepUntilAbsorb;
-           
+            WakeObject();
         }
+    }
+
+    protected virtual void WakeObject()
+    {
+        _collider.enabled = true;
+        LevelManager.Instance.AddObjectPhysical(this);
+        IsAbsorbable = true;
+        Rigidbody.isKinematic = SleepUntilAbsorb;
     }
 
     public void GenerateScaleMultiplier()
@@ -252,7 +259,7 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
 
     }
 
-    void SetDissolve(float amount)
+    protected void SetDissolve(float amount)
     {
         for (int i = 0; i < _propBlocks.Length ; i++)
         {
@@ -269,27 +276,29 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
     {
         if (!IsInAbsorbing)
         {
-            for (int i = 0; i < _propBlocks.Length ; i++)
+            if (CanRegenerateFromDissolve)
             {
-                // Get the current value of the material properties in the renderer.
-                _meshRenderer.GetPropertyBlock(_propBlocks[i],i);
-                 //Assign our new value.
-                _propBlocks[i].SetFloat("_Amount",  _propBlocks[i].GetFloat("_Amount")-Time.deltaTime*_regenMultiplier);
-                // Apply the edited values to the renderer.
-                _meshRenderer.SetPropertyBlock(_propBlocks[i], i);
+                for (int i = 0; i < _propBlocks.Length; i++)
+                {
+                    // Get the current value of the material properties in the renderer.
+                    _meshRenderer.GetPropertyBlock(_propBlocks[i], i);
+                    //Assign our new value.
+                    _propBlocks[i].SetFloat("_Amount",
+                        _propBlocks[i].GetFloat("_Amount") - Time.deltaTime * _regenMultiplier);
+                    // Apply the edited values to the renderer.
+                    _meshRenderer.SetPropertyBlock(_propBlocks[i], i);
+                }
             }
         }
         else
         {
-            for (int i = 0; i < _propBlocks.Length ; i++)
-            {
-                // Get the current value of the material properties in the renderer.
-                _meshRenderer.GetPropertyBlock(_propBlocks[i],i);
-                //Assign our new value.
-                _propBlocks[i].SetFloat("_Amount",  _propBlocks[i].GetFloat("_Amount")+Time.deltaTime);
-                // Apply the edited values to the renderer.
-                _meshRenderer.SetPropertyBlock(_propBlocks[i], i);
-            }
+            
+                for (int i = 0; i < _propBlocks.Length ; i++)
+                {
+                    _meshRenderer.GetPropertyBlock(_propBlocks[i],i);
+                    _propBlocks[i].SetFloat("_Amount",  _propBlocks[i].GetFloat("_Amount")+Time.deltaTime);
+                    _meshRenderer.SetPropertyBlock(_propBlocks[i], i);
+                }
         }
 
         if (IsAbsorbed)
@@ -299,7 +308,10 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
             {
                 _meshRenderer.GetPropertyBlock(_propBlocks[i],i);
                 if (_propBlocks[i].GetFloat("_Amount") < 1)
+                {
                     destroyIt = false;
+                }
+                    
                 _meshRenderer.SetPropertyBlock(_propBlocks[i], i);
             }
             if(destroyIt)
@@ -313,7 +325,7 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
             IsInAbsorbing = false;
     }
 
-    public void OnAbsorb(Absorber absorber, out AbsorbingState absorbingState)
+    public virtual void OnAbsorb(Absorber absorber, out AbsorbingState absorbingState)
     {
         IsInAbsorbing = true;
         absorbingState = AbsorbingState.InProgress;

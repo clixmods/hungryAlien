@@ -471,6 +471,7 @@ MonoBehaviour:
   sleepUntilLevel: 0
   forceRequired: 0
   scaleMultiplier: 0.05
+  CanRegenerateFromDissolve: 1
   _sleepUntilAbsorb: 0
 --- !u!64 &173497595
 MeshCollider:
@@ -619,6 +620,7 @@ MonoBehaviour:
   sleepUntilLevel: 0
   forceRequired: 0
   scaleMultiplier: 0.05
+  CanRegenerateFromDissolve: 1
   _sleepUntilAbsorb: 0
 --- !u!64 &188231874
 MeshCollider:
@@ -879,6 +881,7 @@ MonoBehaviour:
   sleepUntilLevel: 0
   forceRequired: 0
   scaleMultiplier: 0.05
+  CanRegenerateFromDissolve: 1
   _sleepUntilAbsorb: 0
 --- !u!64 &248823666
 MeshCollider:
@@ -1155,17 +1158,17 @@ PrefabInstance:
     - target: {fileID: 5164010677176864474, guid: 892185da64a606a4993fba886818b6b7,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -10.14
       objectReference: {fileID: 0}
     - target: {fileID: 5164010677176864474, guid: 892185da64a606a4993fba886818b6b7,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.57
+      value: 0.91
       objectReference: {fileID: 0}
     - target: {fileID: 5164010677176864474, guid: 892185da64a606a4993fba886818b6b7,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 2.46
       objectReference: {fileID: 0}
     - target: {fileID: 5164010677176864474, guid: 892185da64a606a4993fba886818b6b7,
         type: 3}
@@ -1329,6 +1332,7 @@ MonoBehaviour:
   sleepUntilLevel: 0
   forceRequired: 0
   scaleMultiplier: 0.05
+  CanRegenerateFromDissolve: 1
   _sleepUntilAbsorb: 0
 --- !u!64 &476960716
 MeshCollider:
@@ -1516,6 +1520,7 @@ MonoBehaviour:
   sleepUntilLevel: 0
   forceRequired: 0
   scaleMultiplier: 0.05
+  CanRegenerateFromDissolve: 1
   _sleepUntilAbsorb: 0
 --- !u!64 &522308071
 MeshCollider:
@@ -1800,6 +1805,7 @@ MonoBehaviour:
   sleepUntilLevel: 0
   forceRequired: 0
   scaleMultiplier: 0.05
+  CanRegenerateFromDissolve: 1
   _sleepUntilAbsorb: 0
 --- !u!64 &636737045
 MeshCollider:
@@ -2245,14 +2251,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 689954289}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6a4a4a7b00d2e4f4c83ad80d4aedced9, type: 3}
+  m_Script: {fileID: 11500000, guid: f23dc59d42bb452ea946b0a95e50ad10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   settings: {fileID: 0}
   sleepUntilLevel: 0
   forceRequired: 0
   scaleMultiplier: 0.05
+  CanRegenerateFromDissolve: 0
   _sleepUntilAbsorb: 0
+  _absortionMultiplier: 0.2
 --- !u!64 &689954292
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -2380,6 +2388,7 @@ MonoBehaviour:
   sleepUntilLevel: 0
   forceRequired: 0
   scaleMultiplier: 0.05
+  CanRegenerateFromDissolve: 1
   _sleepUntilAbsorb: 0
 --- !u!64 &778489866
 MeshCollider:
@@ -2674,6 +2683,7 @@ MonoBehaviour:
   sleepUntilLevel: 0
   forceRequired: 0
   scaleMultiplier: 0.05
+  CanRegenerateFromDissolve: 1
   _sleepUntilAbsorb: 0
 --- !u!64 &978056651
 MeshCollider:
@@ -2733,6 +2743,7 @@ MonoBehaviour:
   sleepUntilLevel: 0
   forceRequired: 0
   scaleMultiplier: 0.05
+  CanRegenerateFromDissolve: 1
   _sleepUntilAbsorb: 0
 --- !u!64 &1026907613
 MeshCollider:
@@ -2861,6 +2872,7 @@ MonoBehaviour:
   sleepUntilLevel: 0
   forceRequired: 0
   scaleMultiplier: 0.05
+  CanRegenerateFromDissolve: 1
   _sleepUntilAbsorb: 0
 --- !u!64 &1064498664
 MeshCollider:
@@ -3150,6 +3162,7 @@ MonoBehaviour:
   sleepUntilLevel: 0
   forceRequired: 0
   scaleMultiplier: 0.05
+  CanRegenerateFromDissolve: 1
   _sleepUntilAbsorb: 0
 --- !u!64 &1090032810
 MeshCollider:
@@ -3410,6 +3423,7 @@ MonoBehaviour:
   sleepUntilLevel: 0
   forceRequired: 0
   scaleMultiplier: 0.05
+  CanRegenerateFromDissolve: 1
   _sleepUntilAbsorb: 0
 --- !u!64 &1145999832
 MeshCollider:
@@ -3732,6 +3746,7 @@ MonoBehaviour:
   sleepUntilLevel: 0
   forceRequired: 0
   scaleMultiplier: 0.05
+  CanRegenerateFromDissolve: 1
   _sleepUntilAbsorb: 0
 --- !u!64 &1384982973
 MeshCollider:
@@ -4918,6 +4933,7 @@ MonoBehaviour:
   sleepUntilLevel: 0
   forceRequired: 0
   scaleMultiplier: 0.05
+  CanRegenerateFromDissolve: 1
   _sleepUntilAbsorb: 0
 --- !u!64 &1981828060
 MeshCollider:
@@ -5293,6 +5309,7 @@ MonoBehaviour:
   sleepUntilLevel: 0
   forceRequired: 0
   scaleMultiplier: 0.05
+  CanRegenerateFromDissolve: 1
   _sleepUntilAbsorb: 0
 --- !u!64 &2143638974
 MeshCollider:

@@ -5,34 +5,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="db6ae1ff-23e2-4f3b-9ceb-e60a307727cd" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Level/Absorbable/CustomCollider.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Level/Absorbable/CustomCollider.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Level/Absorbable/ObjectPhysicsFix.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Level/Absorbable/ObjectPhysicsFix.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.HungryAlien/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.HungryAlien/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ObjectPhysicsAssets/objphysetting_plastic.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ObjectPhysicsAssets/objphysetting_plastic.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Prefabs/SpaceShip.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/SpaceShip.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Ressources3D/Zone 1/Material/65 Voiture.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Ressources3D/Zone 1/Material/65 Voiture.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Ressources3D/Zone 1/Material/Train 1.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Ressources3D/Zone 1/Material/Train 1.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Ressources3D/Zone 1/Material/Train 2.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Ressources3D/Zone 1/Material/Train 2.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Ressources3D/Zone 1/Material/Train 3.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Ressources3D/Zone 1/Material/Train 3.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Ressources3D/Zone 1/Material/Train 4.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Ressources3D/Zone 1/Material/Train 4.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Ressources3D/Zone 1/Material/Train 5.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Ressources3D/Zone 1/Material/Train 5.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Ressources3D/Zone 1/Material/Train 6.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Ressources3D/Zone 1/Material/Train 6.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Ressources3D/Zone 1/Material/Train 7.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Ressources3D/Zone 1/Material/Train 7.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Ressources3D/Zone 1/Material/mtl_bille_blue.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Ressources3D/Zone 1/Material/mtl_bille_blue.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Ressources3D/Zone 1/Material/mtl_bille_green.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Ressources3D/Zone 1/Material/mtl_bille_green.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Ressources3D/Zone 1/Material/mtl_bille_red.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Ressources3D/Zone 1/Material/mtl_bille_red.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Ressources3D/Zone 1/Prefabs/Prefab_voiture.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Ressources3D/Zone 1/Prefabs/Prefab_voiture.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Ressources3D/Zone 1/mesh/mesh_bille_1.fbx.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Ressources3D/Zone 1/mesh/mesh_bille_1.fbx.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Ressources3D/Zone 3/Materials/Barrière_verticale.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Ressources3D/Zone 3/Materials/Barrière_verticale.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Ressources3D/Zone 1/Material/mtl_chateau_de_sable_sand.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Ressources3D/Zone 1/Material/mtl_chateau_de_sable_sand.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Ressources3D/Zone 1/Prefabs/Prefab_ballon.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Ressources3D/Zone 1/Prefabs/Prefab_ballon.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Ressources3D/Zone 1/Prefabs/Prefab_bateau.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Ressources3D/Zone 1/Prefabs/Prefab_bateau.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Ressources3D/Zone 1/Prefabs/Prefab_bille_2.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Ressources3D/Zone 1/Prefabs/Prefab_bille_2.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Ressources3D/Zone 1/Prefabs/Prefab_bille_3.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Ressources3D/Zone 1/Prefabs/Prefab_bille_3.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/Test_PlayerController_Clix.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Test_PlayerController_Clix.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/map_default_prototype.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/map_default_prototype.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Level/Absorbable/ObjectPhysics.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Level/Absorbable/ObjectPhysics.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/Absorber.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player/Absorber.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/ShipController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player/ShipController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VFX/Vacuum/Vacuum.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VFX/Vacuum/Vacuum.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VFX/Vacuum/fx_ps_vacuum.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VFX/Vacuum/fx_ps_vacuum.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Level/LevelManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Level/LevelManager.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ProjectSettings/RiderScriptEditorPersistedState.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/RiderScriptEditorPersistedState.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UserSettings/HDRPUserSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/HDRPUserSettings.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UserSettings/Layouts/CurrentMaximizeLayout.dwlt" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/Layouts/CurrentMaximizeLayout.dwlt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UserSettings/Layouts/default-2021.dwlt" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/Layouts/default-2021.dwlt" afterDir="false" />
     </list>
@@ -71,21 +58,21 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Discover.Launch.Via.Unity": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "XThreadsFramesViewSplitterKey": "0.40344402",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Discover.Launch.Via.Unity&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;XThreadsFramesViewSplitterKey&quot;: &quot;0.40344402&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
     <configuration name="Standalone Player" type="RunUnityExe" factoryName="Unity Executable">
       <option name="EXE_PATH" value="$PROJECT_DIR$/../../UnityBuild\HungryAlien.exe" />
@@ -170,7 +157,8 @@
       <workItem from="1668608087656" duration="5301000" />
       <workItem from="1668765390177" duration="11094000" />
       <workItem from="1668881256716" duration="9429000" />
-      <workItem from="1669058146365" duration="10320000" />
+      <workItem from="1669058146365" duration="10912000" />
+      <workItem from="1669144054590" duration="4584000" />
     </task>
     <servers />
   </component>
