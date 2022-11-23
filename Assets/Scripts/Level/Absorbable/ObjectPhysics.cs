@@ -176,31 +176,19 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
     {
         if (PlayableVolume == null)
         {
-            
             transform.position = InitialPosition;
             Rigidbody.Sleep();
-            
         }
         else
         {
-            Rigidbody.WakeUp();
+            if(Rigidbody.IsSleeping())
+                Rigidbody.WakeUp();
         }
-
-        
         if (Rigidbody.velocity.y < 0 && transform.position.y < LevelManager.Instance.Player.transform.position.y-5)
         {
-           
-                var materials = _meshRenderer.materials;
-                foreach (var mtl in materials)
-                {
-                    mtl.renderQueue = 3000;
-                }
-                _meshRenderer.materials = materials; 
-            
+            ChangeMaterialsRenderQueue(3000);
         }
-            
     }
-
     private void OnDestroy()
     {
         if(GeneratedCollider)
@@ -224,11 +212,8 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
                 new GUIStyle());
         }
     #endif
-
     #endregion
-    
-    // TODO : We need to let the level manager manages that
-     private void WatchLevelToWakeUp()
+    private void WatchLevelToWakeUp()
     {
         if ( !IsAbsorbable && LevelManager.Instance.CurrentLevel == sleepUntilLevel)
         {
@@ -236,7 +221,6 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
             WakeObject();
         }
     }
-
     protected virtual void WakeObject()
     {
         _collider.enabled = true;
@@ -326,7 +310,6 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
                     {
                         destroyIt = false;
                     }
-                    
                     _meshRenderer.SetPropertyBlock(_propBlocks[i], i);
                 }
                 if(destroyIt)

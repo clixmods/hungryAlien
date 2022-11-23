@@ -147,29 +147,23 @@ public class LevelManager : MonoBehaviour
         _camera ??= Camera.main;
         _smoothPath = GetComponent<CinemachineSmoothPath>();
         _player = GameObject.FindObjectOfType<ShipController>();
-        if (!_camera.TryGetComponent<CinemachineBrain>(out CinemachineBrain cinemachineBrain))
+        if (!_camera.TryGetComponent<CinemachineBrain>(out var _))
         {
             _camera.AddComponent<CinemachineBrain>();
         }
-
-
-
         if (_virtualCamera == null)
         {
             var cm = GameObject.FindObjectOfType<CinemachineVirtualCamera>();
             if (cm == null)
             {
-                var gameObjectfdp = Instantiate(new GameObject());
-                _virtualCamera = gameObjectfdp.AddComponent<CinemachineVirtualCamera>();
+                var cmGameObject = Instantiate(new GameObject());
+                _virtualCamera = cmGameObject.AddComponent<CinemachineVirtualCamera>();
             }
             else
             {
                 _virtualCamera = cm;
             }
         }
-
-        
-        
         if (_virtualCamera.TryGetComponent<CinemachineDollyCart>(out CinemachineDollyCart component))
         {
             _dollyCart = component;
@@ -178,30 +172,26 @@ public class LevelManager : MonoBehaviour
         {
             _dollyCart = _virtualCamera.AddComponent<CinemachineDollyCart>();
         }
-
         _dollyCart.m_Path = _smoothPath;
         _dollyCart.m_PositionUnits = CinemachinePathBase.PositionUnits.PathUnits;
-
         foreach (var dataLevel in DataLevels)
         {
             dataLevel.floorCollision.layer = LayerMask.NameToLayer("MoveZone");
         }
-        
         CallbackLevelChange += SetFloorActive;
         CallbackLevelChange += SetActivePlayableVolume;
         CallbackLevelChange += SetCollisionActive;
-
         // Init Object physics
         var allObjectPhysics = FindObjectsOfType<ObjectPhysics>();
         foreach (var objPhysics in allObjectPhysics)
         {
             objPhysics.Init();
         }
-        
-        
         CallbackPreLevelChange();
         CallbackLevelChange();
         _lookAtTransform = new GameObject().transform;
+        
+        GameManager.CreateUI();
     }
 
     private Transform _lookAtTransform;
@@ -210,11 +200,9 @@ public class LevelManager : MonoBehaviour
         _lookAtTransform.position = Vector3.Lerp(_lookAtTransform.position, CurrentPlayerSpawnPoint.position, Time.deltaTime);
         return _lookAtTransform;
     }
-
     // Update is called once per frame
     private void Update()
     {
-        //Debug.Log( "List of actions : "+ CallbackPreLevelChange.GetInvocationList().Length);
         // The camera need to go to the next postion 
         if (_dollyCart.m_Position < dataLevels[CurrentLevel].dollyCartPosition)
         {
@@ -235,7 +223,6 @@ public class LevelManager : MonoBehaviour
             WatchObjectPhysicalAvailable();
         }
     }
-
     private void SetActivePlayableVolume()
     {
         if (dataLevels[CurrentLevel].playableVolume == null)
@@ -247,11 +234,9 @@ public class LevelManager : MonoBehaviour
         {
             dataLevel.playableVolume.gameObject.SetActive(false);
         }
-
         dataLevels[CurrentLevel].playableVolume.gameObject.SetActive(true);
         dataLevels[CurrentLevel].playableVolume.Activate();
     }
-
     /// <summary>
     /// Active the indexed collision to build collision for environnement </summary>
     void SetCollisionActive()
@@ -261,7 +246,6 @@ public class LevelManager : MonoBehaviour
             if(dataLevel.collision != null)   
                 dataLevel.collision.gameObject.SetActive(false);
         }
-        
         if (dataLevels[CurrentLevel].collision == null)
         {
            // Debug.LogWarning("[LevelManager] collision undefined");
@@ -279,7 +263,6 @@ public class LevelManager : MonoBehaviour
             Debug.LogWarning("[LevelManager] FloorCollision undefined");
             return;
         }
-        
         foreach (var dataLevel in dataLevels)
         {
             dataLevel.floorCollision.gameObject.SetActive(false);
@@ -288,17 +271,16 @@ public class LevelManager : MonoBehaviour
     }
     private void WatchObjectPhysicalAvailable()
     {
-        bool everythingIsAbsorbed = true;
+        //bool everythingIsAbsorbed = true;
         foreach(var myObject in _objectPhysicsList)
         {
             if (myObject != null)
             {
-                everythingIsAbsorbed = false;
-                break;
+                //everythingIsAbsorbed = false;
+                return;
             }
         }
-
-        if (!everythingIsAbsorbed) return;
+        //if (!everythingIsAbsorbed) 
         RemoveAllObjectPhysical();
         CurrentLevel++;
         while( dataLevels[CurrentLevel].skip)

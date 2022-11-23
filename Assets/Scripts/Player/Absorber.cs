@@ -23,12 +23,10 @@ public class Absorber : MonoBehaviour
 {
     private Light _light;
     private CapsuleCollider _collider;
-
     private AbsorberColor _absorberColor;
     [SerializeField] private Color colorIdle = Color.white;
     [SerializeField] private Color colorIsAbsorbing = Color.cyan;
     [SerializeField] private Color colorFailed = Color.red;
-
     [SerializeField] private ParticleSystem particleSystemVaccum;
     /// <summary>
     /// Strenght applied when the player absorb object
@@ -43,7 +41,6 @@ public class Absorber : MonoBehaviour
             strenght = value;
         }
     }
-
     /// <summary>
     /// Used to influence the height of the ship and the radius of the light
     /// </summary>

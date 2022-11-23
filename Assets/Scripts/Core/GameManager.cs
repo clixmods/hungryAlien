@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Core;
 using JetBrains.Annotations;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 
 public enum UIType
@@ -16,7 +17,7 @@ public class GameManager : MonoBehaviour
     #region Singleton
 
     private static GameManager _instance;
-    private static GameManager Instance
+    public static GameManager Instance
     {
         get
         {
@@ -34,20 +35,21 @@ public class GameManager : MonoBehaviour
     
     #endregion
 
-    private GameManagerData _data;
-    
-
-    public static void CreateUI(UIType uiType)
+    [SerializeReference] private GameManagerData _data;
+    public static void CreateUI()
     {
-        switch (uiType)
-        {
-            case UIType.Menu:
-                break;
-            case UIType.Ingame:
-                break;
-            default:
-                throw new ArgumentOutOfRangeException(nameof(uiType), uiType, null);
-        }
+        SceneManager.LoadScene(Instance._data.uiSceneName);
+        // switch (uiType)
+        // {
+        //     case UIType.Menu:
+        //         throw new ArgumentOutOfRangeException(nameof(uiType), uiType, null);
+        //         break;
+        //     case UIType.Ingame:
+        //         throw new ArgumentOutOfRangeException(nameof(uiType), uiType, null);
+        //         break;
+        //     default:
+        //         throw new ArgumentOutOfRangeException(nameof(uiType), uiType, null);
+        // }
     }
 
 }
