@@ -42,36 +42,29 @@ public class ShipController : MonoBehaviour
     private AudioPlayer _audioIdle;
 
     #region MonoBehaviour
-
     private void Awake()
     {
         _camera = Camera.main;
     }
-
     private void OnEnable()
     {
         Input.Enable();
     }
-
     private void OnDisable()
     {
         Input.Disable();
     }
-
     // Start is called before the first frame update
     void Start()
     {
         _camera = Camera.main;
     }
-
-    // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         if (LevelManager.Instance.State == GameState.Ingame)
         {
             FollowCursor();
         }
-
         if (LevelManager.Instance.State == GameState.CameraIsMoving)
         {
             Vector3 nextPlayerSpawnPoint = LevelManager.Instance.CurrentPlayerSpawnPoint.position;
@@ -80,12 +73,10 @@ public class ShipController : MonoBehaviour
                 Vector3 direction = new Vector3( nextPlayerSpawnPoint.x-transform.position.x, 5, nextPlayerSpawnPoint.z-transform.position.z);
                 transform.position += direction * speed * Time.deltaTime ;
             }
-           
             _lastHitPoint = transform.position;
         }
     }
     #endregion
-    
     private void FollowCursor()
     {
         var mousePosition = MouseToWorldPosition();
@@ -94,15 +85,11 @@ public class ShipController : MonoBehaviour
         if(direction.magnitude >0.2f)
         {
             transform.position += direction * speed * Time.deltaTime ;
-            //AudioManager.PlayLoopSound(aliaseMoving, transform, ref _audioMoving);
-            //AudioManager.StopLoopSound(ref _audioIdle);
         }
         else
         {
             AudioManager.PlayLoopSound(aliaseIdle, transform, ref _audioIdle);
-            //AudioManager.StopLoopSound(ref _audioMoving);
         }
-
         transform.DORotate(new Vector3(direction.z, 0, -direction.x), 0.1f);
     }
 
@@ -117,13 +104,11 @@ public class ShipController : MonoBehaviour
         if (Physics.Raycast(ray, out RayHit, Mathf.Infinity, layerMask))
         {
             Hitpoint = new Vector3(RayHit.point.x, RayHit.point.y, RayHit.point.z);
-
             if (Hitpoint != null)
                 Debug.DrawLine(_camera.transform.position, Hitpoint, Color.blue, 0.5f);
             _lastHitPoint = Hitpoint;
             return Hitpoint;
         }
-
         return _lastHitPoint;
     }
 }

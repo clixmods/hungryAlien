@@ -83,7 +83,7 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
     private void Awake()
     {
         _meshRenderer = GetComponentInChildren<MeshRenderer>();
-        
+        _baseScale = transform.localScale;
         _propBlocks = new MaterialPropertyBlock[_meshRenderer.materials.Length];
         for (int i = 0; i < _propBlocks.Length; i++)
         {
@@ -97,7 +97,7 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
 
         if (_collider is MeshCollider meshCollider && meshCollider.sharedMesh == null)
         {
-            _baseScale = transform.localScale;
+            
             transform.localScale = Vector3.one;
             MeshFilter[] meshFilters = GetComponentsInChildren<MeshFilter>();
             CombineInstance[] combine = new CombineInstance[meshFilters.Length];
@@ -243,44 +243,37 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
         LevelManager.Instance.AddObjectPhysical(this);
         IsAbsorbable = true;
         Rigidbody.isKinematic = SleepUntilAbsorb;
-        var materials = _meshRenderer.materials;
-        foreach (var mtl in materials)
-        {
-            mtl.renderQueue = 3000;
-        }
-        _meshRenderer.materials = materials; 
+        ChangeMaterialsRenderQueue(3000);
     }
-
+    /// <summary>
+    /// Generate the amount of scale to add for the ship, related to the number of object with the scale targeted in the level 
+    /// </summary>
     public void GenerateScaleMultiplier()
     {
         float startScale = 1f;
-        float endScale;
+        
         int currentLevel = LevelManager.Instance.CurrentLevel;
         var oof = LevelManager.Instance.CurrentObjectList;
         var myObject = LevelManager.Instance;
+        float targetScale;
         if (currentLevel >= 1)
         {
             startScale = myObject.DataLevels[currentLevel-1].shipScaleAtTheEnd;
-            endScale = myObject.DataLevels[currentLevel].shipScaleAtTheEnd - startScale;
+            targetScale = myObject.DataLevels[currentLevel].shipScaleAtTheEnd - startScale;
         }
-      
-        endScale = myObject.DataLevels[currentLevel].shipScaleAtTheEnd - startScale;
-        
-        
-        float sommeTotal = 0;
-      
-        foreach(var reward in oof) sommeTotal += reward.InitialScaleMultiplier;
-            
+        targetScale = myObject.DataLevels[currentLevel].shipScaleAtTheEnd - startScale;
+        float sums = 0;
+        foreach (var reward in oof)
+        {
+            sums += reward.InitialScaleMultiplier;
+        }
         float addition = 0;
-        addition +=  (InitialScaleMultiplier / sommeTotal)*endScale;
-
+        addition +=  (InitialScaleMultiplier / sums) * targetScale;
         scaleMultiplier = addition;
-
     }
 
     protected void SetDissolve(float amount)
     {
-        
         for (int i = 0; i < _propBlocks.Length ; i++)
         {
             // Get the current value of the material properties in the renderer.
@@ -292,53 +285,55 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
         }
     }
 
+    private void AddDissolve(float amount)
+    {
+        for (int i = 0; i < _propBlocks.Length; i++)
+        {
+            // Get the current value of the material properties in the renderer.
+            _meshRenderer.GetPropertyBlock(_propBlocks[i], i);
+            float currentAmount = _propBlocks[i].GetFloat("_Amount");
+            //Assign our new value.
+            _propBlocks[i].SetFloat("_Amount", currentAmount + amount);
+            // Apply the edited values to the renderer.
+            _meshRenderer.SetPropertyBlock(_propBlocks[i], i);
+        }
+    }
+
     private void FixedUpdate()
     {
-        if (!IsInAbsorbing)
+        if (IsAbsorbable)
         {
-            transform.localScale = Vector3.Lerp(transform.localScale, _baseScale, Time.deltaTime);
-            if (CanRegenerateFromDissolve)
+            if (!IsInAbsorbing)
             {
-                for (int i = 0; i < _propBlocks.Length; i++)
+                transform.localScale = Vector3.Lerp(transform.localScale, _baseScale, Time.deltaTime);
+                if (CanRegenerateFromDissolve)
                 {
-                    // Get the current value of the material properties in the renderer.
-                    _meshRenderer.GetPropertyBlock(_propBlocks[i], i);
-                    //Assign our new value.
-                    _propBlocks[i].SetFloat("_Amount",
-                        _propBlocks[i].GetFloat("_Amount") - Time.deltaTime * _regenMultiplier);
-                    // Apply the edited values to the renderer.
-                    _meshRenderer.SetPropertyBlock(_propBlocks[i], i);
-                   
+                    AddDissolve(-Time.deltaTime * _regenMultiplier);
                 }
-                
             }
-        }
-        else // Absorbtion in progress
-        {
+            else // Absorbtion in progress
+            {
+                AddDissolve(Time.deltaTime);
+            }
+
+            if (IsAbsorbed)
+            {
+                bool destroyIt = true;
                 for (int i = 0; i < _propBlocks.Length ; i++)
                 {
                     _meshRenderer.GetPropertyBlock(_propBlocks[i],i);
-                    _propBlocks[i].SetFloat("_Amount",  _propBlocks[i].GetFloat("_Amount")+Time.deltaTime);
+                    if (_propBlocks[i].GetFloat("_Amount") < 1)
+                    {
+                        destroyIt = false;
+                    }
+                    
                     _meshRenderer.SetPropertyBlock(_propBlocks[i], i);
                 }
-        }
-
-        if (IsAbsorbed)
-        {
-            bool destroyIt = true;
-            for (int i = 0; i < _propBlocks.Length ; i++)
-            {
-                _meshRenderer.GetPropertyBlock(_propBlocks[i],i);
-                if (_propBlocks[i].GetFloat("_Amount") < 1)
-                {
-                    destroyIt = false;
-                }
-                    
-                _meshRenderer.SetPropertyBlock(_propBlocks[i], i);
+                if(destroyIt)
+                    Destroy(gameObject);
             }
-            if(destroyIt)
-                Destroy(gameObject);
         }
+       
     }
 
     private void LateUpdate()
@@ -347,64 +342,49 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
             IsInAbsorbing = false;
     }
 
-    public virtual void OnAbsorb(Absorber absorber, out AbsorbingState absorbingState)
+    private void ChangeMaterialsRenderQueue(int value)
     {
         var materials = _meshRenderer.materials;
         foreach (var mtl in materials)
         {
-            mtl.renderQueue = 3002;
+            mtl.renderQueue = value;
         }
         _meshRenderer.materials = materials; 
+    }
+    public virtual void OnAbsorb(Absorber absorber, out AbsorbingState absorbingState)
+    {
         IsInAbsorbing = true;
         absorbingState = AbsorbingState.InProgress;
-       
+        ChangeMaterialsRenderQueue(3002);
         Rigidbody.isKinematic = false;
-        
-        
-        float forceRemaining = absorber.Strenght / ForceRequired;
+        // Generate direction and apply it to velocity
+        var forceRatio = absorber.Strenght / ForceRequired;
         var destination = absorber.AbsorbePoint.position;
         var direction = destination - transform.position;
-        direction *= (forceRemaining);
+        direction *= forceRatio;
         Rigidbody.velocity = direction;
-        transform.localScale = Vector3.Lerp(transform.localScale, Vector3.zero, Time.deltaTime); 
-
-
-        bool forceIsSufficent = forceRemaining >= 1;
-
-        float idkneedtobedefined = destination.y - transform.position.y;
-         if (idkneedtobedefined < 5)
-         {
-             SetDissolve(1-(idkneedtobedefined/5));
-         }
-        
-        
-        if (forceRemaining < 1)
-        {
-           // absorber.Ship.enabled = false;
-            absorber.Ship.transform.position += -direction * forceRemaining * Time.deltaTime;
+        transform.localScale = Vector3.Lerp(transform.localScale, Vector3.zero, Time.deltaTime);
+        bool hasEnoughForce = forceRatio >= 1;
+        float distanceHeight = destination.y - transform.position.y;
+        if(distanceHeight < 5) 
+        { 
+            SetDissolve(1-(distanceHeight/5));
         }
-        // Ship can absorb
-        if (forceIsSufficent && idkneedtobedefined < absorber.AbsortionHeight)
+        if (hasEnoughForce && distanceHeight < absorber.AbsortionHeight)
         {
             absorber.Strenght += ScaleMultiplier;
             IsAbsorbed = true;
             EndObject();
             absorbingState = AbsorbingState.Done;
-          
-       
         }
-        else if (!forceIsSufficent && idkneedtobedefined < absorber.AbsortionHeight)
+        else if (!hasEnoughForce && distanceHeight < absorber.AbsortionHeight)
         {
             absorbingState = AbsorbingState.Fail;
-            //SetDissolve(0);
         }
-
-   
-
-    }
-
-    public void ResetToInitialPosition()
-    {
-        throw new NotImplementedException();
+        else if (!hasEnoughForce)
+        {
+            absorber.Ship.transform.position += -direction * forceRatio * Time.deltaTime;
+        }
+        
     }
 }
