@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 959.1384, g: 5829.524, b: 6407.377, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -150,8 +150,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   settings: {fileID: 0}
   sleepUntilLevel: 1
-  forceRequired: 0
-  scaleMultiplier: 0.05
+  forceRequired: 0.129
+  scaleMultiplier: 0.129
   CanRegenerateFromDissolve: 1
   _sleepUntilAbsorb: 0
 --- !u!64 &10922603
@@ -299,8 +299,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   settings: {fileID: 0}
   sleepUntilLevel: 0
-  forceRequired: 0
-  scaleMultiplier: 0.05
+  forceRequired: 0.028
+  scaleMultiplier: 0.028
   CanRegenerateFromDissolve: 1
   _sleepUntilAbsorb: 0
 --- !u!64 &44133687
@@ -442,8 +442,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   settings: {fileID: 0}
   sleepUntilLevel: 3
-  forceRequired: 0.286
-  scaleMultiplier: 0.05
+  forceRequired: 0.085
+  scaleMultiplier: 0.085
   CanRegenerateFromDissolve: 1
   _sleepUntilAbsorb: 0
 --- !u!54 &72396797
@@ -1179,8 +1179,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   settings: {fileID: 0}
   sleepUntilLevel: 2
-  forceRequired: 0
-  scaleMultiplier: 0.05
+  forceRequired: 0.094
+  scaleMultiplier: 0.094
   CanRegenerateFromDissolve: 1
   _sleepUntilAbsorb: 0
 --- !u!54 &319505765
@@ -1314,8 +1314,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   settings: {fileID: 0}
   sleepUntilLevel: 2
-  forceRequired: 0
-  scaleMultiplier: 0.05
+  forceRequired: 0.094
+  scaleMultiplier: 0.094
   CanRegenerateFromDissolve: 1
   _sleepUntilAbsorb: 0
 --- !u!54 &324948846
@@ -1366,8 +1366,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   settings: {fileID: 0}
   sleepUntilLevel: 1
-  forceRequired: 0
-  scaleMultiplier: 0.05
+  forceRequired: 0.062
+  scaleMultiplier: 0.062
   CanRegenerateFromDissolve: 1
   _sleepUntilAbsorb: 0
 --- !u!64 &326989946
@@ -1509,8 +1509,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   settings: {fileID: 0}
   sleepUntilLevel: 2
-  forceRequired: 0
-  scaleMultiplier: 0.05
+  forceRequired: 0.094
+  scaleMultiplier: 0.094
   CanRegenerateFromDissolve: 1
   _sleepUntilAbsorb: 0
 --- !u!54 &330981542
@@ -1679,8 +1679,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   settings: {fileID: 0}
   sleepUntilLevel: 1
-  forceRequired: 0
-  scaleMultiplier: 0.05
+  forceRequired: 0.131
+  scaleMultiplier: 0.131
   CanRegenerateFromDissolve: 1
   _sleepUntilAbsorb: 0
 --- !u!64 &356693705
@@ -1777,7 +1777,7 @@ MonoBehaviour:
     playableVolume: {fileID: 1799199575}
     collision: {fileID: 954732850}
     heightOffset: 2.5
-    shipScaleAtTheEnd: 2.35
+    shipScaleAtTheEnd: 1.5
   - name: Bac a sable Zone
     skip: 0
     dollyCartPosition: 1
@@ -1787,7 +1787,7 @@ MonoBehaviour:
     playableVolume: {fileID: 1974005922}
     collision: {fileID: 968723269}
     heightOffset: 4
-    shipScaleAtTheEnd: 3.14
+    shipScaleAtTheEnd: 2.5
   - name: Caillou
     skip: 0
     dollyCartPosition: 2
@@ -2534,8 +2534,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   settings: {fileID: 0}
   sleepUntilLevel: 2
-  forceRequired: 0
-  scaleMultiplier: 0.05
+  forceRequired: 0.094
+  scaleMultiplier: 0.094
   CanRegenerateFromDissolve: 1
   _sleepUntilAbsorb: 0
 --- !u!54 &515392242
@@ -2586,8 +2586,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   settings: {fileID: 0}
   sleepUntilLevel: 1
-  forceRequired: 0
-  scaleMultiplier: 0.05
+  forceRequired: 0.131
+  scaleMultiplier: 0.131
   CanRegenerateFromDissolve: 1
   _sleepUntilAbsorb: 0
 --- !u!54 &517259913
@@ -3371,8 +3371,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   settings: {fileID: 0}
   sleepUntilLevel: 1
-  forceRequired: 0
-  scaleMultiplier: 0.05
+  forceRequired: 0.157
+  scaleMultiplier: 0.157
   CanRegenerateFromDissolve: 1
   _sleepUntilAbsorb: 0
 --- !u!64 &794761576
@@ -3431,8 +3431,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   settings: {fileID: 0}
   sleepUntilLevel: 0
-  forceRequired: 0
-  scaleMultiplier: 0.05
+  forceRequired: 0.028
+  scaleMultiplier: 0.028
   CanRegenerateFromDissolve: 1
   _sleepUntilAbsorb: 0
 --- !u!54 &845337570
@@ -4279,8 +4279,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   settings: {fileID: 0}
   sleepUntilLevel: 1
-  forceRequired: 0
-  scaleMultiplier: 0.05
+  forceRequired: 0.108
+  scaleMultiplier: 0.108
   CanRegenerateFromDissolve: 1
   _sleepUntilAbsorb: 1
 --- !u!64 &1017954800
@@ -4415,8 +4415,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   settings: {fileID: 0}
   sleepUntilLevel: 0
-  forceRequired: 0
-  scaleMultiplier: 0.05
+  forceRequired: 0.112
+  scaleMultiplier: 0.112
   CanRegenerateFromDissolve: 1
   _sleepUntilAbsorb: 0
 --- !u!64 &1030020473
@@ -4744,8 +4744,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   settings: {fileID: 0}
   sleepUntilLevel: 0
-  forceRequired: 0
-  scaleMultiplier: 0.05
+  forceRequired: 0.224
+  scaleMultiplier: 0.224
   CanRegenerateFromDissolve: 1
   _sleepUntilAbsorb: 0
 --- !u!64 &1069472140
@@ -4804,8 +4804,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   settings: {fileID: 0}
   sleepUntilLevel: 0
-  forceRequired: 0
-  scaleMultiplier: 0.05
+  forceRequired: 0.056
+  scaleMultiplier: 0.056
   CanRegenerateFromDissolve: 1
   _sleepUntilAbsorb: 0
 --- !u!64 &1073945394
@@ -5230,8 +5230,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   settings: {fileID: 0}
   sleepUntilLevel: 3
-  forceRequired: 0
-  scaleMultiplier: 0.05
+  forceRequired: 0.085
+  scaleMultiplier: 0.085
   CanRegenerateFromDissolve: 1
   _sleepUntilAbsorb: 0
 --- !u!54 &1127116003
@@ -5454,8 +5454,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   settings: {fileID: 0}
   sleepUntilLevel: 2
-  forceRequired: 0
-  scaleMultiplier: 0.05
+  forceRequired: 0.094
+  scaleMultiplier: 0.094
   CanRegenerateFromDissolve: 1
   _sleepUntilAbsorb: 0
 --- !u!54 &1150847404
@@ -5662,8 +5662,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   settings: {fileID: 0}
   sleepUntilLevel: 0
-  forceRequired: 0
-  scaleMultiplier: 0.05
+  forceRequired: 0.448
+  scaleMultiplier: 0.448
   CanRegenerateFromDissolve: 1
   _sleepUntilAbsorb: 0
 --- !u!54 &1205956755
@@ -5766,8 +5766,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   settings: {fileID: 0}
   sleepUntilLevel: 1
-  forceRequired: 0
-  scaleMultiplier: 0.05
+  forceRequired: 0.129
+  scaleMultiplier: 0.129
   CanRegenerateFromDissolve: 1
   _sleepUntilAbsorb: 0
 --- !u!54 &1246201255
@@ -6247,8 +6247,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   settings: {fileID: 0}
   sleepUntilLevel: 2
-  forceRequired: 0
-  scaleMultiplier: 0.05
+  forceRequired: 0.094
+  scaleMultiplier: 0.094
   CanRegenerateFromDissolve: 1
   _sleepUntilAbsorb: 0
 --- !u!54 &1336792280
@@ -6338,8 +6338,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   settings: {fileID: 0}
   sleepUntilLevel: 1
-  forceRequired: 0
-  scaleMultiplier: 0.05
+  forceRequired: 0.121
+  scaleMultiplier: 0.121
   CanRegenerateFromDissolve: 1
   _sleepUntilAbsorb: 0
 --- !u!64 &1371793596
@@ -6570,8 +6570,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   settings: {fileID: 0}
   sleepUntilLevel: 2
-  forceRequired: 0
-  scaleMultiplier: 0.05
+  forceRequired: 0.094
+  scaleMultiplier: 0.094
   CanRegenerateFromDissolve: 1
   _sleepUntilAbsorb: 0
 --- !u!54 &1408534730
@@ -7087,8 +7087,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   settings: {fileID: 0}
   sleepUntilLevel: 1
-  forceRequired: 0
-  scaleMultiplier: 0.05
+  forceRequired: 0.115
+  scaleMultiplier: 0.115
   CanRegenerateFromDissolve: 0
   _sleepUntilAbsorb: 0
   _absortionMultiplier: 0.2
@@ -7702,8 +7702,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   settings: {fileID: 0}
   sleepUntilLevel: 3
-  forceRequired: 0
-  scaleMultiplier: 0.05
+  forceRequired: 0.085
+  scaleMultiplier: 0.085
   CanRegenerateFromDissolve: 1
   _sleepUntilAbsorb: 0
 --- !u!54 &1611270997
@@ -7754,8 +7754,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   settings: {fileID: 0}
   sleepUntilLevel: 0
-  forceRequired: 0
-  scaleMultiplier: 0.05
+  forceRequired: 0.896
+  scaleMultiplier: 0.896
   CanRegenerateFromDissolve: 1
   _sleepUntilAbsorb: 0
 --- !u!64 &1649070365
@@ -7808,8 +7808,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   settings: {fileID: 0}
   sleepUntilLevel: 0
-  forceRequired: 0
-  scaleMultiplier: 0.05
+  forceRequired: 1
+  scaleMultiplier: 1
   CanRegenerateFromDissolve: 1
   _sleepUntilAbsorb: 0
 --- !u!64 &1659127426
@@ -7868,8 +7868,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   settings: {fileID: 0}
   sleepUntilLevel: 1
-  forceRequired: 0
-  scaleMultiplier: 0.05
+  forceRequired: 0.118
+  scaleMultiplier: 0.118
   CanRegenerateFromDissolve: 1
   _sleepUntilAbsorb: 0
 --- !u!64 &1689452168
@@ -8257,8 +8257,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   settings: {fileID: 0}
   sleepUntilLevel: 1
-  forceRequired: 0
-  scaleMultiplier: 0.05
+  forceRequired: 0.062
+  scaleMultiplier: 0.062
   CanRegenerateFromDissolve: 0
   _sleepUntilAbsorb: 0
   _absortionMultiplier: 0.2
@@ -8611,8 +8611,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   settings: {fileID: 0}
   sleepUntilLevel: 3
-  forceRequired: 0
-  scaleMultiplier: 0.05
+  forceRequired: 0.085
+  scaleMultiplier: 0.085
   CanRegenerateFromDissolve: 1
   _sleepUntilAbsorb: 0
 --- !u!54 &1822699330
@@ -9010,8 +9010,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   settings: {fileID: 0}
   sleepUntilLevel: 2
-  forceRequired: 0
-  scaleMultiplier: 0.05
+  forceRequired: 0.094
+  scaleMultiplier: 0.094
   CanRegenerateFromDissolve: 1
   _sleepUntilAbsorb: 0
 --- !u!54 &1854169258
@@ -9480,8 +9480,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   settings: {fileID: 0}
   sleepUntilLevel: 0
-  forceRequired: 0
-  scaleMultiplier: 0.05
+  forceRequired: 0.003
+  scaleMultiplier: 0
   CanRegenerateFromDissolve: 1
   _sleepUntilAbsorb: 0
 --- !u!64 &1918782213
@@ -9635,8 +9635,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   settings: {fileID: 0}
   sleepUntilLevel: 0
-  forceRequired: 0
-  scaleMultiplier: 0.05
+  forceRequired: 0.002
+  scaleMultiplier: 0
   CanRegenerateFromDissolve: 1
   _sleepUntilAbsorb: 0
 --- !u!64 &1938241806
@@ -10221,8 +10221,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   settings: {fileID: 0}
   sleepUntilLevel: 1
-  forceRequired: 0
-  scaleMultiplier: 0.05
+  forceRequired: 0.129
+  scaleMultiplier: 0.129
   CanRegenerateFromDissolve: 1
   _sleepUntilAbsorb: 0
 --- !u!64 &2038859350
@@ -10786,8 +10786,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   settings: {fileID: 0}
   sleepUntilLevel: 1
-  forceRequired: 0
-  scaleMultiplier: 0.05
+  forceRequired: 0.092
+  scaleMultiplier: 0.092
   CanRegenerateFromDissolve: 1
   _sleepUntilAbsorb: 0
 --- !u!64 &2125712954
@@ -10846,8 +10846,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   settings: {fileID: 0}
   sleepUntilLevel: 1
-  forceRequired: 0
-  scaleMultiplier: 0.05
+  forceRequired: 0.105
+  scaleMultiplier: 0.105
   CanRegenerateFromDissolve: 1
   _sleepUntilAbsorb: 0
 --- !u!64 &2145577019

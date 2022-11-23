@@ -192,6 +192,7 @@ public class LevelManager : MonoBehaviour
         _lookAtTransform = new GameObject().transform;
         
         GameManager.CreateUI();
+        GameManager.State = GameGlobalState.Ingame;
     }
 
     private Transform _lookAtTransform;

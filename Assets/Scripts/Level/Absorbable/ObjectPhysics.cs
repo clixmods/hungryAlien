@@ -29,7 +29,7 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
     /// <summary>
     /// Force required to absorb the object by the player
     /// </summary>
-    [SerializeField,Range(0f, 1)] private float forceRequired;
+    [SerializeField] private float forceRequired;
     /// <summary>
     /// The gain of the absorbtion 
     /// </summary>
@@ -63,6 +63,7 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
     public int SleepUntilLevel => sleepUntilLevel;
 
     public float InitialScaleMultiplier { get; private set; }
+    public float InitialForceRequired { get; private set; }
     public float ScaleMultiplier => scaleMultiplier;
 
     [SerializeField] private bool _sleepUntilAbsorb;
@@ -134,6 +135,7 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
         }
 
         InitialScaleMultiplier = ScaleMultiplier;
+        InitialForceRequired = forceRequired;
     }
 
     public void Init()
@@ -141,16 +143,13 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
         InitialPosition = transform.position;
         if(_collider is MeshCollider meshCollider)
             meshCollider.convex = true;
-        
+
         _collider.enabled = false;
-        
         Rigidbody.isKinematic = true;
         Rigidbody.mass = ForceRequired;
-        
-
         LevelManager.Instance.CallbackPreLevelChange += WatchLevelToWakeUp;
         LevelManager.Instance.CallbackLevelChange += GenerateScaleMultiplier;
-
+        LevelManager.Instance.CallbackLevelChange += GenerateForceRequired;
         if (ForceRequired == 0)
         {
             Debug.LogWarning("Warning : Force required = 0, assign a greater value.", gameObject);
@@ -194,7 +193,6 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
         if(GeneratedCollider)
             GeneratedCollider.Clear();
     }
-
     protected void EndObject()
     {
         AudioManager.PlaySoundAtPosition(settings.aliaseDeath, transform.position);
@@ -236,7 +234,7 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
     {
         float startScale = 1f;
         
-        int currentLevel = LevelManager.Instance.CurrentLevel;
+        int currentLevel = sleepUntilLevel;
         var oof = LevelManager.Instance.CurrentObjectList;
         var myObject = LevelManager.Instance;
         float targetScale;
@@ -254,6 +252,28 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
         float addition = 0;
         addition +=  (InitialScaleMultiplier / sums) * targetScale;
         scaleMultiplier = addition;
+        LevelManager.Instance.CallbackLevelChange -= GenerateScaleMultiplier;
+    }
+    /// <summary>
+    /// Generate the amount of force 
+    /// </summary>
+    public void GenerateForceRequired()
+    {
+        float startScale = 1f;
+        
+        int currentLevel =  sleepUntilLevel;
+        var oof = LevelManager.Instance.CurrentObjectList;
+        var myObject = LevelManager.Instance;
+        float targetScale;
+        if (currentLevel >= 1)
+        {
+            startScale = myObject.DataLevels[currentLevel-1].shipScaleAtTheEnd;
+        }
+   
+       
+        forceRequired = startScale+scaleMultiplier;
+        Debug.Log(forceRequired);
+        LevelManager.Instance.CallbackLevelChange -= GenerateForceRequired;
     }
 
     protected void SetDissolve(float amount)

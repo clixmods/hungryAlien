@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using Cinemachine;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -122,7 +123,7 @@ using UnityEngine.UI;
             EditorGUI.LabelField( forceRect, "Force required");
            
             forceRect.x += forceRect.width / 2;
-            propertyForce.floatValue = EditorGUI.Slider(forceRect,propertyForce.floatValue,1,2);
+            propertyForce.floatValue = EditorGUI.Slider(forceRect,propertyForce.floatValue,0,1);
             serializeObjectPhy.ApplyModifiedProperties();
             
             // MultiplierGain Slider
@@ -207,6 +208,65 @@ using UnityEngine.UI;
                     }
                     firstEndScale = myObject.DataLevels[i].shipScaleAtTheEnd;
                 }
+            }
+
+            for (int i = 0; i < myObject.DataLevels.Length; i++)
+            {
+                var objectPhysicsForThisLevel = GetObjectsInLevel(i);
+                List<ObjectPhysics> nexList = new List<ObjectPhysics>();
+                foreach (var obj in objectPhysicsForThisLevel)
+                {
+                    if(obj.ScaleMultiplier > 0)
+                        nexList.Add(obj);
+                }
+                if (nexList.Count == 0)
+                {
+                    var spofit = new SerializedObject(objectPhysicsForThisLevel[0]);
+                    spofit.FindProperty("scaleMultiplier").floatValue = 0.05f;
+                    nexList.Add(objectPhysicsForThisLevel[0]);
+                }
+                var sdfsdfobjectPhysicsForThisLevel = nexList;
+                IEnumerable<ObjectPhysics> query = sdfsdfobjectPhysicsForThisLevel.OrderBy(x => x.ScaleMultiplier);
+                var listobjectPhysicsForThisLevel = query.ToList();
+                float start = listobjectPhysicsForThisLevel[0].ScaleMultiplier;
+                Debug.Log(start);
+                bool isPossible = true;
+                for(int j = 1 ; j < listobjectPhysicsForThisLevel.Count; j++)
+                {
+                    if(start >= listobjectPhysicsForThisLevel[j].ScaleMultiplier)
+                    {
+                        start += listobjectPhysicsForThisLevel[j].ScaleMultiplier;
+                    }
+                    else
+                    {
+                        isPossible = false;
+                    }
+                }
+                //Your code goes here
+                start = listobjectPhysicsForThisLevel[0].ScaleMultiplier;
+                for(int j = 1 ; j < listobjectPhysicsForThisLevel.Count; j++)
+                {
+                    if(start >= listobjectPhysicsForThisLevel[j].ScaleMultiplier)
+                    {
+                        start += listobjectPhysicsForThisLevel[j].ScaleMultiplier;
+                    }
+                    else
+                    {
+                        var spofit = new SerializedObject(listobjectPhysicsForThisLevel[j]); 
+                        spofit.FindProperty("scaleMultiplier").floatValue = start;
+                        spofit.ApplyModifiedProperties();
+                        j--;
+                    }
+                   
+                }
+
+                foreach (var f in listobjectPhysicsForThisLevel)
+                {
+                    var spofit = new SerializedObject(f);
+                    spofit.FindProperty("forceRequired").floatValue = spofit.FindProperty("scaleMultiplier").floatValue;
+                    spofit.ApplyModifiedProperties();
+                }
+ 
             }
           
             

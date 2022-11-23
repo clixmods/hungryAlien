@@ -6,7 +6,11 @@ using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-
+public enum GameGlobalState
+{
+    Ingame,
+    Paused
+}
 public enum UIType
 {
     Menu,
@@ -34,9 +38,23 @@ public class GameManager : MonoBehaviour
     }
     
     #endregion
-
+    
     [SerializeReference] private GameManagerData _data;
 
+    public static event Action OnGameGlobalStateChanged;
+    private GameGlobalState _state;
+    public static GameGlobalState State
+    {
+        get
+        {
+            return Instance._state;
+        }
+        set
+        {
+            Instance._state = value;
+            OnGameGlobalStateChanged?.Invoke();
+        }
+    }
     private void Awake()
     {
         _data = Resources.Load<GameManagerData>("GameManager Data");

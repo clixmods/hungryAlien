@@ -82,6 +82,7 @@ public class ShipController : MonoBehaviour
         var mousePosition = MouseToWorldPosition();
         var shipPosition = transform.position;
         var direction = new Vector3((mousePosition.x - shipPosition.x), 0, (mousePosition.z - shipPosition.z));
+        
         if(direction.magnitude >0.2f)
         {
             transform.position += direction * speed * Time.deltaTime ;

@@ -605,7 +605,7 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 8
-  speed: 50
+  speed: 5
   aliaseIdle: ship_idle_loop
   aliaseMoving: ship_move_loop
   aliaseUpToSky: ship_absorb

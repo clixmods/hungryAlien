@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class UICursor : MonoBehaviour
 {
@@ -27,6 +29,7 @@ public class UICursor : MonoBehaviour
     void Start()
     {
         _camera = Camera.main;
+        GameManager.OnGameGlobalStateChanged += SetCursorVisibility;
     }
 
     // Update is called once per frame
@@ -38,16 +41,36 @@ public class UICursor : MonoBehaviour
             _camera = Camera.main;
             return;
         }
-        Vector3 position = _camera.ScreenToWorldPoint(Input.Game.Cursor.ReadValue<Vector2>());
+
+        Vector3 point = Mouse.current.position.ReadValue();   
+        point.z = _camera.nearClipPlane;
+        Vector3 position = _camera.ScreenToWorldPoint(point);
      
         // Permet de voir si l'object est derriere la camera
-        bool isBehindTheCamera = position.x < 0 ||position.y < 0 || position.z < 0;
-        if(!isBehindTheCamera )
-        {
+        // bool isBehindTheCamera = position.x < 0 ||position.y < 0;
+        // if(!isBehindTheCamera )
+        // {
             // if(hintPro.offset == null)
-            transform.position = position + _offset;
+            transform.position =  point + _offset;
             // else
             //     hintstring.transform.position = position + hintPro.offset;
+        // }
+    }
+
+    private void SetCursorVisibility()
+    {
+        switch (GameManager.State)
+        {
+            case GameGlobalState.Ingame:
+                gameObject.SetActive(true);
+                Cursor.visible = false;
+                break;
+            case GameGlobalState.Paused:
+                gameObject.SetActive(false);
+                Cursor.visible = true;
+                break;
+            default:
+                throw new ArgumentOutOfRangeException();
         }
     }
 }
