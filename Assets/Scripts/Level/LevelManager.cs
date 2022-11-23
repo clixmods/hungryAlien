@@ -128,7 +128,7 @@ public class LevelManager : MonoBehaviour
     public Transform CurrentPlayerSpawnPoint => dataLevels[CurrentLevel].playerSpawnPoint;
     public float GetCurrentHeightOffset => dataLevels[CurrentLevel].heightOffset;
   
-    public ShipController Player
+    public ShipController Player 
     {
         get
         {
