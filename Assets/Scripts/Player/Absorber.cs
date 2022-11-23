@@ -29,7 +29,7 @@ public class Absorber : MonoBehaviour
     [SerializeField] private Color colorIsAbsorbing = Color.cyan;
     [SerializeField] private Color colorFailed = Color.red;
 
-   
+    [SerializeField] private ParticleSystem particleSystemVaccum;
     /// <summary>
     /// Strenght applied when the player absorb object
     /// </summary>
@@ -116,13 +116,11 @@ public class Absorber : MonoBehaviour
     void Update()
     {
         AudioManager.PlayLoopSound(aliaseLoopLight, transform, ref _audioPlayerLightLoop);
-
-        _light.range = radius;
+        _light.range = radius * Ship.localScale.magnitude;
         _collider.height = radius * 2;
         Vector3 centerCollider = _collider.center;
         centerCollider.z = radius;
         _collider.center = centerCollider;
-
         if (_failedCooldown > 0)
         {
             _absorberColor.color = colorFailed;
@@ -132,14 +130,18 @@ public class Absorber : MonoBehaviour
         {
             AudioManager.StopLoopSound(ref _audioPlayerFail);
         }
-
         if (absorb && _failedCooldown <= 0)
         {
+            if(!particleSystemVaccum.isPlaying)
+                particleSystemVaccum.Play();
+            
             AudioManager.PlayLoopSound(aliaseLoopAbsorbing, transform, ref _audioPlayer);
         }
         else
+        {
+            particleSystemVaccum.Stop();
             AudioManager.StopLoopSound(ref _audioPlayer);
-
+        }
         if(LevelManager.Instance.State == GameState.Ingame)
         {
             Input.Enable();
@@ -160,24 +162,17 @@ public class Absorber : MonoBehaviour
             {
                 return;
             }
-
             if (!inTheTrigger.Contains(other.gameObject))
                 inTheTrigger.Add(other.gameObject);
 
             if (objectPhysics.IsAbsorbed) return;
-            
             if (absorb && _failedCooldown <= 0)
             {
-                // float forceRemaining = strenght / objectPhysics.ForceRequired;
-                // Rigidbody rb = objectPhysics.ObjectRigidbody;
-                // var destination = AbsorbePoint.position;
-                // var direction = (destination - other.transform.position);
-                // direction *= (forceRemaining);
-                // rb.velocity = direction;
                 objectPhysics.OnAbsorb(this, out AbsorbingState absorbingState);
                 switch (absorbingState)
                 {
                     case AbsorbingState.Start:
+                        
                         break;
                     case AbsorbingState.InProgress:
                         _absorberColor.color = colorIsAbsorbing;
@@ -192,7 +187,6 @@ public class Absorber : MonoBehaviour
                         _failedCooldown = FailedCooldownStart;
                         CameraShake.SetNoisier(1, 1);
                         AudioManager.PlayLoopSound(aliaseLoopFail, transform, ref _audioPlayerFail);
-
                         break;
                     default:
                         throw new ArgumentOutOfRangeException();
@@ -219,7 +213,6 @@ public class Absorber : MonoBehaviour
             inTheTrigger.Remove(other.gameObject);
             _absorberColor.color = colorIdle;
         }
-           
     }
 
     #if UNITY_EDITOR
