@@ -36,20 +36,15 @@ public class GameManager : MonoBehaviour
     #endregion
 
     [SerializeReference] private GameManagerData _data;
+
+    private void Awake()
+    {
+        _data = Resources.Load<GameManagerData>("GameManager Data");
+    }
+
     public static void CreateUI()
     {
-        SceneManager.LoadScene(Instance._data.uiSceneName);
-        // switch (uiType)
-        // {
-        //     case UIType.Menu:
-        //         throw new ArgumentOutOfRangeException(nameof(uiType), uiType, null);
-        //         break;
-        //     case UIType.Ingame:
-        //         throw new ArgumentOutOfRangeException(nameof(uiType), uiType, null);
-        //         break;
-        //     default:
-        //         throw new ArgumentOutOfRangeException(nameof(uiType), uiType, null);
-        // }
+        SceneManager.LoadScene(Instance._data.uiSceneName, LoadSceneMode.Additive);
     }
 
 }
