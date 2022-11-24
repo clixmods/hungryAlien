@@ -150,11 +150,11 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
         LevelManager.Instance.CallbackPreLevelChange += WatchLevelToWakeUp;
         LevelManager.Instance.CallbackLevelChange += GenerateScaleMultiplier;
         LevelManager.Instance.CallbackLevelChange += GenerateForceRequired;
-        if (ForceRequired == 0)
-        {
-            Debug.LogWarning("Warning : Force required = 0, assign a greater value.", gameObject);
-            forceRequired = 1;
-        }
+        // if (ForceRequired == 0)
+        // {
+        //     Debug.LogWarning("Warning : Force required = 0, assign a greater value.", gameObject);
+        //     forceRequired = 1;
+        // }
            
     }
     
@@ -205,9 +205,27 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
         private void OnDrawGizmos()
         {
             // Gizmos.DrawWireSphere(AbsorbePoint.position, 1);
-            Handles.Label(transform.position, 
-                $"Force Required {ForceRequired} // Gain : {scaleMultiplier}",
-                new GUIStyle());
+           var LabelStyle = new GUIStyle(GUI.skin.label);
+            var LabelStyleRed = new GUIStyle(LabelStyle);
+            LabelStyleRed.normal.textColor = Color.red;
+
+            var LabelStyleYellow = new GUIStyle(LabelStyle);
+            LabelStyleYellow.normal.textColor = Color.green;
+            
+            
+            var forceRatio = FindObjectOfType<Absorber>().Strenght / ForceRequired;
+            bool hasEnoughForce = forceRatio >= 1;
+            if (hasEnoughForce)
+            {
+                Handles.Label(transform.position, 
+                    $"Force Required {ForceRequired} // Gain : {scaleMultiplier}", LabelStyleYellow);
+            }
+            else
+            {
+                Handles.Label(transform.position, 
+                    $"Force Required {ForceRequired} // Gain : {scaleMultiplier}", LabelStyleRed);
+            }
+            
         }
     #endif
     #endregion
@@ -241,7 +259,6 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
         if (currentLevel >= 1)
         {
             startScale = myObject.DataLevels[currentLevel-1].shipScaleAtTheEnd;
-            targetScale = myObject.DataLevels[currentLevel].shipScaleAtTheEnd - startScale;
         }
         targetScale = myObject.DataLevels[currentLevel].shipScaleAtTheEnd - startScale;
         float sums = 0;
@@ -251,7 +268,7 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
         }
         float addition = 0;
         addition +=  (InitialScaleMultiplier / sums) * targetScale;
-        scaleMultiplier = addition;
+        scaleMultiplier =(float)Math.Round(addition,3) ;
         LevelManager.Instance.CallbackLevelChange -= GenerateScaleMultiplier;
     }
     /// <summary>
@@ -260,22 +277,20 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
     public void GenerateForceRequired()
     {
         float startScale = 1f;
-        
         int currentLevel =  sleepUntilLevel;
-        var oof = LevelManager.Instance.CurrentObjectList;
         var myObject = LevelManager.Instance;
-        float targetScale;
         if (currentLevel >= 1)
         {
             startScale = myObject.DataLevels[currentLevel-1].shipScaleAtTheEnd;
         }
-   
-       
-        forceRequired = startScale+scaleMultiplier;
-        Debug.Log(forceRequired);
+
+        if (forceRequired != 0)
+        {
+            forceRequired = (float)Math.Round(startScale+scaleMultiplier,3);
+        }
+        
         LevelManager.Instance.CallbackLevelChange -= GenerateForceRequired;
     }
-
     protected void SetDissolve(float amount)
     {
         for (int i = 0; i < _propBlocks.Length ; i++)
@@ -361,7 +376,16 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
         ChangeMaterialsRenderQueue(3002);
         Rigidbody.isKinematic = false;
         // Generate direction and apply it to velocity
-        var forceRatio = absorber.Strenght / ForceRequired;
+        float forceRatio;
+        if (forceRequired == 0)
+        {
+            forceRatio = 1;
+        }
+        else
+        {
+            forceRatio = absorber.Strenght / ForceRequired;
+        }
+                
         var destination = absorber.AbsorbePoint.position;
         var direction = destination - transform.position;
         direction *= forceRatio;
