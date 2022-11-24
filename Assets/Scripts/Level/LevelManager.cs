@@ -4,11 +4,6 @@ using System.Collections.Generic;
 using Cinemachine;
 using Unity.VisualScripting;
 using UnityEngine;
-/*
-static int currentLevel 
-Waypoint[] : List des points ou la caméra sera posé, la taille dépendra de currentLevel
-*/
-
 public enum GameState
 {
     Ingame,
@@ -16,7 +11,6 @@ public enum GameState
     Endgame
     
 }
-
 /// <summary>
 /// Struct with multiple informations about levels in the LevelManager
 /// </summary>
@@ -78,8 +72,6 @@ public class LevelManager : MonoBehaviour
     }
 
     #endregion
-    
-   
     [field : SerializeField] public int CurrentLevel {
         get
         {
@@ -106,12 +98,19 @@ public class LevelManager : MonoBehaviour
     private Camera _camera;
 
     #endregion
-    
+
+    #region Action
+
     public Action CallbackLevelChange;
     /// <summary>
     /// Callback of methods when current level change
     /// </summary>
     public Action CallbackPreLevelChange;
+
+    #endregion
+
+    #region Properties
+
     public GameState State { get; private set; }
     public List<ObjectPhysics> CurrentObjectList => _objectPhysicsList;
     public GameObject GetCurrentFloor {
@@ -127,7 +126,6 @@ public class LevelManager : MonoBehaviour
     }
     public Transform CurrentPlayerSpawnPoint => dataLevels[CurrentLevel].playerSpawnPoint;
     public float GetCurrentHeightOffset => dataLevels[CurrentLevel].heightOffset;
-  
     public ShipController Player 
     {
         get
@@ -139,6 +137,11 @@ public class LevelManager : MonoBehaviour
             return _player;
         }
     }
+
+    #endregion
+
+    #region MonoBehaviour
+
     // Start is called before the first frame update
     void Start()
     {
@@ -146,14 +149,14 @@ public class LevelManager : MonoBehaviour
         _objectPhysicsList = new List<ObjectPhysics>();
         _camera ??= Camera.main;
         _smoothPath = GetComponent<CinemachineSmoothPath>();
-        _player = GameObject.FindObjectOfType<ShipController>();
+        _player = FindObjectOfType<ShipController>();
         if (!_camera.TryGetComponent<CinemachineBrain>(out var _))
         {
             _camera.AddComponent<CinemachineBrain>();
         }
         if (_virtualCamera == null)
         {
-            var cm = GameObject.FindObjectOfType<CinemachineVirtualCamera>();
+            var cm = FindObjectOfType<CinemachineVirtualCamera>();
             if (cm == null)
             {
                 var cmGameObject = Instantiate(new GameObject());
@@ -195,12 +198,7 @@ public class LevelManager : MonoBehaviour
         GameManager.State = GameGlobalState.Ingame;
     }
 
-    private Transform _lookAtTransform;
-    Transform GetLookAtPoint()
-    {
-        _lookAtTransform.position = Vector3.Lerp(_lookAtTransform.position, CurrentPlayerSpawnPoint.position, Time.deltaTime);
-        return _lookAtTransform;
-    }
+  
     // Update is called once per frame
     private void Update()
     {
@@ -224,6 +222,15 @@ public class LevelManager : MonoBehaviour
             WatchObjectPhysicalAvailable();
         }
     }
+
+    #endregion
+    
+    private Transform _lookAtTransform;
+    Transform GetLookAtPoint()
+    {
+        _lookAtTransform.position = Vector3.Lerp(_lookAtTransform.position, CurrentPlayerSpawnPoint.position, Time.deltaTime);
+        return _lookAtTransform;
+    }
     private void SetActivePlayableVolume()
     {
         if (dataLevels[CurrentLevel].playableVolume == null)
@@ -240,7 +247,7 @@ public class LevelManager : MonoBehaviour
     }
     /// <summary>
     /// Active the indexed collision to build collision for environnement </summary>
-    void SetCollisionActive()
+    private void SetCollisionActive()
     {
         foreach (var dataLevel in dataLevels)
         {
@@ -257,7 +264,7 @@ public class LevelManager : MonoBehaviour
     /// <summary>
     /// Active the indexed floor to allow player movement
     /// </summary>
-    void SetFloorActive()
+    private void SetFloorActive()
     {
         if (dataLevels[CurrentLevel].floorCollision == null)
         {
@@ -272,22 +279,22 @@ public class LevelManager : MonoBehaviour
     }
     private void WatchObjectPhysicalAvailable()
     {
-        //bool everythingIsAbsorbed = true;
         foreach(var myObject in _objectPhysicsList)
         {
+            // A object is available
             if (myObject != null)
             {
-                //everythingIsAbsorbed = false;
                 return;
             }
         }
-        //if (!everythingIsAbsorbed) 
         RemoveAllObjectPhysical();
         CurrentLevel++;
+        // Check if the level is playable or not, otherwise we go directly on the next one
         while( dataLevels[CurrentLevel].skip)
         {
             CurrentLevel++;
         }
+        // Call all methods registered in his events
         CallbackPreLevelChange();
         CallbackLevelChange();
     }
@@ -299,6 +306,9 @@ public class LevelManager : MonoBehaviour
     {
         _objectPhysicsList.Remove(objectPhysics);
     }
+    /// <summary>
+    /// Clear the list of absordable objects and recreate it
+    /// </summary>
     public void RemoveAllObjectPhysical()
     {
         _objectPhysicsList = new List<ObjectPhysics>();
