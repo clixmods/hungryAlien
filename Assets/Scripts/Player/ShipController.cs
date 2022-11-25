@@ -5,7 +5,11 @@ using AudioAliase;
 [RequireComponent(typeof(CameraShake))]
 public class ShipController : MonoBehaviour
 {
-   
+    #region Singleton
+
+    public static ShipController _instance;
+
+    #endregion
     private InputAsset _input;
     /// <summary>
     /// Input used by the player
@@ -45,6 +49,7 @@ public class ShipController : MonoBehaviour
     private void Awake()
     {
         _camera = Camera.main;
+        _instance = this;
     }
     private void OnEnable()
     {
