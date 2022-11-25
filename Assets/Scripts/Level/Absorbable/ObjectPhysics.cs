@@ -67,7 +67,7 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
     public float InitialScaleMultiplier { get; private set; }
     public float InitialForceRequired { get; private set; }
     public float ScaleMultiplier => scaleMultiplier;
-
+    public Collider Collider => _collider;
     [SerializeField] private bool _sleepUntilAbsorb;
 
     public bool SleepUntilAbsorb
@@ -78,51 +78,25 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
 
     public PlayableVolume PlayableVolume { get; set; }
     #endregion
-
-
+    
     private Mesh GeneratedCollider;
     #region MonoBehaviour
 
     private void Awake()
     {
         _meshRenderer = GetComponentInChildren<MeshRenderer>();
+        _collider = GetComponent<Collider>();
+        if (_collider == null)
+        {
+            _collider = transform.AddComponent<MeshCollider>();
+        }
         _baseScale = transform.localScale;
         _propBlocks = new MaterialPropertyBlock[_meshRenderer.materials.Length];
         for (int i = 0; i < _propBlocks.Length; i++)
         {
             _propBlocks[i] = new MaterialPropertyBlock();
         }
-        _collider = GetComponent<Collider>();
-        if (_collider == null)
-        {
-            _collider = transform.AddComponent<MeshCollider>();
-        }
-
-        if (_collider is MeshCollider meshCollider && meshCollider.sharedMesh == null)
-        {
-            
-            transform.localScale = Vector3.one;
-            MeshFilter[] meshFilters = GetComponentsInChildren<MeshFilter>();
-            CombineInstance[] combine = new CombineInstance[meshFilters.Length];
-            int index = 0;
-            while (index < meshFilters.Length)
-            {
-                combine[index].mesh = meshFilters[index].sharedMesh;
-                var bound = new Bounds();
-                var ogpos = meshFilters[index].transform.position; 
-                meshFilters[index].transform.position = Vector3.zero;
-                combine[index].transform = meshFilters[index].transform.localToWorldMatrix  ;
-                bound.size = meshFilters[index].transform.localScale;
-                combine[index].mesh.bounds = bound;
-                meshFilters[index].transform.position = ogpos;
-                index++;
-            }
-            
-             GeneratedCollider = new Mesh();
-             GeneratedCollider.CombineMeshes(combine);
-             meshCollider.sharedMesh = GeneratedCollider;
-             transform.localScale = _baseScale;
-        }
+      
         Rigidbody = GetComponent<Rigidbody>();
         if (settings == null)
         {
@@ -132,6 +106,11 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
         }
         InitialScaleMultiplier = ScaleMultiplier;
         InitialForceRequired = forceRequired;
+    }
+
+    private void OnValidate()
+    {
+      
     }
 
     public void Init()
@@ -405,7 +384,8 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
         }
         else if (!hasEnoughForce)
         {
-            absorber.Ship.transform.position += -direction * forceRatio * 0.2f * Time.deltaTime;
+            
+            absorber.Ship.transform.position += -direction * forceRatio * 2f * Time.deltaTime;
         }
         
     }

@@ -17,7 +17,6 @@ public enum GameState
 [System.Serializable]
 public struct DataLevel
 {
-    
     [Tooltip("Name of the level")]
     public string name;
     [Header("Debug")]
@@ -59,7 +58,7 @@ public class LevelManager : MonoBehaviour
             if (_instance == null)
             {
                 _instance = FindObjectOfType<LevelManager>();
-                if(!_instance)
+                if(_instance == null)
                     _instance = new GameObject("LevelManager").AddComponent<LevelManager>();
             }
 
@@ -72,17 +71,14 @@ public class LevelManager : MonoBehaviour
     }
 
     #endregion
-    [field : SerializeField] public int CurrentLevel {
+    public int CurrentLevel {
         get
         {
             return _currentLevel;
         }
         private set
         {
-           
-            
             _currentLevel = value;
-            
         } 
     }
     [SerializeField] private DataLevel[] dataLevels;
@@ -142,9 +138,15 @@ public class LevelManager : MonoBehaviour
 
     #region MonoBehaviour
 
+    private void Awake()
+    {
+        _instance = this;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
+        Debug.Log(DataLevels);
         Instance = this;
         _objectPhysicsList = new List<ObjectPhysics>();
         _camera ??= Camera.main;

@@ -29,7 +29,7 @@ public class InputHelperManager : MonoBehaviour
     {
         if (!_hasPressMovement && _uiHelperMovement == null)
         {
-            UIManager.CreateInputHelper(pressMovementText,transform, out _uiHelperMovement , 5);
+            //UIManager.CreateInputHelper(pressMovementText,transform, out _uiHelperMovement , 5);
             _hasPressMovement = true;
         }
 
