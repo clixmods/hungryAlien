@@ -98,7 +98,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a9fd0729eafdb248a5a4038f6091cdd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: -1
+  _speed: -0.3
+  _heightToActivateRocks: 0
+  level: 0
+  _rocks: []
+  _VFXWater: {fileID: 3203561470767237945, guid: 564b46232a589d44aaa1d67e0f9b1a49,
+    type: 3}
 --- !u!54 &6536511509887423454
 Rigidbody:
   m_ObjectHideFlags: 0
