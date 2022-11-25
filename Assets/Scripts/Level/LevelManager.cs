@@ -126,8 +126,19 @@ public class LevelManager : MonoBehaviour
         }
     }
     public Transform CurrentPlayerSpawnPoint => dataLevels[CurrentLevel].playerSpawnPoint;
-
     public float GetCurrentHeightOffset => dataLevels[CurrentLevel].heightOffset;
+  
+    public ShipController Player 
+    {
+        get
+        {
+            if (_player == null)
+            {
+                _player = FindObjectOfType<ShipController>();
+            }
+            return _player;
+        }
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -253,7 +264,7 @@ public class LevelManager : MonoBehaviour
         
         if (dataLevels[CurrentLevel].collision == null)
         {
-            Debug.LogWarning("[LevelManager] collision undefined");
+           // Debug.LogWarning("[LevelManager] collision undefined");
             return;
         }
         dataLevels[CurrentLevel].collision.gameObject.SetActive(true);
