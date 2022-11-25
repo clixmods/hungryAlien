@@ -37,6 +37,8 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
 
     [SerializeField] protected bool CanRegenerateFromDissolve = true;
 
+    static float forceTolerance = 0.999f;
+    
     #endregion
     #region Private Variable
     /// <summary>
@@ -121,19 +123,13 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
              meshCollider.sharedMesh = GeneratedCollider;
              transform.localScale = _baseScale;
         }
-        
-       
-
         Rigidbody = GetComponent<Rigidbody>();
-         
         if (settings == null)
         {
             Debug.LogWarning(MessageSettingsNotSetup, gameObject);
             // Prevent null ref
-            settings = ObjectPhysicsScriptableObject.CreateInstance<ObjectPhysicsScriptableObject>(); 
-           
+            settings = ObjectPhysicsScriptableObject.CreateInstance<ObjectPhysicsScriptableObject>();
         }
-
         InitialScaleMultiplier = ScaleMultiplier;
         InitialForceRequired = forceRequired;
     }
@@ -214,7 +210,7 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
             
             
             var forceRatio = FindObjectOfType<Absorber>().Strenght / ForceRequired;
-            bool hasEnoughForce = forceRatio >= 1;
+            bool hasEnoughForce = forceRatio >= forceTolerance;
             if (hasEnoughForce)
             {
                 Handles.Label(transform.position, 
@@ -383,15 +379,14 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
         }
         else
         {
-            forceRatio = absorber.Strenght / ForceRequired;
+            forceRatio = (float)Math.Round(absorber.Strenght / ForceRequired,3);
         }
-                
         var destination = absorber.AbsorbePoint.position;
         var direction = destination - transform.position;
         direction *= forceRatio;
         Rigidbody.velocity = direction;
         transform.localScale = Vector3.Lerp(transform.localScale, Vector3.zero, Time.deltaTime);
-        bool hasEnoughForce = forceRatio >= 1;
+        bool hasEnoughForce = forceRatio >= forceTolerance;
         float distanceHeight = destination.y - transform.position.y;
         if(distanceHeight < 5) 
         { 
@@ -410,7 +405,7 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
         }
         else if (!hasEnoughForce)
         {
-            absorber.Ship.transform.position += -direction * forceRatio * Time.deltaTime;
+            absorber.Ship.transform.position += -direction * forceRatio * 0.2f * Time.deltaTime;
         }
         
     }

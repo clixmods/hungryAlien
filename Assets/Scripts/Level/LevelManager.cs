@@ -193,7 +193,6 @@ public class LevelManager : MonoBehaviour
         CallbackPreLevelChange();
         CallbackLevelChange();
         _lookAtTransform = new GameObject().transform;
-        
         GameManager.CreateUI();
         GameManager.State = GameGlobalState.Ingame;
     }
