@@ -39,6 +39,7 @@ Material:
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: 3000
   stringTagMap:
+    MotionVector: User
     RenderType: Transparent
   disabledShaderPasses:
   - TransparentDepthPrepass
@@ -94,7 +95,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MaskMap:
-        m_Texture: {fileID: 2800000, guid: 286dbfaf313e74c4da42a0e0dced4745, type: 3}
+        m_Texture: {fileID: 2800000, guid: 41bbc0a61c65fc849abfe8ec712928bb, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _NormalMap:
@@ -207,7 +208,7 @@ Material:
     - _MetallicRemapMax: 1
     - _MetallicRemapMin: 0
     - _NoiseScale: 50
-    - _NoiseStrenght: 2.72
+    - _NoiseStrenght: 10
     - _NormalMapSpace: 0
     - _NormalScale: 1
     - _OpaqueCullMode: 2
