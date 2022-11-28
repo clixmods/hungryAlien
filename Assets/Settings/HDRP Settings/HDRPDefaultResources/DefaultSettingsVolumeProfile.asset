@@ -487,7 +487,7 @@ MonoBehaviour:
     m_Value: 0
   intensity:
     m_OverrideState: 1
-    m_Value: 2.763
+    m_Value: 2.627
   directLightingStrength:
     m_OverrideState: 0
     m_Value: 0
@@ -599,7 +599,7 @@ MonoBehaviour:
   active: 1
   maxShadowDistance:
     m_OverrideState: 1
-    m_Value: 161.73
+    m_Value: 0
   directionalTransmissionMultiplier:
     m_OverrideState: 1
     m_Value: 1
