@@ -56,7 +56,7 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
     public Rigidbody Rigidbody { get; private set; }
     public float ForceRequired => forceRequired;
     public bool IsAbsorbed { get; set; }
-    public bool IsAbsorbable { get; private set; }
+    public bool IsAbsorbable { get; set; }
     
     public bool IsInAbsorbing { get; set; }
     

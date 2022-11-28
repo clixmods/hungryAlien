@@ -5,7 +5,6 @@ using AudioAliase;
 [RequireComponent(typeof(CameraShake))]
 public class ShipController : MonoBehaviour
 {
-   
     private InputAsset _input;
     /// <summary>
     /// Input used by the player
