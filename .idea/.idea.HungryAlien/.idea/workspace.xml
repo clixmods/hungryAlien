@@ -5,21 +5,53 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="db6ae1ff-23e2-4f3b-9ceb-e60a307727cd" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.HungryAlien/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.HungryAlien/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/RateauAbsorbable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/RateauAbsorbable.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/map_default_prototype.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/map_default_prototype.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Level/Absorbable/IAbsorbable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Level/Absorbable/IAbsorbable.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Level/Absorbable/ObjectPhysics.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Level/Absorbable/ObjectPhysics.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Level/Absorbable/ObjectPhysicsNotAbsorbable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Level/Absorbable/ObjectPhysicsNotAbsorbable.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/Absorber.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player/Absorber.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/ScaleShip.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player/ScaleShip.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/ShipController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player/ShipController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/InputHelperManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/InputHelperManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/WaterAbsorbable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/WaterAbsorbable.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/QualitySettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/QualitySettings.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/RiderScriptEditorPersistedState.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/RiderScriptEditorPersistedState.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Ressources3D/mesh_UFO.fbx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Ressources3D/mesh_UFO.fbx.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/VFX/TorchFire.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/VFX/TorchFire/flame (1).png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/VFX/TorchFire/flame (1).png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/VFX/TorchFire/fx_ps_fireTorch.prefab" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/VFX/TorchFire/fx_ps_fireTorch.prefab.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/VFX/TorchFire/mtl_fire_torch.mat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/VFX/TorchFire/mtl_fire_torch.mat.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/VFX/TorchFire/mtl_torch_smoke.mat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/VFX/TorchFire/mtl_torch_smoke.mat.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/VFX/TorchFire/shader_torch_fire.shadergraph" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/VFX/TorchFire/shader_torch_fire.shadergraph.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/VFX/TorchFire/smoke_04.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/VFX/TorchFire/smoke_04.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Ressources3D/Zone 1/Material/Rateau.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Ressources3D/Zone 1/Material/Rateau.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Ressources3D/Zone 2/Materials/Arbre_1_Bois.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Ressources3D/Zone 2/Materials/Arbre_1_Bois.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Ressources3D/Zone 2/Materials/Arbre_1_Feuille.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Ressources3D/Zone 2/Materials/Arbre_1_Feuille.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Ressources3D/Zone 2/Materials/Arbre_2_bois.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Ressources3D/Zone 2/Materials/Arbre_2_bois.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Ressources3D/Zone 2/Materials/Arbre_2_feuille.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Ressources3D/Zone 2/Materials/Arbre_2_feuille.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Ressources3D/Zone 2/Materials/Balançoire_Bois.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Ressources3D/Zone 2/Materials/Balançoire_Bois.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Ressources3D/Zone 2/Materials/Balançoire_Metal.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Ressources3D/Zone 2/Materials/Balançoire_Metal.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Ressources3D/Zone 2/Materials/Brouette_Bac.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Ressources3D/Zone 2/Materials/Brouette_Bac.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Ressources3D/Zone 2/Materials/Brouette_Caoutchou.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Ressources3D/Zone 2/Materials/Brouette_Caoutchou.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Ressources3D/Zone 2/Materials/Brouette_Handles.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Ressources3D/Zone 2/Materials/Brouette_Handles.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Ressources3D/Zone 2/Materials/Brouette_metal.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Ressources3D/Zone 2/Materials/Brouette_metal.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Ressources3D/Zone 2/Materials/Brouette_wheels.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Ressources3D/Zone 2/Materials/Brouette_wheels.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Ressources3D/Zone 2/Materials/Cahier_couverture.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Ressources3D/Zone 2/Materials/Cahier_couverture.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Ressources3D/Zone 2/Materials/Cahier_papier.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Ressources3D/Zone 2/Materials/Cahier_papier.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Ressources3D/Zone 2/Materials/Drapeau_fil.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Ressources3D/Zone 2/Materials/Drapeau_fil.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Ressources3D/Zone 2/Materials/Drapeau_pilier.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Ressources3D/Zone 2/Materials/Drapeau_pilier.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Ressources3D/Zone 2/Materials/Sac_a_dos_Sac.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Ressources3D/Zone 2/Materials/Sac_a_dos_Sac.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Ressources3D/Zone 2/Materials/Sac_a_dos_hanses.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Ressources3D/Zone 2/Materials/Sac_a_dos_hanses.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Ressources3D/Zone 2/Materials/Snack_nom.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Ressources3D/Zone 2/Materials/Snack_nom.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Ressources3D/Zone 2/Materials/Snack_papier.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Ressources3D/Zone 2/Materials/Snack_papier.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Ressources3D/Zone 2/Materials/Toboggan_Toboggan.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Ressources3D/Zone 2/Materials/Toboggan_Toboggan.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Ressources3D/Zone 2/Materials/Toboggan_escaliers.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Ressources3D/Zone 2/Materials/Toboggan_escaliers.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Ressources3D/Zone 2/Materials/mtl_Bac_a_sable_bois.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Ressources3D/Zone 2/Materials/mtl_Bac_a_sable_bois.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Ressources3D/Zone 2/Materials/mtl_Bac_a_sable_sable.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Ressources3D/Zone 2/Materials/mtl_Bac_a_sable_sable.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Ressources3D/Zone 2/Materials/mtl_rocher_1.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Ressources3D/Zone 2/Materials/mtl_rocher_1.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Ressources3D/Zone 2/Materials/mtl_rocher_2.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Ressources3D/Zone 2/Materials/mtl_rocher_2.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Ressources3D/Zone 2/Materials/mtl_rocher_3.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Ressources3D/Zone 2/Materials/mtl_rocher_3.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/VFXEssais.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/VFXEssais.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/VFX/Wind/mtl_fanionjaune.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VFX/Wind/mtl_fanionjaune.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/VFX/Wind/mtl_fanionrouge.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VFX/Wind/mtl_fanionrouge.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/VFX/Wind/mtl_herbe.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VFX/Wind/mtl_herbe.mat" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UserSettings/HDRPUserSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/HDRPUserSettings.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UserSettings/Layouts/CurrentMaximizeLayout.dwlt" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/Layouts/CurrentMaximizeLayout.dwlt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -177,7 +209,7 @@
       <workItem from="1669385157057" duration="6251000" />
       <workItem from="1669622675248" duration="4761000" />
       <workItem from="1669632047844" duration="317000" />
-      <workItem from="1669662109295" duration="9375000" />
+      <workItem from="1669662109295" duration="10020000" />
     </task>
     <servers />
   </component>
