@@ -107,10 +107,10 @@ Material:
     - _TransparentWritingMotionVec: 0
     - _TransparentZWrite: 0
     - _UseShadowThreshold: 0
-    - _WindArea: 2.62
-    - _WindNoise: 3.33
-    - _WindPower: 0.24
-    - _WindSpeed: 0.91
+    - _WindArea: 4.69
+    - _WindNoise: 6.58
+    - _WindPower: 0.77
+    - _WindSpeed: 0.76
     - _ZTestDepthEqualForOpaque: 3
     - _ZTestGBuffer: 4
     - _ZTestTransparent: 4
