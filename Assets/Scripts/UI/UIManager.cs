@@ -8,7 +8,8 @@ public class UIManager : MonoBehaviour
     
     public GameObject InputHelperPrefab;
 
-    public static void CreateInputHelper(string text, Transform transformToTarget , out UIInputHelper component)
+    public static void CreateInputHelper(string text, Transform transformToTarget , out UIInputHelper component, 
+        float displayTime = -1)
     {
         component = null;
         if (transformToTarget == null) return;
@@ -18,7 +19,7 @@ public class UIManager : MonoBehaviour
 
         component = inputHelperObject.GetComponent<UIInputHelper>();
             
-        component.Setup(text, transformToTarget);
+        component.Setup(text, transformToTarget , displayTime);
         
     }
     

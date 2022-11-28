@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using Cinemachine;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -43,7 +44,7 @@ using UnityEngine.UI;
 
             return count;
         }
-        ObjectPhysics[] GetObjectsInLevel(int level)
+        ObjectPhysics[] GetObjectsInLevel(int level, bool OrderByMultiplier = false)
         {
             ObjectPhysics[] objectPhysics = new ObjectPhysics[GetNumberOfObjectInLevel(level)];
             int index = 0;
@@ -57,10 +58,14 @@ using UnityEngine.UI;
                    
             }
 
+            if (OrderByMultiplier)
+            {
+                IEnumerable<ObjectPhysics> query = objectPhysics.OrderBy(x => x.ScaleMultiplier);
+                objectPhysics = query.ToArray();
+            }
+
             return objectPhysics;
         }
-        
-        
         private void OnEnable()
         {
             allObjectPhysics = GameObject.FindObjectsOfType<ObjectPhysics>();
@@ -77,6 +82,10 @@ using UnityEngine.UI;
                  list[i].drawElementCallback = DrawElementItem; // Delegate to draw the elements on the list
                  list[i].drawHeaderCallback = DrawHeader; // Skip this line if you set displayHeader to 'false' in your ReorderableList constructor.
                  list[i].elementHeight = ElementHeight;
+                 list[i].onChangedCallback = reorderableList =>
+                 {
+                     list[i].Deselect(list[i].index);
+                 };
             }
             
             // Init Editor[] for object icon preview
@@ -86,18 +95,14 @@ using UnityEngine.UI;
             }
 
         }
-
         #region ReordonableListCallback
-
         void DrawElementItem(Rect rect, int index, bool isActive, bool isFocused)
         {
             var objectPhysics = GetObjectsInLevel(_currentDrawedLevel)[index];
             // Get serialize object and properties
-            var serializeObjectPhy = new SerializedObject( GetObjectsInLevel(_currentDrawedLevel)[index]);
+            var serializeObjectPhy = new SerializedObject( objectPhysics);
             var propertyForce = serializeObjectPhy.FindProperty("forceRequired");
             var propertyMultiplier = serializeObjectPhy.FindProperty("scaleMultiplier");
-
-
             if (_showIconPreview)
             {
                 // Draw object preview
@@ -119,12 +124,11 @@ using UnityEngine.UI;
             
             // ForceRequired Slider
             Rect forceRect = new Rect(rect.x+32, rect.y+16, rect.width / 2, EditorGUIUtility.singleLineHeight);
-            EditorGUI.LabelField( forceRect, "Force required");
+            EditorGUI.LabelField( forceRect, $"Force required : {propertyForce.floatValue}");
            
-            forceRect.x += forceRect.width / 2;
-            propertyForce.floatValue = EditorGUI.Slider(forceRect,propertyForce.floatValue,1,2);
-            serializeObjectPhy.ApplyModifiedProperties();
-            
+            // forceRect.x += forceRect.width / 2;
+            // propertyForce.floatValue = EditorGUI.Slider(forceRect,propertyForce.floatValue,0,1);
+            // serializeObjectPhy.ApplyModifiedProperties();
             // MultiplierGain Slider
             Rect MultiplierRect = new Rect(rect.x + 32, forceRect.y + 16, rect.width / 2,
                 EditorGUIUtility.singleLineHeight);
@@ -138,6 +142,26 @@ using UnityEngine.UI;
             serializeObjectPhy.ApplyModifiedProperties();
             _indexObjectPreview++;
         }
+        
+        //Draws the header
+        void DrawHeader(Rect rect)
+        {
+            rect.width -= 30;
+            ObjectPhysics[] obj = GetObjectsInLevel(_currentDrawedLevel);
+       
+            for (int i = 0; i < obj.Length; i++)
+            {
+                scalePlayerSupposition += obj[i].ScaleMultiplier;
+            }
+            var labelName = $"Objects available in level {_currentDrawedLevel} / TOTAL Scale player at the end : {scalePlayerSupposition} ";
+            EditorGUI.LabelField(rect, labelName);
+            rect.x += 250;
+            rect.width -=250;
+            myObject.DataLevels[_currentDrawedLevel].shipScaleAtTheEnd = EditorGUI.FloatField(rect,     myObject.DataLevels[_currentDrawedLevel].shipScaleAtTheEnd);
+        }
+        
+
+        #endregion
 
         float GetAdditionalScale(int index)
         {
@@ -152,11 +176,9 @@ using UnityEngine.UI;
             {
                 endScale = myObject.DataLevels[_currentDrawedLevel].shipScaleAtTheEnd;
             }
-          
             
-             ObjectPhysics[] rewards = GetObjectsInLevel(_currentDrawedLevel);
+            ObjectPhysics[] rewards = GetObjectsInLevel(_currentDrawedLevel);
             float sommeTotal = 0;
-      
             foreach(var reward in rewards) sommeTotal += reward.ScaleMultiplier;
             
             float addition = 0;
@@ -165,56 +187,13 @@ using UnityEngine.UI;
 
             return addition;
         }
-
-        //Draws the header
-        void DrawHeader(Rect rect)
-        {
-            rect.width -= 30;
-            ObjectPhysics[] obj = GetObjectsInLevel(_currentDrawedLevel);
-       
-            for (int i = 0; i < obj.Length; i++)
-            {
-                scalePlayerSupposition += obj[i].ScaleMultiplier;
-            }
-            var name = $"Objects available in level {_currentDrawedLevel} / TOTAL Scale player at the end : {scalePlayerSupposition} ";
-            
-            
-            EditorGUI.LabelField(rect, name);
-            rect.x += 250;
-            rect.width -=250;
-            myObject.DataLevels[_currentDrawedLevel].shipScaleAtTheEnd = EditorGUI.FloatField(rect,     myObject.DataLevels[_currentDrawedLevel].shipScaleAtTheEnd);
-        }
-        
-
-        #endregion
-
-        
         
         public override void OnInspectorGUI()
         {
             myObject = (LevelManager) target;
-
-            if (myObject.DataLevels.Length > 1)
-            {
-                float firstEndScale = myObject.DataLevels[0].shipScaleAtTheEnd;
-                // Manage Data Level End scale
-                for (int i = 1; i < myObject.DataLevels.Length; i++)
-                {
-                    if (firstEndScale >= myObject.DataLevels[i].shipScaleAtTheEnd)
-                    {
-                        myObject.DataLevels[i].shipScaleAtTheEnd = firstEndScale + 0.1f;
-                        
-                    }
-                    firstEndScale = myObject.DataLevels[i].shipScaleAtTheEnd;
-                }
-            }
-          
-            
-            
             myObject.transform.position = Vector3.zero; 
             myObject.transform.rotation = Quaternion.identity;
             soObject ??= new SerializedObject(myObject);
-            
             base.OnInspectorGUI();
             if (myObject.DataLevels.Length == 0)
             {
@@ -285,7 +264,101 @@ using UnityEngine.UI;
             }
 
             if (Application.isPlaying) return;
+
+
+            if (GUILayout.Button("Balance gain and force"))
+            {
+                
             
+            // Verification to see if endscale from the previous level is less than the next one 
+            if (myObject.DataLevels.Length > 1)
+            {
+                float firstEndScale = myObject.DataLevels[0].shipScaleAtTheEnd;
+                for (int i = 1; i < myObject.DataLevels.Length; i++)
+                {
+                    if (firstEndScale >= myObject.DataLevels[i].shipScaleAtTheEnd)
+                    {
+                        myObject.DataLevels[i].shipScaleAtTheEnd = firstEndScale + 0.1f;
+                    }
+                    firstEndScale = myObject.DataLevels[i].shipScaleAtTheEnd;
+                }
+            }
+            for (int i = 0; i < myObject.DataLevels.Length; i++)
+            {
+                var objectPhysicsInLevel = GetObjectsInLevel(i);
+                // We retreived all objects with a scale gain > 0, to see if its balanced.
+                List<ObjectPhysics> importantObjects = new List<ObjectPhysics>();
+                foreach (var obj in objectPhysicsInLevel)
+                {
+                    if(obj.ScaleMultiplier > 0 )
+                        importantObjects.Add(obj);
+                    
+                }
+                if (importantObjects.Count == 0)
+                {
+                    var spofit = new SerializedObject(objectPhysicsInLevel[0]);
+                    spofit.FindProperty("scaleMultiplier").floatValue = 1;
+                    importantObjects.Add(objectPhysicsInLevel[0]);
+                }
+                var sdfsdfobjectPhysicsForThisLevel = importantObjects;
+                IEnumerable<ObjectPhysics> query = sdfsdfobjectPhysicsForThisLevel.OrderBy(x => x.ScaleMultiplier);
+                var orderedObjectPhysics = query.ToList();
+                float start = orderedObjectPhysics[0].ScaleMultiplier;
+                start = orderedObjectPhysics[0].ScaleMultiplier;
+                for(int j = 1 ; j < orderedObjectPhysics.Count-1; j++)
+                {
+                    if(start >= orderedObjectPhysics[j].ScaleMultiplier)
+                    {
+                        start += orderedObjectPhysics[j].ScaleMultiplier;
+                    }
+                    else
+                    { //0.7 - 1
+                        // var spofit = new SerializedObject(orderedObjectPhysics[j-1]); 
+                        // spofit.FindProperty("scaleMultiplier").floatValue += orderedObjectPhysics[j].ScaleMultiplier - start;
+                        // start += orderedObjectPhysics[j].ScaleMultiplier;
+                        // spofit.ApplyModifiedProperties();
+                        // j--;
+                        
+                         var spofit = new SerializedObject(orderedObjectPhysics[j]); 
+                         spofit.FindProperty("scaleMultiplier").floatValue =  start;
+                         spofit.ApplyModifiedProperties();
+                         j--;
+                    }
+                }
+                // Verification to check if all objects are not a gain = 0
+                // Otherwise, we force a object to have 1 
+                if (orderedObjectPhysics[^1].ScaleMultiplier == 0)
+                {
+                    var lastObject = new SerializedObject(orderedObjectPhysics[^1]);
+                    lastObject.FindProperty("scaleMultiplier").floatValue = 1;
+                    lastObject.ApplyModifiedProperties();
+                }
+                // Apply scaleMultiplier to the force required, Set forceRequired to 0 for object(s) with the less gain 
+                for (int j = 0; j < orderedObjectPhysics.Count; j++)
+                {
+                    var f = orderedObjectPhysics[j];
+                    
+                    var spofit = new SerializedObject(f);
+                    if (j == 0)
+                    {
+                        spofit.FindProperty("forceRequired").floatValue = 0;
+                    }
+                    else
+                    {
+                        if (f.ScaleMultiplier == orderedObjectPhysics[0].ScaleMultiplier)
+                        {
+                            spofit.FindProperty("forceRequired").floatValue = 0;
+                        }
+                        else
+                        {
+                            spofit.FindProperty("forceRequired").floatValue = spofit.FindProperty("scaleMultiplier").floatValue;
+                        }
+                    }
+                    spofit.ApplyModifiedProperties();
+                }
+               
+            }
+            }
             _foldListObject = EditorGUILayout.Foldout(_foldListObject, "List of Object");
             if (_foldListObject)
             {
@@ -401,7 +474,6 @@ using UnityEngine.UI;
                     _maxLevel = allObjectPhysics[i].SleepUntilLevel+1;
                 }
             }
-
             return _maxLevel;
         }
         private static bool IsEmpty(ObjectPhysics[] allObjectPhysics, int i)

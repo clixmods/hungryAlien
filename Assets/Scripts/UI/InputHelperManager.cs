@@ -15,7 +15,7 @@ public class InputHelperManager : MonoBehaviour
     private bool _hasPressMovement;
     private UIInputHelper _uiHelperMovement;
     [SerializeField] private string pressMovementText = "Use mouse to move";
-    
+    private float _displayTime;
   
     // Start is called before the first frame update
     void Start()
@@ -29,15 +29,15 @@ public class InputHelperManager : MonoBehaviour
     {
         if (!_hasPressMovement && _uiHelperMovement == null)
         {
-            UIManager.CreateInputHelper(pressMovementText,transform, out _uiHelperMovement);
+            //UIManager.CreateInputHelper(pressMovementText,transform, out _uiHelperMovement , 5);
+            _hasPressMovement = true;
         }
+
 
         if (_uiHelperAbsorbed != null && !_absorber.InTheTrigger.Contains(_uiHelperAbsorbed.TargetTransform.gameObject))
         {
             Destroy(_uiHelperAbsorbed.gameObject);
         }
-            
-        
         
         if (_absorber.InTheTrigger != null && _absorber.InTheTrigger.Count != 0 && !_hasPressAbsorbed && _uiHelperAbsorbed == null)
         {

@@ -31,8 +31,8 @@ public class CameraShake : MonoBehaviour
     {
         if (Instance == null)
             Instance = this;
-        else
-            Destroy(this);
+        //else
+            //Destroy(this);
     }
 
     // Start is called before the first frame update

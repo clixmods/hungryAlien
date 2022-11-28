@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEditor;
  
 [CustomPropertyDrawer(typeof(PrefixAttribute))]
-public class PrefixEditor : PropertyDrawer
+public class PrefixDrawer : PropertyDrawer
 {
     public override void OnGUI( Rect position, SerializedProperty property, GUIContent label )
     {

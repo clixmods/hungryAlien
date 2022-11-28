@@ -86,7 +86,7 @@ Material:
     - _EnableFogOnTransparent: 1
     - _FlowSpeed: 0.92
     - _FlowStrenght: 0.03
-    - _FoamDistance: 10.24
+    - _FoamDistance: 0.7
     - _OpaqueCullMode: 2
     - _QueueControl: 1
     - _QueueOffset: 0
@@ -126,8 +126,8 @@ Material:
     - _DarkFoamColor: {r: 0, g: 0, b: 0, a: 0}
     - _DoubleSidedConstants: {r: 1, g: 1, b: -1, a: 0}
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
-    - _LightFoamColor: {r: 0, g: 3.6858635, b: 29.151829, a: 1}
-    - _WaterColor: {r: 0.013702081, g: 0.16202943, b: 0.78353804, a: 0}
+    - _LightFoamColor: {r: 1.9827124, g: 6.817444, b: 38.91997, a: 1}
+    - _WaterColor: {r: 0, g: 0.1928935, b: 1, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &8881698474960675419
 MonoBehaviour:

@@ -13,7 +13,6 @@ namespace Level
         public float ForceRequired { get; }
         public bool SleepUntilAbsorb { get; set; }
         public PlayableVolume PlayableVolume { get; set; }
-
         private void Start()
         {
             InitialPosition = transform.position;

@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEditor;
 using UnityEngine.Rendering;
 
-[CustomEditor(typeof(ObjectPhysics)), CanEditMultipleObjects()]
+[CustomEditor(typeof(ObjectPhysics),true), CanEditMultipleObjects()]
 public class ObjectPhysicsEditor : Editor
 {
     private Editor _editor;
@@ -14,7 +14,6 @@ public class ObjectPhysicsEditor : Editor
     private ObjectPhysics myTarget;
     private SerializedProperty _serializedProperty;
     private const string PropertyName = "settings";
-
     public override void OnInspectorGUI()
     {
         base.OnInspectorGUI();
@@ -26,6 +25,38 @@ public class ObjectPhysicsEditor : Editor
         {
             ButtonSaveAsset();
         }
+        
+        if (GUILayout.Button("Generate Collider"))
+        {
+            var _baseScale  =  myTarget.transform.localScale;
+            var _meshCollider = myTarget.transform.GetComponent<MeshCollider>();
+            if (_meshCollider != null && _meshCollider.sharedMesh == null)
+            {
+                myTarget.transform.localScale = Vector3.one;
+                MeshFilter[] meshFilters =myTarget.GetComponentsInChildren<MeshFilter>();
+                CombineInstance[] combine = new CombineInstance[meshFilters.Length];
+                int index = 0;
+                while (index < meshFilters.Length)
+                {
+                    combine[index].mesh = meshFilters[index].sharedMesh;
+                    var bound = new Bounds();
+                    var ogpos = meshFilters[index].transform.position; 
+                    meshFilters[index].transform.position = Vector3.zero;
+                    combine[index].transform = meshFilters[index].transform.localToWorldMatrix  ;
+                    bound.size = meshFilters[index].transform.localScale;
+                    combine[index].mesh.bounds = bound;
+                    meshFilters[index].transform.position = ogpos;
+                    index++;
+                }
+            
+                var GeneratedCollider = new Mesh();
+                GeneratedCollider.CombineMeshes(combine);
+                _meshCollider.sharedMesh = GeneratedCollider;
+                myTarget.transform.localScale =_baseScale;
+                
+            }
+        }
+
 
         if (_serializedProperty != null)
         {
