@@ -329,7 +329,7 @@ namespace AudioAliase
             }
             if (!GetAudioPlayer(out AudioPlayer audioPlayer))
             {
-                if(ShowDebugText) Debug.LogWarning($"AudioManager : Limits exceded for _audioSource, maybe you need to increase your audioSourcePoolSize (Size = {Instance.audioSourcePoolSize})");
+                if(ShowDebugText) Debug.LogWarning($"AudioManager :green; ► Limits exceded for _audioSource, maybe you need to increase your audioSourcePoolSize (Size = {Instance.audioSourcePoolSize})");
                 return ;
             }
             audioPlayer.gameObject.transform.position = position;

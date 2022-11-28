@@ -4886,7 +4886,7 @@
     "m_ReceiveSSR": true,
     "m_ReceiveSSRTransparent": false,
     "m_SpecularAA": false,
-    "m_SpecularOcclusionMode": 1,
+    "m_SpecularOcclusionMode": 2,
     "m_OverrideBakedGI": false
 }
 

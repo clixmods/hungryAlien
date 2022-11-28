@@ -13,6 +13,12 @@ public class GameManagerEditor : Editor
     {
         base.DrawDefaultInspector();
         var serializedProperty = serializedObject.FindProperty("_data");
+        if (serializedProperty.objectReferenceValue == null)
+        {
+            serializedProperty.objectReferenceValue = Resources.Load<Object>("GameManager Data");
+        }
+
+        serializedObject.ApplyModifiedProperties();
         _foldSO = EditorGUILayout.InspectorTitlebar(_foldSO, serializedProperty.objectReferenceValue);
         if (_foldSO)
         {

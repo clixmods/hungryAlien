@@ -8,7 +8,7 @@ using Vector3 = UnityEngine.Vector3;
 [RequireComponent(typeof(TextMeshProUGUI))]
 public class UIInputHelper : MonoBehaviour , IUIWaypoint
 {
-
+    private float _lifeTime = -1;
     private Camera _camera;
     private Vector3 _offset;
     private Transform _targetTransform;
@@ -17,17 +17,16 @@ public class UIInputHelper : MonoBehaviour , IUIWaypoint
         get { return _textMeshPro.text ; }
         set { _textMeshPro.text = value; } 
     }
-
     public Transform TargetTransform
     {
         get { return _targetTransform; }
     }
-
     
-    public void Setup(string text, Transform transformToTarget)
+    public void Setup(string text, Transform transformToTarget , float displayTime = -1)
     {
         Text = text;
         _targetTransform = transformToTarget;
+        _lifeTime = displayTime;
     }
     
     
@@ -42,6 +41,20 @@ public class UIInputHelper : MonoBehaviour , IUIWaypoint
     void Update()
     {
         UpdatePosition();
+        if (_lifeTime != -1)
+        {
+            if (_lifeTime > 0)
+            {
+                _lifeTime -= Time.deltaTime;
+            }
+            else
+            {
+                _textMeshPro.color = Color.Lerp(_textMeshPro.color, Color.clear, Time.deltaTime);
+                if(_textMeshPro.color == Color.clear)
+                    Destroy(gameObject);
+            }
+        }
+        
     }
     
     void UpdatePosition()

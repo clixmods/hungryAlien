@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Test_PlayerController_Clix.unity
-    guid: e7d15008304725145a2e14a2dd0e837d
+    path: Assets/Scenes/map_default_prototype.unity
+    guid: 1e77dab0248c6ac4fabe20d2c0efb1d2
+  - enabled: 1
+    path: Assets/Scenes/UI.unity
+    guid: 27b90f845fc83b647ae34598a1ee4092
   m_configObjects: {}

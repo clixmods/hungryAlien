@@ -4,8 +4,13 @@ using System.Collections.Generic;
 using Core;
 using JetBrains.Annotations;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-
+public enum GameGlobalState
+{
+    Ingame,
+    Paused
+}
 public enum UIType
 {
     Menu,
@@ -16,7 +21,7 @@ public class GameManager : MonoBehaviour
     #region Singleton
 
     private static GameManager _instance;
-    private static GameManager Instance
+    public static GameManager Instance
     {
         get
         {
@@ -33,21 +38,31 @@ public class GameManager : MonoBehaviour
     }
     
     #endregion
-
-    private GameManagerData _data;
     
+    [SerializeReference] private GameManagerData _data;
 
-    public static void CreateUI(UIType uiType)
+    public static event Action OnGameGlobalStateChanged;
+    private GameGlobalState _state;
+    public static GameGlobalState State
     {
-        switch (uiType)
+        get
         {
-            case UIType.Menu:
-                break;
-            case UIType.Ingame:
-                break;
-            default:
-                throw new ArgumentOutOfRangeException(nameof(uiType), uiType, null);
+            return Instance._state;
         }
+        set
+        {
+            Instance._state = value;
+            OnGameGlobalStateChanged?.Invoke();
+        }
+    }
+    private void Awake()
+    {
+        _data = Resources.Load<GameManagerData>("GameManager Data");
+    }
+
+    public static void CreateUI()
+    {
+        SceneManager.LoadScene(Instance._data.uiSceneName, LoadSceneMode.Additive);
     }
 
 }
