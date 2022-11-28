@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEditor;
 using UnityEngine.Rendering;
 
-[CustomEditor(typeof(ObjectPhysics)), CanEditMultipleObjects()]
+[CustomEditor(typeof(ObjectPhysics),true), CanEditMultipleObjects()]
 public class ObjectPhysicsEditor : Editor
 {
     private Editor _editor;
@@ -14,7 +14,6 @@ public class ObjectPhysicsEditor : Editor
     private ObjectPhysics myTarget;
     private SerializedProperty _serializedProperty;
     private const string PropertyName = "settings";
-
     public override void OnInspectorGUI()
     {
         base.OnInspectorGUI();

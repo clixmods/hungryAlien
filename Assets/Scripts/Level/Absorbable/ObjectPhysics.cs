@@ -148,10 +148,15 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
 
     private void Update()
     {
-        if (PlayableVolume == null)
+        if ( PlayableVolume == null)
         {
-            transform.position = InitialPosition;
-            Rigidbody.Sleep();
+            
+            if (!IsInAbsorbing)
+            {
+                transform.position = InitialPosition;
+                Rigidbody.Sleep();
+            }
+            
         }
         else
         {
