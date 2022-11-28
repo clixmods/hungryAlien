@@ -24,6 +24,8 @@ public class Absorber : MonoBehaviour
     private Light _light;
     private CapsuleCollider _collider;
     private AbsorberColor _absorberColor;
+    
+    
     [SerializeField] private Color colorIdle = Color.white;
     [SerializeField] private Color colorIsAbsorbing = Color.cyan;
     [SerializeField] private Color colorFailed = Color.red;
@@ -60,12 +62,10 @@ public class Absorber : MonoBehaviour
     /// </summary>
     [Header("Sound Aliases"), SerializeField, Aliase]
     private string aliaseLoopLight;
-
     /// <summary>
     /// Looped sound played when the player start a absorption
     /// </summary>
     [SerializeField, Aliase] private string aliaseLoopAbsorbing;
-
     /// <summary>
     /// Looped sound played when the player fail an absorption
     /// </summary>
@@ -76,6 +76,9 @@ public class Absorber : MonoBehaviour
     private AudioPlayer _audioPlayerLightLoop;
     private AudioPlayer _audioPlayerFail;
     private InputAsset _input;
+
+    private ShipController _shipController;
+    public ShipController ShipController => _shipController;
     public InputAsset Input
     {
         get
@@ -93,20 +96,28 @@ public class Absorber : MonoBehaviour
 
     [SerializeField] private VisualEffect VEhasAbsorb;
 
-    public float AbsortionHeight => 2f * scaleShip.GetScaleFactor() / 2; 
+    public float AbsortionHeight => 2f * scaleShip.GetScaleFactor() / 2;
+
+    public Absorber(ShipController owner)
+    {
+        _shipController = owner;
+    }
+
+    private void Awake()
+    {
+        scaleShip = transform.parent.GetComponent<ScaleShip>();
+        _shipController = transform.parent.GetComponent<ShipController>();
+        _light = GetComponentInChildren<Light>();
+        _collider = GetComponentInChildren<CapsuleCollider>();
+        _absorberColor = GetComponentInChildren<AbsorberColor>();
+    }
+
     // Start is called before the first frame update
     void Start()
     {
-        _light = GetComponentInChildren<Light>();
-        _collider = GetComponentInChildren<CapsuleCollider>();
-        scaleShip = transform.parent.GetComponent<ScaleShip>();
-        
-        _absorberColor = GetComponentInChildren<AbsorberColor>();
-
         _collider.direction = 2;
         Input.Game.Absorb.performed += ctx => Absorb();
         Input.Game.Absorb.canceled += ctx => CancelAbsorb();
-
     }
 
     // Update is called once per frame
@@ -155,14 +166,28 @@ public class Absorber : MonoBehaviour
     {
         if (other.TryGetComponent<IAbsorbable>(out var objectPhysics))
         {
+            if (objectPhysics.OnTrigger(this))
+            {
+                _absorberColor.color = colorIsAbsorbing;
+            }
+            else
+            {
+                _absorberColor.color = colorFailed;
+            }
+            _shipController.State = ShipState.OnObject;
             if (!objectPhysics.IsAbsorbable)
             {
                 return;
             }
-            if (!inTheTrigger.Contains(other.gameObject))
-                inTheTrigger.Add(other.gameObject);
+            if (objectPhysics.IsAbsorbed)
+            {
+                inTheTrigger.Remove(objectPhysics.gameObject);
+                return;
+            }
+            if (!inTheTrigger.Contains(objectPhysics.gameObject))
+                inTheTrigger.Add(objectPhysics.gameObject);
 
-            if (objectPhysics.IsAbsorbed) return;
+           
             if (absorb && _failedCooldown <= 0)
             {
                 objectPhysics.OnAbsorb(this, out AbsorbingState absorbingState);
@@ -172,10 +197,10 @@ public class Absorber : MonoBehaviour
                         
                         break;
                     case AbsorbingState.InProgress:
-                        _absorberColor.color = colorIsAbsorbing;
+                        //_absorberColor.color = colorIsAbsorbing;
                         break;
                     case AbsorbingState.Done:
-                        _absorberColor.color = colorIdle;
+                       // _absorberColor.color = colorIdle;
                         AudioManager.PlaySoundAtPosition(aliaseAbsorbSuccess, transform.position);
                         VEhasAbsorb.Play();
                         break;
@@ -205,9 +230,10 @@ public class Absorber : MonoBehaviour
     }
     private void OnTriggerExit(Collider other)
     {
-        if (inTheTrigger.Contains(other.gameObject))
+        if (other.TryGetComponent<IAbsorbable>(out var objectPhysics) &&  inTheTrigger.Contains(objectPhysics.gameObject))
         {
-            inTheTrigger.Remove(other.gameObject);
+            _shipController.State = ShipState.Idle;
+            inTheTrigger.Remove(objectPhysics.gameObject);
             _absorberColor.color = colorIdle;
         }
     }
