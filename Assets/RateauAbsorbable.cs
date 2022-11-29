@@ -33,7 +33,9 @@ namespace Level
         {
             _isInAbsorbing = false;
         }
-       
+
+        public float HeightObject { get; }
+
         public virtual void OnAbsorb(Absorber absorber, out AbsorbingState absorbingState)
         {
             absorbingState = AbsorbingState.InProgress;
@@ -42,6 +44,11 @@ namespace Level
             _halfWood1.SetActive(true);
             _halfWood2.SetActive(true);
             
+        }
+
+        public bool OnTrigger(Absorber absorber)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

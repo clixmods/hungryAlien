@@ -4,18 +4,62 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="db6ae1ff-23e2-4f3b-9ceb-e60a307727cd" name="Changes" comment="" />
+    <list default="true" id="db6ae1ff-23e2-4f3b-9ceb-e60a307727cd" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Assets/Ressources3D/mesh_UFO.fbx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Ressources3D/mesh_UFO.fbx.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/VFX/TorchFire.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/VFX/TorchFire/flame (1).png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/VFX/TorchFire/flame (1).png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/VFX/TorchFire/fx_ps_fireTorch.prefab" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/VFX/TorchFire/fx_ps_fireTorch.prefab.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/VFX/TorchFire/mtl_fire_torch.mat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/VFX/TorchFire/mtl_fire_torch.mat.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/VFX/TorchFire/mtl_torch_smoke.mat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/VFX/TorchFire/mtl_torch_smoke.mat.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/VFX/TorchFire/shader_torch_fire.shadergraph" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/VFX/TorchFire/shader_torch_fire.shadergraph.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/VFX/TorchFire/smoke_04.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/VFX/TorchFire/smoke_04.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Ressources3D/Zone 1/Material/Rateau.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Ressources3D/Zone 1/Material/Rateau.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Ressources3D/Zone 2/Materials/Arbre_1_Bois.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Ressources3D/Zone 2/Materials/Arbre_1_Bois.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Ressources3D/Zone 2/Materials/Arbre_1_Feuille.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Ressources3D/Zone 2/Materials/Arbre_1_Feuille.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Ressources3D/Zone 2/Materials/Arbre_2_bois.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Ressources3D/Zone 2/Materials/Arbre_2_bois.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Ressources3D/Zone 2/Materials/Arbre_2_feuille.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Ressources3D/Zone 2/Materials/Arbre_2_feuille.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Ressources3D/Zone 2/Materials/Balançoire_Bois.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Ressources3D/Zone 2/Materials/Balançoire_Bois.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Ressources3D/Zone 2/Materials/Balançoire_Metal.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Ressources3D/Zone 2/Materials/Balançoire_Metal.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Ressources3D/Zone 2/Materials/Brouette_Bac.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Ressources3D/Zone 2/Materials/Brouette_Bac.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Ressources3D/Zone 2/Materials/Brouette_Caoutchou.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Ressources3D/Zone 2/Materials/Brouette_Caoutchou.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Ressources3D/Zone 2/Materials/Brouette_Handles.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Ressources3D/Zone 2/Materials/Brouette_Handles.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Ressources3D/Zone 2/Materials/Brouette_metal.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Ressources3D/Zone 2/Materials/Brouette_metal.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Ressources3D/Zone 2/Materials/Brouette_wheels.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Ressources3D/Zone 2/Materials/Brouette_wheels.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Ressources3D/Zone 2/Materials/Cahier_couverture.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Ressources3D/Zone 2/Materials/Cahier_couverture.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Ressources3D/Zone 2/Materials/Cahier_papier.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Ressources3D/Zone 2/Materials/Cahier_papier.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Ressources3D/Zone 2/Materials/Drapeau_fil.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Ressources3D/Zone 2/Materials/Drapeau_fil.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Ressources3D/Zone 2/Materials/Drapeau_pilier.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Ressources3D/Zone 2/Materials/Drapeau_pilier.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Ressources3D/Zone 2/Materials/Sac_a_dos_Sac.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Ressources3D/Zone 2/Materials/Sac_a_dos_Sac.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Ressources3D/Zone 2/Materials/Sac_a_dos_hanses.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Ressources3D/Zone 2/Materials/Sac_a_dos_hanses.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Ressources3D/Zone 2/Materials/Snack_nom.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Ressources3D/Zone 2/Materials/Snack_nom.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Ressources3D/Zone 2/Materials/Snack_papier.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Ressources3D/Zone 2/Materials/Snack_papier.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Ressources3D/Zone 2/Materials/Toboggan_Toboggan.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Ressources3D/Zone 2/Materials/Toboggan_Toboggan.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Ressources3D/Zone 2/Materials/Toboggan_escaliers.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Ressources3D/Zone 2/Materials/Toboggan_escaliers.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Ressources3D/Zone 2/Materials/mtl_Bac_a_sable_bois.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Ressources3D/Zone 2/Materials/mtl_Bac_a_sable_bois.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Ressources3D/Zone 2/Materials/mtl_Bac_a_sable_sable.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Ressources3D/Zone 2/Materials/mtl_Bac_a_sable_sable.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Ressources3D/Zone 2/Materials/mtl_rocher_1.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Ressources3D/Zone 2/Materials/mtl_rocher_1.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Ressources3D/Zone 2/Materials/mtl_rocher_2.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Ressources3D/Zone 2/Materials/mtl_rocher_2.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Ressources3D/Zone 2/Materials/mtl_rocher_3.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Ressources3D/Zone 2/Materials/mtl_rocher_3.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/VFXEssais.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/VFXEssais.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/VFX/Wind/mtl_fanionjaune.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VFX/Wind/mtl_fanionjaune.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/VFX/Wind/mtl_fanionrouge.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VFX/Wind/mtl_fanionrouge.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/VFX/Wind/mtl_herbe.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VFX/Wind/mtl_herbe.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserSettings/HDRPUserSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/HDRPUserSettings.asset" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/5ddb5fa70dfe40d2818192400111b9ec2aa00/6f/2e1a2330/OperationType.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/6073cf49ed704e958b8a66d540dea94846a800/16/12b7f2c7/Math.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/f96c34788b094e3c84c2515f70a061aa134288/07/8513071c/Vector3.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/f96c34788b094e3c84c2515f70a061aa134288/88/462b5f8e/Object.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/scratches/scratch.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/823fb226a3f9439cb41fdcb61f9c86a1157600/10/a2a3bdef/Component.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/FX/FXScriptableObject.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Level/CollisionSurface.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Level/PlayableVolume.cs" root0="FORCE_HIGHLIGHTING" />
@@ -48,24 +92,23 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;Discover.Launch.Via.Unity&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;XThreadsFramesViewSplitterKey&quot;: &quot;0.4293578&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;rider.run.widget.enabled.cache&quot;: &quot;false&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "Discover.Launch.Via.Unity": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "XThreadsFramesViewSplitterKey": "0.4293578",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
-  <component name="RunManager" selected="Standalone Player.Standalone Player">
+}]]></component>
+  <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
     <configuration name="Standalone Player" type="RunUnityExe" factoryName="Unity Executable">
       <option name="EXE_PATH" value="$PROJECT_DIR$/../../Build Project/HungryAlien build 25112022/HungryAlien.exe" />
       <option name="PROGRAM_PARAMETERS" value="" />
@@ -75,7 +118,7 @@
       <method v="2" />
     </configuration>
     <configuration name="UnitTests (batch mode)" type="RunUnityExe" factoryName="Unity Executable">
-      <option name="EXE_PATH" value="C:\Program Files\Unity\Hub\Editor\2021.3.1f1\Editor\Unity.exe" />
+      <option name="EXE_PATH" value="C:\Program Files\Unity 2021.3.1f1\Editor\Unity.exe" />
       <option name="PROGRAM_PARAMETERS" value="-runTests -batchmode -projectPath C:\Users\clixd\Documents\UnityProject\HungryAlien -testResults Logs/results.xml -testPlatform EditMode -debugCodeOptimization" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="PASS_PARENT_ENVS" value="1" />
@@ -92,10 +135,10 @@
       </option>
       <method v="2" />
     </configuration>
-    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
+    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="27392">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
-      <option name="pid" />
+      <option name="pid" value="27392" />
       <option name="projectPathOnTarget" />
       <option name="selectedOptions">
         <list />
@@ -166,6 +209,7 @@
       <workItem from="1669385157057" duration="6251000" />
       <workItem from="1669622675248" duration="4761000" />
       <workItem from="1669632047844" duration="317000" />
+      <workItem from="1669662109295" duration="10020000" />
     </task>
     <servers />
   </component>
@@ -201,7 +245,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Assets/Scripts/Level/LevelManager.cs</url>
-          <line>198</line>
+          <line>202</line>
           <properties documentPath="C:\Users\clixd\Documents\UnityProject\HungryAlien\Assets\Scripts\Level\LevelManager.cs" initialLine="198" containingFunctionPresentation="method 'Start'">
             <startOffsets>
               <option value="5751" />
@@ -214,33 +258,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Assets/Scripts/Level/Absorbable/ObjectPhysics.cs</url>
-          <line>125</line>
-          <properties documentPath="C:\Users\clixd\Documents\UnityProject\HungryAlien\Assets\Scripts\Level\Absorbable\ObjectPhysics.cs" initialLine="143" containingFunctionPresentation="method 'Init'">
-            <startOffsets>
-              <option value="3881" />
-            </startOffsets>
-            <endOffsets>
-              <option value="3950" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="9" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Scripts/Level/Absorbable/ObjectPhysics.cs</url>
-          <line>124</line>
-          <properties documentPath="C:\Users\clixd\Documents\UnityProject\HungryAlien\Assets\Scripts\Level\Absorbable\ObjectPhysics.cs" initialLine="142" containingFunctionPresentation="method 'Init'">
-            <startOffsets>
-              <option value="3805" />
-            </startOffsets>
-            <endOffsets>
-              <option value="3872" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="10" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Scripts/Level/Absorbable/ObjectPhysics.cs</url>
-          <line>213</line>
+          <line>219</line>
           <properties documentPath="C:\Users\clixd\Documents\UnityProject\HungryAlien\Assets\Scripts\Level\Absorbable\ObjectPhysics.cs" initialLine="226" containingFunctionPresentation="method 'WatchLevelToWakeUp'">
             <startOffsets>
               <option value="6808" />
@@ -252,21 +270,8 @@
           <option name="timeStamp" value="11" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Scripts/Level/Absorbable/ObjectPhysics.cs</url>
-          <line>222</line>
-          <properties documentPath="C:\Users\clixd\Documents\UnityProject\HungryAlien\Assets\Scripts\Level\Absorbable\ObjectPhysics.cs" initialLine="235" containingFunctionPresentation="method 'WakeObject'">
-            <startOffsets>
-              <option value="7105" />
-            </startOffsets>
-            <endOffsets>
-              <option value="7151" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="12" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Assets/Scripts/Level/LevelManager.cs</url>
-          <line>282</line>
+          <line>289</line>
           <properties documentPath="C:\Users\clixd\Documents\UnityProject\HungryAlien\Assets\Scripts\Level\LevelManager.cs" initialLine="282" containingFunctionPresentation="method 'WatchObjectPhysicalAvailable'">
             <startOffsets>
               <option value="8620" />
@@ -279,7 +284,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Assets/Scripts/Level/LevelManager.cs</url>
-          <line>299</line>
+          <line>307</line>
           <properties documentPath="C:\Users\clixd\Documents\UnityProject\HungryAlien\Assets\Scripts\Level\LevelManager.cs" initialLine="299" containingFunctionPresentation="method 'WatchObjectPhysicalAvailable'">
             <startOffsets>
               <option value="9146" />
@@ -292,7 +297,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Assets/Scripts/Level/LevelManager.cs</url>
-          <line>298</line>
+          <line>306</line>
           <properties documentPath="C:\Users\clixd\Documents\UnityProject\HungryAlien\Assets\Scripts\Level\LevelManager.cs" initialLine="298" containingFunctionPresentation="method 'WatchObjectPhysicalAvailable'">
             <startOffsets>
               <option value="9112" />
@@ -305,7 +310,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Assets/Scripts/Level/LevelManager.cs</url>
-          <line>285</line>
+          <line>291</line>
           <properties documentPath="C:\Users\clixd\Documents\UnityProject\HungryAlien\Assets\Scripts\Level\LevelManager.cs" initialLine="285" containingFunctionPresentation="method 'WatchObjectPhysicalAvailable'">
             <startOffsets>
               <option value="8723" />
@@ -318,33 +323,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Assets/Scripts/Level/LevelManager.cs</url>
-          <line>114</line>
-          <properties documentPath="C:\Users\clixd\Documents\UnityProject\HungryAlien\Assets\Scripts\Level\LevelManager.cs" initialLine="114" containingFunctionPresentation="property 'GetCurrentFloor'">
-            <startOffsets>
-              <option value="3023" />
-            </startOffsets>
-            <endOffsets>
-              <option value="3076" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="20" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Scripts/Level/LevelManager.cs</url>
-          <line>119</line>
-          <properties documentPath="C:\Users\clixd\Documents\UnityProject\HungryAlien\Assets\Scripts\Level\LevelManager.cs" initialLine="119" containingFunctionPresentation="property 'GetCurrentFloor'">
-            <startOffsets>
-              <option value="3231" />
-            </startOffsets>
-            <endOffsets>
-              <option value="3278" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="21" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Scripts/Level/LevelManager.cs</url>
-          <line>117</line>
+          <line>112</line>
           <properties documentPath="C:\Users\clixd\Documents\UnityProject\HungryAlien\Assets\Scripts\Level\LevelManager.cs" initialLine="117" containingFunctionPresentation="property 'GetCurrentFloor'">
             <startOffsets>
               <option value="3192" />
@@ -354,6 +333,19 @@
             </endOffsets>
           </properties>
           <option name="timeStamp" value="22" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Scripts/Player/Absorber.cs</url>
+          <line>186</line>
+          <properties documentPath="C:\Users\clixd\Documents\UnityProject\hungryAlien\Assets\Scripts\Player\Absorber.cs" initialLine="174" containingFunctionPresentation="method 'OnTriggerStay'">
+            <startOffsets>
+              <option value="5459" />
+            </startOffsets>
+            <endOffsets>
+              <option value="5512" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="23" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

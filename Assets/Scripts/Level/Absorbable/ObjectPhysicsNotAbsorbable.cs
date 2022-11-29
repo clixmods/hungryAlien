@@ -23,6 +23,8 @@ namespace Level
         
         public Vector3 InitialPosition { get; set; }
 
+        public float HeightObject { get; }
+
         public void OnAbsorb(Absorber absorber, out AbsorbingState absorbingState)
         {
             absorbingState = AbsorbingState.InProgress;
@@ -34,5 +36,9 @@ namespace Level
        
         }
 
+        public bool OnTrigger(Absorber absorber)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

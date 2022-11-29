@@ -70,6 +70,9 @@ namespace Level
             }
             GetComponent<MeshRenderer>().materials = materials;
         }
+
+        public float HeightObject { get; }
+
         public virtual void OnAbsorb(Absorber absorber, out AbsorbingState absorbingState)
         {
             absorbingState = AbsorbingState.InProgress;
@@ -95,6 +98,12 @@ namespace Level
                 Destroy(water);
             }
         }
+
+        public bool OnTrigger(Absorber absorber)
+        {
+            throw new System.NotImplementedException();
+        }
+
         private void DeactivateRocks()
         {
             if(LevelManager.Instance.CurrentLevel == level)
