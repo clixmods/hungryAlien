@@ -513,6 +513,7 @@ GameObject:
   - component: {fileID: 6961655016796113058}
   - component: {fileID: 6961655016796113057}
   - component: {fileID: 4559491585803938523}
+  - component: {fileID: 6841236099436249799}
   m_Layer: 2
   m_Name: SpaceShip
   m_TagString: Untagged
@@ -669,6 +670,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _noiseValue: 0
   DecreaseMultiplier: 1
+--- !u!114 &6841236099436249799
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6961655016796113065}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52897eb1c9ef02346a268fea8bccdcc3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  viewModel: {fileID: 2454145115535853678}
 --- !u!1 &6961655016948612449
 GameObject:
   m_ObjectHideFlags: 0
@@ -922,6 +936,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0d0815feb5385ca46ab3cb3396ffa6d3, type: 3}
+--- !u!1 &2454145115535853678 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 0d0815feb5385ca46ab3cb3396ffa6d3,
+    type: 3}
+  m_PrefabInstance: {fileID: 3373114942710052159}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2973799992138273492 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 0d0815feb5385ca46ab3cb3396ffa6d3,

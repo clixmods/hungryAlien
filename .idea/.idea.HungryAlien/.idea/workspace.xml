@@ -5,53 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="db6ae1ff-23e2-4f3b-9ceb-e60a307727cd" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/Ressources3D/mesh_UFO.fbx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Ressources3D/mesh_UFO.fbx.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/VFX/TorchFire.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/VFX/TorchFire/flame (1).png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/VFX/TorchFire/flame (1).png.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/VFX/TorchFire/fx_ps_fireTorch.prefab" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/VFX/TorchFire/fx_ps_fireTorch.prefab.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/VFX/TorchFire/mtl_fire_torch.mat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/VFX/TorchFire/mtl_fire_torch.mat.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/VFX/TorchFire/mtl_torch_smoke.mat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/VFX/TorchFire/mtl_torch_smoke.mat.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/VFX/TorchFire/shader_torch_fire.shadergraph" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/VFX/TorchFire/shader_torch_fire.shadergraph.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/VFX/TorchFire/smoke_04.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/VFX/TorchFire/smoke_04.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Ressources3D/Zone 1/Material/Rateau.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Ressources3D/Zone 1/Material/Rateau.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Ressources3D/Zone 2/Materials/Arbre_1_Bois.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Ressources3D/Zone 2/Materials/Arbre_1_Bois.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Ressources3D/Zone 2/Materials/Arbre_1_Feuille.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Ressources3D/Zone 2/Materials/Arbre_1_Feuille.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Ressources3D/Zone 2/Materials/Arbre_2_bois.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Ressources3D/Zone 2/Materials/Arbre_2_bois.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Ressources3D/Zone 2/Materials/Arbre_2_feuille.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Ressources3D/Zone 2/Materials/Arbre_2_feuille.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Ressources3D/Zone 2/Materials/Balançoire_Bois.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Ressources3D/Zone 2/Materials/Balançoire_Bois.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Ressources3D/Zone 2/Materials/Balançoire_Metal.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Ressources3D/Zone 2/Materials/Balançoire_Metal.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Ressources3D/Zone 2/Materials/Brouette_Bac.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Ressources3D/Zone 2/Materials/Brouette_Bac.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Ressources3D/Zone 2/Materials/Brouette_Caoutchou.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Ressources3D/Zone 2/Materials/Brouette_Caoutchou.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Ressources3D/Zone 2/Materials/Brouette_Handles.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Ressources3D/Zone 2/Materials/Brouette_Handles.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Ressources3D/Zone 2/Materials/Brouette_metal.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Ressources3D/Zone 2/Materials/Brouette_metal.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Ressources3D/Zone 2/Materials/Brouette_wheels.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Ressources3D/Zone 2/Materials/Brouette_wheels.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Ressources3D/Zone 2/Materials/Cahier_couverture.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Ressources3D/Zone 2/Materials/Cahier_couverture.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Ressources3D/Zone 2/Materials/Cahier_papier.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Ressources3D/Zone 2/Materials/Cahier_papier.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Ressources3D/Zone 2/Materials/Drapeau_fil.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Ressources3D/Zone 2/Materials/Drapeau_fil.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Ressources3D/Zone 2/Materials/Drapeau_pilier.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Ressources3D/Zone 2/Materials/Drapeau_pilier.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Ressources3D/Zone 2/Materials/Sac_a_dos_Sac.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Ressources3D/Zone 2/Materials/Sac_a_dos_Sac.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Ressources3D/Zone 2/Materials/Sac_a_dos_hanses.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Ressources3D/Zone 2/Materials/Sac_a_dos_hanses.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Ressources3D/Zone 2/Materials/Snack_nom.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Ressources3D/Zone 2/Materials/Snack_nom.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Ressources3D/Zone 2/Materials/Snack_papier.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Ressources3D/Zone 2/Materials/Snack_papier.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Ressources3D/Zone 2/Materials/Toboggan_Toboggan.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Ressources3D/Zone 2/Materials/Toboggan_Toboggan.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Ressources3D/Zone 2/Materials/Toboggan_escaliers.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Ressources3D/Zone 2/Materials/Toboggan_escaliers.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Ressources3D/Zone 2/Materials/mtl_Bac_a_sable_bois.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Ressources3D/Zone 2/Materials/mtl_Bac_a_sable_bois.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Ressources3D/Zone 2/Materials/mtl_Bac_a_sable_sable.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Ressources3D/Zone 2/Materials/mtl_Bac_a_sable_sable.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Ressources3D/Zone 2/Materials/mtl_rocher_1.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Ressources3D/Zone 2/Materials/mtl_rocher_1.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Ressources3D/Zone 2/Materials/mtl_rocher_2.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Ressources3D/Zone 2/Materials/mtl_rocher_2.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Ressources3D/Zone 2/Materials/mtl_rocher_3.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Ressources3D/Zone 2/Materials/mtl_rocher_3.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/VFXEssais.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/VFXEssais.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VFX/Wind/mtl_fanionjaune.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VFX/Wind/mtl_fanionjaune.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VFX/Wind/mtl_fanionrouge.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VFX/Wind/mtl_fanionrouge.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VFX/Wind/mtl_herbe.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VFX/Wind/mtl_herbe.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UserSettings/HDRPUserSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/HDRPUserSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.HungryAlien/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.HungryAlien/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/SpaceShip.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/SpaceShip.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Ressources3D/Zone 1/Prefabs/Prefab_chateau_de_sable.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Ressources3D/Zone 1/Prefabs/Prefab_chateau_de_sable.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/RiderScriptEditorPersistedState.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/RiderScriptEditorPersistedState.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserSettings/Layouts/CurrentMaximizeLayout.dwlt" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/Layouts/CurrentMaximizeLayout.dwlt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,6 +27,7 @@
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/IUIWaypoint.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/InputHelperManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/UIManager.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/ShipViewModel.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.cinemachine@2.8.9/Runtime/Behaviours/CinemachineDollyCart.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.cinemachine@2.8.9/Runtime/Behaviours/CinemachineSmoothPath.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.render-pipelines.core@12.1.6/Runtime/Debugging/DebugUpdater.cs" root0="SKIP_HIGHLIGHTING" />
@@ -92,22 +51,22 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "Discover.Launch.Via.Unity": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "XThreadsFramesViewSplitterKey": "0.4293578",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;Discover.Launch.Via.Unity&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;XThreadsFramesViewSplitterKey&quot;: &quot;0.4293578&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
     <configuration name="Standalone Player" type="RunUnityExe" factoryName="Unity Executable">
       <option name="EXE_PATH" value="$PROJECT_DIR$/../../Build Project/HungryAlien build 25112022/HungryAlien.exe" />
@@ -135,10 +94,10 @@
       </option>
       <method v="2" />
     </configuration>
-    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="27392">
+    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
-      <option name="pid" value="27392" />
+      <option name="pid" />
       <option name="projectPathOnTarget" />
       <option name="selectedOptions">
         <list />
@@ -210,6 +169,7 @@
       <workItem from="1669622675248" duration="4761000" />
       <workItem from="1669632047844" duration="317000" />
       <workItem from="1669662109295" duration="10020000" />
+      <workItem from="1669759648074" duration="2173000" />
     </task>
     <servers />
   </component>
