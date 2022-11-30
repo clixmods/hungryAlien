@@ -23,7 +23,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: mtl_herbe
+  m_Name: mtl_herbe_anim
   m_Shader: {fileID: -6465566751694194690, guid: 6bcdbd6639b9a224eb0b941deda6cdf0,
     type: 3}
   m_ValidKeywords:
@@ -109,8 +109,8 @@ Material:
     - _UseShadowThreshold: 0
     - _WindArea: 4.69
     - _WindNoise: 6.58
-    - _WindPower: 0
-    - _WindSpeed: 0
+    - _WindPower: 0.77
+    - _WindSpeed: 0.76
     - _ZTestDepthEqualForOpaque: 3
     - _ZTestGBuffer: 4
     - _ZTestTransparent: 4
