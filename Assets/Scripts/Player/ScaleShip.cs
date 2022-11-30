@@ -24,6 +24,10 @@ public class ScaleShip : MonoBehaviour
     private float _heightFloor;
     public void SetScaleFactor(float h)
     {
+        _scaleFactor = h;
+    }
+    public void AddScaleFactor(float h)
+    {
         AudioManager.PlaySoundAtPosition(aliaseGrowing, transform.position);
         _scaleFactor += h;
     }
@@ -86,7 +90,7 @@ public class ScaleShip : MonoBehaviour
             }
             
         }
-        return greater;
+        return greater/2;
     }
 
     void ChangeHeightFloor()

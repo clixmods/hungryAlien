@@ -5,10 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="db6ae1ff-23e2-4f3b-9ceb-e60a307727cd" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Assets/ClipCollision.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ClipCollision.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.HungryAlien/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.HungryAlien/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/SpaceShip.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/SpaceShip.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Ressources3D/Zone 1/Prefabs/Prefab_chateau_de_sable.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Ressources3D/Zone 1/Prefabs/Prefab_chateau_de_sable.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/CameraSystem.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/CameraSystem.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/map_default_prototype.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/map_default_prototype.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Level/Absorbable/ObjectPhysics.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Level/Absorbable/ObjectPhysics.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Level/Editor/LevelManagerEditor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Level/Editor/LevelManagerEditor.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Level/LevelManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Level/LevelManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/Absorber.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player/Absorber.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/ScaleShip.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player/ScaleShip.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ProjectSettings/RiderScriptEditorPersistedState.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/RiderScriptEditorPersistedState.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserSettings/HDRPUserSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/HDRPUserSettings.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UserSettings/Layouts/CurrentMaximizeLayout.dwlt" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/Layouts/CurrentMaximizeLayout.dwlt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -18,6 +27,7 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/823fb226a3f9439cb41fdcb61f9c86a1157600/10/a2a3bdef/Component.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/823fb226a3f9439cb41fdcb61f9c86a1157600/62/5274aabf/Gizmos.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/FX/FXScriptableObject.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Level/CollisionSurface.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Level/PlayableVolume.cs" root0="FORCE_HIGHLIGHTING" />
@@ -170,6 +180,7 @@
       <workItem from="1669632047844" duration="317000" />
       <workItem from="1669662109295" duration="10020000" />
       <workItem from="1669759648074" duration="2173000" />
+      <workItem from="1669833855524" duration="3214000" />
     </task>
     <servers />
   </component>
@@ -205,91 +216,65 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Assets/Scripts/Level/LevelManager.cs</url>
-          <line>202</line>
-          <properties documentPath="C:\Users\clixd\Documents\UnityProject\HungryAlien\Assets\Scripts\Level\LevelManager.cs" initialLine="198" containingFunctionPresentation="method 'Start'">
-            <startOffsets>
-              <option value="5751" />
-            </startOffsets>
-            <endOffsets>
-              <option value="5794" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="7" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Scripts/Level/Absorbable/ObjectPhysics.cs</url>
-          <line>219</line>
-          <properties documentPath="C:\Users\clixd\Documents\UnityProject\HungryAlien\Assets\Scripts\Level\Absorbable\ObjectPhysics.cs" initialLine="226" containingFunctionPresentation="method 'WatchLevelToWakeUp'">
-            <startOffsets>
-              <option value="6808" />
-            </startOffsets>
-            <endOffsets>
-              <option value="6884" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="11" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Scripts/Level/LevelManager.cs</url>
-          <line>289</line>
+          <line>296</line>
           <properties documentPath="C:\Users\clixd\Documents\UnityProject\HungryAlien\Assets\Scripts\Level\LevelManager.cs" initialLine="282" containingFunctionPresentation="method 'WatchObjectPhysicalAvailable'">
             <startOffsets>
-              <option value="8620" />
+              <option value="8856" />
             </startOffsets>
             <endOffsets>
-              <option value="8663" />
+              <option value="8899" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="15" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Assets/Scripts/Level/LevelManager.cs</url>
-          <line>307</line>
+          <line>314</line>
           <properties documentPath="C:\Users\clixd\Documents\UnityProject\HungryAlien\Assets\Scripts\Level\LevelManager.cs" initialLine="299" containingFunctionPresentation="method 'WatchObjectPhysicalAvailable'">
             <startOffsets>
-              <option value="9146" />
+              <option value="9382" />
             </startOffsets>
             <endOffsets>
-              <option value="9168" />
+              <option value="9404" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="16" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Assets/Scripts/Level/LevelManager.cs</url>
-          <line>306</line>
+          <line>313</line>
           <properties documentPath="C:\Users\clixd\Documents\UnityProject\HungryAlien\Assets\Scripts\Level\LevelManager.cs" initialLine="298" containingFunctionPresentation="method 'WatchObjectPhysicalAvailable'">
             <startOffsets>
-              <option value="9112" />
+              <option value="9348" />
             </startOffsets>
             <endOffsets>
-              <option value="9137" />
+              <option value="9373" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="17" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Assets/Scripts/Level/LevelManager.cs</url>
-          <line>291</line>
+          <line>298</line>
           <properties documentPath="C:\Users\clixd\Documents\UnityProject\HungryAlien\Assets\Scripts\Level\LevelManager.cs" initialLine="285" containingFunctionPresentation="method 'WatchObjectPhysicalAvailable'">
             <startOffsets>
-              <option value="8723" />
+              <option value="8959" />
             </startOffsets>
             <endOffsets>
-              <option value="8744" />
+              <option value="8980" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="18" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Assets/Scripts/Level/LevelManager.cs</url>
-          <line>112</line>
+          <line>118</line>
           <properties documentPath="C:\Users\clixd\Documents\UnityProject\HungryAlien\Assets\Scripts\Level\LevelManager.cs" initialLine="117" containingFunctionPresentation="property 'GetCurrentFloor'">
             <startOffsets>
-              <option value="3192" />
+              <option value="3330" />
             </startOffsets>
             <endOffsets>
-              <option value="3204" />
+              <option value="3342" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="22" />
