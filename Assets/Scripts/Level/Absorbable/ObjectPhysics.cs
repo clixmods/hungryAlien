@@ -238,8 +238,7 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
     /// </summary>
     public void GenerateScaleMultiplier()
     {
-        float startScale = 1f;
-        
+        float startScale = LevelManager.Instance.ShipStartScale;
         int currentLevel = sleepUntilLevel;
         var oof = LevelManager.Instance.CurrentObjectList;
         var myObject = LevelManager.Instance;
@@ -264,7 +263,7 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
     /// </summary>
     public void GenerateForceRequired()
     {
-        float startScale = 1f;
+        float startScale = LevelManager.Instance.ShipStartScale;
         int currentLevel =  sleepUntilLevel;
         var myObject = LevelManager.Instance;
         if (currentLevel >= 1)
@@ -291,7 +290,6 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
             _meshRenderer.SetPropertyBlock(_propBlocks[i], i);
         }
     }
-
     private void AddDissolve(float amount)
     {
         for (int i = 0; i < _propBlocks.Length; i++)
@@ -305,7 +303,6 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
             _meshRenderer.SetPropertyBlock(_propBlocks[i], i);
         }
     }
-
     public bool OnTrigger(Absorber absorber)
     {
         if (!HasEnoughForce(absorber.Strenght, out var forceRatio))
@@ -329,7 +326,6 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
         return true;
 
     }
-
     public bool HasEnoughForce(float strength , out float forceRatio)
     {
         if (forceRequired == 0)
@@ -343,7 +339,6 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
         
         return forceRatio >= forceTolerance;
     }
-
     private void FixedUpdate()
     {
         if (IsAbsorbable)
@@ -379,13 +374,11 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
         }
        
     }
-
     private void LateUpdate()
     {
         if(!IsAbsorbed)
             IsInAbsorbing = false;
     }
-
     private void ChangeMaterialsRenderQueue(int value)
     {
         var materials = _meshRenderer.materials;

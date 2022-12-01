@@ -210,7 +210,7 @@ Material:
     - _NoiseScale: 50
     - _NoiseStrenght: 5.54
     - _NormalMapSpace: 0
-    - _NormalScale: 1
+    - _NormalScale: 0
     - _OpaqueCullMode: 2
     - _PPDLodThreshold: 5
     - _PPDMaxSamples: 15

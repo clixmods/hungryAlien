@@ -81,6 +81,11 @@ public class LevelManager : MonoBehaviour
             _currentLevel = value;
         } 
     }
+
+    [SerializeField] 
+    [Range(0.01f,2)]
+    private float shipStartScale = 1;
+    
     [SerializeField] private DataLevel[] dataLevels;
     public DataLevel[] DataLevels => dataLevels;
     
@@ -107,6 +112,7 @@ public class LevelManager : MonoBehaviour
 
     #region Properties
 
+    public float ShipStartScale => shipStartScale;
     public GameState State { get; private set; }
     public List<ObjectPhysics> CurrentObjectList => _objectPhysicsList;
     public GameObject GetCurrentFloor {
@@ -152,6 +158,7 @@ public class LevelManager : MonoBehaviour
         _camera ??= Camera.main;
         _smoothPath = GetComponent<CinemachineSmoothPath>();
         _player = FindObjectOfType<ShipController>();
+        _player.GetComponent<ScaleShip>().SetScaleFactor(shipStartScale);
         if (!_camera.TryGetComponent<CinemachineBrain>(out var _))
         {
             _camera.AddComponent<CinemachineBrain>();
@@ -184,7 +191,7 @@ public class LevelManager : MonoBehaviour
             dataLevel.floorCollision.layer = LayerMask.NameToLayer("MoveZone");
         }
         CallbackLevelChange += SetFloorActive;
-        CallbackLevelChange += SetActivePlayableVolume;
+        CallbackLevelChange += ActivePlayableVolumeForCurrentLevel;
         CallbackLevelChange += SetCollisionActive;
         // Init Object physics
         var allObjectPhysics = FindObjectsOfType<ObjectPhysics>();
@@ -232,7 +239,7 @@ public class LevelManager : MonoBehaviour
         _lookAtTransform.position = Vector3.Lerp(_lookAtTransform.position, CurrentPlayerSpawnPoint.position, Time.deltaTime);
         return _lookAtTransform;
     }
-    private void SetActivePlayableVolume()
+    private void ActivePlayableVolumeForCurrentLevel()
     {
         if (dataLevels[CurrentLevel].playableVolume == null)
         {

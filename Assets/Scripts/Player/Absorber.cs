@@ -39,7 +39,7 @@ public class Absorber : MonoBehaviour
         get { return strenght; }
         set
         {
-            scaleShip.SetScaleFactor(value-strenght);
+            scaleShip.AddScaleFactor(value-strenght);
             strenght = value;
         }
     }

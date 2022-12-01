@@ -109,15 +109,15 @@ Material:
     - _UseShadowThreshold: 0
     - _WindArea: 4.69
     - _WindNoise: 6.58
-    - _WindPower: 0.77
-    - _WindSpeed: 0.76
+    - _WindPower: 0
+    - _WindSpeed: 0
     - _ZTestDepthEqualForOpaque: 3
     - _ZTestGBuffer: 4
     - _ZTestTransparent: 4
     - _ZWrite: 1
     m_Colors:
     - _Color: {r: 0, g: 0, b: 0, a: 0}
-    - _Color1: {r: 0.011764706, g: 0.03529412, b: 0.01372549, a: 0}
+    - _Color1: {r: 0.034798868, g: 0.3207547, b: 0.0824582, a: 0}
     - _Color2: {r: 0.1882353, g: 0.41568628, b: 0.09411765, a: 0}
     - _DoubleSidedConstants: {r: 1, g: 1, b: 1, a: 0}
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
