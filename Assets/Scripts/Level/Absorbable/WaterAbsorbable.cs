@@ -25,6 +25,7 @@ namespace Level
         [SerializeField] List<ObjectPhysics> _rocks;
         [SerializeField] GameObject _VFXWater;
         private GameObject water;
+        private ParticleSystem _particleSystemWater;
         private void Start()
         {
             InitialPosition = transform.position;
@@ -32,6 +33,7 @@ namespace Level
             IsAbsorbable = true;
             currentHeight = 0f;
             LevelManager.Instance.CallbackLevelChange += DeactivateRocks;
+             _particleSystemWater = water.GetComponent<ParticleSystem>();
         }
         private void LateUpdate()
         {
@@ -39,16 +41,18 @@ namespace Level
         }
         private void Update()
         {
+            
             if (_isInAbsorbing)
             {
                 if(water != null)
                 {
                     var shipTransform = LevelManager.Instance.Player;
                     water.transform.position = new Vector3(shipTransform.transform.position.x, transform.position.y, shipTransform.transform.position.z);
-                    if(!water.GetComponent<ParticleSystem>().isPlaying)
+                    
+                    if(!_particleSystemWater.isPlaying)
                     {
-                        water.GetComponent<ParticleSystem>().Play();
-                        water.GetComponent<ParticleSystem>().Play();
+                        _particleSystemWater.Play();
+                        _particleSystemWater.Play();
                     }
                 }
                 
@@ -57,7 +61,7 @@ namespace Level
             {
                 if (water != null)
                 {
-                    water.GetComponent<ParticleSystem>().Stop();
+                    _particleSystemWater.Stop();
                 }
             }
         }
