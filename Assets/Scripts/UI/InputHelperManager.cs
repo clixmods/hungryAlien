@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Level;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -34,7 +35,7 @@ public class InputHelperManager : MonoBehaviour
         }
 
 
-        if (_uiHelperAbsorbed != null && !_absorber.InTheTrigger.Contains(_uiHelperAbsorbed.TargetTransform.gameObject))
+        if (_uiHelperAbsorbed != null && !_absorber.InTheTrigger.Contains( _uiHelperAbsorbed.TargetTransform.gameObject))
         {
             Destroy(_uiHelperAbsorbed.gameObject);
         }

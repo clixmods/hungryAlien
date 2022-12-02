@@ -16,6 +16,7 @@ namespace Level
         /// </summary>
         public float ForceRequired { get; }
         public Transform transform { get;  }
+        public GameObject gameObject { get;  }
         public bool SleepUntilAbsorb { get; set; }
         /// <summary>
         /// PlayableVolume in contact with the GameObject
@@ -25,6 +26,8 @@ namespace Level
         /// Initial position when the object is activated for the first time
         /// </summary>
         public Vector3 InitialPosition { get; set; }
+
+        public float HeightObject { get; }
         /// <summary>
         /// Behaviour when the object is absorbing
         /// </summary>
@@ -32,6 +35,7 @@ namespace Level
         /// <param name="absorbingState"></param>
         /// <returns> Absorb is completed?</returns>
         public void OnAbsorb(Absorber absorber, out AbsorbingState absorbingState);
-        
+
+        public bool OnTrigger(Absorber absorber);
     }
 }

@@ -39,11 +39,21 @@ public class ShipController : MonoBehaviour
     /// </summary>
     private AudioPlayer _audioMoving;
     private AudioPlayer _audioIdle;
+    
+    public Absorber Absorber { get; private set; }
+    
+    private ShipState _state;
+    public ShipState State
+    {
+        get => _state;
+        set => _state = value;
+    }
 
     #region MonoBehaviour
     private void Awake()
     {
         _camera = Camera.main;
+        Absorber = GetComponentInChildren<Absorber>();
     }
     private void OnEnable()
     {
