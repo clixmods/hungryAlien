@@ -48,13 +48,14 @@ public class ShipController : MonoBehaviour
         get => _state;
         set => _state = value;
     }
-
+    
     #region MonoBehaviour
     private void Awake()
     {
         _camera = Camera.main;
         Absorber = GetComponentInChildren<Absorber>();
     }
+
     private void OnEnable()
     {
         Input.Enable();
@@ -67,6 +68,7 @@ public class ShipController : MonoBehaviour
     void Start()
     {
         _camera = Camera.main;
+        Input.Game.Pause.performed += ctx => UIManager.Instance.PauseGame();
     }
     void FixedUpdate()
     {
