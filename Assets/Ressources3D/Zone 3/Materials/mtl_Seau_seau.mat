@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-7066373522510632700
+--- !u!114 &-5211924199510953610
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
@@ -23,7 +23,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Patate_feuilles
+  m_Name: mtl_Seau_seau
   m_Shader: {fileID: -6465566751694194690, guid: b5b3950c1f5a7304c9c04299f3ebf15e,
     type: 3}
   m_ValidKeywords:
@@ -54,7 +54,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BaseColorMap:
-        m_Texture: {fileID: 2800000, guid: aaa40b2667f31af48a750f952be6242c, type: 3}
+        m_Texture: {fileID: 2800000, guid: 94611f46d7084964a85e676ee586c29e, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BentNormalMap:
@@ -90,15 +90,15 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: aaa40b2667f31af48a750f952be6242c, type: 3}
+        m_Texture: {fileID: 2800000, guid: 94611f46d7084964a85e676ee586c29e, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MaskMap:
-        m_Texture: {fileID: 2800000, guid: d76d2b6784a43294dbb7be9e6c34eaaa, type: 3}
+        m_Texture: {fileID: 2800000, guid: da778f144c2854a41bedd193518af5e6, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _NormalMap:
-        m_Texture: {fileID: 2800000, guid: c2815dedf8df8f543b208d608f11c4ec, type: 3}
+        m_Texture: {fileID: 2800000, guid: d4a42ee8b69daa947a230a44b7f123c7, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _NormalMapOS:
