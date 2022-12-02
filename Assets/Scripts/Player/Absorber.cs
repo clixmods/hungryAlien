@@ -116,6 +116,7 @@ public class Absorber : MonoBehaviour
         _collider.direction = 2;
         Input.Game.Absorb.performed += ctx => Absorb();
         Input.Game.Absorb.canceled += ctx => CancelAbsorb();
+        _collider.height = 1000;
     }
 
     // Update is called once per frame
@@ -123,7 +124,7 @@ public class Absorber : MonoBehaviour
     {
         AudioManager.PlayLoopSound(aliaseLoopLight, transform, ref _audioPlayerLightLoop);
         _light.range = radius * Ship.localScale.magnitude;
-        _collider.height = radius * 2;
+       // _collider.height = radius * 2;
         Vector3 centerCollider = _collider.center;
         centerCollider.z = radius;
         _collider.center = centerCollider;

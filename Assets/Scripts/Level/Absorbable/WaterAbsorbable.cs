@@ -105,7 +105,7 @@ namespace Level
 
         public bool OnTrigger(Absorber absorber)
         {
-            throw new System.NotImplementedException();
+            return true;
         }
 
         private void DeactivateRocks()

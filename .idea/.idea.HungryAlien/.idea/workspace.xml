@@ -164,7 +164,7 @@
       <workItem from="1669662109295" duration="10020000" />
       <workItem from="1669759648074" duration="2173000" />
       <workItem from="1669833855524" duration="4086000" />
-      <workItem from="1669975172536" duration="5356000" />
+      <workItem from="1669975172536" duration="7998000" />
     </task>
     <servers />
   </component>
@@ -226,13 +226,13 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Assets/Scripts/Player/Absorber.cs</url>
-          <line>192</line>
+          <line>193</line>
           <properties documentPath="C:\Users\clixd\Documents\UnityProject\HungryAlien\Assets\Scripts\Player\Absorber.cs" initialLine="192" containingFunctionPresentation="method 'OnTriggerStay'">
             <startOffsets>
-              <option value="5546" />
+              <option value="5581" />
             </startOffsets>
             <endOffsets>
-              <option value="5581" />
+              <option value="5616" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="26" />
