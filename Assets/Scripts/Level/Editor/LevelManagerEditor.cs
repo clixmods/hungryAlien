@@ -259,6 +259,7 @@ using UnityEngine.UI;
             {
                 if (GUILayout.Button("Next Level"))
                 {
+                    myObject.Player.GetComponentInChildren<ScaleShip>().SetScaleFactor(myObject.DataLevels[myObject.CurrentLevel].shipScaleAtTheEnd);
                     myObject.RemoveAllObjectPhysical();
                 }
             }

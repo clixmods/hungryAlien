@@ -15,6 +15,7 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
 {
     private const string MessageSettingsNotSetup = "Settings of object are not setup, please assign a setting.";
     private const float _regenMultiplier = 0.2f;
+    private const float _speedAbsorbMultiplier = 2f;
 
     #region SerializeField
 
@@ -393,13 +394,14 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
         IsInAbsorbing = true;
         absorbingState = AbsorbingState.InProgress;
         ChangeMaterialsRenderQueue(3002);
-        Rigidbody.isKinematic = false;
+        if(SleepUntilAbsorb)
+            Rigidbody.isKinematic = false;
         // Generate direction and apply it to velocity
         bool hasEnoughForce = HasEnoughForce(absorber.Strenght , out float forceRatio);
         var destination = absorber.AbsorbePoint.position;
         var direction = destination - transform.position;
         direction *= forceRatio;
-        Rigidbody.velocity = direction;
+        Rigidbody.velocity = direction * _speedAbsorbMultiplier;
         transform.localScale = Vector3.Lerp(transform.localScale, Vector3.zero, Time.deltaTime);
         float distanceHeight = destination.y - transform.position.y;
         if(distanceHeight < 5) 
@@ -419,7 +421,6 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
         }
         else if (!hasEnoughForce)
         {
-           
             absorber.Ship.transform.position += -direction * forceRatio * 2f * Time.deltaTime;
         }
         
