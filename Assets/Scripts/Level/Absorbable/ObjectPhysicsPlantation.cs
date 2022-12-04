@@ -6,7 +6,7 @@ namespace Level
     {
        [SerializeField] private float minHeightToActiveGravity = 5;
        private bool _isImplanted; 
-       protected override void WakeObject()
+       public override void WakeObject()
        {
            base.WakeObject();
            Rigidbody.isKinematic = true;

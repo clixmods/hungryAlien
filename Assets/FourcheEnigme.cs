@@ -32,12 +32,14 @@ public class FourcheEnigme : MonoBehaviour
             {
                 _books[i].gameObject.SetActive(true);
                 _books[i].GetComponent<IAbsorbable>().InitialPosition = _books[i].transform.position;
+                _books[i].GetComponent<IAbsorbable>().WakeObject();
                 _books[i].transform.position = other.gameObject.transform.position;
                 var randomX = Random.Range(-5, 5);
                 var randomY = Random.Range(-5, 5);
                 var randomZ = Random.Range(-5, 5);
                 var force = new Vector3(randomX, randomY, randomZ);
                 _rbs[i].AddForce(force.normalized * Random.Range(0, 5), ForceMode.Impulse);
+                
             }
             
         }

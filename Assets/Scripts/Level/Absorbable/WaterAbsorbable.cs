@@ -109,6 +109,11 @@ namespace Level
             return true;
         }
 
+        public void WakeObject()
+        {
+            throw new System.NotImplementedException();
+        }
+
         private void DeactivateRocks()
         {
             if(LevelManager.Instance.CurrentLevel == level)

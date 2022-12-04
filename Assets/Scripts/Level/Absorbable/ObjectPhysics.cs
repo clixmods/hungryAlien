@@ -92,6 +92,8 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
     #endregion
     
     private Mesh GeneratedCollider;
+    private static readonly int Amount = Shader.PropertyToID("_Amount");
+
     #region MonoBehaviour
 
     private void Awake()
@@ -137,12 +139,6 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
         LevelManager.Instance.CallbackPreLevelChange += WatchLevelToWakeUp;
         LevelManager.Instance.CallbackLevelChange += GenerateScaleMultiplier;
         LevelManager.Instance.CallbackLevelChange += GenerateForceRequired;
-        // if (ForceRequired == 0)
-        // {
-        //     Debug.LogWarning("Warning : Force required = 0, assign a greater value.", gameObject);
-        //     forceRequired = 1;
-        // }
-           
     }
     
     void OnCollisionEnter(Collision collision)
@@ -173,7 +169,8 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
             if(Rigidbody.IsSleeping())
                 Rigidbody.WakeUp();
         }
-        if (Rigidbody.velocity.y <= 0 && transform.position.y < LevelManager.Instance.Player.transform.position.y-5)
+        //if (Rigidbody.velocity.y < 0 && transform.position.y < LevelManager.Instance.Player.transform.position.y-5)
+        if (!IsInAbsorbing && transform.position.y < LevelManager.Instance.Player.transform.position.y)
         {
             ChangeMaterialsRenderQueue(3000);
         }
@@ -227,7 +224,7 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
             WakeObject();
         }
     }
-    protected virtual void WakeObject()
+    public virtual void WakeObject()
     {
         _collider.enabled = true;
         LevelManager.Instance.AddObjectPhysical(this);
@@ -293,7 +290,7 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
             // Get the current value of the material properties in the renderer.
             _meshRenderer.GetPropertyBlock(_propBlocks[i]);
             // Assign our new value.
-            _propBlocks[i].SetFloat("_Amount", amount);
+            _propBlocks[i].SetFloat(Amount, amount);
             // Apply the edited values to the renderer.
             _meshRenderer.SetPropertyBlock(_propBlocks[i], i);
         }
@@ -304,9 +301,9 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
         {
             // Get the current value of the material properties in the renderer.
             _meshRenderer.GetPropertyBlock(_propBlocks[i], i);
-            float currentAmount = _propBlocks[i].GetFloat("_Amount");
+            float currentAmount = _propBlocks[i].GetFloat(Amount);
             //Assign our new value.
-            _propBlocks[i].SetFloat("_Amount", currentAmount + amount);
+            _propBlocks[i].SetFloat(Amount, currentAmount + amount);
             // Apply the edited values to the renderer.
             _meshRenderer.SetPropertyBlock(_propBlocks[i], i);
         }
@@ -326,7 +323,7 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
     }
     private void FixedUpdate()
     {
-        if (IsAbsorbable)
+        if ( !IsAbsorbed && IsAbsorbable)
         {
             if (!IsInAbsorbing)
             {
@@ -343,22 +340,24 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
             {
                 AddDissolve(Time.deltaTime);
             }
+           
+        }
 
-            if (IsAbsorbed)
+        if (IsAbsorbed)
+        {
+            AddDissolve(Time.deltaTime);
+            bool destroyIt = true;
+            for (int i = 0; i < _propBlocks.Length ; i++)
             {
-                bool destroyIt = true;
-                for (int i = 0; i < _propBlocks.Length ; i++)
+                _meshRenderer.GetPropertyBlock(_propBlocks[i],i);
+                if (_propBlocks[i].GetFloat(Amount) < 1)
                 {
-                    _meshRenderer.GetPropertyBlock(_propBlocks[i],i);
-                    if (_propBlocks[i].GetFloat("_Amount") < 1)
-                    {
-                        destroyIt = false;
-                    }
-                    _meshRenderer.SetPropertyBlock(_propBlocks[i], i);
+                    destroyIt = false;
                 }
-                if(destroyIt)
-                    Destroy(gameObject);
+                _meshRenderer.SetPropertyBlock(_propBlocks[i], i);
             }
+            if(destroyIt)
+                Destroy(gameObject);
         }
        
     }
@@ -410,7 +409,6 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
         {
             absorber.Ship.transform.position += -direction * forceRatio * 2f * Time.deltaTime;
         }
-        
     }
     public bool OnTrigger(Absorber absorber)
     {

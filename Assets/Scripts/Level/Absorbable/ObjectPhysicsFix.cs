@@ -5,6 +5,9 @@ namespace Level
     public class ObjectPhysicsFix : ObjectPhysics
     {
         private float _absorbtionAmount = 0;
+        [SerializeField]
+        [Range(0.1f,1f)]
+        private float thresholdToBeAsborbed = 0.7f;
         [SerializeField] private float _absortionMultiplier = 0.2f;
         
         public override void OnAbsorb(Absorber absorber, out AbsorbingState absorbingState)
@@ -33,7 +36,7 @@ namespace Level
                 absorber.Ship.transform.position += -direction * forceRemaining * Time.deltaTime;
             }
             // Object is absorbed ?
-            if (_absorbtionAmount >= 1)
+            if (_absorbtionAmount >= thresholdToBeAsborbed)
             {
                 absorber.Strenght += ScaleMultiplier;
                 IsAbsorbed = true;
