@@ -28,7 +28,7 @@ public class UIManager : MonoBehaviour
         var inputHelperObject =
             Instantiate(Util.InputHelperPrefab, Vector3.zero, Quaternion.identity, Util.transform);
 
-        component = inputHelperObject.GetComponent<UIInputHelper>();
+        component = inputHelperObject.GetComponentInChildren<UIInputHelper>();
             
         component.Setup(text, transformToTarget , displayTime);
         

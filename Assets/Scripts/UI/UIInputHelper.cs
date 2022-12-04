@@ -1,25 +1,27 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Numerics;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 using Vector3 = UnityEngine.Vector3;
 
-[RequireComponent(typeof(TextMeshProUGUI))]
 public class UIInputHelper : MonoBehaviour , IUIWaypoint
 {
     private float _lifeTime = -1;
     private Camera _camera;
     private Vector3 _offset;
     private Transform _targetTransform;
-    private TextMeshProUGUI _textMeshPro;
+    [SerializeField] private TextMeshProUGUI textMeshProUGUI;
+    private Image _background;
+    private float _speedOpacity = 2;
+    private Color _textMeshProUGUIInitialColor;
+    private Color _backgroundInitialColor;
     public string Text {
-        get { return _textMeshPro.text ; }
-        set { _textMeshPro.text = value; } 
+        get { return textMeshProUGUI.text ; }
+        set { textMeshProUGUI.text = value; } 
     }
     public Transform TargetTransform
     {
-        get { return _targetTransform; }
+        get => _targetTransform;
+        set => _targetTransform = value;
     }
     
     public void Setup(string text, Transform transformToTarget , float displayTime = -1)
@@ -33,7 +35,10 @@ public class UIInputHelper : MonoBehaviour , IUIWaypoint
     // Start is called before the first frame update
     void Awake()
     {
-        _textMeshPro = GetComponent<TextMeshProUGUI>();
+        textMeshProUGUI ??= GetComponentInChildren<TextMeshProUGUI>();
+        _background = GetComponentInChildren<Image>();
+        _textMeshProUGUIInitialColor = textMeshProUGUI.color;
+        _backgroundInitialColor = _background.color;
         _camera = Camera.main;
     }
 
@@ -49,9 +54,10 @@ public class UIInputHelper : MonoBehaviour , IUIWaypoint
             }
             else
             {
-                _textMeshPro.color = Color.Lerp(_textMeshPro.color, Color.clear, Time.deltaTime);
-                if(_textMeshPro.color == Color.clear)
-                    Destroy(gameObject);
+                // textMeshProUGUI.color = Color.Lerp(textMeshProUGUI.color, Color.clear, Time.deltaTime);
+                // _background.color = Color.Lerp(_background.color, Color.clear, Time.deltaTime);
+                // if(textMeshProUGUI.color == Color.clear &&  _background.color == Color.clear)
+                //     Destroy(gameObject);
             }
         }
         
@@ -59,31 +65,39 @@ public class UIInputHelper : MonoBehaviour , IUIWaypoint
     
     void UpdatePosition()
     {
+        float progressValue = Time.deltaTime * _speedOpacity;
         // Si l'object a follow est detruit, on le delete
         if(true && _targetTransform == null)
         {
-            Destroy(gameObject);
+            transform.position = new Vector3(-10000,0,-100);
+            textMeshProUGUI.color = Color.Lerp(textMeshProUGUI.color, Color.clear, progressValue);
+            _background.color = Color.Lerp(_background.color, Color.clear, progressValue);
+            return;
         }
-        // if (_targetTransform == null || !hintPro.FollowRelatedObject)
-        // {
-        //     return;
-        // }
-               
-
         Vector3 position = _camera.WorldToScreenPoint(_targetTransform.position);
+  
         // Permet de voir si l'object est derriere la camera
         bool isBehindTheCamera = position.x < 0 ||position.y < 0 || position.z < 0;
-        if(!isBehindTheCamera )
+        if(isBehindTheCamera )
         {
-                // if(hintPro.offset == null)
-                    transform.position = position + _offset;
-                // else
-                //     hintstring.transform.position = position + hintPro.offset;
+            transform.position = new Vector3(-10000,0,-100);
+            textMeshProUGUI.color = Color.Lerp(textMeshProUGUI.color, Color.clear, progressValue);
+            _background.color = Color.Lerp(_background.color, Color.clear, progressValue);
         }
         else
         {
-            transform.position = new Vector3(-10000,0,-100);
+            textMeshProUGUI.color = Color.Lerp(textMeshProUGUI.color, _textMeshProUGUIInitialColor,progressValue);
+            _background.color = Color.Lerp(_background.color, _backgroundInitialColor, progressValue);
+            // if(hintPro.offset == null)
+            transform.position = position + _offset;
+            // else
+            //     hintstring.transform.position = position + hintPro.offset;
         }
+    }
+
+    public void HideHelper()
+    {
+        _targetTransform = null;
     }
     public void DrawContent()
     {

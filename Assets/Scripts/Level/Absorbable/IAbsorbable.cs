@@ -11,6 +11,7 @@ namespace Level
         public bool IsAbsorbable { get; }
         public bool IsAbsorbed { get; }
         public Rigidbody Rigidbody { get; }
+  //      public bool IgnoreForceRequired { get; }
         /// <summary>
         /// Force required to absorb the object
         /// </summary>

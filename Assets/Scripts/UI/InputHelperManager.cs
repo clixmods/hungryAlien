@@ -35,20 +35,27 @@ public class InputHelperManager : MonoBehaviour
         }
 
 
-        if (_uiHelperAbsorbed != null && !_absorber.InTheTrigger.Contains( _uiHelperAbsorbed.TargetTransform.gameObject))
+        if (_uiHelperAbsorbed != null && _uiHelperAbsorbed.TargetTransform != null && !_absorber.InTheTrigger.Contains( _uiHelperAbsorbed.TargetTransform.gameObject))
         {
-            Destroy(_uiHelperAbsorbed.gameObject);
+            _uiHelperAbsorbed.HideHelper();
+        }
+        if (_absorber.InTheTrigger != null && _absorber.InTheTrigger.Count != 0 && !_hasPressAbsorbed )
+        {
+            var targetTransform = _absorber.InTheTrigger[0].transform;
+            if (_uiHelperAbsorbed != null)
+            {
+                _uiHelperAbsorbed.TargetTransform = targetTransform;
+            }
+            else
+            {
+                UIManager.CreateInputHelper(pressAbsorbedText,targetTransform, out _uiHelperAbsorbed);
+            }
         }
         
-        if (_absorber.InTheTrigger != null && _absorber.InTheTrigger.Count != 0 && !_hasPressAbsorbed && _uiHelperAbsorbed == null)
-        {
-            UIManager.CreateInputHelper(pressAbsorbedText,_absorber.InTheTrigger[0].transform, out _uiHelperAbsorbed);
-        }
-
         if (Mouse.current.leftButton.isPressed && _uiHelperAbsorbed != null)
         {
             _hasPressAbsorbed = true;
-            Destroy(_uiHelperAbsorbed.gameObject);
+            _uiHelperAbsorbed.HideHelper();
         }
     }
 }

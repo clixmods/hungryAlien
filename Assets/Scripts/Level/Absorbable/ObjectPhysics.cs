@@ -37,8 +37,10 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
     [Range(0,1f),SerializeField] private float scaleMultiplier = 0.05f ;
 
     [SerializeField] protected bool CanRegenerateFromDissolve = true;
-
+    [SerializeField] private bool CanRegenerateScaleFromAbsorbtion = true;
     static float forceTolerance = 0.999f;
+
+    [SerializeField] private bool ignoreForceRequired;
     
     #endregion
     #region Private Variable
@@ -55,6 +57,7 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
     #endregion
     #region Properties
     public Rigidbody Rigidbody { get; private set; }
+    public bool IgnoreForceRequired { get => ignoreForceRequired; }
     public float ForceRequired => forceRequired;
     public bool IsAbsorbed { get; set; }
     public bool IsAbsorbable { get; set; }
@@ -159,7 +162,6 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
     {
         if ( PlayableVolume == null)
         {
-            
             if (!IsInAbsorbing)
             {
                 transform.position = InitialPosition;
@@ -264,19 +266,25 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
     /// </summary>
     public void GenerateForceRequired()
     {
-        float startScale = LevelManager.Instance.ShipStartScale;
-        int currentLevel =  sleepUntilLevel;
-        var myObject = LevelManager.Instance;
-        if (currentLevel >= 1)
+        if (ignoreForceRequired)
         {
-            startScale = myObject.DataLevels[currentLevel-1].shipScaleAtTheEnd;
+            forceRequired = 0;
         }
+        else
+        {
+            float startScale = LevelManager.Instance.ShipStartScale;
+            int currentLevel =  sleepUntilLevel;
+            var myObject = LevelManager.Instance;
+            if (currentLevel >= 1)
+            {
+                startScale = myObject.DataLevels[currentLevel-1].shipScaleAtTheEnd;
+            }
 
-        if (forceRequired != 0)
-        {
-            forceRequired = (float)Math.Round(startScale+scaleMultiplier,3);
+            if (forceRequired != 0)
+            {
+                forceRequired = (float)Math.Round(startScale+scaleMultiplier,3);
+            }
         }
-        
         LevelManager.Instance.CallbackLevelChange -= GenerateForceRequired;
     }
     protected void SetDissolve(float amount)
@@ -346,7 +354,10 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
         {
             if (!IsInAbsorbing)
             {
-                transform.localScale = Vector3.Lerp(transform.localScale, _baseScale, Time.deltaTime);
+                if (CanRegenerateScaleFromAbsorbtion)
+                {
+                    transform.localScale = Vector3.Lerp(transform.localScale, _baseScale, Time.deltaTime);
+                }
                 if (CanRegenerateFromDissolve)
                 {
                     AddDissolve(-Time.deltaTime * _regenMultiplier);
@@ -375,7 +386,7 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
         }
        
     }
-    private void LateUpdate()
+    protected virtual void LateUpdate()
     {
         if(!IsAbsorbed)
             IsInAbsorbing = false;
