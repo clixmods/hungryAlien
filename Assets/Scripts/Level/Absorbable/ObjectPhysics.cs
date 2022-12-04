@@ -167,14 +167,13 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
                 transform.position = InitialPosition;
                 Rigidbody.Sleep();
             }
-            
         }
         else
         {
             if(Rigidbody.IsSleeping())
                 Rigidbody.WakeUp();
         }
-        if (Rigidbody.velocity.y < 0 && transform.position.y < LevelManager.Instance.Player.transform.position.y-5)
+        if (Rigidbody.velocity.y <= 0 && transform.position.y < LevelManager.Instance.Player.transform.position.y-5)
         {
             ChangeMaterialsRenderQueue(3000);
         }
@@ -312,30 +311,7 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
             _meshRenderer.SetPropertyBlock(_propBlocks[i], i);
         }
     }
-    public bool OnTrigger(Absorber absorber)
-    {
-        if (!HasEnoughForce(absorber.Strenght, out var forceRatio))
-        {
-            
-            var destination = absorber.AbsorbePoint.position;
-            var direction = destination - transform.position;
-           // absorber.Ship.transform.position += -direction * forceRatio * .2f * Time.deltaTime;
-           return false;
-        }
-        else
-        {
-            // var destination = absorber.AbsorbePoint.position;
-            // var direction = destination - transform.position;
-            //
-            // absorber.Ship.transform.position += (-Vector3.down * HeightObject)* forceRatio * .2f * Time.deltaTime;
-            //transform.position = Vector3.MoveTowards(transform.position,
-            //HeightObject + LevelManager.Instance.GetCurrentHeightOffset, Time.deltaTime * speedHeightMove);
-        }
-
-        return true;
-
-    }
-    public bool HasEnoughForce(float strength , out float forceRatio)
+    private bool HasEnoughForce(float strength , out float forceRatio)
     {
         if (forceRequired == 0)
         {
@@ -436,4 +412,25 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
         }
         
     }
+    public bool OnTrigger(Absorber absorber)
+    {
+        if (!HasEnoughForce(absorber.Strenght, out var forceRatio))
+        {
+            var destination = absorber.AbsorbePoint.position;
+            var direction = destination - transform.position;
+            // absorber.Ship.transform.position += -direction * forceRatio * .2f * Time.deltaTime;
+            return false;
+        }
+        else
+        {
+            // var destination = absorber.AbsorbePoint.position;
+            // var direction = destination - transform.position;
+            //
+            // absorber.Ship.transform.position += (-Vector3.down * HeightObject)* forceRatio * .2f * Time.deltaTime;
+            //transform.position = Vector3.MoveTowards(transform.position,
+            //HeightObject + LevelManager.Instance.GetCurrentHeightOffset, Time.deltaTime * speedHeightMove);
+        }
+        return true;
+    }
+
 }

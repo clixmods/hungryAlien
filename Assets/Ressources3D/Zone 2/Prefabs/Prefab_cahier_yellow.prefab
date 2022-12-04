@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6444026970684744126}
   m_Layer: 0
-  m_Name: Prefab_cahier
+  m_Name: Prefab_cahier_yellow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -118,7 +118,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: d160fef696bc4454ab0dd23a6e1e13db, type: 2}
+      objectReference: {fileID: 2100000, guid: 58b47803ba2c61d4487cde0751e783c9, type: 2}
     - target: {fileID: -7511558181221131132, guid: bd7b42373a71b184a8eb3cbcb8d015dd,
         type: 3}
       propertyPath: m_Materials.Array.data[1]
