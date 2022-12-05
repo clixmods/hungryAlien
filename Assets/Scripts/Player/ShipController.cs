@@ -22,6 +22,7 @@ public class ShipController : MonoBehaviour
         }
     }
     [SerializeField] private LayerMask layerMask;
+    [SerializeField] private LayerMask fakeMovableGround;
     [SerializeField] private float speed = 5;
     
     [Header("Sound Aliases")]
@@ -94,7 +95,7 @@ public class ShipController : MonoBehaviour
         var shipPosition = transform.position;
         var direction = new Vector3((mousePosition.x - shipPosition.x), 0, (mousePosition.z - shipPosition.z));
         
-        if(direction.magnitude >0.2f)
+        if(direction.magnitude > 0.2f)
         {
             transform.position += direction * speed * Time.deltaTime ;
         }
@@ -104,6 +105,8 @@ public class ShipController : MonoBehaviour
         }
         transform.DORotate(new Vector3(direction.z, 0, -direction.x), 0.1f);
     }
+
+    RaycastHit lastHit = default;
 
     /// <summary> Retourne la position de la souris dans le monde 3D en fonction du hit du raycast</summary> 
     private Vector3 MouseToWorldPosition()
@@ -119,6 +122,20 @@ public class ShipController : MonoBehaviour
             if (Hitpoint != null)
                 Debug.DrawLine(_camera.transform.position, Hitpoint, Color.blue, 0.5f);
             _lastHitPoint = Hitpoint;
+            lastHit = RayHit;
+            return Hitpoint;
+        }
+
+
+        if (lastHit.collider != null && Physics.Raycast(ray, out RayHit, Mathf.Infinity, fakeMovableGround))
+        {
+            RayHit.point = lastHit.collider.ClosestPointOnBounds(RayHit.point);
+
+            Hitpoint = new Vector3(RayHit.point.x, RayHit.point.y, RayHit.point.z);
+
+            if (Hitpoint != null)
+            _lastHitPoint = Hitpoint;
+
             return Hitpoint;
         }
         return _lastHitPoint;

@@ -607,6 +607,9 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 8
+  layerMask2:
+    serializedVersion: 2
+    m_Bits: 1024
   speed: 5
   aliaseIdle: ship_idle_loop
   aliaseMoving: ship_move_loop
