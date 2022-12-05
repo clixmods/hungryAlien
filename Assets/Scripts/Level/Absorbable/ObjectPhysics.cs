@@ -290,6 +290,7 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
             // Get the current value of the material properties in the renderer.
             _meshRenderer.GetPropertyBlock(_propBlocks[i]);
             // Assign our new value.
+            var value = Mathf.Clamp( amount, 0, 1);
             _propBlocks[i].SetFloat(Amount, amount);
             // Apply the edited values to the renderer.
             _meshRenderer.SetPropertyBlock(_propBlocks[i], i);
@@ -303,7 +304,8 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
             _meshRenderer.GetPropertyBlock(_propBlocks[i], i);
             float currentAmount = _propBlocks[i].GetFloat(Amount);
             //Assign our new value.
-            _propBlocks[i].SetFloat(Amount, currentAmount + amount);
+            var value = Mathf.Clamp(currentAmount + amount, 0, 1);
+            _propBlocks[i].SetFloat(Amount, value);
             // Apply the edited values to the renderer.
             _meshRenderer.SetPropertyBlock(_propBlocks[i], i);
         }
@@ -346,12 +348,14 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
         if (IsAbsorbed)
         {
             AddDissolve(Time.deltaTime);
+            
             bool destroyIt = true;
             for (int i = 0; i < _propBlocks.Length ; i++)
             {
                 _meshRenderer.GetPropertyBlock(_propBlocks[i],i);
                 if (_propBlocks[i].GetFloat(Amount) < 1)
                 {
+                    Debug.Log($"Absorbed object, dissolve value = {_propBlocks[i].GetFloat(Amount)}", gameObject);
                     destroyIt = false;
                 }
                 _meshRenderer.SetPropertyBlock(_propBlocks[i], i);
@@ -390,9 +394,10 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
         Rigidbody.velocity = direction * _speedAbsorbMultiplier;
         transform.localScale = Vector3.Lerp(transform.localScale, Vector3.zero, Time.deltaTime);
         float distanceHeight = destination.y - transform.position.y;
-        if(distanceHeight < 5) 
-        { 
-            SetDissolve(1-(distanceHeight/5));
+        if(distanceHeight < 5)
+        {
+            var valueDissolve = Mathf.Clamp(1-(distanceHeight/5), 0, 1);
+            SetDissolve(valueDissolve);
         }
         if (hasEnoughForce && distanceHeight < absorber.AbsortionHeight)
         {
