@@ -114,6 +114,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: mesh_fourche_avec_foin
       objectReference: {fileID: 0}
+    - target: {fileID: 4485361329992397666, guid: 55b8b4221a440084ea0d3fa37f747ba0,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 469a17ce69372c748a24e457046a9242, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 55b8b4221a440084ea0d3fa37f747ba0, type: 3}
 --- !u!4 &2894706534053738670 stripped
