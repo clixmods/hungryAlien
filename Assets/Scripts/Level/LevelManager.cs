@@ -147,6 +147,12 @@ public class LevelManager : MonoBehaviour
     private void Awake()
     {
         _instance = this;
+        // If dataLevels are not defined
+        if (dataLevels.Length == 0)
+        {
+            dataLevels = new DataLevel[1];
+            dataLevels[0].heightOffset = 5;
+        }
     }
 
     // Start is called before the first frame update
