@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_PixelRect:
     serializedVersion: 2
-    x: 1280
+    x: 0
     y: 43.2
     width: 1536
     height: 772.8
@@ -1409,7 +1409,7 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 1408
+    x: 128
     y: 73.6
     width: 1026
     height: 466.2
@@ -1647,9 +1647,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: -1.555209, y: -0.55186623, z: 0.08815074}
+    m_Target: {x: 0, y: 0, z: 0}
     speed: 2
-    m_Value: {x: -1.555209, y: -0.55186623, z: 0.08815074}
+    m_Value: {x: 0, y: 0, z: 0}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -1696,13 +1696,13 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: 0.019452333, y: 0.7447085, z: -0.02083812, w: 0.6670318}
+    m_Target: {x: -0.04446571, y: -0.90822583, z: 0.09821501, w: -0.40481126}
     speed: 2
-    m_Value: {x: 0.018449048, y: 0.7446143, z: -0.019717399, w: 0.6669486}
+    m_Value: {x: -0.04399591, y: -0.90759605, z: 0.0967686, w: -0.40616447}
   m_Size:
-    m_Target: 0.3255427
+    m_Target: 26.890322
     speed: 2
-    m_Value: 0.3115241
+    m_Value: 25.732365
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -1748,7 +1748,7 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 1280
+    x: 0
     y: 73.6
     width: 127
     height: 701.8
@@ -1759,20 +1759,20 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 7225fbff
-      m_LastClickedID: -318094
-      m_ExpandedIDs: 1a0afdff2c1afdff1c0affff12e3ffffecfaffff5a91000018920000d496000028970000
+      m_SelectedIDs: 8c7d0000
+      m_LastClickedID: 0
+      m_ExpandedIDs: 38edffffecfaffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
-        m_Name: mesh_betterave
-        m_OriginalName: mesh_betterave
+        m_Name: Prefab_Cabanon
+        m_OriginalName: Prefab_Cabanon
         m_EditFieldRect:
           serializedVersion: 2
           x: 0
           y: 0
           width: 0
           height: 0
-        m_UserData: -316808
+        m_UserData: -10056
         m_IsWaitingForDelay: 0
         m_IsRenaming: 0
         m_OriginalEventType: 0
@@ -1855,23 +1855,23 @@ MonoBehaviour:
     m_DrawArea:
       serializedVersion: 2
       x: 0
-      y: 21
+      y: 0
       width: 1026
-      height: 445.2
-    m_Scale: {x: 0.5152778, y: 0.5152778}
-    m_Translation: {x: 513, y: 222.6}
+      height: 466.2
+    m_Scale: {x: 0.5395833, y: 0.5395833}
+    m_Translation: {x: 513, y: 233.1}
     m_MarginLeft: 0
     m_MarginRight: 0
     m_MarginTop: 0
     m_MarginBottom: 0
     m_LastShownAreaInsideMargins:
       serializedVersion: 2
-      x: -995.57947
-      y: -432
-      width: 1991.1589
-      height: 864
+      x: -950.7336
+      y: -432.00003
+      width: 1901.4672
+      height: 864.00006
     m_MinimalGUI: 1
-  m_defaultScale: 0.5152778
+  m_defaultScale: 0.5395833
   m_LastWindowPixelSize: {x: 1282.5, y: 582.75}
   m_ClearInEditMode: 1
   m_NoCameraWarning: 1
@@ -1928,7 +1928,7 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 1408
+    x: 128
     y: 560.8
     width: 1026
     height: 214.59998
@@ -1949,22 +1949,22 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Ressources3D/Zone 3/Prefabs
+    - Assets/Ressources3D/Zone 4/Materials/Textures
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 72
   m_LastFolders:
-  - Assets/Ressources3D/Zone 3/Prefabs
+  - Assets/Ressources3D/Zone 4/Materials/Textures
   m_LastFoldersGridSize: 72
   m_LastProjectPath: C:\Users\nihlr\hungryAlien
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 333.40002}
-    m_SelectedIDs: dc830000
-    m_LastClickedID: 33756
-    m_ExpandedIDs: 000000000e77000010770000127700001477000016770000187700001a7700001c7700001e77000020770000227700002477000026770000287700002a770000d6780000b882000000ca9a3b
+    scrollPos: {x: 0, y: 381.40002}
+    m_SelectedIDs: 8c7d0000
+    m_LastClickedID: 32140
+    m_ExpandedIDs: 00000000a2770000a4770000a6770000a8770000aa770000ac770000ae770000b0770000b2770000b4770000b6770000b8770000ba770000bc770000be77000096790000e8790000a27d000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1992,7 +1992,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 000000000e77000010770000127700001477000016770000187700001a7700001c7700001e77000020770000227700002477000026770000287700002a770000
+    m_ExpandedIDs: 00000000a2770000a4770000a6770000a8770000aa770000ac770000ae770000b0770000b2770000b4770000b6770000b8770000ba770000bc770000be770000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -2069,7 +2069,7 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 2436
+    x: 1156
     y: 73.6
     width: 379
     height: 701.8
@@ -2078,7 +2078,7 @@ MonoBehaviour:
     m_LastAppliedPresetName: Default
     m_SaveData: []
   m_ObjectsLockedBeforeSerialization:
-  - {fileID: 2100000, guid: b462d271a78400947bea941f4e3745c5, type: 2}
+  - {fileID: 2100000, guid: 301f0c20fac89aa4da49a87cccd956b3, type: 2}
   m_InstanceIDsLockedBeforeSerialization: 
   m_PreviewResizer:
     m_CachedPref: 219.79999
