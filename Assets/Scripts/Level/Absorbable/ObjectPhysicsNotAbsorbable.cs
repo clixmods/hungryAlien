@@ -10,6 +10,7 @@ namespace Level
         public bool IsAbsorbable { get; private set;}
         public bool IsAbsorbed { get; }
         public Rigidbody Rigidbody { get; private set; }
+        public bool IgnoreForceRequired { get; }
         public float ForceRequired { get; }
         public bool SleepUntilAbsorb { get; set; }
         public PlayableVolume PlayableVolume { get; set; }

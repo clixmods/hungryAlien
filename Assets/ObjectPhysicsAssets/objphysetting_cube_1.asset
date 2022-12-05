@@ -12,12 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb5c9cb29e53e6b4db8d5061a42fc1fd, type: 3}
   m_Name: objphysetting_cube_1
   m_EditorClassIdentifier: 
-  sleepUntilLevel: 1
-  ForceRequired: 1.5
   magnitudeToStopLoop: 0
-  scaleMultiplier: 1.05
   aliaseAmbiant: impactBell_heavy
   aliaseMoving: impactBell_heavy
+  aliaseImpact: impactBell_heavy
   aliaseDeath: impactBell_heavy
   fxHit: {fileID: 0}
   fxDeath: {fileID: 0}

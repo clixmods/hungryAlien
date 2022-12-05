@@ -11,8 +11,6 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/823fb226a3f9439cb41fdcb61f9c86a1157600/10/a2a3bdef/Component.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/823fb226a3f9439cb41fdcb61f9c86a1157600/62/5274aabf/Gizmos.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/FX/FXScriptableObject.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Level/CollisionSurface.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Level/PlayableVolume.cs" root0="FORCE_HIGHLIGHTING" />
@@ -22,7 +20,6 @@
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/IUIWaypoint.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/InputHelperManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/UIManager.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/ShipViewModel.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.cinemachine@2.8.9/Runtime/Behaviours/CinemachineDollyCart.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.cinemachine@2.8.9/Runtime/Behaviours/CinemachineSmoothPath.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.render-pipelines.core@12.1.6/Runtime/Debugging/DebugUpdater.cs" root0="SKIP_HIGHLIGHTING" />
@@ -59,10 +56,11 @@
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;rider.run.widget.enabled.cache&quot;: &quot;false&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
-  <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
+  <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor &amp; Play">
     <configuration name="Standalone Player" type="RunUnityExe" factoryName="Unity Executable">
       <option name="EXE_PATH" value="$PROJECT_DIR$/../../Build Project/HungryAlien build 25112022/HungryAlien.exe" />
       <option name="PROGRAM_PARAMETERS" value="" />
@@ -72,7 +70,7 @@
       <method v="2" />
     </configuration>
     <configuration name="UnitTests (batch mode)" type="RunUnityExe" factoryName="Unity Executable">
-      <option name="EXE_PATH" value="C:\Program Files\Unity 2021.3.1f1\Editor\Unity.exe" />
+      <option name="EXE_PATH" value="C:\Program Files\Unity\Hub\Editor\2021.3.1f1\Editor\Unity.exe" />
       <option name="PROGRAM_PARAMETERS" value="-runTests -batchmode -projectPath C:\Users\clixd\Documents\UnityProject\HungryAlien -testResults Logs/results.xml -testPlatform EditMode -debugCodeOptimization" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="PASS_PARENT_ENVS" value="1" />
@@ -166,6 +164,9 @@
       <workItem from="1669662109295" duration="10020000" />
       <workItem from="1669759648074" duration="2173000" />
       <workItem from="1669833855524" duration="4086000" />
+      <workItem from="1669975172536" duration="8745000" />
+      <workItem from="1670073279585" duration="10176000" />
+      <workItem from="1670167712924" duration="290000" />
     </task>
     <servers />
   </component>
@@ -201,59 +202,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Assets/Scripts/Level/LevelManager.cs</url>
-          <line>296</line>
-          <properties documentPath="C:\Users\clixd\Documents\UnityProject\HungryAlien\Assets\Scripts\Level\LevelManager.cs" initialLine="282" containingFunctionPresentation="method 'WatchObjectPhysicalAvailable'">
-            <startOffsets>
-              <option value="8856" />
-            </startOffsets>
-            <endOffsets>
-              <option value="8899" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="15" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Scripts/Level/LevelManager.cs</url>
-          <line>314</line>
-          <properties documentPath="C:\Users\clixd\Documents\UnityProject\HungryAlien\Assets\Scripts\Level\LevelManager.cs" initialLine="299" containingFunctionPresentation="method 'WatchObjectPhysicalAvailable'">
-            <startOffsets>
-              <option value="9382" />
-            </startOffsets>
-            <endOffsets>
-              <option value="9404" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="16" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Scripts/Level/LevelManager.cs</url>
-          <line>313</line>
-          <properties documentPath="C:\Users\clixd\Documents\UnityProject\HungryAlien\Assets\Scripts\Level\LevelManager.cs" initialLine="298" containingFunctionPresentation="method 'WatchObjectPhysicalAvailable'">
-            <startOffsets>
-              <option value="9348" />
-            </startOffsets>
-            <endOffsets>
-              <option value="9373" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="17" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Scripts/Level/LevelManager.cs</url>
-          <line>298</line>
-          <properties documentPath="C:\Users\clixd\Documents\UnityProject\HungryAlien\Assets\Scripts\Level\LevelManager.cs" initialLine="285" containingFunctionPresentation="method 'WatchObjectPhysicalAvailable'">
-            <startOffsets>
-              <option value="8959" />
-            </startOffsets>
-            <endOffsets>
-              <option value="8980" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="18" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Scripts/Level/LevelManager.cs</url>
-          <line>118</line>
+          <line>124</line>
           <properties documentPath="C:\Users\clixd\Documents\UnityProject\HungryAlien\Assets\Scripts\Level\LevelManager.cs" initialLine="117" containingFunctionPresentation="property 'GetCurrentFloor'">
             <startOffsets>
               <option value="3330" />
@@ -266,16 +215,16 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Assets/Scripts/Player/Absorber.cs</url>
-          <line>186</line>
-          <properties documentPath="C:\Users\clixd\Documents\UnityProject\hungryAlien\Assets\Scripts\Player\Absorber.cs" initialLine="174" containingFunctionPresentation="method 'OnTriggerStay'">
+          <line>193</line>
+          <properties documentPath="C:\Users\clixd\Documents\UnityProject\HungryAlien\Assets\Scripts\Player\Absorber.cs" initialLine="192" containingFunctionPresentation="method 'OnTriggerStay'">
             <startOffsets>
-              <option value="5459" />
+              <option value="5581" />
             </startOffsets>
             <endOffsets>
-              <option value="5512" />
+              <option value="5616" />
             </endOffsets>
           </properties>
-          <option name="timeStamp" value="23" />
+          <option name="timeStamp" value="26" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

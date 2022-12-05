@@ -24,8 +24,6 @@ public class Absorber : MonoBehaviour
     private Light _light;
     private CapsuleCollider _collider;
     private AbsorberColor _absorberColor;
-    
-    
     [SerializeField] private Color colorIdle = Color.white;
     [SerializeField] private Color colorIsAbsorbing = Color.cyan;
     [SerializeField] private Color colorFailed = Color.red;
@@ -39,7 +37,7 @@ public class Absorber : MonoBehaviour
         get { return strenght; }
         set
         {
-            scaleShip.AddScaleFactor(value-strenght);
+            scaleShip.AddScaleFactor(value - strenght);
             strenght = value;
         }
     }
@@ -53,15 +51,18 @@ public class Absorber : MonoBehaviour
     public Transform AbsorbePoint => absorbePoint;
     [SerializeField] private ScaleShip scaleShip;
     public Transform Ship => scaleShip.transform;
-   
+
     private const float FailedCooldownStart = 2;
     private float _failedCooldown;
+
+    #region Sounds
 
     /// <summary>
     /// Looped sound played for the light
     /// </summary>
     [Header("Sound Aliases"), SerializeField, Aliase]
     private string aliaseLoopLight;
+
     /// <summary>
     /// Looped sound played when the player start a absorption
     /// </summary>
@@ -70,15 +71,14 @@ public class Absorber : MonoBehaviour
     /// Looped sound played when the player fail an absorption
     /// </summary>
     [SerializeField, Aliase] private string aliaseLoopFail;
-
     [SerializeField, Aliase] private string aliaseAbsorbSuccess;
     private AudioPlayer _audioPlayer;
     private AudioPlayer _audioPlayerLightLoop;
     private AudioPlayer _audioPlayerFail;
-    private InputAsset _input;
 
-    private ShipController _shipController;
-    public ShipController ShipController => _shipController;
+    #endregion
+    private InputAsset _input;
+    public ShipController ShipController { get; private set; }
     public InputAsset Input
     {
         get
@@ -88,25 +88,23 @@ public class Absorber : MonoBehaviour
             {
                 _input = new InputAsset();
             }
+
             return _input;
         }
     }
     private bool absorb;
-    
-
     [SerializeField] private VisualEffect VEhasAbsorb;
-
     public float AbsortionHeight => 2f * scaleShip.GetScaleFactor() / 2;
 
     public Absorber(ShipController owner)
     {
-        _shipController = owner;
+        ShipController = owner;
     }
 
     private void Awake()
     {
         scaleShip = transform.parent.GetComponent<ScaleShip>();
-        _shipController = transform.parent.GetComponent<ShipController>();
+        ShipController = transform.parent.GetComponent<ShipController>();
         _light = GetComponentInChildren<Light>();
         _collider = GetComponentInChildren<CapsuleCollider>();
         _absorberColor = GetComponentInChildren<AbsorberColor>();
@@ -118,6 +116,7 @@ public class Absorber : MonoBehaviour
         _collider.direction = 2;
         Input.Game.Absorb.performed += ctx => Absorb();
         Input.Game.Absorb.canceled += ctx => CancelAbsorb();
+        _collider.height = 1000;
     }
 
     // Update is called once per frame
@@ -125,7 +124,7 @@ public class Absorber : MonoBehaviour
     {
         AudioManager.PlayLoopSound(aliaseLoopLight, transform, ref _audioPlayerLightLoop);
         _light.range = radius * Ship.localScale.magnitude;
-        _collider.height = radius * 2;
+       // _collider.height = radius * 2;
         Vector3 centerCollider = _collider.center;
         centerCollider.z = radius;
         _collider.center = centerCollider;
@@ -138,11 +137,12 @@ public class Absorber : MonoBehaviour
         {
             AudioManager.StopLoopSound(ref _audioPlayerFail);
         }
+
         if (absorb && _failedCooldown <= 0)
         {
-            if(!particleSystemVaccum.isPlaying)
+            if (!particleSystemVaccum.isPlaying)
                 particleSystemVaccum.Play();
-            
+
             AudioManager.PlayLoopSound(aliaseLoopAbsorbing, transform, ref _audioPlayer);
         }
         else
@@ -150,7 +150,8 @@ public class Absorber : MonoBehaviour
             particleSystemVaccum.Stop();
             AudioManager.StopLoopSound(ref _audioPlayer);
         }
-        if(LevelManager.Instance.State == GameState.Ingame)
+
+        if (LevelManager.Instance.State == GameState.Ingame)
         {
             Input.Enable();
         }
@@ -159,7 +160,6 @@ public class Absorber : MonoBehaviour
             Input.Disable();
             absorb = false;
         }
-        
     }
 
     private void OnTriggerStay(Collider other)
@@ -174,33 +174,36 @@ public class Absorber : MonoBehaviour
             {
                 _absorberColor.color = colorFailed;
             }
-            _shipController.State = ShipState.OnObject;
+
+            ShipController.State = ShipState.OnObject;
             if (!objectPhysics.IsAbsorbable)
             {
                 return;
             }
+
             if (objectPhysics.IsAbsorbed)
             {
                 inTheTrigger.Remove(objectPhysics.gameObject);
                 return;
             }
+
             if (!inTheTrigger.Contains(objectPhysics.gameObject))
                 inTheTrigger.Add(objectPhysics.gameObject);
 
-           
+
             if (absorb && _failedCooldown <= 0)
             {
                 objectPhysics.OnAbsorb(this, out AbsorbingState absorbingState);
                 switch (absorbingState)
                 {
                     case AbsorbingState.Start:
-                        
+
                         break;
                     case AbsorbingState.InProgress:
                         //_absorberColor.color = colorIsAbsorbing;
                         break;
                     case AbsorbingState.Done:
-                       // _absorberColor.color = colorIdle;
+                        // _absorberColor.color = colorIdle;
                         AudioManager.PlaySoundAtPosition(aliaseAbsorbSuccess, transform.position);
                         VEhasAbsorb.Play();
                         break;
@@ -220,30 +223,33 @@ public class Absorber : MonoBehaviour
             }
         }
     }
+
     public void Absorb()
     {
         absorb = true;
     }
+
     public void CancelAbsorb()
     {
         absorb = false;
     }
+
     private void OnTriggerExit(Collider other)
     {
-        if (other.TryGetComponent<IAbsorbable>(out var objectPhysics) &&  inTheTrigger.Contains(objectPhysics.gameObject))
+        if (other.TryGetComponent<IAbsorbable>(out var objectPhysics) &&
+            inTheTrigger.Contains(objectPhysics.gameObject))
         {
-            _shipController.State = ShipState.Idle;
+            ShipController.State = ShipState.Idle;
             inTheTrigger.Remove(objectPhysics.gameObject);
             _absorberColor.color = colorIdle;
         }
     }
 
-    #if UNITY_EDITOR
-        private void OnDrawGizmos()
-        {
-            Gizmos.DrawWireSphere(absorbePoint.position, 1);
-            Handles.Label(transform.position, "Force :" + strenght);
-        }
-    #endif
-    
+#if UNITY_EDITOR
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawWireSphere(absorbePoint.position, 1);
+        Handles.Label(transform.position, "Force :" + strenght);
+    }
+#endif
 }

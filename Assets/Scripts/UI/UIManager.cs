@@ -1,12 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
     public static UIManager Util;
+    public static UIManager Instance;
     
     public GameObject InputHelperPrefab;
+
+    [SerializeField] GameObject pausePanel;
+    [SerializeField] GameObject menuPanel;
+    [SerializeField] TextMeshProUGUI playButtonText;
+    
+    [SerializeField] bool isPaused;
+    [SerializeField] bool isInMenu;
+
 
     public static void CreateInputHelper(string text, Transform transformToTarget , out UIInputHelper component, 
         float displayTime = -1)
@@ -17,21 +28,68 @@ public class UIManager : MonoBehaviour
         var inputHelperObject =
             Instantiate(Util.InputHelperPrefab, Vector3.zero, Quaternion.identity, Util.transform);
 
-        component = inputHelperObject.GetComponent<UIInputHelper>();
+        component = inputHelperObject.GetComponentInChildren<UIInputHelper>();
             
         component.Setup(text, transformToTarget , displayTime);
         
     }
-    
+    private void Awake()
+    {
+        Instance = this;
+    }
     // Start is called before the first frame update
     void Start()
     {
         Util = this;
+        Time.timeScale = 0;
+        isInMenu = true;
+        menuPanel.SetActive(true);
+        pausePanel.SetActive(false);
+        isPaused = false;
     }
 
     // Update is called once per frame
     void Update()
     {
+        
+    }
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
+    public void PlayGame()
+    {
+        menuPanel.SetActive(false);
+        Time.timeScale = 1;
+        isInMenu = false;
+    }
+    public void ResumeGame()
+    {
+        pausePanel.SetActive(false);
+        Time.timeScale = 1;
+        isPaused = false;
+    }
+    public void RestartGame()
+    {
+        SceneManager.LoadScene(0);
+    }
+    public void PauseGame()
+    {
+        if(!isInMenu)
+        {
+            if (!isPaused)
+            {
+                pausePanel.SetActive(true);
+                Time.timeScale = 0;
+                isPaused = true;
+            }
+            else
+            {
+                pausePanel.SetActive(false);
+                Time.timeScale = 1;
+                isPaused = false;
+            }
+        }
         
     }
 }
