@@ -167,7 +167,7 @@
       <workItem from="1669975172536" duration="8745000" />
       <workItem from="1670073279585" duration="10176000" />
       <workItem from="1670167712924" duration="8410000" />
-      <workItem from="1670231593121" duration="1022000" />
+      <workItem from="1670231593121" duration="4027000" />
     </task>
     <servers />
   </component>
@@ -226,6 +226,19 @@
             </endOffsets>
           </properties>
           <option name="timeStamp" value="26" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Scripts/FX/FXInstance.cs</url>
+          <line>41</line>
+          <properties documentPath="C:\Users\clixd\Documents\UnityProject\HungryAlien\Assets\Scripts\FX\FXInstance.cs" initialLine="41" containingFunctionPresentation="method 'Update'">
+            <startOffsets>
+              <option value="1226" />
+            </startOffsets>
+            <endOffsets>
+              <option value="1256" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="27" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

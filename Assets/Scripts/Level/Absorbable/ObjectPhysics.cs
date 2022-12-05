@@ -149,8 +149,8 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
             {
                 collisionSurface.Play();
             }
-            AudioManager.PlaySoundAtPosition(settings.aliaseImpact,transform.position);
-//            FXManager.PlayFXAtPosition(settings.fxHit, transform.position);
+            AudioManager.PlaySoundAtPosition(settings.OnImpactAliaseSound,transform.position);
+            FXManager.PlayFXAtPosition(settings.OnHitFX, transform.position);
         }
     }
 
@@ -182,7 +182,7 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
     }
     protected void EndObject()
     {
-        AudioManager.PlaySoundAtPosition(settings.aliaseDeath, transform.position);
+        AudioManager.PlaySoundAtPosition(settings.OnDeathAliaseSound, transform.position);
         //FXManager.PlayFXAtPosition(settings.fxDeath,transform.position);
         AudioManager.StopLoopSound(ref _audioPlayer);
         LevelManager.Instance.RemoveObjectPhysical(this);
@@ -320,7 +320,6 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
         {
             forceRatio = (float)Math.Round(strength / ForceRequired,3);
         }
-        
         return forceRatio >= forceTolerance;
     }
     private void FixedUpdate()
@@ -396,7 +395,7 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
         float distanceHeight = destination.y - transform.position.y;
         if(distanceHeight < 5)
         {
-            var valueDissolve = Mathf.Clamp(1-(distanceHeight/5), 0, 1);
+            var valueDissolve = 1-(distanceHeight/5);
             SetDissolve(valueDissolve);
         }
         if (hasEnoughForce && distanceHeight < absorber.AbsortionHeight)

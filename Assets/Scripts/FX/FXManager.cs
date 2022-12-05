@@ -31,8 +31,14 @@ namespace FX
 
         public static void PlayFXAtPosition(FXScriptableObject fxAsset, Vector3 position)
         {
-            GameObject fxInstance = fxAsset.Spawn(position, Instance.transform);
-            fxInstance.AddComponent<FXInstance>();
+            if (fxAsset == null) return;
+            if (fxAsset.Spawn(position, Instance.transform, out var fxObject))
+            {
+                var fxComponent = fxObject.AddComponent<FXInstance>();
+                fxComponent.SetFXAsset(fxAsset);
+         
+            }
+               
         }
     }
 }
