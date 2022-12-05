@@ -39,6 +39,7 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
     [SerializeField] protected bool CanRegenerateFromDissolve = true;
     [SerializeField] private bool CanRegenerateScaleFromAbsorbtion = true;
     static float forceTolerance = 0.999f;
+    [SerializeField] private bool isDissolvable;
 
     [SerializeField] private bool ignoreForceRequired;
     
@@ -328,41 +329,55 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
         {
             if (!IsInAbsorbing)
             {
-                if (CanRegenerateScaleFromAbsorbtion)
-                {
-                    transform.localScale = Vector3.Lerp(transform.localScale, _baseScale, Time.deltaTime);
-                }
-                if (CanRegenerateFromDissolve)
-                {
-                    AddDissolve(-Time.deltaTime * _regenMultiplier);
-                }
+                OnStopAbsorbing();
             }
             else // Absorbtion in progress
             {
-                AddDissolve(Time.deltaTime);
+                OnIsAbsorbing();
             }
-           
         }
 
         if (IsAbsorbed)
         {
-            AddDissolve(Time.deltaTime);
-            
-            bool destroyIt = true;
-            for (int i = 0; i < _propBlocks.Length ; i++)
-            {
-                _meshRenderer.GetPropertyBlock(_propBlocks[i],i);
-                if (_propBlocks[i].GetFloat(Amount) < 1)
-                {
-                    Debug.Log($"Absorbed object, dissolve value = {_propBlocks[i].GetFloat(Amount)}", gameObject);
-                    destroyIt = false;
-                }
-                _meshRenderer.SetPropertyBlock(_propBlocks[i], i);
-            }
-            if(destroyIt)
-                Destroy(gameObject);
+            OnAbsorbed();
         }
        
+    }
+    /// <summary>
+    /// Update when the object isAbsorbed
+    /// </summary>
+    protected virtual void OnAbsorbed()
+    {
+        AddDissolve(Time.deltaTime);
+        bool destroyIt = true;
+        for (int i = 0; i < _propBlocks.Length ; i++)
+        {
+            _meshRenderer.GetPropertyBlock(_propBlocks[i],i);
+            if (_propBlocks[i].GetFloat(Amount) < 1)
+            {
+                Debug.Log($"Absorbed object, dissolve value = {_propBlocks[i].GetFloat(Amount)}", gameObject);
+                destroyIt = false;
+            }
+            _meshRenderer.SetPropertyBlock(_propBlocks[i], i);
+        }
+        if(destroyIt)
+            Destroy(gameObject);
+    }
+
+    protected virtual void OnStopAbsorbing()
+    {
+        if (CanRegenerateScaleFromAbsorbtion)
+        {
+            transform.localScale = Vector3.Lerp(transform.localScale, _baseScale, Time.deltaTime);
+        }
+        if (CanRegenerateFromDissolve)
+        {
+            AddDissolve(-Time.deltaTime * _regenMultiplier);
+        }
+    }
+    protected virtual void OnIsAbsorbing()
+    {
+        AddDissolve(Time.deltaTime);
     }
     protected virtual void LateUpdate()
     {

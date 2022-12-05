@@ -165,6 +165,7 @@ public class LevelManager : MonoBehaviour
         _smoothPath = GetComponent<CinemachineSmoothPath>();
         _player = FindObjectOfType<ShipController>();
         _player.GetComponent<ScaleShip>().SetScaleFactor(shipStartScale);
+        _player.transform.position = CurrentPlayerSpawnPoint.position;
         if (!_camera.TryGetComponent<CinemachineBrain>(out var _))
         {
             _camera.AddComponent<CinemachineBrain>();
