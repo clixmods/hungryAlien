@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &673357146023959756
+--- !u!1 &4490489768603925027
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,7 +8,7 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 6731011691973274747}
+  - component: {fileID: 7665136591270202004}
   m_Layer: 0
   m_Name: Prefab_barriere
   m_TagString: Untagged
@@ -16,28 +16,28 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &6731011691973274747
+--- !u!4 &7665136591270202004
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 673357146023959756}
+  m_GameObject: {fileID: 4490489768603925027}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -44.54729, y: -0.0000009536743, z: -60.330276}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 591671217376137715}
+  - {fileID: 4557462162835257116}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &1133975455233898008
+--- !u!1001 &4086421610018984183
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 6731011691973274747}
+    m_TransformParent: {fileID: 7665136591270202004}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 6c92efcc76c97bc46b0fe84f1443a483,
         type: 3}
@@ -47,17 +47,17 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 6c92efcc76c97bc46b0fe84f1443a483,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 17.677
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 6c92efcc76c97bc46b0fe84f1443a483,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 17.677008
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 6c92efcc76c97bc46b0fe84f1443a483,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 17.677008
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 6c92efcc76c97bc46b0fe84f1443a483,
         type: 3}
@@ -109,11 +109,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 6c92efcc76c97bc46b0fe84f1443a483,
+        type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: -7511558181221131132, guid: 6c92efcc76c97bc46b0fe84f1443a483,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: e273d7449b5ef0745ad4644d1619a7bb, type: 2}
+      objectReference: {fileID: 2100000, guid: 2d1a9310e8f6bb849ab467da4bedbdb8, type: 2}
     - target: {fileID: 919132149155446097, guid: 6c92efcc76c97bc46b0fe84f1443a483,
         type: 3}
       propertyPath: m_Name
@@ -121,9 +126,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6c92efcc76c97bc46b0fe84f1443a483, type: 3}
---- !u!4 &591671217376137715 stripped
+--- !u!4 &4557462162835257116 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 6c92efcc76c97bc46b0fe84f1443a483,
     type: 3}
-  m_PrefabInstance: {fileID: 1133975455233898008}
+  m_PrefabInstance: {fileID: 4086421610018984183}
   m_PrefabAsset: {fileID: 0}
