@@ -5,6 +5,7 @@ namespace Level
     public class ObjectPhysicsPlantation : ObjectPhysics
     {
        [SerializeField] private float minHeightToActiveGravity = 5;
+       private const float SpeedDeplantation = 3;
        private bool _isImplanted; 
        public override void WakeObject()
        {
@@ -25,7 +26,7 @@ namespace Level
            Rigidbody.isKinematic = false;
            float heightToActiveGravity = minHeightToActiveGravity + InitialPosition.y;
            var position = transform.position;
-           position.y += Time.deltaTime;
+           position.y += Time.deltaTime * SpeedDeplantation;
            transform.position = position;
            if (!_isImplanted && transform.position.y >= heightToActiveGravity)
            {
