@@ -128,7 +128,7 @@ Material:
     - _Color2: {r: 0.1882353, g: 0.41568628, b: 0.09411765, a: 0}
     - _ColorBottom: {r: 0.9019608, g: 1, b: 0.7607843, a: 0}
     - _ColorMix: {r: 1, g: 1, b: 1, a: 0}
-    - _ColorTop: {r: 0.05882353, g: 1, b: 0, a: 0}
+    - _ColorTop: {r: 0.8989123, g: 1, b: 0.43962264, a: 1}
     - _DoubleSidedConstants: {r: 1, g: 1, b: 1, a: 0}
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
     - _WindDirections: {r: 0.5, g: 0.5, b: 0, a: 0}
