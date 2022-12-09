@@ -136,7 +136,7 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
 
         _collider.enabled = false;
         Rigidbody.isKinematic = true;
-        Rigidbody.mass = ForceRequired;
+        Rigidbody.mass = ForceRequired + LevelManager.Instance.DataLevels[SleepUntilLevel].shipScaleAtTheEnd; ;
         LevelManager.Instance.CallbackPreLevelChange += WatchLevelToWakeUp;
         LevelManager.Instance.CallbackLevelChange += GenerateScaleMultiplier;
         LevelManager.Instance.CallbackLevelChange += GenerateForceRequired;
@@ -174,7 +174,11 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
         if (!IsInAbsorbing && transform.position.y < LevelManager.Instance.Player.transform.position.y)
         {
             ChangeMaterialsRenderQueue(3000);
+            
         }
+        if (!IsInAbsorbing && Rigidbody.velocity.y > 0)
+            Rigidbody.velocity = new Vector3(Rigidbody.velocity.x,0,Rigidbody.velocity.z);
+        
     }
     private void OnDestroy()
     {
@@ -366,6 +370,7 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
 
     protected virtual void OnStopAbsorbing()
     {
+        
         if (CanRegenerateScaleFromAbsorbtion)
         {
             transform.localScale = Vector3.Lerp(transform.localScale, _baseScale, Time.deltaTime);
@@ -381,8 +386,16 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
     }
     protected virtual void LateUpdate()
     {
-        if(!IsAbsorbed)
-            IsInAbsorbing = false;
+        if (!IsAbsorbed)
+        {
+            if (IsInAbsorbing)
+            {
+               
+                IsInAbsorbing = false;
+            }
+            
+        }
+            
     }
     private void ChangeMaterialsRenderQueue(int value)
     {
@@ -406,6 +419,7 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
         var direction = destination - transform.position;
         direction *= forceRatio;
         Rigidbody.velocity = direction * _speedAbsorbMultiplier;
+       // transform.position += direction * _speedAbsorbMultiplier *Time.deltaTime;
         transform.localScale = Vector3.Lerp(transform.localScale, Vector3.zero, Time.deltaTime);
         float distanceHeight = destination.y - transform.position.y;
         if(distanceHeight < 5)
