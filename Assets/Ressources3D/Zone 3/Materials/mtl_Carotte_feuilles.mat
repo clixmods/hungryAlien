@@ -162,7 +162,7 @@ Material:
     - _Amount: 0
     - _Anisotropy: 0
     - _BlendMode: 0
-    - _BorderScale: 0.02
+    - _BorderScale: 0.44
     - _CoatMask: 0
     - _ConservativeDepthOffsetEnable: 0
     - _CullMode: 2
@@ -207,8 +207,8 @@ Material:
     - _Metallic: 1
     - _MetallicRemapMax: 1
     - _MetallicRemapMin: 0
-    - _NoiseScale: 50
-    - _NoiseStrenght: 2.28
+    - _NoiseScale: 24.05
+    - _NoiseStrenght: 2.05
     - _NormalMapSpace: 0
     - _NormalScale: 1
     - _OpaqueCullMode: 2

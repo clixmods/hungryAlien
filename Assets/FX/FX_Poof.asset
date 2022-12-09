@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 207c010def4562e4d86a8faeec471371, type: 3}
   m_Name: FX_Poof
   m_EditorClassIdentifier: 
-  _fxPrefab: {fileID: 0}
-  _visualEffect: {fileID: 0}
+  _fxPrefab: {fileID: 1101275692054370215, guid: 8de6b1fae6f45794bb84b583eea000c5,
+    type: 3}
   isPlaceholder: 1

@@ -47,5 +47,10 @@ namespace Level
         {
             return true;
         }
+
+        public void WakeObject()
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

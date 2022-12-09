@@ -24,16 +24,17 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: mtl_herbe
-  m_Shader: {fileID: -6465566751694194690, guid: 6bcdbd6639b9a224eb0b941deda6cdf0,
+  m_Shader: {fileID: -6465566751694194690, guid: ea0f10dfacb81ab4ca741a77d354cf17,
     type: 3}
   m_ValidKeywords:
+  - _DISABLE_DECALS
+  - _DISABLE_SSR
   - _DISABLE_SSR_TRANSPARENT
-  - _DOUBLESIDED_ON
   m_InvalidKeywords: []
   m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 1
-  m_CustomRenderQueue: 2225
+  m_EnableInstancingVariants: 1
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: 2000
   stringTagMap:
     MotionVector: User
   disabledShaderPasses:
@@ -65,39 +66,43 @@ Material:
     - _AlphaSrcBlend: 1
     - _AlphaToMask: 0
     - _AlphaToMaskInspectorValue: 0
+    - _Area_Wind: 0
     - _BlendMode: 0
     - _ConservativeDepthOffsetEnable: 0
-    - _CullMode: 0
-    - _CullModeForward: 0
+    - _CullMode: 2
+    - _CullModeForward: 2
     - _DepthOffsetEnable: 0
-    - _DoubleSidedEnable: 1
-    - _DoubleSidedGIMode: 0
+    - _DoubleSidedEnable: 0
+    - _DoubleSidedGIMode: 2
     - _DoubleSidedNormalMode: 2
     - _DstBlend: 0
     - _EnableBlendModePreserveSpecularLighting: 1
     - _EnableFogOnTransparent: 1
+    - _Metallic: 0
     - _Mix: 3.04
     - _OpaqueCullMode: 2
     - _PowerGradient: 2
+    - _PowerSecondColor: 5.66
     - _RayTracing: 0
-    - _ReceivesSSR: 1
+    - _ReceivesSSR: 0
     - _ReceivesSSRTransparent: 0
     - _RefractionModel: 0
     - _RenderQueueType: 1
     - _RequireSplitLighting: 0
     - _Saturation: 1.71
+    - _Smoothness: 0
     - _SrcBlend: 1
     - _StencilRef: 0
-    - _StencilRefDepth: 8
+    - _StencilRefDepth: 0
     - _StencilRefDistortionVec: 4
-    - _StencilRefGBuffer: 10
-    - _StencilRefMV: 40
+    - _StencilRefGBuffer: 2
+    - _StencilRefMV: 32
     - _StencilWriteMask: 6
     - _StencilWriteMaskDepth: 8
     - _StencilWriteMaskDistortionVec: 4
     - _StencilWriteMaskGBuffer: 14
     - _StencilWriteMaskMV: 40
-    - _SupportDecals: 1
+    - _SupportDecals: 0
     - _SurfaceType: 0
     - _TransparentBackfaceEnable: 0
     - _TransparentCullMode: 2
@@ -111,6 +116,8 @@ Material:
     - _WindNoise: 6.58
     - _WindPower: 0
     - _WindSpeed: 0
+    - _Wind_Noise: 0
+    - _Wind_Strenght: 0
     - _ZTestDepthEqualForOpaque: 3
     - _ZTestGBuffer: 4
     - _ZTestTransparent: 4
@@ -119,6 +126,9 @@ Material:
     - _Color: {r: 0, g: 0, b: 0, a: 0}
     - _Color1: {r: 0.034798868, g: 0.3207547, b: 0.0824582, a: 0}
     - _Color2: {r: 0.1882353, g: 0.41568628, b: 0.09411765, a: 0}
+    - _ColorBottom: {r: 0.9019608, g: 1, b: 0.7607843, a: 0}
+    - _ColorMix: {r: 1, g: 1, b: 1, a: 0}
+    - _ColorTop: {r: 0.05882353, g: 1, b: 0, a: 0}
     - _DoubleSidedConstants: {r: 1, g: 1, b: 1, a: 0}
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
     - _WindDirections: {r: 0.5, g: 0.5, b: 0, a: 0}

@@ -6,14 +6,18 @@ namespace FX
 {
     public class FXInstance : MonoBehaviour
     {
-        private FXScriptableObject fxAsset;
+        private FXScriptableObject _fxAsset;
         private VisualEffect _visualEffect;
         private ParticleSystem _particleSystem;
-            
+
+        public void SetFXAsset(FXScriptableObject fxAsset)
+        {
+            _fxAsset = fxAsset;
+        }
         private void Start()
         {
             //throw new NotImplementedException();
-            switch (fxAsset.TypeFX)
+            switch (_fxAsset.TypeFX)
             {
                 case TypeFX.VisualEffect:
                     _visualEffect = GetComponent<VisualEffect>();
@@ -29,16 +33,18 @@ namespace FX
 
         private void Update()
         {
-            // switch (fxAsset.TypeFX)
-            // {
-            //     case TypeFX.VisualEffect:
-            //         if(_visualEffect.visualEffectAsset.)
-            //         break;
-            //     case TypeFX.ParticleSystem:
-            //         break;
-            //     default:
-            //         throw new ArgumentOutOfRangeException();
-            // }
+            switch (_fxAsset.TypeFX)
+            {
+                case TypeFX.VisualEffect:
+                    //if(_visualEffect.visualEffectAsset.)
+                    break;
+                case TypeFX.ParticleSystem:
+                    if(!_particleSystem.isPlaying)
+                        Destroy(gameObject);
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
         }
         
         // public sealed override void OnUpdate(VFXSpawnerState state, VFXExpressionValues vfxValues, VisualEffect vfxComponent)

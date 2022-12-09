@@ -4,7 +4,7 @@ using UnityEngine;
 namespace Level
 {
     [RequireComponent(typeof(Rigidbody))]
-    [RequireComponent(typeof(MeshCollider))]
+    [RequireComponent(typeof(Collider))]
     public class ObjectPhysicsNotAbsorbable : MonoBehaviour , IAbsorbable
     {
         public bool IsAbsorbable { get; private set;}
@@ -38,6 +38,11 @@ namespace Level
         }
 
         public bool OnTrigger(Absorber absorber)
+        {
+            return true;
+        }
+
+        public void WakeObject()
         {
             throw new NotImplementedException();
         }

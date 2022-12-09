@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: objphysetting_default
   m_EditorClassIdentifier: 
   magnitudeToStopLoop: 0.5
-  aliaseAmbiant: impactBell_heavy
-  aliaseMoving: asborbing_default
-  aliaseImpact: impactBell_heavy
-  aliaseDeath: impactBell_heavy
-  fxHit: {fileID: 0}
-  fxDeath: {fileID: 0}
-  fxMovement: {fileID: 0}
+  OnAmbiantAliaseSound: 
+  OnMovingAliaseSound: 
+  OnImpactAliaseSound: 
+  OnDeathAliaseSound: 
+  OnHitFX: {fileID: 11400000, guid: 8e1306452d1ae534fa1147129a73edbd, type: 2}
+  OnDeathFX: {fileID: 0}
+  OnMovementFX: {fileID: 0}

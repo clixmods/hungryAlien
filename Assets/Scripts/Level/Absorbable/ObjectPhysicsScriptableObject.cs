@@ -11,17 +11,16 @@ public class ObjectPhysicsScriptableObject : ScriptableObject
     [Range(0,10)]
     [SerializeField] public float magnitudeToStopLoop = 0;
 
- 
-
+    
     [Header("Sound Aliases")]
-    [Aliase] public string aliaseAmbiant;
-    [Aliase] public string aliaseMoving;
-    [Aliase] public string aliaseImpact;
-    [Aliase] public string aliaseDeath;
+    [Aliase] public string OnAmbiantAliaseSound;
+    [Aliase] public string OnMovingAliaseSound;
+    [Aliase] public string OnImpactAliaseSound;
+    [Aliase] public string OnDeathAliaseSound;
 
     [Header("FX")] 
-    public FXScriptableObject fxHit;
-    public FXScriptableObject fxDeath;
-    public FXScriptableObject fxMovement;
+    public FXScriptableObject OnHitFX;
+    public FXScriptableObject OnDeathFX;
+    public FXScriptableObject OnMovementFX;
 
 }
