@@ -21,6 +21,8 @@ public class ObjectPhysicsScriptableObject : ScriptableObject
     [Header("FX")] 
     public FXScriptableObject OnHitFX;
     public FXScriptableObject OnDeathFX;
-    public FXScriptableObject OnMovementFX;
+    public FXScriptableObject OnAbsorbFX;
+    public FXScriptableObject OnCancelAbsorbFX;
+    //public FXScriptableObject OnMovementFX;
 
 }

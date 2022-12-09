@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 207c010def4562e4d86a8faeec471371, type: 3}
+  m_Name: FX_Sand_OnAbsorb
+  m_EditorClassIdentifier: 
+  _fxPrefab: {fileID: 8108549148471568845, guid: e14887383df5e7d4faac4fe589208976,
+    type: 3}
+  isPlaceholder: 1

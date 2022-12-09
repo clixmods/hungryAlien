@@ -19,4 +19,5 @@ MonoBehaviour:
   OnDeathAliaseSound: 
   OnHitFX: {fileID: 11400000, guid: 8e1306452d1ae534fa1147129a73edbd, type: 2}
   OnDeathFX: {fileID: 0}
-  OnMovementFX: {fileID: 0}
+  OnAbsorbFX: {fileID: 11400000, guid: d92bdb2ff9da1cf499c321c3d33d4447, type: 2}
+  OnCancelAbsorbFX: {fileID: 0}

@@ -11,6 +11,7 @@ namespace Level
     {
         public bool IsAbsorbable { get; private set; }
         public bool IsAbsorbed { get; }
+        public bool IsInAbsorbing { get; set; }
         public Rigidbody Rigidbody { get; private set; }
         public bool IgnoreForceRequired { get; }
         public float ForceRequired { get; }

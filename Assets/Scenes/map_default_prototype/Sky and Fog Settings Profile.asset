@@ -171,17 +171,17 @@ MonoBehaviour:
     m_OverrideState: 0
     m_Value: {x: 0, y: -6378100, z: 0}
   airDensityR:
-    m_OverrideState: 0
-    m_Value: 0.04534
+    m_OverrideState: 1
+    m_Value: 0.245
   airDensityG:
-    m_OverrideState: 0
-    m_Value: 0.10237241
+    m_OverrideState: 1
+    m_Value: 0.067
   airDensityB:
-    m_OverrideState: 0
-    m_Value: 0.23264056
+    m_OverrideState: 1
+    m_Value: 0.191
   airTint:
     m_OverrideState: 1
-    m_Value: {r: 0, g: 0.85274386, b: 1, a: 1}
+    m_Value: {r: 0, g: 0.9644847, b: 1, a: 1}
   airMaximumAltitude:
     m_OverrideState: 0
     m_Value: 55261.973
@@ -189,8 +189,8 @@ MonoBehaviour:
     m_OverrideState: 0
     m_Value: 0
   aerosolTint:
-    m_OverrideState: 0
-    m_Value: {r: 0.9, g: 0.9, b: 0.9, a: 1}
+    m_OverrideState: 1
+    m_Value: {r: 0.033018887, g: 0.7392314, b: 1, a: 1}
   aerosolMaximumAltitude:
     m_OverrideState: 0
     m_Value: 8289.296
@@ -446,7 +446,7 @@ MonoBehaviour:
     m_Value: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   tint:
     m_OverrideState: 1
-    m_Value: {r: 0.13679248, g: 0.7100677, b: 1, a: 1}
+    m_Value: {r: 0.40392157, g: 0.6793298, b: 0.77254903, a: 1}
   maxFogDistance:
     m_OverrideState: 0
     m_Value: 5000
@@ -549,8 +549,8 @@ MonoBehaviour:
     m_OverrideState: 0
     m_Value: 0
   intensity:
-    m_OverrideState: 0
-    m_Value: 0
+    m_OverrideState: 1
+    m_Value: 0.5
   directLightingStrength:
     m_OverrideState: 0
     m_Value: 0

@@ -82,7 +82,7 @@ Material:
     - _Mix: 3.04
     - _OpaqueCullMode: 2
     - _PowerGradient: 2
-    - _PowerSecondColor: 5.66
+    - _PowerSecondColor: 5.21
     - _RayTracing: 0
     - _ReceivesSSR: 0
     - _ReceivesSSRTransparent: 0

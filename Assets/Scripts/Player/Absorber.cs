@@ -232,6 +232,10 @@ public class Absorber : MonoBehaviour
     public void CancelAbsorb()
     {
         absorb = false;
+        foreach (var VARIABLE in inTheTrigger)
+        {
+            VARIABLE.GetComponent<ObjectPhysics>().IsInAbsorbing = false;
+        }
     }
 
     private void OnTriggerExit(Collider other)
@@ -242,6 +246,7 @@ public class Absorber : MonoBehaviour
             ShipController.State = ShipState.Idle;
             inTheTrigger.Remove(objectPhysics.gameObject);
             _absorberColor.color = colorIdle;
+            objectPhysics.IsInAbsorbing = false;
         }
     }
 

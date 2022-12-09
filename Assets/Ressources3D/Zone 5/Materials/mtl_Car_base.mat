@@ -159,10 +159,10 @@ Material:
     - _AlphaToMask: 0
     - _AlphaToMaskInspectorValue: 0
     - _AmbiantOcclusion: 1
-    - _Amount: 0.298
+    - _Amount: 0
     - _Anisotropy: 0
     - _BlendMode: 0
-    - _BorderScale: 0.1
+    - _BorderScale: 0.47
     - _CoatMask: 0
     - _ConservativeDepthOffsetEnable: 0
     - _CullMode: 2
@@ -207,8 +207,8 @@ Material:
     - _Metallic: 0
     - _MetallicRemapMax: 1
     - _MetallicRemapMin: 0
-    - _NoiseScale: 50
-    - _NoiseStrenght: 1
+    - _NoiseScale: 58.2
+    - _NoiseStrenght: 10
     - _NormalMapSpace: 0
     - _NormalScale: 1
     - _OpaqueCullMode: 2
@@ -267,7 +267,7 @@ Material:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _BaseColorMap_MipInfo: {r: 0, g: 0, b: 0, a: 0}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _ColorDissolve: {r: 0, g: 1, b: 0.7911863, a: 0}
+    - _ColorDissolve: {r: 0, g: 194.0117, b: 153.6877, a: 0}
     - _DiffusionProfileAsset: {r: 0, g: 0, b: 0, a: 0}
     - _DoubleSidedConstants: {r: 1, g: 1, b: -1, a: 0}
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}

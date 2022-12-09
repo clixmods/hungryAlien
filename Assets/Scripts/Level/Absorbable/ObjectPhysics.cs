@@ -7,6 +7,59 @@ using FX;
 using Unity.VisualScripting;
 using UnityEditor;
 using Level;
+using Unity.Mathematics;
+
+
+public static class ExtensionFX
+{
+    public static void PlayFXAtPosition(this ParticleSystem[] particleSystems, bool isLooping, Vector3 position)
+    {
+        if (particleSystems == null || particleSystems.Length == 0)
+        {
+            return;
+        }
+        foreach (var particleSystem in particleSystems)
+        {
+            if (!particleSystem.isPlaying)
+            {
+                particleSystem.Play();
+                particleSystem.transform.position = position;
+                if (isLooping)
+                {
+                    SetLoopBool(particleSystem, true);
+                }
+                    
+            }
+               
+        }
+    }
+
+    public static void StopFX(this ParticleSystem[] particleSystems, bool isLooping)
+    {
+        if (particleSystems == null || particleSystems.Length == 0)
+        {
+            return;
+        }
+
+        foreach (var particleSystem in particleSystems)
+        {
+            if (isLooping)
+            {
+                SetLoopBool(particleSystem, false);
+            }
+            else
+            {
+                particleSystem.Stop(true, ParticleSystemStopBehavior.StopEmitting);
+            }
+        }
+    }
+
+    private static void SetLoopBool( ParticleSystem particleSystem, bool value)
+    {
+        var main = particleSystem.main;
+        main.loop = value;
+    }
+}
 
 
 [RequireComponent(typeof(Rigidbody))]
@@ -74,7 +127,8 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
     public float ScaleMultiplier => scaleMultiplier;
     public Collider Collider => _collider;
     [SerializeField] private bool _sleepUntilAbsorb;
-
+    // FX Cached
+    protected ParticleSystem[] _onAbsorbFX;
 
     public float HeightObject
     {
@@ -121,6 +175,19 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
         }
         InitialScaleMultiplier = ScaleMultiplier;
         InitialForceRequired = forceRequired;
+
+        if (settings.OnAbsorbFX != null)
+        {
+            _onAbsorbFX = Instantiate(
+                settings.OnAbsorbFX._fxPrefab, 
+                transform.position, 
+                quaternion.identity, null).GetComponentsInChildren<ParticleSystem>();
+            foreach (var oof in _onAbsorbFX)
+            {
+               
+            }
+        }
+    
     }
 
     private void OnValidate()
@@ -152,8 +219,10 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
             }
             AudioManager.PlaySoundAtPosition(settings.OnImpactAliaseSound,transform.position);
             FXManager.PlayFXAtPosition(settings.OnHitFX, transform.position);
+            _onAbsorbFX.StopFX(true);
         }
     }
+
 
     private void Update()
     {
@@ -161,6 +230,7 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
         {
             if (!IsInAbsorbing)
             {
+                _onAbsorbFX.StopFX(false);
                 transform.position = InitialPosition;
                 Rigidbody.Sleep();
             }
@@ -176,14 +246,22 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
             ChangeMaterialsRenderQueue(3000);
             
         }
+
         if (!IsInAbsorbing && Rigidbody.velocity.y > 0)
+        {
+            _onAbsorbFX.StopFX(false);
             Rigidbody.velocity = new Vector3(Rigidbody.velocity.x,0,Rigidbody.velocity.z);
+        }
+            
         
     }
     private void OnDestroy()
     {
         if(GeneratedCollider)
             GeneratedCollider.Clear();
+        
+        _onAbsorbFX.StopFX(false);
+        
     }
     protected void EndObject()
     {
@@ -353,6 +431,7 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
     protected virtual void OnAbsorbed()
     {
         AddDissolve(Time.deltaTime);
+        
         bool destroyIt = true;
         for (int i = 0; i < _propBlocks.Length ; i++)
         {
@@ -370,7 +449,7 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
 
     protected virtual void OnStopAbsorbing()
     {
-        
+       
         if (CanRegenerateScaleFromAbsorbtion)
         {
             transform.localScale = Vector3.Lerp(transform.localScale, _baseScale, Time.deltaTime);
@@ -388,14 +467,12 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
     {
         if (!IsAbsorbed)
         {
-            if (IsInAbsorbing)
-            {
-               
-                IsInAbsorbing = false;
-            }
-            
+            // if (IsInAbsorbing)
+            // {
+            //    
+            //     IsInAbsorbing = false;
+            // }
         }
-            
     }
     private void ChangeMaterialsRenderQueue(int value)
     {
@@ -422,6 +499,10 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
        // transform.position += direction * _speedAbsorbMultiplier *Time.deltaTime;
         transform.localScale = Vector3.Lerp(transform.localScale, Vector3.zero, Time.deltaTime);
         float distanceHeight = destination.y - transform.position.y;
+        
+        
+        _onAbsorbFX.PlayFXAtPosition(true , transform.position);
+        
         if(distanceHeight < 5)
         {
             var valueDissolve = 1-(distanceHeight/5);

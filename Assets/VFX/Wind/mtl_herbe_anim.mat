@@ -90,7 +90,7 @@ Material:
     - _RenderQueueType: 1
     - _RequireSplitLighting: 0
     - _Saturation: 1
-    - _SecondColorPower: 5.25
+    - _SecondColorPower: 11.61
     - _Smoothness: 0
     - _SrcBlend: 1
     - _StencilRef: 0

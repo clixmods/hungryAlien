@@ -10,6 +10,7 @@ namespace Level
         
         public bool IsAbsorbable { get; }
         public bool IsAbsorbed { get; }
+        public bool IsInAbsorbing { get; set; }
 
         public Rigidbody Rigidbody
         {

@@ -29,7 +29,7 @@ namespace FX
             Instance = this;
         }
 
-        public static void PlayFXAtPosition(FXScriptableObject fxAsset, Vector3 position)
+        public static void PlayFXAtPosition(FXScriptableObject fxAsset, Vector3 position, Transform parent =null) 
         {
             if (fxAsset == null) return;
             if (fxAsset.Spawn(position, Instance.transform, out var fxObject))

@@ -22,6 +22,7 @@ namespace Level
             // We have the required Force
             if (forceRemaining >= 1)
             {
+                _onAbsorbFX.PlayFXAtPosition(true,transform.position);
                 _absorbtionAmount += Time.deltaTime * _absortionMultiplier;
                 SetDissolve(_absorbtionAmount);
             }
