@@ -39,6 +39,7 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
     [SerializeField] protected bool CanRegenerateFromDissolve = true;
     [SerializeField] private bool CanRegenerateScaleFromAbsorbtion = true;
     static float forceTolerance = 0.999f;
+    [SerializeField] private bool isDissolvable;
 
     [SerializeField] private bool ignoreForceRequired;
     
@@ -92,6 +93,8 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
     #endregion
     
     private Mesh GeneratedCollider;
+    private static readonly int Amount = Shader.PropertyToID("_Amount");
+
     #region MonoBehaviour
 
     private void Awake()
@@ -137,12 +140,6 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
         LevelManager.Instance.CallbackPreLevelChange += WatchLevelToWakeUp;
         LevelManager.Instance.CallbackLevelChange += GenerateScaleMultiplier;
         LevelManager.Instance.CallbackLevelChange += GenerateForceRequired;
-        // if (ForceRequired == 0)
-        // {
-        //     Debug.LogWarning("Warning : Force required = 0, assign a greater value.", gameObject);
-        //     forceRequired = 1;
-        // }
-           
     }
     
     void OnCollisionEnter(Collision collision)
@@ -153,8 +150,8 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
             {
                 collisionSurface.Play();
             }
-            AudioManager.PlaySoundAtPosition(settings.aliaseImpact,transform.position);
-//            FXManager.PlayFXAtPosition(settings.fxHit, transform.position);
+            AudioManager.PlaySoundAtPosition(settings.OnImpactAliaseSound,transform.position);
+            FXManager.PlayFXAtPosition(settings.OnHitFX, transform.position);
         }
     }
 
@@ -167,14 +164,14 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
                 transform.position = InitialPosition;
                 Rigidbody.Sleep();
             }
-            
         }
         else
         {
             if(Rigidbody.IsSleeping())
                 Rigidbody.WakeUp();
         }
-        if (Rigidbody.velocity.y < 0 && transform.position.y < LevelManager.Instance.Player.transform.position.y-5)
+        //if (Rigidbody.velocity.y < 0 && transform.position.y < LevelManager.Instance.Player.transform.position.y-5)
+        if (!IsInAbsorbing && transform.position.y < LevelManager.Instance.Player.transform.position.y)
         {
             ChangeMaterialsRenderQueue(3000);
         }
@@ -186,7 +183,7 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
     }
     protected void EndObject()
     {
-        AudioManager.PlaySoundAtPosition(settings.aliaseDeath, transform.position);
+        AudioManager.PlaySoundAtPosition(settings.OnDeathAliaseSound, transform.position);
         //FXManager.PlayFXAtPosition(settings.fxDeath,transform.position);
         AudioManager.StopLoopSound(ref _audioPlayer);
         LevelManager.Instance.RemoveObjectPhysical(this);
@@ -228,7 +225,7 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
             WakeObject();
         }
     }
-    protected virtual void WakeObject()
+    public virtual void WakeObject()
     {
         _collider.enabled = true;
         LevelManager.Instance.AddObjectPhysical(this);
@@ -294,7 +291,8 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
             // Get the current value of the material properties in the renderer.
             _meshRenderer.GetPropertyBlock(_propBlocks[i]);
             // Assign our new value.
-            _propBlocks[i].SetFloat("_Amount", amount);
+            var value = Mathf.Clamp( amount, 0, 1);
+            _propBlocks[i].SetFloat(Amount, amount);
             // Apply the edited values to the renderer.
             _meshRenderer.SetPropertyBlock(_propBlocks[i], i);
         }
@@ -305,37 +303,15 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
         {
             // Get the current value of the material properties in the renderer.
             _meshRenderer.GetPropertyBlock(_propBlocks[i], i);
-            float currentAmount = _propBlocks[i].GetFloat("_Amount");
+            float currentAmount = _propBlocks[i].GetFloat(Amount);
             //Assign our new value.
-            _propBlocks[i].SetFloat("_Amount", currentAmount + amount);
+            var value = Mathf.Clamp(currentAmount + amount, 0, 1);
+            _propBlocks[i].SetFloat(Amount, value);
             // Apply the edited values to the renderer.
             _meshRenderer.SetPropertyBlock(_propBlocks[i], i);
         }
     }
-    public bool OnTrigger(Absorber absorber)
-    {
-        if (!HasEnoughForce(absorber.Strenght, out var forceRatio))
-        {
-            
-            var destination = absorber.AbsorbePoint.position;
-            var direction = destination - transform.position;
-           // absorber.Ship.transform.position += -direction * forceRatio * .2f * Time.deltaTime;
-           return false;
-        }
-        else
-        {
-            // var destination = absorber.AbsorbePoint.position;
-            // var direction = destination - transform.position;
-            //
-            // absorber.Ship.transform.position += (-Vector3.down * HeightObject)* forceRatio * .2f * Time.deltaTime;
-            //transform.position = Vector3.MoveTowards(transform.position,
-            //HeightObject + LevelManager.Instance.GetCurrentHeightOffset, Time.deltaTime * speedHeightMove);
-        }
-
-        return true;
-
-    }
-    public bool HasEnoughForce(float strength , out float forceRatio)
+    private bool HasEnoughForce(float strength , out float forceRatio)
     {
         if (forceRequired == 0)
         {
@@ -345,46 +321,63 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
         {
             forceRatio = (float)Math.Round(strength / ForceRequired,3);
         }
-        
         return forceRatio >= forceTolerance;
     }
     private void FixedUpdate()
     {
-        if (IsAbsorbable)
+        if ( !IsAbsorbed && IsAbsorbable)
         {
             if (!IsInAbsorbing)
             {
-                if (CanRegenerateScaleFromAbsorbtion)
-                {
-                    transform.localScale = Vector3.Lerp(transform.localScale, _baseScale, Time.deltaTime);
-                }
-                if (CanRegenerateFromDissolve)
-                {
-                    AddDissolve(-Time.deltaTime * _regenMultiplier);
-                }
+                OnStopAbsorbing();
             }
             else // Absorbtion in progress
             {
-                AddDissolve(Time.deltaTime);
-            }
-
-            if (IsAbsorbed)
-            {
-                bool destroyIt = true;
-                for (int i = 0; i < _propBlocks.Length ; i++)
-                {
-                    _meshRenderer.GetPropertyBlock(_propBlocks[i],i);
-                    if (_propBlocks[i].GetFloat("_Amount") < 1)
-                    {
-                        destroyIt = false;
-                    }
-                    _meshRenderer.SetPropertyBlock(_propBlocks[i], i);
-                }
-                if(destroyIt)
-                    Destroy(gameObject);
+                OnIsAbsorbing();
             }
         }
+
+        if (IsAbsorbed)
+        {
+            OnAbsorbed();
+        }
        
+    }
+    /// <summary>
+    /// Update when the object isAbsorbed
+    /// </summary>
+    protected virtual void OnAbsorbed()
+    {
+        AddDissolve(Time.deltaTime);
+        bool destroyIt = true;
+        for (int i = 0; i < _propBlocks.Length ; i++)
+        {
+            _meshRenderer.GetPropertyBlock(_propBlocks[i],i);
+            if (_propBlocks[i].GetFloat(Amount) < 1)
+            {
+                Debug.Log($"Absorbed object, dissolve value = {_propBlocks[i].GetFloat(Amount)}", gameObject);
+                destroyIt = false;
+            }
+            _meshRenderer.SetPropertyBlock(_propBlocks[i], i);
+        }
+        if(destroyIt)
+            Destroy(gameObject);
+    }
+
+    protected virtual void OnStopAbsorbing()
+    {
+        if (CanRegenerateScaleFromAbsorbtion)
+        {
+            transform.localScale = Vector3.Lerp(transform.localScale, _baseScale, Time.deltaTime);
+        }
+        if (CanRegenerateFromDissolve)
+        {
+            AddDissolve(-Time.deltaTime * _regenMultiplier);
+        }
+    }
+    protected virtual void OnIsAbsorbing()
+    {
+        AddDissolve(Time.deltaTime);
     }
     protected virtual void LateUpdate()
     {
@@ -415,9 +408,10 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
         Rigidbody.velocity = direction * _speedAbsorbMultiplier;
         transform.localScale = Vector3.Lerp(transform.localScale, Vector3.zero, Time.deltaTime);
         float distanceHeight = destination.y - transform.position.y;
-        if(distanceHeight < 5) 
-        { 
-            SetDissolve(1-(distanceHeight/5));
+        if(distanceHeight < 5)
+        {
+            var valueDissolve = 1-(distanceHeight/5);
+            SetDissolve(valueDissolve);
         }
         if (hasEnoughForce && distanceHeight < absorber.AbsortionHeight)
         {
@@ -434,6 +428,26 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
         {
             absorber.Ship.transform.position += -direction * forceRatio * 2f * Time.deltaTime;
         }
-        
     }
+    public bool OnTrigger(Absorber absorber)
+    {
+        if (!HasEnoughForce(absorber.Strenght, out var forceRatio))
+        {
+            var destination = absorber.AbsorbePoint.position;
+            var direction = destination - transform.position;
+            // absorber.Ship.transform.position += -direction * forceRatio * .2f * Time.deltaTime;
+            return false;
+        }
+        else
+        {
+            // var destination = absorber.AbsorbePoint.position;
+            // var direction = destination - transform.position;
+            //
+            // absorber.Ship.transform.position += (-Vector3.down * HeightObject)* forceRatio * .2f * Time.deltaTime;
+            //transform.position = Vector3.MoveTowards(transform.position,
+            //HeightObject + LevelManager.Instance.GetCurrentHeightOffset, Time.deltaTime * speedHeightMove);
+        }
+        return true;
+    }
+
 }

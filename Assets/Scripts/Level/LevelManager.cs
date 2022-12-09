@@ -147,6 +147,12 @@ public class LevelManager : MonoBehaviour
     private void Awake()
     {
         _instance = this;
+        // If dataLevels are not defined
+        if (dataLevels.Length == 0)
+        {
+            dataLevels = new DataLevel[1];
+            dataLevels[0].heightOffset = 5;
+        }
     }
 
     // Start is called before the first frame update
@@ -159,6 +165,7 @@ public class LevelManager : MonoBehaviour
         _smoothPath = GetComponent<CinemachineSmoothPath>();
         _player = FindObjectOfType<ShipController>();
         _player.GetComponent<ScaleShip>().SetScaleFactor(shipStartScale);
+        _player.transform.position = CurrentPlayerSpawnPoint.position;
         if (!_camera.TryGetComponent<CinemachineBrain>(out var _))
         {
             _camera.AddComponent<CinemachineBrain>();

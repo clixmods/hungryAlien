@@ -34,7 +34,7 @@ namespace Level
             IsAbsorbable = true;
             currentHeight = 0f;
             LevelManager.Instance.CallbackLevelChange += DeactivateRocks;
-             _particleSystemWater = water.GetComponent<ParticleSystem>();
+             //_particleSystemWater = water.GetComponent<ParticleSystem>();
         }
         private void LateUpdate()
         {
@@ -107,6 +107,11 @@ namespace Level
         public bool OnTrigger(Absorber absorber)
         {
             return true;
+        }
+
+        public void WakeObject()
+        {
+            throw new System.NotImplementedException();
         }
 
         private void DeactivateRocks()

@@ -17,8 +17,19 @@ public class FXScriptableObject : ScriptableObject
   
    // public VisualEffect _visualEffect;
     public bool isPlaceholder = true;
+    private TypeFX _typeFX;
     public TypeFX TypeFX { get; private set; }
     private void OnValidate()
+    {
+        GetType();
+    }
+
+    private void Awake()
+    {
+        GetType();
+    }
+
+    void GetType()
     {
         if (_fxPrefab.TryGetComponent<VisualEffect>( out VisualEffect ve))
         {
@@ -31,9 +42,10 @@ public class FXScriptableObject : ScriptableObject
         }
     }
 
-    public GameObject Spawn(Vector3 position, Transform transformParent)
+    public bool Spawn(Vector3 position, Transform transformParent, out GameObject fxObject)
     {
-        return Instantiate(_fxPrefab,position,Quaternion.identity,transformParent);
+        fxObject = Instantiate(_fxPrefab,position,Quaternion.identity,transformParent);
+        return true;
     }
     //public GameObject _visualEffect;
 }

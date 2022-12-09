@@ -36,7 +36,7 @@ namespace Level
         /// <param name="absorbingState"></param>
         /// <returns> Absorb is completed?</returns>
         public void OnAbsorb(Absorber absorber, out AbsorbingState absorbingState);
-
         public bool OnTrigger(Absorber absorber);
+        public void WakeObject();
     }
 }
