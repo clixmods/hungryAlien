@@ -4,29 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="db6ae1ff-23e2-4f3b-9ceb-e60a307727cd" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/Scenes/core.unity" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scenes/core.unity.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.HungryAlien/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.HungryAlien/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/SpaceShip.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/SpaceShip.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Ressources3D/UFO/Materials/mtl_UFO_Lumiere.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Ressources3D/UFO/Materials/mtl_UFO_Lumiere.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/map_default_prototype.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/map_default_prototype.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Core/GameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Core/GameManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Core/GameManagerData.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Core/GameManagerData.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Core/Resources/GameManager Data.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Core/Resources/GameManager Data.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Level/LevelManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Level/LevelManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/Absorber.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player/Absorber.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/AbsorberColor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player/AbsorberColor.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/UICursor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/UICursor.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/UIManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/UIManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VFX/Vacuum/fx_ps_vacuum.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VFX/Vacuum/fx_ps_vacuum.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/RiderScriptEditorPersistedState.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/RiderScriptEditorPersistedState.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/ShaderGraphSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ShaderGraphSettings.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UserSettings/HDRPUserSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/HDRPUserSettings.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UserSettings/Layouts/CurrentMaximizeLayout.dwlt" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/Layouts/CurrentMaximizeLayout.dwlt" afterDir="false" />
-    </list>
+    <list default="true" id="db6ae1ff-23e2-4f3b-9ceb-e60a307727cd" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -194,7 +172,7 @@
       <workItem from="1670249320202" duration="1944000" />
       <workItem from="1670433710059" duration="858000" />
       <workItem from="1670590341868" duration="9846000" />
-      <workItem from="1670680661857" duration="7158000" />
+      <workItem from="1670680661857" duration="8002000" />
     </task>
     <servers />
   </component>
