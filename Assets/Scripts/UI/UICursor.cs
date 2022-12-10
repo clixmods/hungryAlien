@@ -1,14 +1,18 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Player;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class UICursor : MonoBehaviour
 {
     private Camera _camera;
     private InputAsset _input;
     private Vector3 _offset;
+    private Image _image;
+    [SerializeField] private Color cursorColor;
 
     /// <summary>
     /// Input used by the player
@@ -25,17 +29,35 @@ public class UICursor : MonoBehaviour
             return _input;
         }
     }
+
+    private void Awake()
+    {
+        _image = GetComponent<Image>();
+    }
+
     // Start is called before the first frame update
     void Start()
     {
         _camera = Camera.main;
         GameManager.OnGameGlobalStateChanged += SetCursorVisibility;
+        AbsorberColor.CallbackColorChange += SetColor;
     }
 
+    private void OnDestroy()
+    {
+        GameManager.OnGameGlobalStateChanged -= SetCursorVisibility;
+        AbsorberColor.CallbackColorChange -= SetColor;
+    }
+
+    void SetColor(Color color)
+    {
+        cursorColor = color;
+    }
+
+    private const float ChangeColorMultiplier = 10f;
     // Update is called once per frame
     void Update()
     {
-        
         if (_camera == null)
         {
             _camera = Camera.main;
@@ -45,17 +67,17 @@ public class UICursor : MonoBehaviour
         Vector3 point = Mouse.current.position.ReadValue();   
         point.z = _camera.nearClipPlane;
         Vector3 position = _camera.ScreenToWorldPoint(point);
-     
-        // Permet de voir si l'object est derriere la camera
-        // bool isBehindTheCamera = position.x < 0 ||position.y < 0;
-        // if(!isBehindTheCamera )
-        // {
-            // if(hintPro.offset == null)
-            transform.position =  point + _offset;
-            // else
-            //     hintstring.transform.position = position + hintPro.offset;
-        // }
+        // Change cursor color
+        if (_image.color != cursorColor)
+        {
+            _image.color = Color.Lerp(_image.color, cursorColor, Time.deltaTime * ChangeColorMultiplier);
+        }
+        
+        transform.position =  point + _offset;
+       
     }
+
+
 
     private void SetCursorVisibility()
     {

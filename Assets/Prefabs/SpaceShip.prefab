@@ -498,6 +498,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   color: {r: 1, g: 1, b: 1, a: 1}
+  meshLight: {fileID: 292719759737916554}
+  emissiveMultiplier: 6.7
 --- !u!1 &6961655016796113065
 GameObject:
   m_ObjectHideFlags: 0
@@ -607,9 +609,9 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 8
-  layerMask2:
+  fakeMovableGround:
     serializedVersion: 2
-    m_Bits: 1024
+    m_Bits: 0
   speed: 5
   aliaseIdle: ship_idle_loop
   aliaseMoving: ship_move_loop
@@ -935,6 +937,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e5e916cdedeaae34db36a64b9edd2161, type: 3}
+--- !u!23 &292719759737916554 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 7837820589750327632, guid: e5e916cdedeaae34db36a64b9edd2161,
+    type: 3}
+  m_PrefabInstance: {fileID: 7550983372397680090}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &657030902903308238 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7049335727810963988, guid: e5e916cdedeaae34db36a64b9edd2161,

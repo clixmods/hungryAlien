@@ -13,3 +13,5 @@ MonoBehaviour:
   m_Name: GameManager Data
   m_EditorClassIdentifier: 
   uiSceneName: UI
+  LevelsSceneName:
+  - map_default_prototype

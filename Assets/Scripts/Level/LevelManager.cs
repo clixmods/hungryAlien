@@ -147,6 +147,10 @@ public class LevelManager : MonoBehaviour
     private void Awake()
     {
         _instance = this;
+        if (GameManager.Instance != null)
+        {
+            Debug.Log("LevelManager call GameManager");
+        }
         // If dataLevels are not defined
         if (dataLevels.Length == 0)
         {
@@ -210,7 +214,7 @@ public class LevelManager : MonoBehaviour
         CallbackLevelChange();
         _lookAtTransform = new GameObject().transform;
         GameManager.CreateUI();
-        GameManager.State = GameGlobalState.Ingame;
+        
     }
 
   

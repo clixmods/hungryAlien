@@ -114,23 +114,31 @@ public class Absorber : MonoBehaviour
     void Start()
     {
         _collider.direction = 2;
-        Input.Game.Absorb.performed += ctx => Absorb();
-        Input.Game.Absorb.canceled += ctx => CancelAbsorb();
+        Input.Game.Absorb.performed += Absorb;
+        Input.Game.Absorb.canceled += CancelAbsorb;
         _collider.height = 1000;
+    }
+
+    private void OnDestroy()
+    {
+        Input.Game.Absorb.performed -=  Absorb;
+        Input.Game.Absorb.canceled -= CancelAbsorb;
     }
 
     // Update is called once per frame
     void Update()
     {
         AudioManager.PlayLoopSound(aliaseLoopLight, transform, ref _audioPlayerLightLoop);
-        _light.range = radius * Ship.localScale.magnitude;
+        _light.range = radius * Ship.localScale.magnitude + GetHeightObject() + ChangeHeightFloor() + LevelManager.Instance.GetCurrentHeightOffset;
+        
+        
        // _collider.height = radius * 2;
         Vector3 centerCollider = _collider.center;
         centerCollider.z = radius;
         _collider.center = centerCollider;
         if (_failedCooldown > 0)
         {
-            _absorberColor.color = colorFailed;
+            _absorberColor.SetColor(colorFailed);
             _failedCooldown -= Time.deltaTime;
         }
         else
@@ -168,11 +176,11 @@ public class Absorber : MonoBehaviour
         {
             if (objectPhysics.OnTrigger(this))
             {
-                _absorberColor.color = colorIsAbsorbing;
+                _absorberColor.SetColor( colorIsAbsorbing);
             }
             else
             {
-                _absorberColor.color = colorFailed;
+                _absorberColor.SetColor(colorFailed);
             }
 
             ShipController.State = ShipState.OnObject;
@@ -200,15 +208,14 @@ public class Absorber : MonoBehaviour
 
                         break;
                     case AbsorbingState.InProgress:
-                        //_absorberColor.color = colorIsAbsorbing;
                         break;
                     case AbsorbingState.Done:
-                        // _absorberColor.color = colorIdle;
+         
                         AudioManager.PlaySoundAtPosition(aliaseAbsorbSuccess, transform.position);
                         VEhasAbsorb.Play();
                         break;
                     case AbsorbingState.Fail:
-                        _absorberColor.color = colorFailed;
+                        _absorberColor.SetColor(colorFailed);
                         _failedCooldown = FailedCooldownStart;
                         CameraShake.SetNoisier(1, 1);
                         AudioManager.PlayLoopSound(aliaseLoopFail, transform, ref _audioPlayerFail);
@@ -224,12 +231,12 @@ public class Absorber : MonoBehaviour
         }
     }
 
-    public void Absorb()
+    public void Absorb(InputAction.CallbackContext callbackContext)
     {
         absorb = true;
     }
 
-    public void CancelAbsorb()
+    public void CancelAbsorb(InputAction.CallbackContext callbackContext)
     {
         absorb = false;
         foreach (var VARIABLE in inTheTrigger)
@@ -245,9 +252,44 @@ public class Absorber : MonoBehaviour
         {
             ShipController.State = ShipState.Idle;
             inTheTrigger.Remove(objectPhysics.gameObject);
-            _absorberColor.color = colorIdle;
+            _absorberColor.SetColor(colorIdle);
             objectPhysics.IsInAbsorbing = false;
         }
+    }
+    
+    float GetHeightObject()
+    {
+        float greater = 0;
+        if (ShipController.Absorber.InTheTrigger != null && ShipController.Absorber.InTheTrigger.Count > 0)
+        {
+            if (ShipController.Absorber.InTheTrigger[0].TryGetComponent<IAbsorbable>(out var objectPhysics))
+            {
+                greater = objectPhysics.HeightObject;
+                for (int i = 0; i < ShipController.Absorber.InTheTrigger.Count; i++)
+                {
+                    if (ShipController.Absorber.InTheTrigger[i].TryGetComponent<IAbsorbable>(out var aobjectPhysics))
+                    {
+                        float heightToCheck = aobjectPhysics.HeightObject;
+                        if (heightToCheck > greater)
+                        {
+                            greater = heightToCheck;
+                        }
+                    }
+                }
+            }
+            
+        }
+        return greater/2;
+    }
+
+    float ChangeHeightFloor()
+    {
+        
+        GameObject currentFloor = LevelManager.Instance.GetCurrentFloor;
+        if(currentFloor != null)
+            return currentFloor.transform.position.y;
+
+        return 0;
     }
 
 #if UNITY_EDITOR

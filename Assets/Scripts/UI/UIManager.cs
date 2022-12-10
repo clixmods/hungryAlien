@@ -60,18 +60,20 @@ public class UIManager : MonoBehaviour
     public void PlayGame()
     {
         menuPanel.SetActive(false);
+        GameManager.State = GameGlobalState.Ingame;
         Time.timeScale = 1;
         isInMenu = false;
     }
     public void ResumeGame()
     {
         pausePanel.SetActive(false);
+        GameManager.State = GameGlobalState.Ingame;
         Time.timeScale = 1;
         isPaused = false;
     }
     public void RestartGame()
     {
-        SceneManager.LoadScene(0);
+        GameManager.Instance.RestartMap();
     }
     public void PauseGame()
     {
@@ -82,12 +84,14 @@ public class UIManager : MonoBehaviour
                 pausePanel.SetActive(true);
                 Time.timeScale = 0;
                 isPaused = true;
+                GameManager.State = GameGlobalState.Paused;
             }
             else
             {
                 pausePanel.SetActive(false);
                 Time.timeScale = 1;
                 isPaused = false;
+                GameManager.State = GameGlobalState.Ingame;
             }
         }
         

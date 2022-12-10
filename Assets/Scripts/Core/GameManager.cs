@@ -43,6 +43,7 @@ public class GameManager : MonoBehaviour
 
     public static event Action OnGameGlobalStateChanged;
     private GameGlobalState _state;
+    private string _currentMap;
     public static GameGlobalState State
     {
         get
@@ -55,10 +56,38 @@ public class GameManager : MonoBehaviour
             OnGameGlobalStateChanged?.Invoke();
         }
     }
+
+    private void OnValidate()
+    {
+        transform.hideFlags = HideFlags.HideInInspector;
+    }
+
     private void Awake()
     {
+        DontDestroyOnLoad(this);
         _data = Resources.Load<GameManagerData>("GameManager Data");
+       
     }
+
+    private void Start()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+        _currentMap = SceneManager.GetActiveScene().name;
+       //
+    }
+
+    private void OnSceneLoaded(Scene arg0, LoadSceneMode arg1)
+    {
+        if(arg0.name != _data.uiSceneName)
+            _currentMap = arg0.name;
+    }
+
+    public void RestartMap()
+    {
+        SceneManager.LoadScene(_currentMap);
+    }
+    
+    
 
     public static void CreateUI()
     {

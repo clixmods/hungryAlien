@@ -6,6 +6,7 @@ namespace Core
     public class GameManagerData : ScriptableObject
     {
         [Scene] public string uiSceneName;
+        [Scene] public string[] LevelsSceneName;
 
     }
 }

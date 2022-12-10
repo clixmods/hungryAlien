@@ -438,7 +438,7 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
             _meshRenderer.GetPropertyBlock(_propBlocks[i],i);
             if (_propBlocks[i].GetFloat(Amount) < 1)
             {
-                Debug.Log($"Absorbed object, dissolve value = {_propBlocks[i].GetFloat(Amount)}", gameObject);
+               // Debug.Log($"Absorbed object, dissolve value = {_propBlocks[i].GetFloat(Amount)}", gameObject);
                 destroyIt = false;
             }
             _meshRenderer.SetPropertyBlock(_propBlocks[i], i);
