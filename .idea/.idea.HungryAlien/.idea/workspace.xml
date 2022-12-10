@@ -11,8 +11,6 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/823fb226a3f9439cb41fdcb61f9c86a1157600/16/c965607f/SceneManager.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/823fb226a3f9439cb41fdcb61f9c86a1157600/45/d39cbcbe/Transform.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/FX/FXScriptableObject.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Level/CollisionSurface.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Level/PlayableVolume.cs" root0="FORCE_HIGHLIGHTING" />
@@ -58,6 +56,7 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
+    "rider.run.widget.enabled.cache": "false",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -71,7 +70,7 @@
       <method v="2" />
     </configuration>
     <configuration name="UnitTests (batch mode)" type="RunUnityExe" factoryName="Unity Executable">
-      <option name="EXE_PATH" value="C:\Program Files\Unity 2021.3.1f1\Editor\Unity.exe" />
+      <option name="EXE_PATH" value="C:\Program Files\Unity\Hub\Editor\2021.3.1f1\Editor\Unity.exe" />
       <option name="PROGRAM_PARAMETERS" value="-runTests -batchmode -projectPath C:\Users\clixd\Documents\UnityProject\HungryAlien -testResults Logs/results.xml -testPlatform EditMode -debugCodeOptimization" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="PASS_PARENT_ENVS" value="1" />
@@ -173,6 +172,7 @@
       <workItem from="1670433710059" duration="858000" />
       <workItem from="1670590341868" duration="9846000" />
       <workItem from="1670680661857" duration="8002000" />
+      <workItem from="1670710322502" duration="1201000" />
     </task>
     <servers />
   </component>
@@ -208,7 +208,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Assets/Scripts/Player/Absorber.cs</url>
-          <line>201</line>
+          <line>209</line>
           <properties documentPath="C:\Users\clixd\Documents\UnityProject\HungryAlien\Assets\Scripts\Player\Absorber.cs" initialLine="192" containingFunctionPresentation="method 'OnTriggerStay'">
             <startOffsets>
               <option value="5819" />
