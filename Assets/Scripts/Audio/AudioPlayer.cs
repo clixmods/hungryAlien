@@ -22,6 +22,9 @@ namespace AudioAliase
         public Queue<Aliase> _clips = new();
         [SerializeField] private Aliase _lastAliasePlayed;
         [SerializeField] private bool forceStop;
+
+        private bool _isStopping;
+        private StopLoopBehavior _stopLoopBehavior;
         [SerializeField] [Aliase]  private string OnStartAliaseToPlay = "";
         private float _delayLoop = 0;
         #region Private Variable
@@ -65,8 +68,16 @@ namespace AudioAliase
             {
                 if(_lastAliasePlayed == null)  gameObject.SetActive(false);
                 FollowTransform();
+                // Audio play have finish the play
                 if (_timePlayed >= Source.clip.length + _delayLoop)
                 {
+                    if (_isStopping)
+                    {
+                        gameObject.SetActive(false);
+                        Reset();
+                        return;
+                    }
+                        
                     if (_lastAliasePlayed.isLooping)
                     {
                         SetupAudioSource(_lastAliasePlayed);
@@ -84,7 +95,7 @@ namespace AudioAliase
                                 Source.Play();
                                 break;
                             case CurrentlyPlaying.Base:
-                                StopSound();
+                                StopSound(_stopLoopBehavior);
                                 break;
                             case CurrentlyPlaying.End:
                             default:
@@ -150,12 +161,24 @@ namespace AudioAliase
                 transform.position = _transformToFollow.position;
             } 
         }
-        public void StopSound()
+        public void StopSound(StopLoopBehavior stopLoopBehavior)
         {
-            Source.Stop();
+            _stopLoopBehavior = stopLoopBehavior;
             if (_state == CurrentlyPlaying.Start)
             {
-                gameObject.SetActive(false);
+                switch (stopLoopBehavior)
+                {
+                    case StopLoopBehavior.Direct:
+                        gameObject.SetActive(false);
+                        break;
+                    case StopLoopBehavior.FinishCurrentPlay:
+                        _isStopping = true;
+                        break;
+                    default:
+                        gameObject.SetActive(false);
+                        break;
+                }
+               
                 return;
             }
             
@@ -169,7 +192,18 @@ namespace AudioAliase
             }
             else
             {
-                gameObject.SetActive(false);
+                switch (stopLoopBehavior)
+                {
+                    case StopLoopBehavior.Direct:
+                        gameObject.SetActive(false);
+                        break;
+                    case StopLoopBehavior.FinishCurrentPlay:
+                        _isStopping = true;
+                        break;
+                    default:
+                        gameObject.SetActive(false);
+                        break;
+                }
             }
 
             _state++;
@@ -182,7 +216,7 @@ namespace AudioAliase
                 if(AudioManager.ShowDebugText) Debug.LogError("What the fuck ?");
             }
             _timePlayed = 0;
-            
+            _isStopping = false;
            
             _lastAliasePlayed = aliase;
             var audiosource = Source;

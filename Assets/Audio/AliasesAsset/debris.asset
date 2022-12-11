@@ -14,4 +14,46 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DontLoad: 0
   defaultMixerGroup: {fileID: 0}
-  aliases: []
+  aliases:
+  - name: debris_dirt
+    description: 
+    Tag: 
+    MixerGroup: {fileID: 0}
+    audio:
+    - {fileID: 8300000, guid: 702052a58c944cc47b012f02d43e56cd, type: 3}
+    soundType: 0
+    randomizeClips: 0
+    Secondary: 
+    bypassEffects: 0
+    bypassListenerEffects: 0
+    bypassReverbZones: 0
+    priority: 0
+    volume: 0
+    minVolume: 0.9667406
+    maxVolume: 1
+    isLooping: 0
+    startAliase: 
+    endAliase: 
+    UseDelayLoop: 0
+    minDelayLoop: 0
+    maxDelayLoop: 0
+    minPitch: 0.827051
+    maxPitch: 1.2760754
+    stereoPan: 0
+    spatialBlend: 0.791
+    reverbZoneMix: 1
+    dopplerLevel: 1
+    Spread: 1
+    MinDistance: 0
+    MaxDistance: 500
+    CurveType: 0
+    distanceCurve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 0
+      m_PostInfinity: 0
+      m_RotationOrder: 0
+    Text: 
+    customDuration: 0
+    isInit: 0
+    isPlaceholder: 1

@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   magnitudeToStopLoop: 0
   OnAmbiantAliaseSound: OnAmbiant_cow_loop
-  OnMovingAliaseSound: 
-  OnImpactAliaseSound: 
-  OnDeathAliaseSound: 
+  OnMovingAliaseSound: None
+  OnImpactAliaseSound: None
+  OnDeathAliaseSound: None
   OnHitFX: {fileID: 0}
   OnDeathFX: {fileID: 0}
   OnAbsorbFX: {fileID: 0}

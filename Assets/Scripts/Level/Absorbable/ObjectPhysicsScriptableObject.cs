@@ -1,8 +1,11 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using AudioAliase;
+
+
 
 [CreateAssetMenu(fileName = "objphysics_", menuName = "Gameplay Element/Object Physics", order = 1)]
 public class ObjectPhysicsScriptableObject : ScriptableObject
@@ -13,10 +16,10 @@ public class ObjectPhysicsScriptableObject : ScriptableObject
 
     
     [Header("Sound Aliases")]
-    [Aliase] public string OnAmbiantAliaseSound;
-    [Aliase] public string OnMovingAliaseSound;
-    [Aliase] public string OnImpactAliaseSound;
-    [Aliase] public string OnDeathAliaseSound;
+    [Aliase] public string OnAmbiantAliaseSound = AudioManager.AliasNameNull;
+    [Aliase] public string OnMovingAliaseSound = AudioManager.AliasNameNull;
+    [Aliase] public string OnImpactAliaseSound = AudioManager.AliasNameNull;
+    [Aliase] public string OnDeathAliaseSound = AudioManager.AliasNameNull;
 
     [Header("FX")] 
     public FXScriptableObject OnHitFX;
@@ -25,4 +28,10 @@ public class ObjectPhysicsScriptableObject : ScriptableObject
     public FXScriptableObject OnCancelAbsorbFX;
     //public FXScriptableObject OnMovementFX;
 
+    private void OnValidate()
+    {
+        
+    }
+
+   
 }

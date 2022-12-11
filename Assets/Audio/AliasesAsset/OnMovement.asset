@@ -1,0 +1,185 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cbe7e2c0a55730e4d8113d0fb85617fe, type: 3}
+  m_Name: OnMovement
+  m_EditorClassIdentifier: 
+  DontLoad: 0
+  defaultMixerGroup: {fileID: 0}
+  aliases:
+  - name: OnMovement_sand_loop
+    description: 
+    Tag: 
+    MixerGroup: {fileID: 0}
+    audio:
+    - {fileID: 8300000, guid: bec93504c6d6a4540beefd26407c419e, type: 3}
+    soundType: 0
+    randomizeClips: 0
+    Secondary: 
+    bypassEffects: 0
+    bypassListenerEffects: 0
+    bypassReverbZones: 0
+    priority: 0
+    volume: 0
+    minVolume: 0.8
+    maxVolume: 0.8
+    isLooping: 1
+    startAliase: OnMovement_sand_start
+    endAliase: OnMovement_sand_end
+    UseDelayLoop: 0
+    minDelayLoop: 0
+    maxDelayLoop: 0
+    minPitch: 1
+    maxPitch: 1.01
+    stereoPan: 0
+    spatialBlend: 0
+    reverbZoneMix: 1
+    dopplerLevel: 1
+    Spread: 1
+    MinDistance: 0
+    MaxDistance: 500
+    CurveType: 0
+    distanceCurve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 0
+      m_PostInfinity: 0
+      m_RotationOrder: 0
+    Text: 
+    customDuration: 0
+    isInit: 0
+    isPlaceholder: 1
+  - name: OnMovement_sand_start
+    description: 
+    Tag: 
+    MixerGroup: {fileID: 0}
+    audio:
+    - {fileID: 8300000, guid: 8059dbcc5bcd15847b0f05996d6a0a10, type: 3}
+    soundType: 0
+    randomizeClips: 0
+    Secondary: 
+    bypassEffects: 0
+    bypassListenerEffects: 0
+    bypassReverbZones: 0
+    priority: 0
+    volume: 0
+    minVolume: 0.8
+    maxVolume: 0.8
+    isLooping: 1
+    startAliase: 
+    endAliase: 
+    UseDelayLoop: 0
+    minDelayLoop: 0
+    maxDelayLoop: 0
+    minPitch: 1
+    maxPitch: 1.01
+    stereoPan: 0
+    spatialBlend: 0
+    reverbZoneMix: 1
+    dopplerLevel: 1
+    Spread: 1
+    MinDistance: 0
+    MaxDistance: 500
+    CurveType: 0
+    distanceCurve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 0
+      m_PostInfinity: 0
+      m_RotationOrder: 0
+    Text: 
+    customDuration: 0
+    isInit: 0
+    isPlaceholder: 1
+  - name: OnMovement_sand_end
+    description: 
+    Tag: 
+    MixerGroup: {fileID: 0}
+    audio:
+    - {fileID: 8300000, guid: 1424f7550e8596a4e8dabdf76326f9c0, type: 3}
+    soundType: 0
+    randomizeClips: 0
+    Secondary: 
+    bypassEffects: 0
+    bypassListenerEffects: 0
+    bypassReverbZones: 0
+    priority: 0
+    volume: 0
+    minVolume: 0.8
+    maxVolume: 0.8
+    isLooping: 1
+    startAliase: 
+    endAliase: 
+    UseDelayLoop: 0
+    minDelayLoop: 0
+    maxDelayLoop: 0
+    minPitch: 1
+    maxPitch: 1.01
+    stereoPan: 0
+    spatialBlend: 0
+    reverbZoneMix: 1
+    dopplerLevel: 1
+    Spread: 1
+    MinDistance: 0
+    MaxDistance: 500
+    CurveType: 0
+    distanceCurve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 0
+      m_PostInfinity: 0
+      m_RotationOrder: 0
+    Text: 
+    customDuration: 0
+    isInit: 0
+    isPlaceholder: 1
+  - name: bullshit
+    description: 
+    Tag: 
+    MixerGroup: {fileID: 0}
+    audio:
+    - {fileID: 8300000, guid: 1424f7550e8596a4e8dabdf76326f9c0, type: 3}
+    soundType: 0
+    randomizeClips: 0
+    Secondary: 
+    bypassEffects: 0
+    bypassListenerEffects: 0
+    bypassReverbZones: 0
+    priority: 0
+    volume: 0
+    minVolume: 0.8
+    maxVolume: 0.8
+    isLooping: 1
+    startAliase: 
+    endAliase: 
+    UseDelayLoop: 0
+    minDelayLoop: 0
+    maxDelayLoop: 0
+    minPitch: 1
+    maxPitch: 1.01
+    stereoPan: 0
+    spatialBlend: 0
+    reverbZoneMix: 1
+    dopplerLevel: 1
+    Spread: 1
+    MinDistance: 0
+    MaxDistance: 500
+    CurveType: 0
+    distanceCurve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 0
+      m_PostInfinity: 0
+      m_RotationOrder: 0
+    Text: 
+    customDuration: 0
+    isInit: 0
+    isPlaceholder: 1

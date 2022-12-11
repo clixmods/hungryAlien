@@ -25,6 +25,33 @@ public class ObjectPhysicsEditor : Editor
         {
             ButtonSaveAsset();
         }
+
+        if (GUILayout.Button("Generate Materials"))
+        {
+            List<Material> mtlsdick = new List<Material>();
+            List<Material> mtls = new List<Material>();
+            myTarget.GetComponentInChildren<MeshRenderer>().GetSharedMaterials(mtlsdick);
+            foreach (Material mtl in mtlsdick)
+            {
+                mtls.Add(new Material(mtl));
+            }
+            myTarget.EditorChangeMtlTransparent(mtls.ToArray());
+            List<Material> mtlsOpaque = new List<Material>();
+            foreach (var mtl in mtls)
+            {
+                mtlsOpaque.Add(new Material(mtl));
+                
+            }
+            
+            foreach (var mtl in mtlsOpaque)
+            {
+                mtl.shader = Shader.Find("HDRP/Lit");
+                mtl.SetFloat("_SurfaceType",0);
+                
+            }
+           
+            myTarget.EditorChangeMtlOpaque(mtlsOpaque.ToArray());
+        }
         
         if (GUILayout.Button("Generate Collider"))
         {

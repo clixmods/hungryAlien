@@ -4,7 +4,7 @@ using Random = UnityEngine.Random;
 
 namespace AudioAliase
 {
-      [System.Serializable]
+    [System.Serializable]
     public class Aliase
     {
         public string name;

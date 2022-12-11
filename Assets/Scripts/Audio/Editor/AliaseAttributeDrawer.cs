@@ -5,7 +5,16 @@ using UnityEngine;
 
 namespace Audio.Editor
 {
-   
+    public static class StringAliasExtension
+    {
+        public static void NullSound(this string str)
+        {
+            if (string.IsNullOrWhiteSpace(str))
+            {
+                str = AudioManager.AliasNameNull;
+            }
+        }
+    }
     
     //TODO : NEED TO OPTIMIZE CAUSE BAD FRAMERATE
     [CustomPropertyDrawer(typeof(AliaseAttribute))]
@@ -22,6 +31,8 @@ namespace Audio.Editor
                 Debug.Log("Aliase get in attribute");
             }
             nameScenes = new List<string>();
+            // Index 0 is null name
+            nameScenes.Add(AudioManager.AliasNameNull);
             foreach (Aliases asset in _aliasesArray)
             {
                 foreach (var VARIABLE in asset.aliases)
@@ -43,10 +54,15 @@ namespace Audio.Editor
                     EditorGUILayout.LabelField("Use Scene with Int or String"); 
                     break;
             }
+            
+            
         } 
         int GetIndexFromName(string strToSearch)
         {
             int length = nameScenes.Count;
+            if (string.IsNullOrEmpty(strToSearch))
+                return 0;
+                
             for (int i = 0; i < length; i++)
             {
                 if (nameScenes[i] == strToSearch)

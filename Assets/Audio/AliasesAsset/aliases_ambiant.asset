@@ -34,6 +34,9 @@ MonoBehaviour:
     isLooping: 1
     startAliase: 
     endAliase: 
+    UseDelayLoop: 0
+    minDelayLoop: 0
+    maxDelayLoop: 0
     minPitch: 0.868373
     maxPitch: 1.3939123
     stereoPan: 0
@@ -73,10 +76,97 @@ MonoBehaviour:
     isLooping: 1
     startAliase: 
     endAliase: 
+    UseDelayLoop: 0
+    minDelayLoop: 0
+    maxDelayLoop: 0
     minPitch: 1
     maxPitch: 1.01
     stereoPan: 0
     spatialBlend: 0.78
+    reverbZoneMix: 1
+    dopplerLevel: 1
+    Spread: 1
+    MinDistance: 0
+    MaxDistance: 500
+    CurveType: 0
+    distanceCurve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 0
+      m_PostInfinity: 0
+      m_RotationOrder: 0
+    Text: 
+    customDuration: 0
+    isInit: 0
+    isPlaceholder: 1
+  - name: amb_river_loop
+    description: 
+    Tag: 
+    MixerGroup: {fileID: 0}
+    audio:
+    - {fileID: 8300000, guid: 5d962e5d4b908c74da41102b5997aa44, type: 3}
+    soundType: 0
+    randomizeClips: 1
+    Secondary: 
+    bypassEffects: 0
+    bypassListenerEffects: 0
+    bypassReverbZones: 0
+    priority: 0
+    volume: 0
+    minVolume: 0.97864926
+    maxVolume: 1
+    isLooping: 1
+    startAliase: 
+    endAliase: 
+    UseDelayLoop: 0
+    minDelayLoop: 0
+    maxDelayLoop: 0
+    minPitch: 1
+    maxPitch: 1.01
+    stereoPan: 0
+    spatialBlend: 0.986
+    reverbZoneMix: 1
+    dopplerLevel: 1
+    Spread: 1
+    MinDistance: 0
+    MaxDistance: 500
+    CurveType: 0
+    distanceCurve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 0
+      m_PostInfinity: 0
+      m_RotationOrder: 0
+    Text: 
+    customDuration: 0
+    isInit: 0
+    isPlaceholder: 1
+  - name: amb_balancoire_loop
+    description: 
+    Tag: 
+    MixerGroup: {fileID: 0}
+    audio:
+    - {fileID: 8300000, guid: f5955eb4d1ad6f342b33e73d16afd054, type: 3}
+    soundType: 0
+    randomizeClips: 1
+    Secondary: 
+    bypassEffects: 0
+    bypassListenerEffects: 0
+    bypassReverbZones: 0
+    priority: 0
+    volume: 0
+    minVolume: 0.96629715
+    maxVolume: 1
+    isLooping: 1
+    startAliase: 
+    endAliase: 
+    UseDelayLoop: 0
+    minDelayLoop: 5.5860915
+    maxDelayLoop: 17.124575
+    minPitch: 1
+    maxPitch: 1.319417
+    stereoPan: 0
+    spatialBlend: 0.966
     reverbZoneMix: 1
     dopplerLevel: 1
     Spread: 1

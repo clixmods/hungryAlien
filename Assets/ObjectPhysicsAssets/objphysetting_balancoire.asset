@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: objphysetting_balancoire
   m_EditorClassIdentifier: 
   magnitudeToStopLoop: 0
-  OnAmbiantAliaseSound: 
-  OnMovingAliaseSound: 
-  OnImpactAliaseSound: 
-  OnDeathAliaseSound: 
+  OnAmbiantAliaseSound: amb_balancoire_loop
+  OnMovingAliaseSound: None
+  OnImpactAliaseSound: None
+  OnDeathAliaseSound: None
   OnHitFX: {fileID: 0}
   OnDeathFX: {fileID: 0}
   OnAbsorbFX: {fileID: 0}

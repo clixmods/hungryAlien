@@ -106,6 +106,9 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
     private PlayableVolume _playableVolume;
     private MeshRenderer _meshRenderer;
     private MaterialPropertyBlock[] _propBlocks;
+
+    [SerializeField] private Material[] _mtlsDissolvable;
+    [SerializeField] private Material[] _mtlsOpaque;
     private Vector3 _baseScale;
     
     private AudioPlayer _audioPlayerAmbiant;
@@ -161,10 +164,21 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
         }
         _baseScale = transform.localScale;
         _propBlocks = new MaterialPropertyBlock[_meshRenderer.materials.Length];
+        _mtlsDissolvable = _meshRenderer.sharedMaterials;
         for (int i = 0; i < _propBlocks.Length; i++)
         {
             _propBlocks[i] = new MaterialPropertyBlock();
         }
+        
+        // // Create Opaque materials
+        // _mtlsOpaque = _meshRenderer.materials;
+        // foreach (var mtl in _mtlsOpaque)
+        // {
+        //     mtl.shader = Shader.Find("HDRP/Lit");
+        //     mtl.SetFloat("_SurfaceType",0);
+        // }
+
+        _meshRenderer.materials = _mtlsOpaque;
       
         Rigidbody = GetComponent<Rigidbody>();
         if (settings == null)
@@ -231,8 +245,6 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
                 _onAbsorbFX.StopFX(false);
                 transform.position = InitialPosition;
                 Rigidbody.Sleep();
-                
-                
             }
         }
         else
@@ -251,7 +263,6 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
         if (!IsInAbsorbing && Rigidbody.velocity.y > 0)
         {
             _onAbsorbFX.StopFX(false);
-            
             Rigidbody.velocity = new Vector3(Rigidbody.velocity.x,0,Rigidbody.velocity.z);
         }
             
@@ -275,6 +286,15 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
     }
 
     #if UNITY_EDITOR
+
+    public void EditorChangeMtlOpaque(Material[] mtls)
+    {
+        _mtlsOpaque = mtls;
+    }
+    public void EditorChangeMtlTransparent(Material[] mtls)
+    {
+        _mtlsDissolvable = mtls;
+    }
         private void OnDrawGizmos()
         {
             // Gizmos.DrawWireSphere(AbsorbePoint.position, 1);
@@ -316,6 +336,7 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
         LevelManager.Instance.AddObjectPhysical(this);
         IsAbsorbable = true;
         Rigidbody.isKinematic = SleepUntilAbsorb;
+        _meshRenderer.materials = _mtlsDissolvable;
         ChangeMaterialsRenderQueue(3000);
     }
     /// <summary>
@@ -446,13 +467,18 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
             }
             _meshRenderer.SetPropertyBlock(_propBlocks[i], i);
         }
-        if(destroyIt)
+
+        if (destroyIt)
+        {
+            AudioManager.StopLoopSound(ref _audioPlayerAbsorb);
             Destroy(gameObject);
+        }
+           
     }
 
     protected virtual void OnStopAbsorbing()
     {
-       
+        AudioManager.StopLoopSound(ref _audioPlayerAbsorb);
         if (CanRegenerateScaleFromAbsorbtion)
         {
             transform.localScale = Vector3.Lerp(transform.localScale, _baseScale, Time.deltaTime);

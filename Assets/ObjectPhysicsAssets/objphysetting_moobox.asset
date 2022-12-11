@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: objphysetting_moobox
   m_EditorClassIdentifier: 
   magnitudeToStopLoop: 0
-  OnAmbiantAliaseSound: 
-  OnMovingAliaseSound: 
-  OnImpactAliaseSound: 
-  OnDeathAliaseSound: 
+  OnAmbiantAliaseSound: None
+  OnMovingAliaseSound: OnAbsorb_moobox
+  OnImpactAliaseSound: None
+  OnDeathAliaseSound: None
   OnHitFX: {fileID: 0}
   OnDeathFX: {fileID: 0}
   OnAbsorbFX: {fileID: 0}

@@ -46,7 +46,7 @@ namespace AudioAliase
             //set { Instance.TableAliasesLoaded = value; }
         } 
         [SerializeField] private List<AudioPlayer> _audioSource;
-
+        public const string AliasNameNull = "None";
         [SerializeField] int audioSourcePoolSize = 32; // 32 is a good start
         [Header("Debug")]
         //[SerializeField] Aliases[] TableAliasesLoaded = new Aliases[0];
@@ -58,36 +58,8 @@ namespace AudioAliase
         {
             set { _isPaused = value; }
         }
-        // Add aliases to load
-        // public static void AddAliases(Aliases newAliases)
-        // {
-        //     // Check if not already exist
-        //     for (int i = 0; i < aliasesArray.Length; i++)
-        //     {
-        //         if (aliasesArray[i] == newAliases)
-        //         {
-        //             Debug.Log("AudioManager : L'aliases a déja était ajouté");
-        //             return;
-        //         }
-        //     }
-        //     // We can add it
-        //     Aliases[] TempAliasesArray = new Aliases[aliasesArray.Length + 1];
-        //     for (int i = 0; i < aliasesArray.Length; i++)
-        //     {
-        //         TempAliasesArray[i] = aliasesArray[i];
-        //     }
-        //     TempAliasesArray[TempAliasesArray.Length - 1] = newAliases;
-        //     aliasesArray = TempAliasesArray;
-        //     Debug.Log("AudioManager : Aliases added");
-        // }
-
-        void Awake()
-        {
-            Instance = this;
-            _audioManagerData = (AudioManagerData) Resources.Load("AudioManager Data") ;
-         
-            InitAudioSources();
-        }
+        
+       
 
         void InitAudioSources()
         {
@@ -101,20 +73,16 @@ namespace AudioAliase
                 newAudioSource.SetActive(false);
             }
         }
-
-        // Start is called before the first frame update
-        void Start()
+        void Awake()
         {
-
+            Instance = this;
+            _audioManagerData = (AudioManagerData) Resources.Load("AudioManager Data") ;
+         
+            InitAudioSources();
         }
-
         // Update is called once per frame
         void Update()
         {
-            
-           // if (TableAliasesLoaded != aliasesArray)
-           //     TableAliasesLoaded = aliasesArray;
-
             if (_isPaused)
             {
                 PauseAllAudio();
@@ -124,9 +92,7 @@ namespace AudioAliase
                  UnPauseAllAudio();
                 //DisableInusedAudioSource();
             }
-
         }
-
         void DisableInusedAudioSource()
         {
             foreach (AudioPlayer aS in _audioSource)
@@ -141,6 +107,8 @@ namespace AudioAliase
         public static bool GetSoundByAliase(string name, out Aliase alias)
         {
             alias = null;
+            if (name == AliasNameNull) return false;
+            
             for (int i = 0; i < aliasesArray.Length; i++)
             {
                 foreach (Aliase tempalias in aliasesArray[i].aliases)
@@ -197,40 +165,40 @@ namespace AudioAliase
             if(ShowDebugText)Debug.LogWarning($"AudioManager : Limits exceded for _audioSource, maybe you need to increase your audioSourcePoolSize (Size = {Instance.audioSourcePoolSize})");
             return false;
         }
-        /// <summary>
-        /// Play multiple sounds at desired position
-        /// </summary>
-        /// <param name="aliasesName"></param>
-        /// <param name="position"></param>
-        /// <param name="waitFinish"></param>
-        private static void PlaySoundsAtPosition(string[] aliasesName, Vector3 position, bool waitFinish = true)
-        {
-            if (waitFinish)
-            {
-                if (GetAudioPlayer(out AudioPlayer audioPlayer))
-                {
-                    List<Aliase> aliases = new List<Aliase>();
-                    for (int i = 0; i < aliasesName.Length; i++)
-                    {
-                        if (GetSoundByAliase(aliasesName[i], out Aliase aliase))
-                        {
-                            //aliases.Add(aliase);
-                            audioPlayer._clips.Enqueue(aliase);
-                        }
-                    }
-                    audioPlayer.gameObject.transform.position = position;
-                    audioPlayer.gameObject.SetActive(true);
-                }
-
-                return;
-            }
-
-            for (int i = 0; i < aliasesName.Length; i++)
-            {
-                PlaySoundAtPosition(aliasesName[i], position);
-            }
-
-        }
+        // /// <summary>
+        // /// Play multiple sounds at desired position
+        // /// </summary>
+        // /// <param name="aliasesName"></param>
+        // /// <param name="position"></param>
+        // /// <param name="waitFinish"></param>
+        // private static void PlaySoundsAtPosition(string[] aliasesName, Vector3 position, bool waitFinish = true)
+        // {
+        //     if (waitFinish)
+        //     {
+        //         if (GetAudioPlayer(out AudioPlayer audioPlayer))
+        //         {
+        //             List<Aliase> aliases = new List<Aliase>();
+        //             for (int i = 0; i < aliasesName.Length; i++)
+        //             {
+        //                 if (GetSoundByAliase(aliasesName[i], out Aliase aliase))
+        //                 {
+        //                     //aliases.Add(aliase);
+        //                     audioPlayer._clips.Enqueue(aliase);
+        //                 }
+        //             }
+        //             audioPlayer.gameObject.transform.position = position;
+        //             audioPlayer.gameObject.SetActive(true);
+        //         }
+        //
+        //         return;
+        //     }
+        //
+        //     for (int i = 0; i < aliasesName.Length; i++)
+        //     {
+        //         PlaySoundAtPosition(aliasesName[i], position);
+        //     }
+        //
+        // }
 
         public static void PauseAllAudio()
         {
@@ -349,15 +317,21 @@ namespace AudioAliase
             }
             audioPlayerLoop = audioPlayer;
         }
-        public static void StopLoopSound(ref AudioPlayer audioPlayer)
+        public static void StopLoopSound(ref AudioPlayer audioPlayer, StopLoopBehavior stopLoopBehavior = StopLoopBehavior.FinishCurrentPlay)
         {
             if (audioPlayer != null)
             {
-                audioPlayer.StopSound();
+                audioPlayer.StopSound(stopLoopBehavior);
             }
 
             audioPlayer = null;
         }
+    }
+
+    public enum StopLoopBehavior
+    {
+        Direct,
+        FinishCurrentPlay
     }
     
     public class InvalidAliasesException : Exception {

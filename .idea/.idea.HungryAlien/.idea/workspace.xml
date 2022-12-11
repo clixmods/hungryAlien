@@ -174,7 +174,7 @@
       <workItem from="1670590341868" duration="9846000" />
       <workItem from="1670680661857" duration="8002000" />
       <workItem from="1670710322502" duration="1201000" />
-      <workItem from="1670757563628" duration="11015000" />
+      <workItem from="1670757563628" duration="21132000" />
     </task>
     <servers />
   </component>
@@ -236,13 +236,13 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Assets/Scripts/Audio/AudioPlayer.cs</url>
-          <line>67</line>
+          <line>71</line>
           <properties documentPath="C:\Users\clixd\Documents\UnityProject\HungryAlien\Assets\Scripts\Audio\AudioPlayer.cs" initialLine="63" containingFunctionPresentation="method 'Update'">
             <startOffsets>
-              <option value="2129" />
+              <option value="2267" />
             </startOffsets>
             <endOffsets>
-              <option value="2180" />
+              <option value="2318" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="28" />

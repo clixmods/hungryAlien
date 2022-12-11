@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: objphysetting_bille
   m_EditorClassIdentifier: 
   magnitudeToStopLoop: 0
-  OnAmbiantAliaseSound: 
-  OnMovingAliaseSound: impactMetal_light
-  OnImpactAliaseSound: impactGeneric_light
-  OnDeathAliaseSound: 
+  OnAmbiantAliaseSound: None
+  OnMovingAliaseSound: None
+  OnImpactAliaseSound: None
+  OnDeathAliaseSound: None
   OnHitFX: {fileID: 11400000, guid: 8e1306452d1ae534fa1147129a73edbd, type: 2}
   OnDeathFX: {fileID: 0}
   OnAbsorbFX: {fileID: 11400000, guid: d92bdb2ff9da1cf499c321c3d33d4447, type: 2}

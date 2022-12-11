@@ -75,6 +75,9 @@ GameObject:
   - component: {fileID: 6138550804703808132}
   - component: {fileID: 8653652836172768389}
   - component: {fileID: 3141612187154655891}
+  - component: {fileID: 5628590624859465553}
+  - component: {fileID: 5390174047376637020}
+  - component: {fileID: 2257854408738743001}
   m_Layer: 0
   m_Name: roc014
   m_TagString: Untagged
@@ -147,6 +150,59 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!54 &5628590624859465553
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 581758823936826551}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!114 &5390174047376637020
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 581758823936826551}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dac2e52d434b4134aec1b33ed1b8d75f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  settings: {fileID: 0}
+  sleepUntilLevel: 4
+  forceRequired: 0
+  scaleMultiplier: 0.05
+  CanRegenerateFromDissolve: 1
+  CanRegenerateScaleFromAbsorbtion: 1
+  isDissolvable: 0
+  ignoreForceRequired: 0
+  _sleepUntilAbsorb: 0
+  minHeightToActiveGravity: 5
+  surfaceDebrisAliasSound: debris_dirt
+--- !u!64 &2257854408738743001
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 581758823936826551}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 219401476287769350, guid: bf5cb9fdae574734dac7af175972412b, type: 3}
 --- !u!1 &733880192415084975
 GameObject:
   m_ObjectHideFlags: 0
@@ -158,6 +214,9 @@ GameObject:
   - component: {fileID: 8600787394300799036}
   - component: {fileID: 44253580497358960}
   - component: {fileID: 7114909650385111996}
+  - component: {fileID: 3111878857104841324}
+  - component: {fileID: 7416626975021597065}
+  - component: {fileID: 5129031716765035494}
   m_Layer: 0
   m_Name: roc006
   m_TagString: Untagged
@@ -230,6 +289,59 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!54 &3111878857104841324
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 733880192415084975}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!114 &7416626975021597065
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 733880192415084975}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dac2e52d434b4134aec1b33ed1b8d75f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  settings: {fileID: 0}
+  sleepUntilLevel: 4
+  forceRequired: 0
+  scaleMultiplier: 0.05
+  CanRegenerateFromDissolve: 1
+  CanRegenerateScaleFromAbsorbtion: 1
+  isDissolvable: 0
+  ignoreForceRequired: 0
+  _sleepUntilAbsorb: 0
+  minHeightToActiveGravity: 5
+  surfaceDebrisAliasSound: debris_dirt
+--- !u!64 &5129031716765035494
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 733880192415084975}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -8766584632427566417, guid: bf5cb9fdae574734dac7af175972412b, type: 3}
 --- !u!1 &1313834865732281095
 GameObject:
   m_ObjectHideFlags: 0
@@ -241,6 +353,9 @@ GameObject:
   - component: {fileID: 2641747848469708708}
   - component: {fileID: 1743587232148589315}
   - component: {fileID: 4623551413429855148}
+  - component: {fileID: 5395792336745721129}
+  - component: {fileID: 7960089160698114257}
+  - component: {fileID: 8936894569935854847}
   m_Layer: 0
   m_Name: roc008
   m_TagString: Untagged
@@ -313,6 +428,59 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!54 &5395792336745721129
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1313834865732281095}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!114 &7960089160698114257
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1313834865732281095}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dac2e52d434b4134aec1b33ed1b8d75f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  settings: {fileID: 0}
+  sleepUntilLevel: 4
+  forceRequired: 0
+  scaleMultiplier: 0.05
+  CanRegenerateFromDissolve: 1
+  CanRegenerateScaleFromAbsorbtion: 1
+  isDissolvable: 0
+  ignoreForceRequired: 0
+  _sleepUntilAbsorb: 0
+  minHeightToActiveGravity: 5
+  surfaceDebrisAliasSound: debris_dirt
+--- !u!64 &8936894569935854847
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1313834865732281095}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 7418340972229224034, guid: bf5cb9fdae574734dac7af175972412b, type: 3}
 --- !u!1 &1367118648527850310
 GameObject:
   m_ObjectHideFlags: 0
@@ -324,6 +492,9 @@ GameObject:
   - component: {fileID: 4844967529356640360}
   - component: {fileID: 212977661409010561}
   - component: {fileID: 5538367531221032569}
+  - component: {fileID: 4373720091859096784}
+  - component: {fileID: 6918704333872195541}
+  - component: {fileID: 5613553127824281948}
   m_Layer: 0
   m_Name: roc016
   m_TagString: Untagged
@@ -396,6 +567,59 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!54 &4373720091859096784
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1367118648527850310}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!114 &6918704333872195541
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1367118648527850310}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dac2e52d434b4134aec1b33ed1b8d75f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  settings: {fileID: 0}
+  sleepUntilLevel: 4
+  forceRequired: 0
+  scaleMultiplier: 0.05
+  CanRegenerateFromDissolve: 1
+  CanRegenerateScaleFromAbsorbtion: 1
+  isDissolvable: 0
+  ignoreForceRequired: 0
+  _sleepUntilAbsorb: 0
+  minHeightToActiveGravity: 5
+  surfaceDebrisAliasSound: debris_dirt
+--- !u!64 &5613553127824281948
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1367118648527850310}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -5950660008587397913, guid: bf5cb9fdae574734dac7af175972412b, type: 3}
 --- !u!1 &1467488382426521967
 GameObject:
   m_ObjectHideFlags: 0
@@ -573,6 +797,9 @@ GameObject:
   - component: {fileID: 8895146608011135740}
   - component: {fileID: 8241815502324993521}
   - component: {fileID: 1097794360149660447}
+  - component: {fileID: 4226193308323650632}
+  - component: {fileID: 5997331617968074591}
+  - component: {fileID: 3654259691741041970}
   m_Layer: 0
   m_Name: roc021
   m_TagString: Untagged
@@ -645,6 +872,59 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!54 &4226193308323650632
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2161842806832066867}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!114 &5997331617968074591
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2161842806832066867}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dac2e52d434b4134aec1b33ed1b8d75f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  settings: {fileID: 0}
+  sleepUntilLevel: 4
+  forceRequired: 0
+  scaleMultiplier: 0.05
+  CanRegenerateFromDissolve: 1
+  CanRegenerateScaleFromAbsorbtion: 1
+  isDissolvable: 0
+  ignoreForceRequired: 0
+  _sleepUntilAbsorb: 0
+  minHeightToActiveGravity: 5
+  surfaceDebrisAliasSound: debris_dirt
+--- !u!64 &3654259691741041970
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2161842806832066867}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 188793436923848694, guid: bf5cb9fdae574734dac7af175972412b, type: 3}
 --- !u!1 &2653790867653179691
 GameObject:
   m_ObjectHideFlags: 0
@@ -656,6 +936,9 @@ GameObject:
   - component: {fileID: 6658226011422356394}
   - component: {fileID: 650411964184283051}
   - component: {fileID: 4252353975947683747}
+  - component: {fileID: 1502948576114562515}
+  - component: {fileID: 796368423235400404}
+  - component: {fileID: 5938232140051235784}
   m_Layer: 0
   m_Name: roc009
   m_TagString: Untagged
@@ -728,6 +1011,59 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!54 &1502948576114562515
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2653790867653179691}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!114 &796368423235400404
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2653790867653179691}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dac2e52d434b4134aec1b33ed1b8d75f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  settings: {fileID: 0}
+  sleepUntilLevel: 4
+  forceRequired: 0
+  scaleMultiplier: 0.05
+  CanRegenerateFromDissolve: 1
+  CanRegenerateScaleFromAbsorbtion: 1
+  isDissolvable: 0
+  ignoreForceRequired: 0
+  _sleepUntilAbsorb: 0
+  minHeightToActiveGravity: 5
+  surfaceDebrisAliasSound: debris_dirt
+--- !u!64 &5938232140051235784
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2653790867653179691}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -5366574001137840019, guid: bf5cb9fdae574734dac7af175972412b, type: 3}
 --- !u!1 &2683589692845328919
 GameObject:
   m_ObjectHideFlags: 0
@@ -822,6 +1158,9 @@ GameObject:
   - component: {fileID: 5048507006811083735}
   - component: {fileID: 6578717290909856966}
   - component: {fileID: 8362403463537764420}
+  - component: {fileID: 156776468283710029}
+  - component: {fileID: 749188244502105137}
+  - component: {fileID: 6061651203557320513}
   m_Layer: 0
   m_Name: roc007
   m_TagString: Untagged
@@ -894,6 +1233,59 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!54 &156776468283710029
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2780439558405622436}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!114 &749188244502105137
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2780439558405622436}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dac2e52d434b4134aec1b33ed1b8d75f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  settings: {fileID: 0}
+  sleepUntilLevel: 4
+  forceRequired: 0
+  scaleMultiplier: 0.05
+  CanRegenerateFromDissolve: 1
+  CanRegenerateScaleFromAbsorbtion: 1
+  isDissolvable: 0
+  ignoreForceRequired: 0
+  _sleepUntilAbsorb: 0
+  minHeightToActiveGravity: 5
+  surfaceDebrisAliasSound: debris_dirt
+--- !u!64 &6061651203557320513
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2780439558405622436}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4702156840103778876, guid: bf5cb9fdae574734dac7af175972412b, type: 3}
 --- !u!1 &2788505030978028852
 GameObject:
   m_ObjectHideFlags: 0
@@ -905,6 +1297,9 @@ GameObject:
   - component: {fileID: 1642862439616143766}
   - component: {fileID: 5604055528315607709}
   - component: {fileID: 4921134782442828615}
+  - component: {fileID: 8964342850771874583}
+  - component: {fileID: 2436529687480705919}
+  - component: {fileID: 7483733871762696082}
   m_Layer: 0
   m_Name: roc005
   m_TagString: Untagged
@@ -977,6 +1372,59 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!54 &8964342850771874583
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2788505030978028852}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!114 &2436529687480705919
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2788505030978028852}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dac2e52d434b4134aec1b33ed1b8d75f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  settings: {fileID: 0}
+  sleepUntilLevel: 4
+  forceRequired: 0
+  scaleMultiplier: 0.05
+  CanRegenerateFromDissolve: 1
+  CanRegenerateScaleFromAbsorbtion: 1
+  isDissolvable: 0
+  ignoreForceRequired: 0
+  _sleepUntilAbsorb: 0
+  minHeightToActiveGravity: 5
+  surfaceDebrisAliasSound: debris_dirt
+--- !u!64 &7483733871762696082
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2788505030978028852}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 7982401372817816434, guid: bf5cb9fdae574734dac7af175972412b, type: 3}
 --- !u!1 &2868936368837908707
 GameObject:
   m_ObjectHideFlags: 0
@@ -988,6 +1436,9 @@ GameObject:
   - component: {fileID: 6141235124540781816}
   - component: {fileID: 4393227144984849471}
   - component: {fileID: 6095590287208059865}
+  - component: {fileID: 1283794765643983927}
+  - component: {fileID: 2229319769075303514}
+  - component: {fileID: 6770807065422627648}
   m_Layer: 0
   m_Name: roc023
   m_TagString: Untagged
@@ -1060,6 +1511,59 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!54 &1283794765643983927
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2868936368837908707}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!114 &2229319769075303514
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2868936368837908707}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dac2e52d434b4134aec1b33ed1b8d75f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  settings: {fileID: 0}
+  sleepUntilLevel: 4
+  forceRequired: 0
+  scaleMultiplier: 0.05
+  CanRegenerateFromDissolve: 1
+  CanRegenerateScaleFromAbsorbtion: 1
+  isDissolvable: 0
+  ignoreForceRequired: 0
+  _sleepUntilAbsorb: 0
+  minHeightToActiveGravity: 5
+  surfaceDebrisAliasSound: debris_dirt
+--- !u!64 &6770807065422627648
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2868936368837908707}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 5927150580884164902, guid: bf5cb9fdae574734dac7af175972412b, type: 3}
 --- !u!1 &3123378299859140289
 GameObject:
   m_ObjectHideFlags: 0
@@ -1154,6 +1658,9 @@ GameObject:
   - component: {fileID: 8944286369703960984}
   - component: {fileID: 6156452250097569285}
   - component: {fileID: 2520975081485461085}
+  - component: {fileID: 4612257979575764410}
+  - component: {fileID: 5113797370000230700}
+  - component: {fileID: 1598343142851894096}
   m_Layer: 0
   m_Name: roc4
   m_TagString: Untagged
@@ -1226,6 +1733,59 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!54 &4612257979575764410
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3744255997982743073}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!114 &5113797370000230700
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3744255997982743073}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dac2e52d434b4134aec1b33ed1b8d75f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  settings: {fileID: 0}
+  sleepUntilLevel: 4
+  forceRequired: 0
+  scaleMultiplier: 0.05
+  CanRegenerateFromDissolve: 1
+  CanRegenerateScaleFromAbsorbtion: 1
+  isDissolvable: 0
+  ignoreForceRequired: 0
+  _sleepUntilAbsorb: 0
+  minHeightToActiveGravity: 5
+  surfaceDebrisAliasSound: debris_dirt
+--- !u!64 &1598343142851894096
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3744255997982743073}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -1201654595045164545, guid: bf5cb9fdae574734dac7af175972412b, type: 3}
 --- !u!1 &3877709276000529555
 GameObject:
   m_ObjectHideFlags: 0
@@ -1320,6 +1880,9 @@ GameObject:
   - component: {fileID: 2051017814215022541}
   - component: {fileID: 763618936560359993}
   - component: {fileID: 8095557168090744403}
+  - component: {fileID: 6397690622971353433}
+  - component: {fileID: 4029766664698947400}
+  - component: {fileID: 625023113682241454}
   m_Layer: 0
   m_Name: roc3
   m_TagString: Untagged
@@ -1392,6 +1955,59 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!54 &6397690622971353433
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4221188395088822202}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!114 &4029766664698947400
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4221188395088822202}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dac2e52d434b4134aec1b33ed1b8d75f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  settings: {fileID: 0}
+  sleepUntilLevel: 4
+  forceRequired: 0
+  scaleMultiplier: 0.05
+  CanRegenerateFromDissolve: 1
+  CanRegenerateScaleFromAbsorbtion: 1
+  isDissolvable: 0
+  ignoreForceRequired: 0
+  _sleepUntilAbsorb: 0
+  minHeightToActiveGravity: 5
+  surfaceDebrisAliasSound: debris_dirt
+--- !u!64 &625023113682241454
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4221188395088822202}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -1157776012436787341, guid: bf5cb9fdae574734dac7af175972412b, type: 3}
 --- !u!1 &4294751414843030926
 GameObject:
   m_ObjectHideFlags: 0
@@ -1486,6 +2102,9 @@ GameObject:
   - component: {fileID: 1460342204174255046}
   - component: {fileID: 788491021956776392}
   - component: {fileID: 1018399852577052187}
+  - component: {fileID: 6989394279943754088}
+  - component: {fileID: 3298859173804283692}
+  - component: {fileID: 2957901667323322746}
   m_Layer: 0
   m_Name: roc1
   m_TagString: Untagged
@@ -1558,6 +2177,59 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!54 &6989394279943754088
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4445642779682479891}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!114 &3298859173804283692
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4445642779682479891}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dac2e52d434b4134aec1b33ed1b8d75f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  settings: {fileID: 0}
+  sleepUntilLevel: 4
+  forceRequired: 0
+  scaleMultiplier: 0.05
+  CanRegenerateFromDissolve: 1
+  CanRegenerateScaleFromAbsorbtion: 1
+  isDissolvable: 0
+  ignoreForceRequired: 0
+  _sleepUntilAbsorb: 0
+  minHeightToActiveGravity: 5
+  surfaceDebrisAliasSound: debris_dirt
+--- !u!64 &2957901667323322746
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4445642779682479891}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 1082399356534768500, guid: bf5cb9fdae574734dac7af175972412b, type: 3}
 --- !u!1 &4467763526535689016
 GameObject:
   m_ObjectHideFlags: 0
@@ -1652,6 +2324,9 @@ GameObject:
   - component: {fileID: 3989251085610857502}
   - component: {fileID: 4803682750726294225}
   - component: {fileID: 4721942992703867341}
+  - component: {fileID: 7415411857544493906}
+  - component: {fileID: 75036087492353495}
+  - component: {fileID: 4836318063281945596}
   m_Layer: 0
   m_Name: roc017
   m_TagString: Untagged
@@ -1724,6 +2399,59 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!54 &7415411857544493906
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4605096750382569353}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!114 &75036087492353495
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4605096750382569353}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dac2e52d434b4134aec1b33ed1b8d75f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  settings: {fileID: 0}
+  sleepUntilLevel: 4
+  forceRequired: 0
+  scaleMultiplier: 0.05
+  CanRegenerateFromDissolve: 1
+  CanRegenerateScaleFromAbsorbtion: 1
+  isDissolvable: 0
+  ignoreForceRequired: 0
+  _sleepUntilAbsorb: 0
+  minHeightToActiveGravity: 5
+  surfaceDebrisAliasSound: debris_dirt
+--- !u!64 &4836318063281945596
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4605096750382569353}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -7248836445326446825, guid: bf5cb9fdae574734dac7af175972412b, type: 3}
 --- !u!1 &4798367327719815931
 GameObject:
   m_ObjectHideFlags: 0
@@ -1735,6 +2463,9 @@ GameObject:
   - component: {fileID: 5963887237450122712}
   - component: {fileID: 9210910653267975249}
   - component: {fileID: 260819254055327185}
+  - component: {fileID: 7646792438159795257}
+  - component: {fileID: 9011875957109185078}
+  - component: {fileID: 4866993595916627253}
   m_Layer: 0
   m_Name: roc019
   m_TagString: Untagged
@@ -1807,6 +2538,59 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!54 &7646792438159795257
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4798367327719815931}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!114 &9011875957109185078
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4798367327719815931}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dac2e52d434b4134aec1b33ed1b8d75f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  settings: {fileID: 0}
+  sleepUntilLevel: 4
+  forceRequired: 0
+  scaleMultiplier: 0.05
+  CanRegenerateFromDissolve: 1
+  CanRegenerateScaleFromAbsorbtion: 1
+  isDissolvable: 0
+  ignoreForceRequired: 0
+  _sleepUntilAbsorb: 0
+  minHeightToActiveGravity: 5
+  surfaceDebrisAliasSound: debris_dirt
+--- !u!64 &4866993595916627253
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4798367327719815931}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 2281907575563268039, guid: bf5cb9fdae574734dac7af175972412b, type: 3}
 --- !u!1 &4878091306335539548
 GameObject:
   m_ObjectHideFlags: 0
@@ -1818,6 +2602,9 @@ GameObject:
   - component: {fileID: 4054170242801352414}
   - component: {fileID: 3799356875631196916}
   - component: {fileID: 3209075239359735776}
+  - component: {fileID: 2715442025543267521}
+  - component: {fileID: 1211126334982898003}
+  - component: {fileID: 6252853001405108287}
   m_Layer: 0
   m_Name: roc011
   m_TagString: Untagged
@@ -1890,6 +2677,59 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!54 &2715442025543267521
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4878091306335539548}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!114 &1211126334982898003
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4878091306335539548}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dac2e52d434b4134aec1b33ed1b8d75f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  settings: {fileID: 0}
+  sleepUntilLevel: 4
+  forceRequired: 0
+  scaleMultiplier: 0.05
+  CanRegenerateFromDissolve: 1
+  CanRegenerateScaleFromAbsorbtion: 1
+  isDissolvable: 0
+  ignoreForceRequired: 0
+  _sleepUntilAbsorb: 0
+  minHeightToActiveGravity: 5
+  surfaceDebrisAliasSound: debris_dirt
+--- !u!64 &6252853001405108287
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4878091306335539548}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 6761262978368258073, guid: bf5cb9fdae574734dac7af175972412b, type: 3}
 --- !u!1 &5030913620627204633
 GameObject:
   m_ObjectHideFlags: 0
@@ -1984,6 +2824,9 @@ GameObject:
   - component: {fileID: 5172312086792156669}
   - component: {fileID: 6492984337443525109}
   - component: {fileID: 1919584941958553291}
+  - component: {fileID: 255521668359978622}
+  - component: {fileID: 8827319789831369752}
+  - component: {fileID: 253213764040605723}
   m_Layer: 0
   m_Name: roc020
   m_TagString: Untagged
@@ -2056,6 +2899,59 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!54 &255521668359978622
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5369802985970884524}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!114 &8827319789831369752
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5369802985970884524}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dac2e52d434b4134aec1b33ed1b8d75f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  settings: {fileID: 0}
+  sleepUntilLevel: 4
+  forceRequired: 0
+  scaleMultiplier: 0.05
+  CanRegenerateFromDissolve: 1
+  CanRegenerateScaleFromAbsorbtion: 1
+  isDissolvable: 0
+  ignoreForceRequired: 0
+  _sleepUntilAbsorb: 0
+  minHeightToActiveGravity: 5
+  surfaceDebrisAliasSound: debris_dirt
+--- !u!64 &253213764040605723
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5369802985970884524}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -1937823437882639478, guid: bf5cb9fdae574734dac7af175972412b, type: 3}
 --- !u!1 &6080698095695051814
 GameObject:
   m_ObjectHideFlags: 0
@@ -2067,6 +2963,9 @@ GameObject:
   - component: {fileID: 644179311508725454}
   - component: {fileID: 4063308760119433844}
   - component: {fileID: 5204574692036811527}
+  - component: {fileID: 4770662795110883954}
+  - component: {fileID: 6570193435218319985}
+  - component: {fileID: 6087492576864540266}
   m_Layer: 0
   m_Name: roc012
   m_TagString: Untagged
@@ -2139,6 +3038,59 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!54 &4770662795110883954
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6080698095695051814}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!114 &6570193435218319985
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6080698095695051814}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dac2e52d434b4134aec1b33ed1b8d75f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  settings: {fileID: 0}
+  sleepUntilLevel: 4
+  forceRequired: 0
+  scaleMultiplier: 0.05
+  CanRegenerateFromDissolve: 1
+  CanRegenerateScaleFromAbsorbtion: 1
+  isDissolvable: 0
+  ignoreForceRequired: 0
+  _sleepUntilAbsorb: 0
+  minHeightToActiveGravity: 5
+  surfaceDebrisAliasSound: debris_dirt
+--- !u!64 &6087492576864540266
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6080698095695051814}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4110243516672866095, guid: bf5cb9fdae574734dac7af175972412b, type: 3}
 --- !u!1 &6096654958908381147
 GameObject:
   m_ObjectHideFlags: 0
@@ -2316,6 +3268,9 @@ GameObject:
   - component: {fileID: 5261351289946453051}
   - component: {fileID: 7846293509548842888}
   - component: {fileID: 5981904052486616400}
+  - component: {fileID: 1728889697832051386}
+  - component: {fileID: 880837126718445143}
+  - component: {fileID: 736180364352152629}
   m_Layer: 0
   m_Name: roc013
   m_TagString: Untagged
@@ -2388,6 +3343,59 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!54 &1728889697832051386
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7350372933231980048}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!114 &880837126718445143
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7350372933231980048}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dac2e52d434b4134aec1b33ed1b8d75f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  settings: {fileID: 0}
+  sleepUntilLevel: 4
+  forceRequired: 0
+  scaleMultiplier: 0.05
+  CanRegenerateFromDissolve: 1
+  CanRegenerateScaleFromAbsorbtion: 1
+  isDissolvable: 0
+  ignoreForceRequired: 0
+  _sleepUntilAbsorb: 0
+  minHeightToActiveGravity: 5
+  surfaceDebrisAliasSound: debris_dirt
+--- !u!64 &736180364352152629
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7350372933231980048}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -6241686225922862435, guid: bf5cb9fdae574734dac7af175972412b, type: 3}
 --- !u!1 &7691264554888478753
 GameObject:
   m_ObjectHideFlags: 0
@@ -2399,6 +3407,9 @@ GameObject:
   - component: {fileID: 5863049417170546477}
   - component: {fileID: 258906230709264683}
   - component: {fileID: 8521780912512642298}
+  - component: {fileID: 6450718800696019516}
+  - component: {fileID: 333558745087595963}
+  - component: {fileID: 1771664050687558616}
   m_Layer: 0
   m_Name: roc010
   m_TagString: Untagged
@@ -2471,6 +3482,59 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!54 &6450718800696019516
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7691264554888478753}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!114 &333558745087595963
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7691264554888478753}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dac2e52d434b4134aec1b33ed1b8d75f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  settings: {fileID: 0}
+  sleepUntilLevel: 4
+  forceRequired: 0
+  scaleMultiplier: 0.05
+  CanRegenerateFromDissolve: 1
+  CanRegenerateScaleFromAbsorbtion: 1
+  isDissolvable: 0
+  ignoreForceRequired: 0
+  _sleepUntilAbsorb: 0
+  minHeightToActiveGravity: 5
+  surfaceDebrisAliasSound: debris_dirt
+--- !u!64 &1771664050687558616
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7691264554888478753}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -8587528682127607525, guid: bf5cb9fdae574734dac7af175972412b, type: 3}
 --- !u!1 &8006523262738734115
 GameObject:
   m_ObjectHideFlags: 0
@@ -2565,6 +3629,9 @@ GameObject:
   - component: {fileID: 8923626076108186492}
   - component: {fileID: 878660870761190563}
   - component: {fileID: 8626465011672299203}
+  - component: {fileID: 6393039997043954306}
+  - component: {fileID: 8069996357102106137}
+  - component: {fileID: 331174865754847449}
   m_Layer: 0
   m_Name: roc022
   m_TagString: Untagged
@@ -2637,6 +3704,59 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!54 &6393039997043954306
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8137259665367424772}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!114 &8069996357102106137
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8137259665367424772}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dac2e52d434b4134aec1b33ed1b8d75f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  settings: {fileID: 0}
+  sleepUntilLevel: 4
+  forceRequired: 0
+  scaleMultiplier: 0.05
+  CanRegenerateFromDissolve: 1
+  CanRegenerateScaleFromAbsorbtion: 1
+  isDissolvable: 0
+  ignoreForceRequired: 0
+  _sleepUntilAbsorb: 0
+  minHeightToActiveGravity: 5
+  surfaceDebrisAliasSound: debris_dirt
+--- !u!64 &331174865754847449
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8137259665367424772}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -1542316434805320048, guid: bf5cb9fdae574734dac7af175972412b, type: 3}
 --- !u!1 &8265685917373239016
 GameObject:
   m_ObjectHideFlags: 0
@@ -2648,6 +3768,9 @@ GameObject:
   - component: {fileID: 6649864537693150861}
   - component: {fileID: 6855943345295969643}
   - component: {fileID: 8352070394498405329}
+  - component: {fileID: 8320334883145324654}
+  - component: {fileID: 7328613101206240575}
+  - component: {fileID: 8244908669952945396}
   m_Layer: 0
   m_Name: roc015
   m_TagString: Untagged
@@ -2720,6 +3843,59 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!54 &8320334883145324654
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8265685917373239016}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!114 &7328613101206240575
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8265685917373239016}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dac2e52d434b4134aec1b33ed1b8d75f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  settings: {fileID: 0}
+  sleepUntilLevel: 4
+  forceRequired: 0
+  scaleMultiplier: 0.05
+  CanRegenerateFromDissolve: 1
+  CanRegenerateScaleFromAbsorbtion: 1
+  isDissolvable: 0
+  ignoreForceRequired: 0
+  _sleepUntilAbsorb: 0
+  minHeightToActiveGravity: 5
+  surfaceDebrisAliasSound: debris_dirt
+--- !u!64 &8244908669952945396
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8265685917373239016}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 1763919467666285029, guid: bf5cb9fdae574734dac7af175972412b, type: 3}
 --- !u!1 &8303568050498209774
 GameObject:
   m_ObjectHideFlags: 0
@@ -2731,6 +3907,9 @@ GameObject:
   - component: {fileID: 4843464417018990462}
   - component: {fileID: 7869617483765727499}
   - component: {fileID: 7202494976031878993}
+  - component: {fileID: 3222262980032863220}
+  - component: {fileID: 8987029626475987505}
+  - component: {fileID: 7020909751333240952}
   m_Layer: 0
   m_Name: roc018
   m_TagString: Untagged
@@ -2803,6 +3982,59 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!54 &3222262980032863220
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8303568050498209774}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!114 &8987029626475987505
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8303568050498209774}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dac2e52d434b4134aec1b33ed1b8d75f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  settings: {fileID: 0}
+  sleepUntilLevel: 4
+  forceRequired: 0
+  scaleMultiplier: 0.05
+  CanRegenerateFromDissolve: 1
+  CanRegenerateScaleFromAbsorbtion: 1
+  isDissolvable: 0
+  ignoreForceRequired: 0
+  _sleepUntilAbsorb: 0
+  minHeightToActiveGravity: 5
+  surfaceDebrisAliasSound: debris_dirt
+--- !u!64 &7020909751333240952
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8303568050498209774}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -7906510902062067234, guid: bf5cb9fdae574734dac7af175972412b, type: 3}
 --- !u!1 &8662034088386127463
 GameObject:
   m_ObjectHideFlags: 0
