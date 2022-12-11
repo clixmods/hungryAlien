@@ -75,7 +75,7 @@ namespace Audio.Editor
             _audioSource.volume = Random.Range(aliase.minVolume, aliase.maxVolume);
             _audioSource.loop = aliase.isLooping;
             _audioSource.pitch = Random.Range(aliase.minPitch, aliase.maxPitch);
-
+            
             _audioSource.spatialBlend = aliase.spatialBlend;
             if (aliase.MixerGroup != null)
                 _audioSource.outputAudioMixerGroup = aliase.MixerGroup;
@@ -223,6 +223,8 @@ namespace Audio.Editor
             serializedProperty.FindPropertyRelative("dopplerLevel").floatValue = 1;
             serializedProperty.FindPropertyRelative("Spread").floatValue = 1;
             serializedProperty.FindPropertyRelative("isPlaceholder").boolValue = true;
+            //serializedProperty.FindPropertyRelative("delayLoop").floatValue = 0;
+            
         }
 
         void DrawTheShit()
@@ -419,7 +421,6 @@ namespace Audio.Editor
                 else
                     tagProp.stringValue = _tags[selectedTag];
             }
-            
             DrawField("MixerGroup", true);
             DrawField("audio", true);
             DrawField("randomizeClips", true);
@@ -440,7 +441,6 @@ namespace Audio.Editor
                 secondaryProp.stringValue = string.Empty;
             else
                 secondaryProp.stringValue = _aliasesOptions[selectedAll];
-
             
             DrawField("bypassEffects", true);
             DrawField("bypassListenerEffects", true);
@@ -450,21 +450,17 @@ namespace Audio.Editor
             // draw volume field
             SerializedProperty minVolume = currentElemFromArraySelected.FindPropertyRelative("minVolume");
             SerializedProperty maxVolume = currentElemFromArraySelected.FindPropertyRelative("maxVolume");
-            float minVolumeValue = minVolume.floatValue;
-            float maxVolumeValue = maxVolume.floatValue;
+            DrawMinMaxSlider(minVolume, maxVolume, 0,1,"Volume");
             
-            EditorGUILayout.PrefixLabel("Volume");
-            EditorGUILayout.BeginHorizontal(GUILayout.ExpandWidth(false));
             float widthLabel = 75;
-            minVolumeValue = EditorGUILayout.FloatField(minVolumeValue, GUILayout.Width(widthLabel));
-            EditorGUILayout.MinMaxSlider(ref minVolumeValue, ref maxVolumeValue, 0, 1);
-            maxVolumeValue = EditorGUILayout.FloatField(maxVolumeValue, GUILayout.Width(widthLabel));
-            EditorGUILayout.EndHorizontal();
-            minVolume.floatValue = minVolumeValue;
-            maxVolume.floatValue = maxVolumeValue;
             
             SerializedProperty sP = currentElemFromArraySelected.FindPropertyRelative("isLooping");
             sP.boolValue = EditorGUILayout.BeginToggleGroup("Is Looping", sP.boolValue);
+            
+            SerializedProperty minDelayLoop = currentElemFromArraySelected.FindPropertyRelative("minDelayLoop");
+            SerializedProperty maxDelayLoop  = currentElemFromArraySelected.FindPropertyRelative("maxDelayLoop");
+            DrawMinMaxSlider(minDelayLoop, maxDelayLoop, 0,60,"Delay Loop");
+            
             //myBool = EditorGUILayout.Toggle("Toggle", myBool);
             //myFloat = EditorGUILayout.Slider("Slider", myFloat, -3, 3);
            // DrawField("startAliase", true);
@@ -482,41 +478,20 @@ namespace Audio.Editor
             var endProp = currentElemFromArraySelected.FindPropertyRelative("endAliase");
             int selectedendAll = GetIndexFromName(endProp.stringValue);
             selectedendAll = EditorGUILayout.Popup("End Aliase", selectedendAll, _aliasesOptions.ToArray());
-           
             if (selectedendAll == 0)
                 endProp.stringValue = string.Empty;
             else
                 endProp.stringValue = _aliasesOptions[selectedendAll];
             
             EditorGUILayout.EndToggleGroup();
-
-            //DrawField("isLooping", true);
-            //DrawField("startAliase", true);
-            //DrawField("endAliase", true);
+            
             SerializedProperty minPitch = currentElemFromArraySelected.FindPropertyRelative("minPitch");
             SerializedProperty maxPitch = currentElemFromArraySelected.FindPropertyRelative("maxPitch");
-            float minPitchValue = minPitch.floatValue;
-            float maxPitchValue = maxPitch.floatValue;
-
-            //EditorGUIUtility.SliderLabels //.SetLabels(Styles.priorityLeftLabel, Styles.priorityRightLabel);
-            EditorGUILayout.PrefixLabel("Pitch");
-            EditorGUILayout.BeginHorizontal(GUILayout.ExpandWidth(false));
-            minPitchValue = EditorGUILayout.FloatField(minPitchValue, GUILayout.Width(widthLabel));
-            EditorGUILayout.MinMaxSlider(ref minPitchValue, ref maxPitchValue, -3, 3);
-            maxPitchValue = EditorGUILayout.FloatField(maxPitchValue, GUILayout.Width(widthLabel));
-            EditorGUILayout.EndHorizontal();
-            EditorGUILayout.BeginHorizontal(GUILayout.ExpandWidth(false));
-            EditorGUILayout.LabelField("Min");
-            EditorGUILayout.LabelField("Max");
-            EditorGUILayout.EndHorizontal();
-            minPitch.floatValue = minPitchValue;
-            maxPitch.floatValue = maxPitchValue;
-
+            DrawMinMaxSlider(minPitch, maxPitch, -3,3,"Pitch");
             
             DrawField("stereoPan", true);
             DrawField("spatialBlend", true);
             DrawField("reverbZoneMix", true);
-            ////////////////
             ///// Draw the elem part with the arrow
             EditorGUILayout.BeginVertical("box");
             show3DSettings = EditorGUILayout.Foldout(show3DSettings, "3D Sound Settings");
@@ -538,7 +513,6 @@ namespace Audio.Editor
 
                 DrawField("CurveType", true);
                 DrawField("distanceCurve", true);
-                //
             }
             EditorGUILayout.EndVertical();
 
@@ -601,6 +575,25 @@ namespace Audio.Editor
 
         }
 
+
+        void DrawMinMaxSlider(SerializedProperty minProperty, SerializedProperty maxProperty, float minLimit , float maxLimit , string prefixLabel, string minLabel = "Min", string maxLabel = "Max", float widthLabel = 75)
+        {
+            float minValue = minProperty.floatValue;
+            float maxValue = maxProperty.floatValue;
+                
+            EditorGUILayout.PrefixLabel(prefixLabel);
+            EditorGUILayout.BeginHorizontal(GUILayout.ExpandWidth(false));
+            minValue = EditorGUILayout.FloatField(minValue, GUILayout.Width(widthLabel));
+            EditorGUILayout.MinMaxSlider(ref minValue, ref maxValue, minLimit, maxLimit);
+            maxValue = EditorGUILayout.FloatField(maxValue, GUILayout.Width(widthLabel));
+            EditorGUILayout.EndHorizontal();
+            EditorGUILayout.BeginHorizontal(GUILayout.ExpandWidth(false));
+            EditorGUILayout.LabelField(minLabel);
+            EditorGUILayout.LabelField(maxLabel);
+            EditorGUILayout.EndHorizontal();
+            minProperty.floatValue = minValue;
+            maxProperty.floatValue = maxValue;
+        }
 
 
         protected override void Apply()

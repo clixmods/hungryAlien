@@ -1,3 +1,4 @@
+using AudioAliase;
 using UnityEngine;
 
 namespace Level
@@ -6,7 +7,9 @@ namespace Level
     {
        [SerializeField] private float minHeightToActiveGravity = 5;
        private const float SpeedDeplantation = 3;
-       private bool _isImplanted; 
+       private bool _isImplanted;
+
+       [SerializeField] [Aliase] private string surfaceDebrisAliasSound = "debris_dirt";
        public override void WakeObject()
        {
            base.WakeObject();
@@ -30,6 +33,7 @@ namespace Level
            transform.position = position;
            if (!_isImplanted && transform.position.y >= heightToActiveGravity)
            {
+               AudioManager.PlaySoundAtPosition(surfaceDebrisAliasSound, transform.position); 
                Rigidbody.isKinematic = false;
                Rigidbody.useGravity = true;
                _isImplanted = true;

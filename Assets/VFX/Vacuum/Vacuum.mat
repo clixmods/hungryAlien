@@ -28,10 +28,10 @@ Material:
   stringTagMap:
     RenderType: Transparent
   disabledShaderPasses:
-  - DistortionVectors
+  - DecalMeshForwardEmissive
   - MOTIONVECTORS
   - DecalProjectorForwardEmissive
-  - DecalMeshForwardEmissive
+  - DistortionVectors
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
@@ -229,8 +229,8 @@ Material:
     - _DstBlend: 10
     - _EmissionEnabled: 0
     - _EmissiveColorMode: 1
-    - _EmissiveExposureWeight: 0.005
-    - _EmissiveIntensity: 22.9
+    - _EmissiveExposureWeight: 0.274
+    - _EmissiveIntensity: 23.09
     - _EmissiveIntensityUnit: 0
     - _EnableBlendModePreserveSpecularLighting: 1
     - _EnableFogOnTransparent: 1
@@ -327,9 +327,9 @@ Material:
     - _DiffusionProfileAsset: {r: 0, g: 0, b: 0, a: 0}
     - _DoubleSidedConstants: {r: 1, g: 1, b: -1, a: 0}
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
-    - _EmissiveColor: {r: 0, g: 19.901804, b: 22.9, a: 22.9}
+    - _EmissiveColor: {r: 0, g: 15.031137, b: 17.294863, a: 23.09}
     - _EmissiveColorHDR: {r: 0, g: 0, b: 0, a: 1}
-    - _EmissiveColorLDR: {r: 0, g: 0.9400835, b: 1, a: 1}
+    - _EmissiveColorLDR: {r: 0, g: 0.8272109, b: 0.88031507, a: 1}
     - _InvPrimScale: {r: 1, g: 1, b: 0, a: 0}
     - _IridescenceThicknessRemap: {r: 0, g: 1, b: 0, a: 0}
     - _SoftParticleFadeParams: {r: 0, g: 0, b: 0, a: 0}

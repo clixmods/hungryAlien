@@ -316,7 +316,11 @@ namespace AudioAliase
         {
             if (audioPlayerLoop != null && !audioPlayerLoop.IsUsable)
             {
-                if(ShowDebugText) //Debug.Log($"[AudioManager] PlayLoop {aliaseName} already played");
+                if (ShowDebugText)
+                {
+                    Debug.Log($"[AudioManager] PlayLoop {aliaseName} already played");
+                }
+
                 return;
             }
             if (string.IsNullOrEmpty(aliaseName))

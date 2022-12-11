@@ -80,15 +80,15 @@ MonoBehaviour:
     bypassReverbZones: 0
     priority: 0
     volume: 0
-    minVolume: 0.8
-    maxVolume: 0.8
+    minVolume: 0.67405766
+    maxVolume: 0.7184035
     isLooping: 0
     startAliase: 
     endAliase: 
     minPitch: 1
     maxPitch: 1.01
     stereoPan: 0
-    spatialBlend: 0.796
+    spatialBlend: 0.504
     reverbZoneMix: 1
     dopplerLevel: 1
     Spread: 1
@@ -197,8 +197,8 @@ MonoBehaviour:
     bypassReverbZones: 0
     priority: 0
     volume: 0
-    minVolume: 0.9719101
-    maxVolume: 1
+    minVolume: 0.7989611
+    maxVolume: 0.827051
     isLooping: 1
     startAliase: 
     endAliase: 
@@ -236,8 +236,8 @@ MonoBehaviour:
     bypassReverbZones: 0
     priority: 0
     volume: 0
-    minVolume: 0.8
-    maxVolume: 0.8
+    minVolume: 0.6496674
+    maxVolume: 0.68070954
     isLooping: 1
     startAliase: 
     endAliase: 
@@ -353,13 +353,13 @@ MonoBehaviour:
     bypassReverbZones: 0
     priority: 0
     volume: 0
-    minVolume: 0.8
-    maxVolume: 0.8
+    minVolume: 0.48558754
+    maxVolume: 0.5498891
     isLooping: 1
     startAliase: ship_absorb
-    endAliase: 
-    minPitch: 1
-    maxPitch: 1.01
+    endAliase: ship_absorb_secondary
+    minPitch: 1.1806875
+    maxPitch: 1.8159647
     stereoPan: 0
     spatialBlend: 1
     reverbZoneMix: 1

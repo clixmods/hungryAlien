@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using AudioAliase;
 using UnityEngine;
 using Level;
 using DG.Tweening;
@@ -26,8 +27,13 @@ namespace Level
         private float currentHeight;
         [SerializeField] List<ObjectPhysics> _rocks;
         [SerializeField] GameObject _VFXWater;
-        private GameObject water;
         private ParticleSystem _particleSystemWater;
+        // FX Cached
+        protected ParticleSystem[] _onAbsorbFX;
+
+        [SerializeField] [Aliase] private string OnAmbiantAliasSound;
+        private AudioPlayer audioPlayerAmbiant;
+
         private void Start()
         {
             InitialPosition = transform.position;
@@ -35,7 +41,9 @@ namespace Level
             IsAbsorbable = true;
             currentHeight = 0f;
             LevelManager.Instance.CallbackLevelChange += DeactivateRocks;
-             //_particleSystemWater = water.GetComponent<ParticleSystem>();
+            _onAbsorbFX = Instantiate(_VFXWater).GetComponentsInChildren<ParticleSystem>();
+            AudioManager.PlayLoopSound(OnAmbiantAliasSound, transform.position, ref audioPlayerAmbiant);
+            //_particleSystemWater = water.GetComponent<ParticleSystem>();
         }
         private void LateUpdate()
         {
@@ -46,24 +54,25 @@ namespace Level
             
             if (_isInAbsorbing)
             {
-                if(water != null)
+                //if(water != null)
                 {
                     var shipTransform = LevelManager.Instance.Player;
-                    water.transform.position = new Vector3(shipTransform.transform.position.x, transform.position.y, shipTransform.transform.position.z);
-                    
-                    if(!_particleSystemWater.isPlaying)
-                    {
-                        _particleSystemWater.Play();
-                        _particleSystemWater.Play();
-                    }
+                    var position =  new Vector3(shipTransform.transform.position.x, transform.position.y, shipTransform.transform.position.z);
+                    _onAbsorbFX.PlayFXAtPosition(true,position);
+                    //if(!_particleSystemWater.isPlaying)
+                    //{
+                     //   _particleSystemWater.Play();
+                     //   _particleSystemWater.Play();
+                   // }
                 }
                 
             }
             else
             {
-                if (water != null)
+                //if (water != null)
                 {
-                    _particleSystemWater.Stop();
+                    _onAbsorbFX.StopFX(false);
+                    //_particleSystemWater.Stop();
                 }
             }
         }
@@ -89,10 +98,7 @@ namespace Level
                 var direction = Vector3.down;
                 transform.position -= direction * _speed * Time.deltaTime;
                 currentHeight -= _speed * Time.deltaTime;
-                if (water == null)
-                {
-                    water = Instantiate(_VFXWater);
-                }
+              
             }
             else
             {
@@ -101,7 +107,13 @@ namespace Level
                 {
                     _rocks[i].IsAbsorbable = true;
                 }
-                Destroy(water);
+                AudioManager.StopLoopSound(ref audioPlayerAmbiant);
+
+                foreach (var ps in _onAbsorbFX)
+                {
+                    Destroy(ps.gameObject);
+                }
+               
             }
         }
 

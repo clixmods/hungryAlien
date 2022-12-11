@@ -38,6 +38,9 @@ MonoBehaviour:
     isLooping: 0
     startAliase: 
     endAliase: 
+    UseDelayLoop: 0
+    minDelayLoop: 0
+    maxDelayLoop: 0
     minPitch: 1
     maxPitch: 1.01
     stereoPan: 0
@@ -81,8 +84,11 @@ MonoBehaviour:
     isLooping: 0
     startAliase: 
     endAliase: 
+    UseDelayLoop: 0
+    minDelayLoop: 0
+    maxDelayLoop: 0
     minPitch: 1
-    maxPitch: 1.01
+    maxPitch: 1.0886517
     stereoPan: 0
     spatialBlend: 0
     reverbZoneMix: 1
@@ -124,6 +130,9 @@ MonoBehaviour:
     isLooping: 0
     startAliase: 
     endAliase: 
+    UseDelayLoop: 0
+    minDelayLoop: 0
+    maxDelayLoop: 0
     minPitch: 1
     maxPitch: 1.01
     stereoPan: 0
@@ -167,6 +176,9 @@ MonoBehaviour:
     isLooping: 0
     startAliase: 
     endAliase: 
+    UseDelayLoop: 0
+    minDelayLoop: 0
+    maxDelayLoop: 0
     minPitch: 1
     maxPitch: 1.01
     stereoPan: 0
@@ -210,6 +222,9 @@ MonoBehaviour:
     isLooping: 0
     startAliase: 
     endAliase: 
+    UseDelayLoop: 0
+    minDelayLoop: 0
+    maxDelayLoop: 0
     minPitch: 1
     maxPitch: 1.01
     stereoPan: 0
@@ -253,6 +268,9 @@ MonoBehaviour:
     isLooping: 0
     startAliase: 
     endAliase: 
+    UseDelayLoop: 0
+    minDelayLoop: 0
+    maxDelayLoop: 0
     minPitch: 1
     maxPitch: 1.01
     stereoPan: 0
@@ -296,6 +314,9 @@ MonoBehaviour:
     isLooping: 0
     startAliase: 
     endAliase: 
+    UseDelayLoop: 0
+    minDelayLoop: 0
+    maxDelayLoop: 0
     minPitch: 1
     maxPitch: 1.01
     stereoPan: 0
@@ -384,6 +405,9 @@ MonoBehaviour:
     isLooping: 0
     startAliase: 
     endAliase: 
+    UseDelayLoop: 0
+    minDelayLoop: 0
+    maxDelayLoop: 0
     minPitch: 1
     maxPitch: 1.01
     stereoPan: 0
@@ -427,6 +451,9 @@ MonoBehaviour:
     isLooping: 0
     startAliase: 
     endAliase: 
+    UseDelayLoop: 0
+    minDelayLoop: 0
+    maxDelayLoop: 0
     minPitch: 0.84127223
     maxPitch: 1.1330726
     stereoPan: 0
@@ -470,6 +497,9 @@ MonoBehaviour:
     isLooping: 0
     startAliase: 
     endAliase: 
+    UseDelayLoop: 0
+    minDelayLoop: 0
+    maxDelayLoop: 0
     minPitch: 0.5655577
     maxPitch: 1.4679257
     stereoPan: 0
@@ -513,6 +543,9 @@ MonoBehaviour:
     isLooping: 0
     startAliase: 
     endAliase: 
+    UseDelayLoop: 0
+    minDelayLoop: 0
+    maxDelayLoop: 0
     minPitch: 1
     maxPitch: 1.01
     stereoPan: 0
@@ -556,6 +589,9 @@ MonoBehaviour:
     isLooping: 0
     startAliase: 
     endAliase: 
+    UseDelayLoop: 0
+    minDelayLoop: 0
+    maxDelayLoop: 0
     minPitch: 1
     maxPitch: 1.01
     stereoPan: 0
@@ -599,6 +635,9 @@ MonoBehaviour:
     isLooping: 0
     startAliase: 
     endAliase: 
+    UseDelayLoop: 0
+    minDelayLoop: 0
+    maxDelayLoop: 0
     minPitch: 1
     maxPitch: 1.6323092
     stereoPan: 0
@@ -642,6 +681,9 @@ MonoBehaviour:
     isLooping: 0
     startAliase: 
     endAliase: 
+    UseDelayLoop: 0
+    minDelayLoop: 0
+    maxDelayLoop: 0
     minPitch: 1
     maxPitch: 1.01
     stereoPan: 0
@@ -685,6 +727,9 @@ MonoBehaviour:
     isLooping: 0
     startAliase: 
     endAliase: 
+    UseDelayLoop: 0
+    minDelayLoop: 0
+    maxDelayLoop: 0
     minPitch: 0.7886497
     maxPitch: 1.268317
     stereoPan: 0
@@ -728,6 +773,9 @@ MonoBehaviour:
     isLooping: 0
     startAliase: 
     endAliase: 
+    UseDelayLoop: 0
+    minDelayLoop: 0
+    maxDelayLoop: 0
     minPitch: 1
     maxPitch: 1.01
     stereoPan: 0
@@ -771,6 +819,9 @@ MonoBehaviour:
     isLooping: 0
     startAliase: 
     endAliase: 
+    UseDelayLoop: 0
+    minDelayLoop: 0
+    maxDelayLoop: 0
     minPitch: 1
     maxPitch: 1.01
     stereoPan: 0
@@ -814,6 +865,9 @@ MonoBehaviour:
     isLooping: 0
     startAliase: 
     endAliase: 
+    UseDelayLoop: 0
+    minDelayLoop: 0
+    maxDelayLoop: 0
     minPitch: 1
     maxPitch: 1.1274168
     stereoPan: 0
@@ -857,6 +911,9 @@ MonoBehaviour:
     isLooping: 0
     startAliase: 
     endAliase: 
+    UseDelayLoop: 0
+    minDelayLoop: 0
+    maxDelayLoop: 0
     minPitch: 0.84735817
     maxPitch: 1.0921918
     stereoPan: 0
@@ -900,6 +957,9 @@ MonoBehaviour:
     isLooping: 0
     startAliase: 
     endAliase: 
+    UseDelayLoop: 0
+    minDelayLoop: 0
+    maxDelayLoop: 0
     minPitch: 0.90606654
     maxPitch: 1.1156751
     stereoPan: 0
@@ -943,6 +1003,9 @@ MonoBehaviour:
     isLooping: 0
     startAliase: 
     endAliase: 
+    UseDelayLoop: 0
+    minDelayLoop: 0
+    maxDelayLoop: 0
     minPitch: 0.95303327
     maxPitch: 1.0687084
     stereoPan: 0
@@ -986,6 +1049,9 @@ MonoBehaviour:
     isLooping: 0
     startAliase: 
     endAliase: 
+    UseDelayLoop: 0
+    minDelayLoop: 0
+    maxDelayLoop: 0
     minPitch: 1
     maxPitch: 1.01
     stereoPan: 0

@@ -398,10 +398,14 @@ using UnityEngine.UI;
             {
                 string containerName = "ObjectPhysics Level " + i;
                 var container = GetContainer(containerName);
-                foreach (var objPhy in GetObjectsInLevel(i))
+                if (GUILayout.Button($"Place Object of Level {i} in container"))
                 {
-                    objPhy.transform.parent = container.transform;
+                    foreach (var objPhy in GetObjectsInLevel(i))
+                    {
+                        objPhy.transform.parent = container.transform;
+                    }
                 }
+                
             }
         }
 

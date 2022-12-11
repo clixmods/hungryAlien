@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using AudioAliase;
 using Cinemachine;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -82,6 +83,8 @@ public class LevelManager : MonoBehaviour
         } 
     }
 
+    [SerializeField] [Aliase] private string onChangeLevelAlias;
+    
     [SerializeField] 
     [Range(0.01f,2)]
     private float shipStartScale = 1;
@@ -308,6 +311,8 @@ public class LevelManager : MonoBehaviour
         }
         RemoveAllObjectPhysical();
         CurrentLevel++;
+        AudioManager.PlaySoundAtPosition(onChangeLevelAlias, Vector3.zero);
+        
         // Check if the level is playable or not, otherwise we go directly on the next one
         while( dataLevels[CurrentLevel].skip)
         {

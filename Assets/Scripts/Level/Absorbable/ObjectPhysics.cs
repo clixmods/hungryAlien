@@ -20,10 +20,10 @@ public static class ExtensionFX
         }
         foreach (var particleSystem in particleSystems)
         {
+            particleSystem.transform.position = position;
             if (!particleSystem.isPlaying)
             {
                 particleSystem.Play();
-                particleSystem.transform.position = position;
                 if (isLooping)
                 {
                     SetLoopBool(particleSystem, true);
@@ -107,6 +107,8 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
     private MeshRenderer _meshRenderer;
     private MaterialPropertyBlock[] _propBlocks;
     private Vector3 _baseScale;
+    
+    private AudioPlayer _audioPlayerAmbiant;
   
     #endregion
     #region Properties
@@ -115,20 +117,15 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
     public float ForceRequired => forceRequired;
     public bool IsAbsorbed { get; set; }
     public bool IsAbsorbable { get; set; }
-    
     public bool IsInAbsorbing { get; set; }
-    
     public Vector3 InitialPosition { get;  set; }
-    
     public int SleepUntilLevel => sleepUntilLevel;
-
     public float InitialScaleMultiplier { get; private set; }
     public float InitialForceRequired { get; private set; }
     public float ScaleMultiplier => scaleMultiplier;
     public Collider Collider => _collider;
     [SerializeField] private bool _sleepUntilAbsorb;
-    // FX Cached
-    protected ParticleSystem[] _onAbsorbFX;
+  
 
     public float HeightObject
     {
@@ -148,7 +145,8 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
     
     private Mesh GeneratedCollider;
     private static readonly int Amount = Shader.PropertyToID("_Amount");
-
+    // FX Cached
+    protected ParticleSystem[] _onAbsorbFX;
     #region MonoBehaviour
 
     private void Awake()
@@ -182,10 +180,7 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
                 settings.OnAbsorbFX._fxPrefab, 
                 transform.position, 
                 quaternion.identity, null).GetComponentsInChildren<ParticleSystem>();
-            foreach (var oof in _onAbsorbFX)
-            {
-               
-            }
+           
         }
     
     }
@@ -233,6 +228,8 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
                 _onAbsorbFX.StopFX(false);
                 transform.position = InitialPosition;
                 Rigidbody.Sleep();
+                
+                
             }
         }
         else
@@ -244,7 +241,7 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
         if (!IsInAbsorbing && transform.position.y < LevelManager.Instance.Player.transform.position.y)
         {
             ChangeMaterialsRenderQueue(3000);
-            
+            AudioManager.PlayLoopSound(settings.OnAmbiantAliaseSound, transform, ref _audioPlayerAmbiant);
         }
 
         if (!IsInAbsorbing && Rigidbody.velocity.y > 0)
@@ -261,6 +258,7 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
             GeneratedCollider.Clear();
         
         _onAbsorbFX.StopFX(false);
+        AudioManager.StopLoopSound(ref _audioPlayerAmbiant);
         
     }
     protected void EndObject()
@@ -461,6 +459,7 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
     }
     protected virtual void OnIsAbsorbing()
     {
+        AudioManager.StopLoopSound(ref _audioPlayerAmbiant);
         AddDissolve(Time.deltaTime);
     }
     protected virtual void LateUpdate()
@@ -485,6 +484,7 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
     }
     public virtual void OnAbsorb(Absorber absorber, out AbsorbingState absorbingState)
     {
+        
         IsInAbsorbing = true;
         absorbingState = AbsorbingState.InProgress;
         ChangeMaterialsRenderQueue(3002);

@@ -39,7 +39,9 @@ namespace AudioAliase
         public bool isLooping;
         public string startAliase;
         public string endAliase;
-
+        public bool UseDelayLoop;
+        public float minDelayLoop = 0;
+        public float maxDelayLoop = 0;
 
         [Range(-3, 3)]
         public float minPitch = 1f;
@@ -81,6 +83,15 @@ namespace AudioAliase
                     return audio[_indexRandomize];
                 }
                 return audio[0];
+            }
+        }
+
+        public float DelayLoop
+        {
+            get
+            {
+                float delayValue = Random.Range(  minDelayLoop, maxDelayLoop);
+                return delayValue;
             }
         }
 

@@ -38,6 +38,9 @@ MonoBehaviour:
     isLooping: 0
     startAliase: 
     endAliase: 
+    UseDelayLoop: 0
+    minDelayLoop: 0
+    maxDelayLoop: 0
     minPitch: 1
     maxPitch: 1.01
     stereoPan: 0
@@ -77,6 +80,9 @@ MonoBehaviour:
     isLooping: 1
     startAliase: 
     endAliase: impactGeneric_light
+    UseDelayLoop: 0
+    minDelayLoop: 0
+    maxDelayLoop: 0.6234004
     minPitch: 1
     maxPitch: 1.01
     stereoPan: 0
@@ -120,6 +126,9 @@ MonoBehaviour:
     isLooping: 0
     startAliase: 
     endAliase: 
+    UseDelayLoop: 0
+    minDelayLoop: 0
+    maxDelayLoop: 0
     minPitch: 1
     maxPitch: 1.01
     stereoPan: 0
@@ -159,6 +168,9 @@ MonoBehaviour:
     isLooping: 1
     startAliase: 
     endAliase: fall_generic
+    UseDelayLoop: 0
+    minDelayLoop: 0
+    maxDelayLoop: 0
     minPitch: 1
     maxPitch: 1.01
     stereoPan: 0
