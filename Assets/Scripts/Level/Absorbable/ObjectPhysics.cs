@@ -109,6 +109,7 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
     private Vector3 _baseScale;
     
     private AudioPlayer _audioPlayerAmbiant;
+    private AudioPlayer _audioPlayerAbsorb;
   
     #endregion
     #region Properties
@@ -147,6 +148,7 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
     private static readonly int Amount = Shader.PropertyToID("_Amount");
     // FX Cached
     protected ParticleSystem[] _onAbsorbFX;
+    
     #region MonoBehaviour
 
     private void Awake()
@@ -212,6 +214,7 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
             {
                 collisionSurface.Play();
             }
+            AudioManager.StopLoopSound(ref _audioPlayerAbsorb);
             AudioManager.PlaySoundAtPosition(settings.OnImpactAliaseSound,transform.position);
             FXManager.PlayFXAtPosition(settings.OnHitFX, transform.position);
             _onAbsorbFX.StopFX(true);
@@ -242,11 +245,13 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
         {
             ChangeMaterialsRenderQueue(3000);
             AudioManager.PlayLoopSound(settings.OnAmbiantAliaseSound, transform, ref _audioPlayerAmbiant);
+            
         }
 
         if (!IsInAbsorbing && Rigidbody.velocity.y > 0)
         {
             _onAbsorbFX.StopFX(false);
+            
             Rigidbody.velocity = new Vector3(Rigidbody.velocity.x,0,Rigidbody.velocity.z);
         }
             
@@ -265,7 +270,7 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
     {
         AudioManager.PlaySoundAtPosition(settings.OnDeathAliaseSound, transform.position);
         //FXManager.PlayFXAtPosition(settings.fxDeath,transform.position);
-        AudioManager.StopLoopSound(ref _audioPlayer);
+        //AudioManager.StopLoopSound(ref _audioPlayer);
         LevelManager.Instance.RemoveObjectPhysical(this);
     }
 
@@ -460,6 +465,7 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
     protected virtual void OnIsAbsorbing()
     {
         AudioManager.StopLoopSound(ref _audioPlayerAmbiant);
+        AudioManager.PlayLoopSound(settings.OnMovingAliaseSound, transform, ref _audioPlayerAbsorb);
         AddDissolve(Time.deltaTime);
     }
     protected virtual void LateUpdate()
