@@ -6,7 +6,7 @@ namespace Level
     public class ObjectPhysicsPlantation : ObjectPhysics
     {
        [SerializeField] private float minHeightToActiveGravity = 5;
-       private const float SpeedDeplantation = 3;
+       private const float SpeedDeplantation = 4;
        private bool _isImplanted;
 
        [SerializeField] [Aliase] private string surfaceDebrisAliasSound = "debris_dirt";
