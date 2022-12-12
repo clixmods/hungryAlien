@@ -178,7 +178,7 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
         //     mtl.SetFloat("_SurfaceType",0);
         // }
 
-        _meshRenderer.materials = _mtlsOpaque;
+        //_meshRenderer.materials = _mtlsOpaque;
       
         Rigidbody = GetComponent<Rigidbody>();
         if (settings == null)
@@ -336,7 +336,7 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
         LevelManager.Instance.AddObjectPhysical(this);
         IsAbsorbable = true;
         Rigidbody.isKinematic = SleepUntilAbsorb;
-        _meshRenderer.materials = _mtlsDissolvable;
+       // _meshRenderer.materials = _mtlsDissolvable;
         ChangeMaterialsRenderQueue(3000);
     }
     /// <summary>
