@@ -151,7 +151,9 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
     private static readonly int Amount = Shader.PropertyToID("_Amount");
     // FX Cached
     protected ParticleSystem[] _onAbsorbFX;
-    
+    [SerializeField] private float speedScaleMultiplier = 1;
+    private bool hasEnoughForce;
+
     #region MonoBehaviour
 
     private void Awake()
@@ -339,7 +341,8 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
     {
         float startScale = LevelManager.Instance.ShipStartScale;
         int currentLevel = sleepUntilLevel;
-        var oof = LevelManager.Instance.CurrentObjectList;
+        //var oof = LevelManager.Instance.CurrentObjectList;
+        var oof = LevelManager.Instance.GetObjectsInLevel(currentLevel);
         var myObject = LevelManager.Instance;
         float targetScale;
         if (currentLevel >= 1)
@@ -471,7 +474,10 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
     {
         AudioManager.StopLoopSound(ref _audioPlayerAmbiant);
         AudioManager.PlayLoopSound(settings.OnMovingAliaseSound, transform, ref _audioPlayerAbsorb);
-        AddDissolve(Time.deltaTime);
+        if (hasEnoughForce)
+        {
+            AddDissolve(Time.deltaTime);
+        }
     }
     protected virtual void LateUpdate()
     {
@@ -506,13 +512,13 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
         if(SleepUntilAbsorb)
             Rigidbody.isKinematic = false;
         // Generate direction and apply it to velocity
-        bool hasEnoughForce = HasEnoughForce(absorber.Strenght , out float forceRatio);
+         hasEnoughForce = HasEnoughForce(absorber.Strenght , out float forceRatio);
         var destination = absorber.AbsorbePoint.position;
         var direction = destination - transform.position;
         direction *= forceRatio;
         Rigidbody.velocity = direction * speedAbsorbMultiplier;
        // transform.position += direction * _speedAbsorbMultiplier *Time.deltaTime;
-        transform.localScale = Vector3.Lerp(transform.localScale, Vector3.zero, Time.deltaTime);
+        transform.localScale = Vector3.Lerp(transform.localScale, Vector3.zero, Time.deltaTime * speedScaleMultiplier);
         float distanceHeight = destination.y - transform.position.y;
         
         
@@ -521,7 +527,10 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
         if(distanceHeight < 5)
         {
             var valueDissolve = 1-(distanceHeight/5);
-            SetDissolve(valueDissolve);
+            if (hasEnoughForce)
+            {
+                SetDissolve(valueDissolve);
+            }
         }
         if (hasEnoughForce && distanceHeight < absorber.AbsortionHeight)
         {

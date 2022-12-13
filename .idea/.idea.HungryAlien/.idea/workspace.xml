@@ -16,6 +16,7 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/823fb226a3f9439cb41fdcb61f9c86a1157600/4e/21e8cf21/MaterialPropertyBlock.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/823fb226a3f9439cb41fdcb61f9c86a1157600/91/7be8f866/Renderer.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/f3690a4da9e94ce59bee49df3e56b2a824800/c4/69382724/ParticleSystem.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/DecalProjectorFixRotation.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/FX/FXScriptableObject.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Level/CollisionSurface.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Level/PlayableVolume.cs" root0="FORCE_HIGHLIGHTING" />
@@ -92,10 +93,10 @@
       </option>
       <method v="2" />
     </configuration>
-    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
+    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="17056">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
-      <option name="pid" />
+      <option name="pid" value="17056" />
       <option name="projectPathOnTarget" />
       <option name="selectedOptions">
         <list />
@@ -216,13 +217,13 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Assets/Scripts/Player/Absorber.cs</url>
-          <line>209</line>
+          <line>214</line>
           <properties documentPath="C:\Users\clixd\Documents\UnityProject\HungryAlien\Assets\Scripts\Player\Absorber.cs" initialLine="192" containingFunctionPresentation="method 'OnTriggerStay'">
             <startOffsets>
-              <option value="5819" />
+              <option value="5894" />
             </startOffsets>
             <endOffsets>
-              <option value="5854" />
+              <option value="5929" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="26" />
@@ -242,16 +243,29 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Assets/Scripts/Level/Absorbable/ObjectPhysics.cs</url>
-          <line>441</line>
+          <line>444</line>
           <properties documentPath="C:\Users\clixd\Documents\UnityProject\HungryAlien\Assets\Scripts\Level\Absorbable\ObjectPhysics.cs" initialLine="507" containingFunctionPresentation="method 'OnAbsorbed'">
             <startOffsets>
-              <option value="13878" />
+              <option value="14043" />
             </startOffsets>
             <endOffsets>
-              <option value="13906" />
+              <option value="14071" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="34" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Scripts/Level/Absorbable/ObjectPhysics.cs</url>
+          <line>343</line>
+          <properties documentPath="C:\Users\clixd\Documents\UnityProject\HungryAlien\Assets\Scripts\Level\Absorbable\ObjectPhysics.cs" initialLine="343" containingFunctionPresentation="method 'GenerateScaleMultiplier'">
+            <startOffsets>
+              <option value="11192" />
+            </startOffsets>
+            <endOffsets>
+              <option value="11242" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="39" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

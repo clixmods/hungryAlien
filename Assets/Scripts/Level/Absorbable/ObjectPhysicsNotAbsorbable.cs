@@ -19,6 +19,7 @@ namespace Level
 
         [SerializeField] private bool _sleepUntilAsborb;
         [SerializeField] private float _maxHeightAbsorbtion = 5;
+        [SerializeField] private float _speedAbsorbsion = 1;
         private void Start()
         {
             InitialPosition = transform.position;
@@ -28,7 +29,27 @@ namespace Level
             
         }
 
-        
+        private void Update()
+        {
+            if ( PlayableVolume == null)
+            {
+                transform.position = InitialPosition;
+                Rigidbody.Sleep();
+            }
+            else
+            {
+                if(Rigidbody.IsSleeping() && !Rigidbody.isKinematic)
+                    Rigidbody.WakeUp();
+            }
+            
+            if (!IsInAbsorbing && Rigidbody.velocity.y > 0)
+            {
+                
+                Rigidbody.velocity = new Vector3(Rigidbody.velocity.x,0,Rigidbody.velocity.z);
+            }
+        }
+
+
         public Vector3 InitialPosition { get; set; }
 
         public float HeightObject { get; }
@@ -37,12 +58,13 @@ namespace Level
         {
             if(SleepUntilAbsorb)
                 Rigidbody.isKinematic = false;
-            
+
+            IsInAbsorbing = true;
             absorbingState = AbsorbingState.InProgress;
             var destination = absorber.AbsorbePoint.position;
             var direction = destination - (transform.position + new Vector3(0,_maxHeightAbsorbtion,0));
           
-            Rigidbody.velocity = direction;
+            Rigidbody.velocity = direction * _speedAbsorbsion;
 
        
         }

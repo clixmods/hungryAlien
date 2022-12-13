@@ -44,11 +44,11 @@ public class InputHelperManager : MonoBehaviour
             var targetTransform = _absorber.InTheTrigger[0].transform;
             if (_uiHelperAbsorbed != null)
             {
-                _uiHelperAbsorbed.TargetTransform = targetTransform;
+                _uiHelperAbsorbed.TargetTransform = _shipController.transform;
             }
             else
             {
-                UIManager.CreateInputHelper(pressAbsorbedText,targetTransform, out _uiHelperAbsorbed);
+                UIManager.CreateInputHelper(pressAbsorbedText,_shipController.transform, out _uiHelperAbsorbed);
             }
         }
         

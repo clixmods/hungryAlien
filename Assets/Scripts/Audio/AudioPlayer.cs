@@ -110,7 +110,7 @@ namespace AudioAliase
                 }
                 else
                 {
-                    _timePlayed += Time.deltaTime;
+                    _timePlayed += Time.unscaledDeltaTime;
                 }
     
             }

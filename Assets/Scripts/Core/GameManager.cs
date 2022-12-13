@@ -66,8 +66,9 @@ public class GameManager : MonoBehaviour
     {
         DontDestroyOnLoad(this);
         _data = Resources.Load<GameManagerData>("GameManager Data");
-        QualitySettings.vSyncCount = 1;
+       // QualitySettings.vSyncCount = 1;
         Application.targetFrameRate = 60;
+        
        
     }
 

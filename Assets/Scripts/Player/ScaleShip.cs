@@ -60,7 +60,7 @@ public class ScaleShip : MonoBehaviour
                         
                     // BUG : difference calculation between editor play and build
                     Vector3 targetPos = new Vector3(transformPosition.x, heightObject+ heightFloor + heightOffset + _scaleFactor, transformPosition.z);
-                    transform.position = Vector3.MoveTowards(transform.position, targetPos, Time.deltaTime * speedHeightMove);
+                    transform.position = Vector3.MoveTowards(transform.position, targetPos, Time.deltaTime * (speedHeightMove + _scaleFactor));
                 }
                 break;
             default:

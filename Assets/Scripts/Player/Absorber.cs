@@ -32,6 +32,11 @@ public class Absorber : MonoBehaviour
     /// Strenght applied when the player absorb object
     /// </summary>
     [SerializeField] private float strenght = 1;
+
+    public float SetStrenght
+    {
+        set => strenght = value;
+    }
     public float Strenght
     {
         get { return strenght; }

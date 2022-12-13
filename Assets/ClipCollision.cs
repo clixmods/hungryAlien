@@ -19,9 +19,9 @@ public class ClipCollision : MonoBehaviour
         {
             foreach (var box in _boxs)
             {
-                Gizmos.color = color;
+                //Gizmos.color = color;
              
-                Gizmos.DrawCube(box.bounds.center,box.bounds.size);
+                //Gizmos.DrawCube(box.bounds.center,box.bounds.size);
             }
             
         }

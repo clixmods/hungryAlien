@@ -173,6 +173,7 @@ public class LevelManager : MonoBehaviour
         _smoothPath = GetComponent<CinemachineSmoothPath>();
         _player = FindObjectOfType<ShipController>();
         _player.GetComponent<ScaleShip>().SetScaleFactor(shipStartScale);
+        _player.GetComponentInChildren<Absorber>().SetStrenght = shipStartScale;
         _player.transform.position = CurrentPlayerSpawnPoint.position;
         if (!_camera.TryGetComponent<CinemachineBrain>(out var _))
         {
@@ -343,6 +344,36 @@ public class LevelManager : MonoBehaviour
     public void RemoveAllObjectPhysical()
     {
         _objectPhysicsList = new List<ObjectPhysics>();
+    }
+
+    int GetNumberOfObjectInLevel(int level)
+    {
+        var allObjectPhysics = FindObjectsOfType<ObjectPhysics>();
+        int count = 0;
+        for (int i = 0; i < allObjectPhysics.Length; i++)
+        {
+            if (allObjectPhysics[i].SleepUntilLevel == level)
+                count++;
+        }
+
+        return count;
+    }
+    public ObjectPhysics[] GetObjectsInLevel(int level)
+    {
+        var allObjectPhysics = FindObjectsOfType<ObjectPhysics>();
+        ObjectPhysics[] objectPhysics = new ObjectPhysics[GetNumberOfObjectInLevel(level)];
+        int index = 0;
+        for (int i = 0; i < allObjectPhysics.Length; i++)
+        {
+            if (allObjectPhysics[i].SleepUntilLevel == level)
+            {
+                objectPhysics[index] = allObjectPhysics[i];
+                index++;
+            }
+                   
+        }
+
+        return objectPhysics;
     }
 
 }

@@ -29,7 +29,7 @@ public class TriggerEnableObjects : MonoBehaviour
         for (int i = 0; i < objectToEnables.Length; i++)
         {
             _rbs[i] = objectToEnables[i].GetComponentInChildren<Rigidbody>();
-            objectToEnables[i].gameObject.SetActive(false);
+         
         }
 
         _meshRenderers = GetComponentsInChildren<MeshRenderer>();
@@ -40,6 +40,14 @@ public class TriggerEnableObjects : MonoBehaviour
             var mtlManager = gameObject.AddComponent<MaterialPropertyBlockManager>();
             mtlManager.Init(_meshRenderers[i]);
             _propBlockManagers.Add(mtlManager);
+        }
+    }
+
+    private void Start()
+    {
+        for (int i = 0; i < objectToEnables.Length; i++)
+        {
+            objectToEnables[i].gameObject.SetActive(false);
         }
     }
 
@@ -67,7 +75,7 @@ public class TriggerEnableObjects : MonoBehaviour
             {
                 objectToEnables[i].gameObject.SetActive(true);
                 objectToEnables[i].GetComponent<IAbsorbable>().InitialPosition = objectToEnables[i].transform.position;
-                objectToEnables[i].GetComponent<IAbsorbable>().WakeObject();
+                //objectToEnables[i].GetComponent<IAbsorbable>().WakeObject();
                 if (pushObjectOnTriggered)
                 {
                     objectToEnables[i].transform.position = other.gameObject.transform.position;

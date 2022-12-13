@@ -43,6 +43,11 @@ namespace Level
             LevelManager.Instance.CallbackLevelChange += DeactivateRocks;
             _onAbsorbFX = Instantiate(_VFXWater).GetComponentsInChildren<ParticleSystem>();
             AudioManager.PlayLoopSound(OnAmbiantAliasSound, transform.position, ref audioPlayerAmbiant);
+            
+            for(int i = 0; i < _rocks.Count; i++)
+            {
+                _rocks[i].IsAbsorbable = false;
+            }
             //_particleSystemWater = water.GetComponent<ParticleSystem>();
         }
         private void LateUpdate()
