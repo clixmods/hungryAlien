@@ -41,6 +41,9 @@ MonoBehaviour:
     isLooping: 1
     startAliase: 
     endAliase: 
+    UseDelayLoop: 0
+    minDelayLoop: 0
+    maxDelayLoop: 0
     minPitch: 0.94382024
     maxPitch: 1.1673033
     stereoPan: 0
@@ -80,15 +83,18 @@ MonoBehaviour:
     bypassReverbZones: 0
     priority: 0
     volume: 0
-    minVolume: 0.67405766
-    maxVolume: 0.7184035
+    minVolume: 0.46777964
+    maxVolume: 0.5390313
     isLooping: 0
     startAliase: 
     endAliase: 
+    UseDelayLoop: 0
+    minDelayLoop: 0
+    maxDelayLoop: 0
     minPitch: 1
     maxPitch: 1.01
     stereoPan: 0
-    spatialBlend: 0.504
+    spatialBlend: 0.706
     reverbZoneMix: 1
     dopplerLevel: 1
     Spread: 1
@@ -124,6 +130,9 @@ MonoBehaviour:
     isLooping: 1
     startAliase: 
     endAliase: 
+    UseDelayLoop: 0
+    minDelayLoop: 0
+    maxDelayLoop: 0
     minPitch: 1
     maxPitch: 1.01
     stereoPan: 0
@@ -163,6 +172,9 @@ MonoBehaviour:
     isLooping: 0
     startAliase: 
     endAliase: 
+    UseDelayLoop: 0
+    minDelayLoop: 0
+    maxDelayLoop: 0
     minPitch: 1
     maxPitch: 1
     stereoPan: 0
@@ -202,6 +214,9 @@ MonoBehaviour:
     isLooping: 1
     startAliase: 
     endAliase: 
+    UseDelayLoop: 0
+    minDelayLoop: 0
+    maxDelayLoop: 0
     minPitch: 1.0224719
     maxPitch: 1.2908988
     stereoPan: 0
@@ -241,6 +256,9 @@ MonoBehaviour:
     isLooping: 1
     startAliase: 
     endAliase: 
+    UseDelayLoop: 0
+    minDelayLoop: 0
+    maxDelayLoop: 0
     minPitch: 1
     maxPitch: 1.01
     stereoPan: 0
@@ -280,6 +298,9 @@ MonoBehaviour:
     isLooping: 0
     startAliase: 
     endAliase: 
+    UseDelayLoop: 0
+    minDelayLoop: 0
+    maxDelayLoop: 0
     minPitch: 1
     maxPitch: 1.01
     stereoPan: 0
@@ -319,6 +340,9 @@ MonoBehaviour:
     isLooping: 0
     startAliase: 
     endAliase: 
+    UseDelayLoop: 0
+    minDelayLoop: 0
+    maxDelayLoop: 0
     minPitch: 1
     maxPitch: 1.01
     stereoPan: 0
@@ -358,6 +382,9 @@ MonoBehaviour:
     isLooping: 1
     startAliase: ship_absorb
     endAliase: ship_absorb_secondary
+    UseDelayLoop: 0
+    minDelayLoop: 0
+    maxDelayLoop: 0
     minPitch: 1.1806875
     maxPitch: 1.8159647
     stereoPan: 0
@@ -397,6 +424,9 @@ MonoBehaviour:
     isLooping: 1
     startAliase: 
     endAliase: 
+    UseDelayLoop: 0
+    minDelayLoop: 0
+    maxDelayLoop: 0
     minPitch: 1
     maxPitch: 1.01
     stereoPan: 0

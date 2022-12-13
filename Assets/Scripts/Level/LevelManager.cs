@@ -84,7 +84,8 @@ public class LevelManager : MonoBehaviour
     }
 
     [SerializeField] [Aliase] private string onChangeLevelAlias;
-    
+    [SerializeField] [Aliase] private string musicBackground;
+    private AudioPlayer _audioPlayerBgMusic;
     [SerializeField] 
     [Range(0.01f,2)]
     private float shipStartScale = 1;
@@ -217,6 +218,7 @@ public class LevelManager : MonoBehaviour
         CallbackLevelChange();
         _lookAtTransform = new GameObject().transform;
         GameManager.CreateUI();
+        AudioManager.PlayLoopSound(musicBackground,Vector3.zero, ref _audioPlayerBgMusic);
         
     }
 
@@ -224,30 +226,35 @@ public class LevelManager : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        // The camera need to go to the next postion 
-        if (_dollyCart.m_Position < dataLevels[CurrentLevel].dollyCartPosition)
+        if (GameManager.State == GameGlobalState.Ingame)
         {
-            // Force the camera to look a next object when it is moving to next level
-            if( CurrentPlayerSpawnPoint != null)
-                _virtualCamera.LookAt = GetLookAtPoint();
+            // The camera need to go to the next postion 
+            if (_dollyCart.m_Position < dataLevels[CurrentLevel].dollyCartPosition)
+            {
+                // Force the camera to look a next object when it is moving to next level
+                if( CurrentPlayerSpawnPoint != null)
+                    _virtualCamera.LookAt = GetLookAtPoint();
+                else
+                    _virtualCamera.LookAt = null;
+                // Set speed of camera and go pass state to isMoving
+                _dollyCart.m_Speed = dataLevels[CurrentLevel].cameraSpeed;
+                State = GameState.CameraIsMoving;
+            }
             else
-                _virtualCamera.LookAt = null;
-            // Set speed of camera and go pass state to isMoving
-            _dollyCart.m_Speed = dataLevels[CurrentLevel].cameraSpeed;
-            State = GameState.CameraIsMoving;
-        }
-        else
-        {
-            _virtualCamera.LookAt = GetLookAtPoint();
-            _dollyCart.m_Speed = 0;
-            State = GameState.Ingame;
-            WatchObjectPhysicalAvailable();
+            {
+                _virtualCamera.LookAt = GetLookAtPoint();
+                _dollyCart.m_Speed = 0;
+                State = GameState.Ingame;
+                WatchObjectPhysicalAvailable();
+            }
         }
     }
 
     #endregion
     
     private Transform _lookAtTransform;
+    
+
     Transform GetLookAtPoint()
     {
         _lookAtTransform.position = Vector3.Lerp(_lookAtTransform.position, CurrentPlayerSpawnPoint.position, Time.deltaTime);

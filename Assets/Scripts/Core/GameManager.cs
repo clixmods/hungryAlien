@@ -42,7 +42,7 @@ public class GameManager : MonoBehaviour
     [SerializeReference] private GameManagerData _data;
 
     public static event Action OnGameGlobalStateChanged;
-    private GameGlobalState _state;
+    private GameGlobalState _state = GameGlobalState.Paused;
     private string _currentMap;
     public static GameGlobalState State
     {
@@ -66,6 +66,8 @@ public class GameManager : MonoBehaviour
     {
         DontDestroyOnLoad(this);
         _data = Resources.Load<GameManagerData>("GameManager Data");
+        QualitySettings.vSyncCount = 1;
+        Application.targetFrameRate = 60;
        
     }
 

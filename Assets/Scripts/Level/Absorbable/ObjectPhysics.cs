@@ -190,6 +190,7 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
                 quaternion.identity, null).GetComponentsInChildren<ParticleSystem>();
            
         }
+        this.enabled = false;
     }
 
     private void OnValidate()
@@ -323,6 +324,7 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
     }
     public virtual void WakeObject()
     {
+        this.enabled = true;
         _collider.enabled = true;
         LevelManager.Instance.AddObjectPhysical(this);
         IsAbsorbable = true;
