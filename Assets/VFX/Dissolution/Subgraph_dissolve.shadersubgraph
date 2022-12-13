@@ -452,7 +452,7 @@
         "preventRotation": false
     },
     "m_Path": "Sub Graphs",
-    "m_GraphPrecision": 1,
+    "m_GraphPrecision": 2,
     "m_PreviewMode": 2,
     "m_OutputNode": {
         "m_Id": "64f53db7d7c941a7bcbee2b2f5d67022"
@@ -1276,7 +1276,7 @@
     "m_CustomColors": {
         "m_SerializableColors": []
     },
-    "m_Space": 0,
+    "m_Space": 3,
     "m_PositionSource": 0
 }
 
