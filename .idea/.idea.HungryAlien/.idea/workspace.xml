@@ -11,6 +11,10 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/6073cf49ed704e958b8a66d540dea94846a800/9c/a5e40348/List`1.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/823fb226a3f9439cb41fdcb61f9c86a1157600/32/d96c0845/Mathf.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/823fb226a3f9439cb41fdcb61f9c86a1157600/4e/21e8cf21/MaterialPropertyBlock.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/823fb226a3f9439cb41fdcb61f9c86a1157600/91/7be8f866/Renderer.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/f3690a4da9e94ce59bee49df3e56b2a824800/c4/69382724/ParticleSystem.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/FX/FXScriptableObject.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Level/CollisionSurface.cs" root0="FORCE_HIGHLIGHTING" />
@@ -88,10 +92,10 @@
       </option>
       <method v="2" />
     </configuration>
-    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
+    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="23068">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
-      <option name="pid" />
+      <option name="pid" value="23068" />
       <option name="projectPathOnTarget" />
       <option name="selectedOptions">
         <list />
@@ -175,6 +179,7 @@
       <workItem from="1670680661857" duration="8002000" />
       <workItem from="1670710322502" duration="1201000" />
       <workItem from="1670757563628" duration="22416000" />
+      <workItem from="1670874038647" duration="9804000" />
     </task>
     <servers />
   </component>
@@ -222,30 +227,30 @@
           <option name="timeStamp" value="26" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Scripts/FX/FXInstance.cs</url>
-          <line>41</line>
-          <properties documentPath="C:\Users\clixd\Documents\UnityProject\HungryAlien\Assets\Scripts\FX\FXInstance.cs" initialLine="41" containingFunctionPresentation="method 'Update'">
+          <url>file://$PROJECT_DIR$/Assets/Scripts/Level/Absorbable/MaterialPropertyBlockManager.cs</url>
+          <line>59</line>
+          <properties documentPath="C:\Users\clixd\Documents\UnityProject\HungryAlien\Assets\Scripts\Level\Absorbable\MaterialPropertyBlockManager.cs" initialLine="61" containingFunctionPresentation="method 'FloatsIsLessThan'">
             <startOffsets>
-              <option value="1226" />
+              <option value="2320" />
             </startOffsets>
             <endOffsets>
-              <option value="1256" />
+              <option value="2368" />
             </endOffsets>
           </properties>
-          <option name="timeStamp" value="27" />
+          <option name="timeStamp" value="33" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Scripts/Audio/AudioPlayer.cs</url>
-          <line>71</line>
-          <properties documentPath="C:\Users\clixd\Documents\UnityProject\HungryAlien\Assets\Scripts\Audio\AudioPlayer.cs" initialLine="63" containingFunctionPresentation="method 'Update'">
+          <url>file://$PROJECT_DIR$/Assets/Scripts/Level/Absorbable/ObjectPhysics.cs</url>
+          <line>507</line>
+          <properties documentPath="C:\Users\clixd\Documents\UnityProject\HungryAlien\Assets\Scripts\Level\Absorbable\ObjectPhysics.cs" initialLine="507" containingFunctionPresentation="method 'OnAbsorbed'">
             <startOffsets>
-              <option value="2267" />
+              <option value="17056" />
             </startOffsets>
             <endOffsets>
-              <option value="2318" />
+              <option value="17084" />
             </endOffsets>
           </properties>
-          <option name="timeStamp" value="28" />
+          <option name="timeStamp" value="34" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
