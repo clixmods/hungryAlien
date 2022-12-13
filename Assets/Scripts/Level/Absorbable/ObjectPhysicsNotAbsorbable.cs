@@ -13,13 +13,19 @@ namespace Level
         public Rigidbody Rigidbody { get; private set; }
         public bool IgnoreForceRequired { get; }
         public float ForceRequired { get; }
-        public bool SleepUntilAbsorb { get; set; }
+        
+        public bool SleepUntilAbsorb { get => _sleepUntilAsborb; set => _sleepUntilAsborb = value; }
         public PlayableVolume PlayableVolume { get; set; }
+
+        [SerializeField] private bool _sleepUntilAsborb;
+        [SerializeField] private float _maxHeightAbsorbtion = 5;
         private void Start()
         {
             InitialPosition = transform.position;
             Rigidbody = GetComponent<Rigidbody>();
             IsAbsorbable = true;
+            Rigidbody.isKinematic = SleepUntilAbsorb;
+            
         }
 
         
@@ -29,9 +35,12 @@ namespace Level
 
         public void OnAbsorb(Absorber absorber, out AbsorbingState absorbingState)
         {
+            if(SleepUntilAbsorb)
+                Rigidbody.isKinematic = false;
+            
             absorbingState = AbsorbingState.InProgress;
             var destination = absorber.AbsorbePoint.position;
-            var direction = destination - transform.position;
+            var direction = destination - (transform.position + new Vector3(0,_maxHeightAbsorbtion,0));
           
             Rigidbody.velocity = direction;
 
