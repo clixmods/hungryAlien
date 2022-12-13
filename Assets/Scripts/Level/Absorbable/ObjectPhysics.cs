@@ -165,32 +165,13 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
         _baseScale = transform.localScale;
         // Generate MaterialPropertyBlock
         _propBlockManagers = new List<MaterialPropertyBlockManager>();
-       // int numberMaterials = 0;
         for (int i = 0; i < _meshRenderers.Length; i++)
         {
             var mtlManager = transform.AddComponent<MaterialPropertyBlockManager>();
             mtlManager.Init(_meshRenderers[i]);
-            
             _propBlockManagers.Add(mtlManager);
-            //numberMaterials += _meshRenderers[i].materials.Length;
         }
-       //  _propBlocks = new MaterialPropertyBlock[numberMaterials];
-       // // _mtlsDissolvable = _meshRenderer.sharedMaterials;
-       //  for (int i = 0; i < _propBlocks.Length; i++)
-       //  {
-       //      _propBlocks[i] = new MaterialPropertyBlock();
-       //  }
-        
-        // // Create Opaque materials
-        // _mtlsOpaque = _meshRenderer.materials;
-        // foreach (var mtl in _mtlsOpaque)
-        // {
-        //     mtl.shader = Shader.Find("HDRP/Lit");
-        //     mtl.SetFloat("_SurfaceType",0);
-        // }
 
-        //_meshRenderer.materials = _mtlsOpaque;
-      
         Rigidbody = GetComponent<Rigidbody>();
         if (settings == null)
         {
@@ -408,26 +389,7 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
         {
             _propBlockManagers[i].SetDissolve(amount);
         }
-        // int materialCount = 0;
-        // for (int index = 0; index < _meshRenderers.Length; index++)
-        // {
-        //     for (int i = 0; i < _meshRenderers[index].materials.Length  ; i++)
-        //     {
-        //         int propIndex = i ;
-        //         
-        //         // Get the current value of the material properties in the renderer.
-        //         _meshRenderers[index].GetPropertyBlock(_propBlocks[propIndex]);
-        //         // Assign our new value.
-        //         var value = Mathf.Clamp( amount, 0, 1);
-        //         _propBlocks[propIndex].SetFloat(Amount, amount);
-        //         // Apply the edited values to the renderer.
-        //         _meshRenderers[index].SetPropertyBlock(_propBlocks[propIndex], propIndex-materialCount);
-        //     }
-        //
-        //     materialCount += _meshRenderers[index].materials.Length;
-        // }
-        
-        
+  
     }
     private void AddDissolve(float amount)
     {
@@ -437,36 +399,6 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
         {
             _propBlockManagers[i].AddDissolve(amount);
         }
-        // for (int i = 0; i < _propBlocks.Length; i++)
-        // {
-        //     // Get the current value of the material properties in the renderer.
-        //     _meshRenderers.GetPropertyBlock(_propBlocks[i], i);
-        //     float currentAmount = _propBlocks[i].GetFloat(Amount);
-        //     //Assign our new value.
-        //     var value = Mathf.Clamp(currentAmount + amount, 0, 1);
-        //     _propBlocks[i].SetFloat(Amount, value);
-        //     // Apply the edited values to the renderer.
-        //     _meshRenderers.SetPropertyBlock(_propBlocks[i], i);
-        // }
-        
-        
-        // int materialCount = 0;
-        // for (int index = 0; index < _meshRenderers.Length; index++)
-        // {
-        //     for (int i = materialCount; i < _meshRenderers[index].materials.Length + materialCount ; i++)
-        //     {
-        //         int propIndex = i ;
-        //         // Get the current value of the material properties in the renderer.
-        //         _meshRenderers[index].GetPropertyBlock(_propBlocks[propIndex]);
-        //         float currentAmount = _propBlocks[propIndex].GetFloat(Amount);
-        //         // Assign our new value.
-        //         var value = Mathf.Clamp(currentAmount + amount, 0, 1);
-        //         _propBlocks[propIndex].SetFloat(Amount, value);
-        //         // Apply the edited values to the renderer.
-        //         _meshRenderers[index].SetPropertyBlock(_propBlocks[propIndex], propIndex-materialCount);
-        //     }
-        //     materialCount += _meshRenderers[index].materials.Length;
-        // }
     }
     private bool HasEnoughForce(float strength , out float forceRatio)
     {
@@ -506,40 +438,7 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
     protected virtual void OnAbsorbed()
     {
         AddDissolve(Time.deltaTime);
-        
         bool destroyIt = true;
-        // for (int i = 0; i < _propBlocks.Length ; i++)
-        // {
-        //     _meshRenderers.GetPropertyBlock(_propBlocks[i],i);
-        //     if (_propBlocks[i].GetFloat(Amount) < 1)
-        //     {
-        //        // Debug.Log($"Absorbed object, dissolve value = {_propBlocks[i].GetFloat(Amount)}", gameObject);
-        //         destroyIt = false;
-        //     }
-        //     _meshRenderers.SetPropertyBlock(_propBlocks[i], i);
-        // }
-        
-        
-        
-        // int materialCount = 0;
-        // for (int index = 0; index < _meshRenderers.Length; index++)
-        // {
-        //     for (int i = materialCount; i < _meshRenderers[index].materials.Length + materialCount ; i++)
-        //     {
-        //         int propIndex = i;
-        //         // Get the current value of the material properties in the renderer.
-        //         _meshRenderers[index].GetPropertyBlock(_propBlockManagers[propIndex]);
-        //         if (_propBlockManagers[propIndex].GetFloat(Amount) < 1)
-        //         {
-        //             // Debug.Log($"Absorbed object, dissolve value = {_propBlocks[i].GetFloat(Amount)}", gameObject);
-        //             destroyIt = false;
-        //         }
-        //         // Apply the edited values to the renderer.
-        //         _meshRenderers[index].SetPropertyBlock(_propBlockManagers[propIndex], propIndex-materialCount);
-        //     }
-        //     materialCount += _meshRenderers[index].materials.Length;
-        // }
-
         for (int index = 0; index < _propBlockManagers.Count; index++)
         {
             if(_propBlockManagers[index].FloatsIsLessThan(1))
@@ -552,7 +451,6 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
             AudioManager.StopLoopSound(ref _audioPlayerAbsorb);
             Destroy(gameObject);
         }
-           
     }
 
     protected virtual void OnStopAbsorbing()
