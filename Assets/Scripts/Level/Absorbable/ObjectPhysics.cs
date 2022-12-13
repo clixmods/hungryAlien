@@ -193,6 +193,7 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
            
         }
         this.enabled = false;
+        AudioManager.PlayLoopSound(settings.OnAmbiantAliaseSound, transform, ref _audioPlayerAmbiant);
     }
 
     private void OnValidate()

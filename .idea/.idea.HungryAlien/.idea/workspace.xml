@@ -217,13 +217,13 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Assets/Scripts/Player/Absorber.cs</url>
-          <line>214</line>
+          <line>217</line>
           <properties documentPath="C:\Users\clixd\Documents\UnityProject\HungryAlien\Assets\Scripts\Player\Absorber.cs" initialLine="192" containingFunctionPresentation="method 'OnTriggerStay'">
             <startOffsets>
-              <option value="5894" />
+              <option value="6152" />
             </startOffsets>
             <endOffsets>
-              <option value="5929" />
+              <option value="6187" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="26" />

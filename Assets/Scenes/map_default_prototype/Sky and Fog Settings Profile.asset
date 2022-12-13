@@ -282,7 +282,7 @@ MonoBehaviour:
     m_Value: 1538.2
   enableVolumetricFog:
     m_OverrideState: 1
-    m_Value: 1
+    m_Value: 0
   albedo:
     m_OverrideState: 0
     m_Value: {r: 1, g: 1, b: 1, a: 1}
@@ -291,7 +291,7 @@ MonoBehaviour:
     m_Value: 1
   depthExtent:
     m_OverrideState: 1
-    m_Value: 64
+    m_Value: 2000
   denoisingMode:
     m_OverrideState: 0
     m_Value: 2

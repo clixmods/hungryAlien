@@ -29,8 +29,8 @@ MonoBehaviour:
     bypassReverbZones: 0
     priority: 0
     volume: 0
-    minVolume: 0.94170403
-    maxVolume: 0.94618833
+    minVolume: 0.57399106
+    maxVolume: 0.5807175
     isLooping: 1
     startAliase: 
     endAliase: 

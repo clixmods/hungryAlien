@@ -8,6 +8,7 @@ using AudioAliase;
 using UnityEngine.Windows;
 using Level;
 using Player;
+using UnityEngine.Rendering.HighDefinition;
 using UnityEngine.VFX;
 
 
@@ -99,6 +100,7 @@ public class Absorber : MonoBehaviour
     }
     private bool absorb;
     [SerializeField] private VisualEffect VEhasAbsorb;
+    private HDAdditionalLightData _lightAdditionalData;
     public float AbsortionHeight => 2f * scaleShip.GetScaleFactor() / 2;
 
     public Absorber(ShipController owner)
@@ -111,6 +113,7 @@ public class Absorber : MonoBehaviour
         scaleShip = transform.parent.GetComponent<ScaleShip>();
         ShipController = transform.parent.GetComponent<ShipController>();
         _light = GetComponentInChildren<Light>();
+        _lightAdditionalData = GetComponentInChildren<HDAdditionalLightData>();
         _collider = GetComponentInChildren<CapsuleCollider>();
         _absorberColor = GetComponentInChildren<AbsorberColor>();
     }
@@ -134,8 +137,8 @@ public class Absorber : MonoBehaviour
     void Update()
     {
         AudioManager.PlayLoopSound(aliaseLoopLight, transform, ref _audioPlayerLightLoop);
-        _light.range = radius * Ship.localScale.magnitude + GetHeightObject() + ChangeHeightFloor() + LevelManager.Instance.GetCurrentHeightOffset;
-        
+        _light.range = radius * Ship.localScale.magnitude + GetHeightObject() + ChangeHeightFloor() + LevelManager.Instance.GetCurrentHeightOffset*3.14f;
+        _lightAdditionalData.intensity = 27 + (scaleShip.GetScaleFactor()*0.8f);
         
        // _collider.height = radius * 2;
         Vector3 centerCollider = _collider.center;
@@ -215,7 +218,7 @@ public class Absorber : MonoBehaviour
                     case AbsorbingState.InProgress:
                         break;
                     case AbsorbingState.Done:
-         
+                        
                         AudioManager.PlaySoundAtPosition(aliaseAbsorbSuccess, transform.position);
                         VEhasAbsorb.Play();
                         break;
