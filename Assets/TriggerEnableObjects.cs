@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
+using Object = System.Object;
 using Random = UnityEngine.Random;
 
 public class TriggerEnableObjects : MonoBehaviour
@@ -18,6 +19,7 @@ public class TriggerEnableObjects : MonoBehaviour
     private bool _isTriggered;
     private List<MaterialPropertyBlockManager> _propBlockManagers;
     private MeshRenderer[] _meshRenderers;
+    [SerializeField] private bool ObjectAreDisabled;
 
     private void Awake()
     {
@@ -45,14 +47,21 @@ public class TriggerEnableObjects : MonoBehaviour
 
     private void Start()
     {
-        for (int i = 0; i < objectToEnables.Length; i++)
-        {
-            objectToEnables[i].gameObject.SetActive(false);
-        }
+      
     }
 
     private void Update()
     {
+        if (!ObjectAreDisabled)
+        {
+            // ca fait buguer fdp TODO
+            for (int i = 0; i < objectToEnables.Length; i++)
+            {
+                objectToEnables[i].gameObject.SetActive(false);
+            }
+
+            ObjectAreDisabled = true;
+        }
         if (triggerObjectIsDissolvable && _isTriggered)
         {
             for (int i = 0; i < _propBlockManagers.Count; i++)
