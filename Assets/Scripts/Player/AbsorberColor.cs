@@ -29,7 +29,7 @@ namespace Player
             if (!this.color.Equals(color))
             {
                 this.color = color;
-                CallbackColorChange.Invoke(color);
+                CallbackColorChange?.Invoke(color);
             }
             
         }

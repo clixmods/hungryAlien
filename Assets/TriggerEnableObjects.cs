@@ -20,7 +20,7 @@ public class TriggerEnableObjects : MonoBehaviour
     private List<MaterialPropertyBlockManager> _propBlockManagers;
     private MeshRenderer[] _meshRenderers;
     [SerializeField] private bool ObjectAreDisabled;
-
+    private Collider _collider;
     private void Awake()
     {
         if (objectToDestroy == null)
@@ -34,6 +34,7 @@ public class TriggerEnableObjects : MonoBehaviour
          
         }
 
+        _collider = GetComponent<Collider>();
         _meshRenderers = GetComponentsInChildren<MeshRenderer>();
         // Generate MaterialPropertyBlock
         _propBlockManagers = new List<MaterialPropertyBlockManager>();
@@ -75,9 +76,12 @@ public class TriggerEnableObjects : MonoBehaviour
     {
         if(other.gameObject == objectToDestroy.gameObject)
         {
-            if(destroyObjectToDestroy)
+            if (destroyObjectToDestroy)
+            {
                 other.gameObject.SetActive(false);
+            }
 
+            _collider.enabled = false;
             _isTriggered = true;
            
             for (int i = 0; i < objectToEnables.Length; i++)

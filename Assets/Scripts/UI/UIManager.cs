@@ -13,6 +13,7 @@ public class UIManager : MonoBehaviour
 
     [SerializeField] GameObject pausePanel;
     [SerializeField] GameObject menuPanel;
+    [SerializeField] GameObject endgamePanel;
     [SerializeField] TextMeshProUGUI playButtonText;
     
     [SerializeField] bool isPaused;
@@ -45,6 +46,8 @@ public class UIManager : MonoBehaviour
         isInMenu = true;
         menuPanel.SetActive(true);
         pausePanel.SetActive(false);
+        endgamePanel.SetActive(false);
+        LevelManager.Instance.CallbackEndgame += OpenEndgamePanel;
         isPaused = false;
     }
 
@@ -63,6 +66,12 @@ public class UIManager : MonoBehaviour
         GameManager.State = GameGlobalState.Ingame;
         Time.timeScale = 1;
         isInMenu = false;
+    }
+
+    public void OpenEndgamePanel()
+    {
+        endgamePanel.SetActive(true);
+        LevelManager.Instance.CallbackEndgame -= OpenEndgamePanel;
     }
     public void ResumeGame()
     {

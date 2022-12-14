@@ -112,6 +112,8 @@ public class LevelManager : MonoBehaviour
     /// </summary>
     public Action CallbackPreLevelChange;
 
+    public Action CallbackEndgame;
+
     #endregion
 
     #region Properties
@@ -119,19 +121,32 @@ public class LevelManager : MonoBehaviour
     public float ShipStartScale => shipStartScale;
     public GameState State { get; private set; }
     public List<ObjectPhysics> CurrentObjectList => _objectPhysicsList;
+    
+    public DataLevel CurrentDataLevel
+    {
+        get
+        {
+            if (CurrentLevel >= dataLevels.Length)
+            {
+                return dataLevels[^1];
+            }
+
+            return dataLevels[CurrentLevel];
+        }
+    }
     public GameObject GetCurrentFloor {
         get
         {
-            if (dataLevels[CurrentLevel].floorCollision == null )
+            if (CurrentDataLevel.floorCollision == null )
             {
                 Debug.LogWarning($"No floor detected for the level {CurrentLevel}");
                 return null;
             }
-            return dataLevels[CurrentLevel].floorCollision;
+            return CurrentDataLevel.floorCollision;
         }
     }
-    public Transform CurrentPlayerSpawnPoint => dataLevels[CurrentLevel].playerSpawnPoint;
-    public float GetCurrentHeightOffset => dataLevels[CurrentLevel].heightOffset;
+    public Transform CurrentPlayerSpawnPoint => CurrentDataLevel.playerSpawnPoint;
+    public float GetCurrentHeightOffset => CurrentDataLevel.heightOffset;
     public ShipController Player 
     {
         get
@@ -227,10 +242,10 @@ public class LevelManager : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        if (GameManager.State == GameGlobalState.Ingame)
+        if (GameManager.State == GameGlobalState.Ingame && State != GameState.Endgame)
         {
             // The camera need to go to the next postion 
-            if (_dollyCart.m_Position < dataLevels[CurrentLevel].dollyCartPosition)
+            if (_dollyCart.m_Position < CurrentDataLevel.dollyCartPosition)
             {
                 // Force the camera to look a next object when it is moving to next level
                 if( CurrentPlayerSpawnPoint != null)
@@ -238,7 +253,7 @@ public class LevelManager : MonoBehaviour
                 else
                     _virtualCamera.LookAt = null;
                 // Set speed of camera and go pass state to isMoving
-                _dollyCart.m_Speed = dataLevels[CurrentLevel].cameraSpeed;
+                _dollyCart.m_Speed = CurrentDataLevel.cameraSpeed;
                 State = GameState.CameraIsMoving;
             }
             else
@@ -263,7 +278,7 @@ public class LevelManager : MonoBehaviour
     }
     private void ActivePlayableVolumeForCurrentLevel()
     {
-        if (dataLevels[CurrentLevel].playableVolume == null)
+        if (CurrentDataLevel.playableVolume == null)
         {
             Debug.LogWarning($"[LevelManager] No playableVolume assign for Level {CurrentLevel}, assign it.");
             return;
@@ -272,8 +287,8 @@ public class LevelManager : MonoBehaviour
         {
             dataLevel.playableVolume.gameObject.SetActive(false);
         }
-        dataLevels[CurrentLevel].playableVolume.gameObject.SetActive(true);
-        dataLevels[CurrentLevel].playableVolume.Activate();
+        CurrentDataLevel.playableVolume.gameObject.SetActive(true);
+        CurrentDataLevel.playableVolume.Activate();
     }
     /// <summary>
     /// Active the indexed collision to build collision for environnement </summary>
@@ -284,19 +299,19 @@ public class LevelManager : MonoBehaviour
             if(dataLevel.collision != null)   
                 dataLevel.collision.gameObject.SetActive(false);
         }
-        if (dataLevels[CurrentLevel].collision == null)
+        if (CurrentDataLevel.collision == null)
         {
            // Debug.LogWarning("[LevelManager] collision undefined");
             return;
         }
-        dataLevels[CurrentLevel].collision.gameObject.SetActive(true);
+        CurrentDataLevel.collision.gameObject.SetActive(true);
     }
     /// <summary>
     /// Active the indexed floor to allow player movement
     /// </summary>
     private void SetFloorActive()
     {
-        if (dataLevels[CurrentLevel].floorCollision == null)
+        if (CurrentDataLevel.floorCollision == null)
         {
             Debug.LogWarning("[LevelManager] FloorCollision undefined");
             return;
@@ -305,7 +320,7 @@ public class LevelManager : MonoBehaviour
         {
             dataLevel.floorCollision.gameObject.SetActive(false);
         }
-        dataLevels[CurrentLevel].floorCollision.SetActive(true);
+        CurrentDataLevel.floorCollision.SetActive(true);
     }
     private void WatchObjectPhysicalAvailable()
     {
@@ -319,10 +334,17 @@ public class LevelManager : MonoBehaviour
         }
         RemoveAllObjectPhysical();
         CurrentLevel++;
+        // Endgame 
+        if (CurrentLevel >= dataLevels.Length)
+        {
+            State = GameState.Endgame;
+            CallbackEndgame?.Invoke();
+            return;
+        }
         AudioManager.PlaySoundAtPosition(onChangeLevelAlias, Vector3.zero);
         
         // Check if the level is playable or not, otherwise we go directly on the next one
-        while( dataLevels[CurrentLevel].skip)
+        while( CurrentDataLevel.skip)
         {
             CurrentLevel++;
         }

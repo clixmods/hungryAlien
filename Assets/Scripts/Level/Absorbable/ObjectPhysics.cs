@@ -152,7 +152,7 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
     // FX Cached
     protected ParticleSystem[] _onAbsorbFX;
     [SerializeField] private float speedScaleMultiplier = 1;
-    private bool hasEnoughForce;
+    protected bool hasEnoughForce;
     private static readonly int SurfaceType = Shader.PropertyToID("_SurfaceType");
 
     #region MonoBehaviour
@@ -407,7 +407,7 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
             _propBlockManagers[i].AddDissolve(amount);
         }
     }
-    private bool HasEnoughForce(float strength , out float forceRatio)
+    protected bool HasEnoughForce(float strength , out float forceRatio)
     {
         if (forceRequired == 0)
         {

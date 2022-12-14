@@ -26,6 +26,12 @@ namespace Level
                
                return;
            }
+
+           if (!HasEnoughForce(absorber.Strenght, out float forceRatio))
+           {
+               absorbingState = AbsorbingState.Fail;
+               return;
+           }
            Rigidbody.isKinematic = false;
            float heightToActiveGravity = minHeightToActiveGravity + InitialPosition.y;
            var position = transform.position;

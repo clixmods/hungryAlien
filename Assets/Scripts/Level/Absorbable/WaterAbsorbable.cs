@@ -11,7 +11,7 @@ namespace Level
     public class WaterAbsorbable : MonoBehaviour, IAbsorbable
     {
         public bool IsAbsorbable { get; private set; }
-        public bool IsAbsorbed { get; }
+        public bool IsAbsorbed { get; private set; }
         public bool IsInAbsorbing { get; set; }
         public Rigidbody Rigidbody { get; private set; }
         public bool IgnoreForceRequired { get; }
@@ -33,6 +33,7 @@ namespace Level
 
         [SerializeField] [Aliase] private string OnAmbiantAliasSound;
         private AudioPlayer audioPlayerAmbiant;
+        [SerializeField] private float ScaleMultiplier;
 
         private void Start()
         {
@@ -47,6 +48,7 @@ namespace Level
             for(int i = 0; i < _rocks.Count; i++)
             {
                 _rocks[i].IsAbsorbable = false;
+                _rocks[i].Rigidbody.isKinematic = true;
             }
             //_particleSystemWater = water.GetComponent<ParticleSystem>();
         }
@@ -97,6 +99,7 @@ namespace Level
         {
             absorbingState = AbsorbingState.InProgress;
             _isInAbsorbing = true;
+            if (IsAbsorbed) return;
 
             if (currentHeight < _heightToActivateRocks)
             {
@@ -111,6 +114,7 @@ namespace Level
                 for(int i = 0; i < _rocks.Count; i++)
                 {
                     _rocks[i].IsAbsorbable = true;
+                    _rocks[i].Rigidbody.isKinematic = false;
                 }
                 AudioManager.StopLoopSound(ref audioPlayerAmbiant);
 
@@ -118,13 +122,16 @@ namespace Level
                 {
                     Destroy(ps.gameObject);
                 }
-               
+
+                IsAbsorbed = true;
+                absorber.Strenght += ScaleMultiplier;
+                Destroy(gameObject);
             }
         }
 
         public bool OnTrigger(Absorber absorber)
         {
-            return true;
+            return !IsAbsorbed;
         }
 
         public void WakeObject()

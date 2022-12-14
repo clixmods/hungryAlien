@@ -138,7 +138,7 @@ public class Absorber : MonoBehaviour
     {
         AudioManager.PlayLoopSound(aliaseLoopLight, transform, ref _audioPlayerLightLoop);
         _light.range = radius * Ship.localScale.magnitude + GetHeightObject() + ChangeHeightFloor() + LevelManager.Instance.GetCurrentHeightOffset*3.14f;
-        _lightAdditionalData.intensity = 27 + (scaleShip.GetScaleFactor()*0.8f);
+        _lightAdditionalData.intensity = 27 + (scaleShip.GetScaleFactor()*0.3f);
         
        // _collider.height = radius * 2;
         Vector3 centerCollider = _collider.center;
@@ -270,11 +270,20 @@ public class Absorber : MonoBehaviour
         float greater = 0;
         if (ShipController.Absorber.InTheTrigger != null && ShipController.Absorber.InTheTrigger.Count > 0)
         {
+            if (ShipController.Absorber.InTheTrigger[0] == null || !ShipController.Absorber.InTheTrigger[0].activeSelf )
+            {
+                ShipController.Absorber.InTheTrigger.RemoveAt(0);
+                return greater;
+            }
             if (ShipController.Absorber.InTheTrigger[0].TryGetComponent<IAbsorbable>(out var objectPhysics))
             {
                 greater = objectPhysics.HeightObject;
                 for (int i = 0; i < ShipController.Absorber.InTheTrigger.Count; i++)
                 {
+                    if (ShipController.Absorber.InTheTrigger[i] == null || !ShipController.Absorber.InTheTrigger[i].activeSelf )
+                    {
+                        ShipController.Absorber.InTheTrigger.RemoveAt(i);
+                    }
                     if (ShipController.Absorber.InTheTrigger[i].TryGetComponent<IAbsorbable>(out var aobjectPhysics))
                     {
                         float heightToCheck = aobjectPhysics.HeightObject;

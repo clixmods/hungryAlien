@@ -6,16 +6,37 @@
   <component name="ChangeListManager">
     <list default="true" id="db6ae1ff-23e2-4f3b-9ceb-e60a307727cd" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.HungryAlien/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.HungryAlien/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/SpaceShip.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/SpaceShip.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Ressources3D/Zone 5/Materials/mtl_mare_rock.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Ressources3D/Zone 5/Materials/mtl_mare_rock.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Ressources3D/Zone 5/Materials/mtl_tas_de_foin.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Ressources3D/Zone 5/Materials/mtl_tas_de_foin.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Ressources3D/Zone 5/Prefabs/Prefab_mare.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Ressources3D/Zone 5/Prefabs/Prefab_mare.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/New Terrain.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/New Terrain.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Ressources3D/Brush/brush_grass_default.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Ressources3D/Brush/brush_grass_default.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Ressources3D/Zone 2/Materials/mtl_Arbre_1_Bois.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Ressources3D/Zone 2/Materials/mtl_Arbre_1_Bois.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Ressources3D/Zone 2/Materials/mtl_Arbre_1_Feuille.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Ressources3D/Zone 2/Materials/mtl_Arbre_1_Feuille.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Ressources3D/Zone 2/Materials/mtl_arbre_2_bois.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Ressources3D/Zone 2/Materials/mtl_arbre_2_bois.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Ressources3D/Zone 2/Materials/mtl_arbre_2_feuille.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Ressources3D/Zone 2/Materials/mtl_arbre_2_feuille.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Ressources3D/Zone 3/Materials/mtl_epouvantail_bras.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Ressources3D/Zone 3/Materials/mtl_epouvantail_bras.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Ressources3D/Zone 3/Materials/mtl_epouvantail_chapeau.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Ressources3D/Zone 3/Materials/mtl_epouvantail_chapeau.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Ressources3D/Zone 3/Materials/mtl_epouvantail_piquet.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Ressources3D/Zone 3/Materials/mtl_epouvantail_piquet.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Ressources3D/Zone 3/Materials/mtl_epouvantail_tete.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Ressources3D/Zone 3/Materials/mtl_epouvantail_tete.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Ressources3D/Zone 3/Materials/mtl_epouvantail_tshirt.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Ressources3D/Zone 3/Materials/mtl_epouvantail_tshirt.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Ressources3D/Zone 3/mesh/Epouvantail.fbx.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Ressources3D/Zone 3/mesh/Epouvantail.fbx.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Ressources3D/Zone 5/Materials/mtl_Serre_metal.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Ressources3D/Zone 5/Materials/mtl_Serre_metal.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Ressources3D/Zone 5/Mesh/mesh_balot_de_foin.fbx.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Ressources3D/Zone 5/Mesh/mesh_balot_de_foin.fbx.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/UI.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/UI.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/map_default_prototype.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/map_default_prototype.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Level/Absorbable/MaterialPropertyBlockManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Level/Absorbable/MaterialPropertyBlockManager.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Level/Absorbable/ObjectPhysics.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Level/Absorbable/ObjectPhysics.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/ShipController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player/ShipController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/ShipViewModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player/ShipViewModel.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VFX/Dirt/fx_ps_sable.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VFX/Dirt/fx_ps_sable.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/RiderScriptEditorPersistedState.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/RiderScriptEditorPersistedState.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Level/Absorbable/ObjectPhysicsPlantation.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Level/Absorbable/ObjectPhysicsPlantation.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Level/Absorbable/WaterAbsorbable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Level/Absorbable/WaterAbsorbable.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Level/LevelManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Level/LevelManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/Absorber.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player/Absorber.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/AbsorberColor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player/AbsorberColor.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/UIManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/UIManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/TerrainData_2c1ec8d9-a17f-4a8c-9cd1-0db2bf1b106e.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TerrainData_2c1ec8d9-a17f-4a8c-9cd1-0db2bf1b106e.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/TerrainData_4060fe9a-b184-4642-8411-39c1840fbfef.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TerrainData_4060fe9a-b184-4642-8411-39c1840fbfef.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/TerrainData_6cb1a777-cf58-4f4e-891c-7d6faf5a3df5.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TerrainData_6cb1a777-cf58-4f4e-891c-7d6faf5a3df5.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/TerrainData_c4671140-97aa-4552-8200-0e1f7c1322f2.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TerrainData_c4671140-97aa-4552-8200-0e1f7c1322f2.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/TerrainData_fcbf83b1-803a-4ddd-8398-f5ed928444d5.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TerrainData_fcbf83b1-803a-4ddd-8398-f5ed928444d5.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/TriggerEnableObjects.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TriggerEnableObjects.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UserSettings/Layouts/CurrentMaximizeLayout.dwlt" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/Layouts/CurrentMaximizeLayout.dwlt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -191,7 +212,7 @@
       <workItem from="1670874038647" duration="10204000" />
       <workItem from="1670922332769" duration="6730000" />
       <workItem from="1671008810057" duration="1980000" />
-      <workItem from="1671041966496" duration="1625000" />
+      <workItem from="1671041966496" duration="8332000" />
     </task>
     <servers />
   </component>
@@ -237,19 +258,6 @@
             </endOffsets>
           </properties>
           <option name="timeStamp" value="26" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Scripts/Level/Absorbable/MaterialPropertyBlockManager.cs</url>
-          <line>59</line>
-          <properties documentPath="C:\Users\clixd\Documents\UnityProject\HungryAlien\Assets\Scripts\Level\Absorbable\MaterialPropertyBlockManager.cs" initialLine="61" containingFunctionPresentation="method 'FloatsIsLessThan'">
-            <startOffsets>
-              <option value="2303" />
-            </startOffsets>
-            <endOffsets>
-              <option value="2351" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="33" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Assets/Scripts/Level/Absorbable/ObjectPhysics.cs</url>
