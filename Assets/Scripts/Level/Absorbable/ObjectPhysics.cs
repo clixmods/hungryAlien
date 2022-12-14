@@ -95,7 +95,7 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
     [SerializeField] private bool isDissolvable = true;
 
     [SerializeField] private bool ignoreForceRequired;
-    
+    //[SerializeField] private bool UpdateMaterialRenderQueue = true;
     #endregion
     #region Private Variable
     /// <summary>
@@ -153,6 +153,7 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
     protected ParticleSystem[] _onAbsorbFX;
     [SerializeField] private float speedScaleMultiplier = 1;
     private bool hasEnoughForce;
+    private static readonly int SurfaceType = Shader.PropertyToID("_SurfaceType");
 
     #region MonoBehaviour
 
@@ -498,7 +499,10 @@ public class ObjectPhysics : MonoBehaviour , IAbsorbable
             var materials = _meshRenderers[i].materials;
             foreach (var mtl in materials)
             {
-                mtl.renderQueue = value;
+                if (Math.Abs(mtl.GetFloat(SurfaceType) - 1.0f) < 0.05f)
+                {
+                    mtl.renderQueue = value;
+                }
             }
             _meshRenderers[i].materials = materials; 
         }

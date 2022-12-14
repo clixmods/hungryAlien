@@ -1,4 +1,3 @@
-using DG.Tweening;
 using UnityEngine;
 using AudioAliase;
 
@@ -40,6 +39,9 @@ public class ShipController : MonoBehaviour
     /// </summary>
     private AudioPlayer _audioMoving;
     private AudioPlayer _audioIdle;
+    
+    private Vector3 _direction;
+    public Vector3 Direction => _direction;
     
     public Absorber Absorber { get; private set; }
     
@@ -93,20 +95,22 @@ public class ShipController : MonoBehaviour
     {
         var mousePosition = MouseToWorldPosition();
         var shipPosition = transform.position;
-        var direction = new Vector3((mousePosition.x - shipPosition.x), 0, (mousePosition.z - shipPosition.z));
+        _direction = new Vector3((mousePosition.x - shipPosition.x), 0, (mousePosition.z - shipPosition.z));
         
-        if(direction.magnitude > 0.2f)
+        if(_direction.magnitude > 0.2f)
         {
-            transform.position += direction * speed * Time.deltaTime ;
+            transform.position += _direction * speed * Time.deltaTime ;
         }
         else
         {
             AudioManager.PlayLoopSound(aliaseIdle, transform, ref _audioIdle);
         }
-        transform.DORotate(new Vector3(direction.z, 0, -direction.x), 0.1f);
+        
+        //transform.DORotate(new Vector3(_direction.z, 0, -_direction.x), 0.1f);
     }
 
     RaycastHit lastHit = default;
+   
 
     /// <summary> Retourne la position de la souris dans le monde 3D en fonction du hit du raycast</summary> 
     private Vector3 MouseToWorldPosition()

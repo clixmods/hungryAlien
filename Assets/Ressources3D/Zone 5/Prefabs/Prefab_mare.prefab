@@ -128,7 +128,7 @@ MeshRenderer:
   m_RenderingLayerMask: 257
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 06c28376a78e32e4fb04487e66f103d0, type: 2}
+  - {fileID: 2100000, guid: 38ef0245d3b72b14886a7fb240e1a746, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -178,6 +178,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dac2e52d434b4134aec1b33ed1b8d75f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speedAbsorbMultiplier: 2
   settings: {fileID: 0}
   sleepUntilLevel: 4
   forceRequired: 0
@@ -187,6 +188,7 @@ MonoBehaviour:
   isDissolvable: 0
   ignoreForceRequired: 0
   _sleepUntilAbsorb: 0
+  speedScaleMultiplier: 1
   minHeightToActiveGravity: 5
   surfaceDebrisAliasSound: debris_dirt
 --- !u!64 &2257854408738743001
@@ -267,7 +269,7 @@ MeshRenderer:
   m_RenderingLayerMask: 257
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 06c28376a78e32e4fb04487e66f103d0, type: 2}
+  - {fileID: 2100000, guid: 38ef0245d3b72b14886a7fb240e1a746, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -317,6 +319,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dac2e52d434b4134aec1b33ed1b8d75f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speedAbsorbMultiplier: 2
   settings: {fileID: 0}
   sleepUntilLevel: 4
   forceRequired: 0
@@ -326,6 +329,7 @@ MonoBehaviour:
   isDissolvable: 0
   ignoreForceRequired: 0
   _sleepUntilAbsorb: 0
+  speedScaleMultiplier: 1
   minHeightToActiveGravity: 5
   surfaceDebrisAliasSound: debris_dirt
 --- !u!64 &5129031716765035494
@@ -406,7 +410,7 @@ MeshRenderer:
   m_RenderingLayerMask: 257
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 06c28376a78e32e4fb04487e66f103d0, type: 2}
+  - {fileID: 2100000, guid: 38ef0245d3b72b14886a7fb240e1a746, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -456,6 +460,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dac2e52d434b4134aec1b33ed1b8d75f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speedAbsorbMultiplier: 2
   settings: {fileID: 0}
   sleepUntilLevel: 4
   forceRequired: 0
@@ -465,6 +470,7 @@ MonoBehaviour:
   isDissolvable: 0
   ignoreForceRequired: 0
   _sleepUntilAbsorb: 0
+  speedScaleMultiplier: 1
   minHeightToActiveGravity: 5
   surfaceDebrisAliasSound: debris_dirt
 --- !u!64 &8936894569935854847
@@ -545,7 +551,7 @@ MeshRenderer:
   m_RenderingLayerMask: 257
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 06c28376a78e32e4fb04487e66f103d0, type: 2}
+  - {fileID: 2100000, guid: 38ef0245d3b72b14886a7fb240e1a746, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -595,6 +601,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dac2e52d434b4134aec1b33ed1b8d75f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speedAbsorbMultiplier: 2
   settings: {fileID: 0}
   sleepUntilLevel: 4
   forceRequired: 0
@@ -604,6 +611,7 @@ MonoBehaviour:
   isDissolvable: 0
   ignoreForceRequired: 0
   _sleepUntilAbsorb: 0
+  speedScaleMultiplier: 1
   minHeightToActiveGravity: 5
   surfaceDebrisAliasSound: debris_dirt
 --- !u!64 &5613553127824281948
@@ -850,7 +858,7 @@ MeshRenderer:
   m_RenderingLayerMask: 257
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 06c28376a78e32e4fb04487e66f103d0, type: 2}
+  - {fileID: 2100000, guid: 38ef0245d3b72b14886a7fb240e1a746, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -900,6 +908,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dac2e52d434b4134aec1b33ed1b8d75f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speedAbsorbMultiplier: 2
   settings: {fileID: 0}
   sleepUntilLevel: 4
   forceRequired: 0
@@ -909,6 +918,7 @@ MonoBehaviour:
   isDissolvable: 0
   ignoreForceRequired: 0
   _sleepUntilAbsorb: 0
+  speedScaleMultiplier: 1
   minHeightToActiveGravity: 5
   surfaceDebrisAliasSound: debris_dirt
 --- !u!64 &3654259691741041970
@@ -989,7 +999,7 @@ MeshRenderer:
   m_RenderingLayerMask: 257
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 06c28376a78e32e4fb04487e66f103d0, type: 2}
+  - {fileID: 2100000, guid: 38ef0245d3b72b14886a7fb240e1a746, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1039,6 +1049,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dac2e52d434b4134aec1b33ed1b8d75f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speedAbsorbMultiplier: 2
   settings: {fileID: 0}
   sleepUntilLevel: 4
   forceRequired: 0
@@ -1048,6 +1059,7 @@ MonoBehaviour:
   isDissolvable: 0
   ignoreForceRequired: 0
   _sleepUntilAbsorb: 0
+  speedScaleMultiplier: 1
   minHeightToActiveGravity: 5
   surfaceDebrisAliasSound: debris_dirt
 --- !u!64 &5938232140051235784
@@ -1211,7 +1223,7 @@ MeshRenderer:
   m_RenderingLayerMask: 257
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 06c28376a78e32e4fb04487e66f103d0, type: 2}
+  - {fileID: 2100000, guid: 38ef0245d3b72b14886a7fb240e1a746, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1261,6 +1273,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dac2e52d434b4134aec1b33ed1b8d75f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speedAbsorbMultiplier: 2
   settings: {fileID: 0}
   sleepUntilLevel: 4
   forceRequired: 0
@@ -1270,6 +1283,7 @@ MonoBehaviour:
   isDissolvable: 0
   ignoreForceRequired: 0
   _sleepUntilAbsorb: 0
+  speedScaleMultiplier: 1
   minHeightToActiveGravity: 5
   surfaceDebrisAliasSound: debris_dirt
 --- !u!64 &6061651203557320513
@@ -1350,7 +1364,7 @@ MeshRenderer:
   m_RenderingLayerMask: 257
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 06c28376a78e32e4fb04487e66f103d0, type: 2}
+  - {fileID: 2100000, guid: 38ef0245d3b72b14886a7fb240e1a746, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1400,6 +1414,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dac2e52d434b4134aec1b33ed1b8d75f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speedAbsorbMultiplier: 2
   settings: {fileID: 0}
   sleepUntilLevel: 4
   forceRequired: 0
@@ -1409,6 +1424,7 @@ MonoBehaviour:
   isDissolvable: 0
   ignoreForceRequired: 0
   _sleepUntilAbsorb: 0
+  speedScaleMultiplier: 1
   minHeightToActiveGravity: 5
   surfaceDebrisAliasSound: debris_dirt
 --- !u!64 &7483733871762696082
@@ -1489,7 +1505,7 @@ MeshRenderer:
   m_RenderingLayerMask: 257
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 06c28376a78e32e4fb04487e66f103d0, type: 2}
+  - {fileID: 2100000, guid: 38ef0245d3b72b14886a7fb240e1a746, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1539,6 +1555,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dac2e52d434b4134aec1b33ed1b8d75f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speedAbsorbMultiplier: 2
   settings: {fileID: 0}
   sleepUntilLevel: 4
   forceRequired: 0
@@ -1548,6 +1565,7 @@ MonoBehaviour:
   isDissolvable: 0
   ignoreForceRequired: 0
   _sleepUntilAbsorb: 0
+  speedScaleMultiplier: 1
   minHeightToActiveGravity: 5
   surfaceDebrisAliasSound: debris_dirt
 --- !u!64 &6770807065422627648
@@ -1711,7 +1729,7 @@ MeshRenderer:
   m_RenderingLayerMask: 257
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 06c28376a78e32e4fb04487e66f103d0, type: 2}
+  - {fileID: 2100000, guid: 38ef0245d3b72b14886a7fb240e1a746, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1761,6 +1779,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dac2e52d434b4134aec1b33ed1b8d75f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speedAbsorbMultiplier: 2
   settings: {fileID: 0}
   sleepUntilLevel: 4
   forceRequired: 0
@@ -1770,6 +1789,7 @@ MonoBehaviour:
   isDissolvable: 0
   ignoreForceRequired: 0
   _sleepUntilAbsorb: 0
+  speedScaleMultiplier: 1
   minHeightToActiveGravity: 5
   surfaceDebrisAliasSound: debris_dirt
 --- !u!64 &1598343142851894096
@@ -1933,7 +1953,7 @@ MeshRenderer:
   m_RenderingLayerMask: 257
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 06c28376a78e32e4fb04487e66f103d0, type: 2}
+  - {fileID: 2100000, guid: 38ef0245d3b72b14886a7fb240e1a746, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1983,6 +2003,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dac2e52d434b4134aec1b33ed1b8d75f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speedAbsorbMultiplier: 2
   settings: {fileID: 0}
   sleepUntilLevel: 4
   forceRequired: 0
@@ -1992,6 +2013,7 @@ MonoBehaviour:
   isDissolvable: 0
   ignoreForceRequired: 0
   _sleepUntilAbsorb: 0
+  speedScaleMultiplier: 1
   minHeightToActiveGravity: 5
   surfaceDebrisAliasSound: debris_dirt
 --- !u!64 &625023113682241454
@@ -2155,7 +2177,7 @@ MeshRenderer:
   m_RenderingLayerMask: 257
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 06c28376a78e32e4fb04487e66f103d0, type: 2}
+  - {fileID: 2100000, guid: 38ef0245d3b72b14886a7fb240e1a746, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2205,6 +2227,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dac2e52d434b4134aec1b33ed1b8d75f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speedAbsorbMultiplier: 2
   settings: {fileID: 0}
   sleepUntilLevel: 4
   forceRequired: 0
@@ -2214,6 +2237,7 @@ MonoBehaviour:
   isDissolvable: 0
   ignoreForceRequired: 0
   _sleepUntilAbsorb: 0
+  speedScaleMultiplier: 1
   minHeightToActiveGravity: 5
   surfaceDebrisAliasSound: debris_dirt
 --- !u!64 &2957901667323322746
@@ -2377,7 +2401,7 @@ MeshRenderer:
   m_RenderingLayerMask: 257
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 06c28376a78e32e4fb04487e66f103d0, type: 2}
+  - {fileID: 2100000, guid: 38ef0245d3b72b14886a7fb240e1a746, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2427,6 +2451,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dac2e52d434b4134aec1b33ed1b8d75f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speedAbsorbMultiplier: 2
   settings: {fileID: 0}
   sleepUntilLevel: 4
   forceRequired: 0
@@ -2436,6 +2461,7 @@ MonoBehaviour:
   isDissolvable: 0
   ignoreForceRequired: 0
   _sleepUntilAbsorb: 0
+  speedScaleMultiplier: 1
   minHeightToActiveGravity: 5
   surfaceDebrisAliasSound: debris_dirt
 --- !u!64 &4836318063281945596
@@ -2516,7 +2542,7 @@ MeshRenderer:
   m_RenderingLayerMask: 257
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 06c28376a78e32e4fb04487e66f103d0, type: 2}
+  - {fileID: 2100000, guid: 38ef0245d3b72b14886a7fb240e1a746, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2566,6 +2592,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dac2e52d434b4134aec1b33ed1b8d75f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speedAbsorbMultiplier: 2
   settings: {fileID: 0}
   sleepUntilLevel: 4
   forceRequired: 0
@@ -2575,6 +2602,7 @@ MonoBehaviour:
   isDissolvable: 0
   ignoreForceRequired: 0
   _sleepUntilAbsorb: 0
+  speedScaleMultiplier: 1
   minHeightToActiveGravity: 5
   surfaceDebrisAliasSound: debris_dirt
 --- !u!64 &4866993595916627253
@@ -2655,7 +2683,7 @@ MeshRenderer:
   m_RenderingLayerMask: 257
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 06c28376a78e32e4fb04487e66f103d0, type: 2}
+  - {fileID: 2100000, guid: 38ef0245d3b72b14886a7fb240e1a746, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2705,6 +2733,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dac2e52d434b4134aec1b33ed1b8d75f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speedAbsorbMultiplier: 2
   settings: {fileID: 0}
   sleepUntilLevel: 4
   forceRequired: 0
@@ -2714,6 +2743,7 @@ MonoBehaviour:
   isDissolvable: 0
   ignoreForceRequired: 0
   _sleepUntilAbsorb: 0
+  speedScaleMultiplier: 1
   minHeightToActiveGravity: 5
   surfaceDebrisAliasSound: debris_dirt
 --- !u!64 &6252853001405108287
@@ -2877,7 +2907,7 @@ MeshRenderer:
   m_RenderingLayerMask: 257
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 06c28376a78e32e4fb04487e66f103d0, type: 2}
+  - {fileID: 2100000, guid: 38ef0245d3b72b14886a7fb240e1a746, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2927,6 +2957,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dac2e52d434b4134aec1b33ed1b8d75f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speedAbsorbMultiplier: 2
   settings: {fileID: 0}
   sleepUntilLevel: 4
   forceRequired: 0
@@ -2936,6 +2967,7 @@ MonoBehaviour:
   isDissolvable: 0
   ignoreForceRequired: 0
   _sleepUntilAbsorb: 0
+  speedScaleMultiplier: 1
   minHeightToActiveGravity: 5
   surfaceDebrisAliasSound: debris_dirt
 --- !u!64 &253213764040605723
@@ -3016,7 +3048,7 @@ MeshRenderer:
   m_RenderingLayerMask: 257
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 06c28376a78e32e4fb04487e66f103d0, type: 2}
+  - {fileID: 2100000, guid: 38ef0245d3b72b14886a7fb240e1a746, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3066,6 +3098,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dac2e52d434b4134aec1b33ed1b8d75f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speedAbsorbMultiplier: 2
   settings: {fileID: 0}
   sleepUntilLevel: 4
   forceRequired: 0
@@ -3075,6 +3108,7 @@ MonoBehaviour:
   isDissolvable: 0
   ignoreForceRequired: 0
   _sleepUntilAbsorb: 0
+  speedScaleMultiplier: 1
   minHeightToActiveGravity: 5
   surfaceDebrisAliasSound: debris_dirt
 --- !u!64 &6087492576864540266
@@ -3321,7 +3355,7 @@ MeshRenderer:
   m_RenderingLayerMask: 257
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 06c28376a78e32e4fb04487e66f103d0, type: 2}
+  - {fileID: 2100000, guid: 38ef0245d3b72b14886a7fb240e1a746, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3371,6 +3405,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dac2e52d434b4134aec1b33ed1b8d75f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speedAbsorbMultiplier: 2
   settings: {fileID: 0}
   sleepUntilLevel: 4
   forceRequired: 0
@@ -3380,6 +3415,7 @@ MonoBehaviour:
   isDissolvable: 0
   ignoreForceRequired: 0
   _sleepUntilAbsorb: 0
+  speedScaleMultiplier: 1
   minHeightToActiveGravity: 5
   surfaceDebrisAliasSound: debris_dirt
 --- !u!64 &736180364352152629
@@ -3460,7 +3496,7 @@ MeshRenderer:
   m_RenderingLayerMask: 257
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 06c28376a78e32e4fb04487e66f103d0, type: 2}
+  - {fileID: 2100000, guid: 38ef0245d3b72b14886a7fb240e1a746, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3510,6 +3546,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dac2e52d434b4134aec1b33ed1b8d75f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speedAbsorbMultiplier: 2
   settings: {fileID: 0}
   sleepUntilLevel: 4
   forceRequired: 0
@@ -3519,6 +3556,7 @@ MonoBehaviour:
   isDissolvable: 0
   ignoreForceRequired: 0
   _sleepUntilAbsorb: 0
+  speedScaleMultiplier: 1
   minHeightToActiveGravity: 5
   surfaceDebrisAliasSound: debris_dirt
 --- !u!64 &1771664050687558616
@@ -3682,7 +3720,7 @@ MeshRenderer:
   m_RenderingLayerMask: 257
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 06c28376a78e32e4fb04487e66f103d0, type: 2}
+  - {fileID: 2100000, guid: 38ef0245d3b72b14886a7fb240e1a746, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3732,6 +3770,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dac2e52d434b4134aec1b33ed1b8d75f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speedAbsorbMultiplier: 2
   settings: {fileID: 0}
   sleepUntilLevel: 4
   forceRequired: 0
@@ -3741,6 +3780,7 @@ MonoBehaviour:
   isDissolvable: 0
   ignoreForceRequired: 0
   _sleepUntilAbsorb: 0
+  speedScaleMultiplier: 1
   minHeightToActiveGravity: 5
   surfaceDebrisAliasSound: debris_dirt
 --- !u!64 &331174865754847449
@@ -3821,7 +3861,7 @@ MeshRenderer:
   m_RenderingLayerMask: 257
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 06c28376a78e32e4fb04487e66f103d0, type: 2}
+  - {fileID: 2100000, guid: 38ef0245d3b72b14886a7fb240e1a746, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3871,6 +3911,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dac2e52d434b4134aec1b33ed1b8d75f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speedAbsorbMultiplier: 2
   settings: {fileID: 0}
   sleepUntilLevel: 4
   forceRequired: 0
@@ -3880,6 +3921,7 @@ MonoBehaviour:
   isDissolvable: 0
   ignoreForceRequired: 0
   _sleepUntilAbsorb: 0
+  speedScaleMultiplier: 1
   minHeightToActiveGravity: 5
   surfaceDebrisAliasSound: debris_dirt
 --- !u!64 &8244908669952945396
@@ -3960,7 +4002,7 @@ MeshRenderer:
   m_RenderingLayerMask: 257
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 06c28376a78e32e4fb04487e66f103d0, type: 2}
+  - {fileID: 2100000, guid: 38ef0245d3b72b14886a7fb240e1a746, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4010,6 +4052,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dac2e52d434b4134aec1b33ed1b8d75f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speedAbsorbMultiplier: 2
   settings: {fileID: 0}
   sleepUntilLevel: 4
   forceRequired: 0
@@ -4019,6 +4062,7 @@ MonoBehaviour:
   isDissolvable: 0
   ignoreForceRequired: 0
   _sleepUntilAbsorb: 0
+  speedScaleMultiplier: 1
   minHeightToActiveGravity: 5
   surfaceDebrisAliasSound: debris_dirt
 --- !u!64 &7020909751333240952
