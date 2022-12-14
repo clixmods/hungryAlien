@@ -61,8 +61,8 @@ namespace Level
 
             IsInAbsorbing = true;
             absorbingState = AbsorbingState.InProgress;
-            var destination = absorber.AbsorbePoint.position;
-            var direction = destination - (transform.position + new Vector3(0,_maxHeightAbsorbtion,0));
+            var destination = absorber.AbsorbePoint.position - new Vector3(0,_maxHeightAbsorbtion,0);
+            var direction = destination - (transform.position );
           
             Rigidbody.velocity = direction * _speedAbsorbsion;
 
