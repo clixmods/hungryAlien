@@ -21,6 +21,8 @@ public class TriggerEnableObjects : MonoBehaviour
     private MeshRenderer[] _meshRenderers;
     [SerializeField] private bool ObjectAreDisabled;
     private Collider _collider;
+
+    public bool pushObject;
     private void Awake()
     {
         if (objectToDestroy == null)
@@ -53,6 +55,24 @@ public class TriggerEnableObjects : MonoBehaviour
 
     private void Update()
     {
+        if (pushObject)
+        {
+            for (int i = 0; i < objectToEnables.Length; i++)
+            {
+                objectToEnables[i].gameObject.SetActive(true);
+                objectToEnables[i].GetComponent<IAbsorbable>().InitialPosition = objectToEnables[i].transform.position;
+                if (pushObject)
+                {
+                   
+                    var randomX = Random.Range(-5, 5);
+                    var randomY = Random.Range(-5, 5);
+                    var randomZ = Random.Range(-5, 5);
+                    var force = new Vector3(randomX, 5, randomZ);
+                    _rbs[i].AddForce( force * Random.Range(100, 200)* Time.deltaTime, ForceMode.Impulse);
+                }
+            }
+            pushObject = false;
+        }
         if (!ObjectAreDisabled)
         {
             // ca fait buguer fdp TODO
@@ -68,6 +88,19 @@ public class TriggerEnableObjects : MonoBehaviour
             for (int i = 0; i < _propBlockManagers.Count; i++)
             {
                 _propBlockManagers[i].AddDissolve(Time.deltaTime);
+            }
+            // Destrution of Objects
+            bool destroyIt = true;
+            for (int index = 0; index < _propBlockManagers.Count; index++)
+            {
+                if(_propBlockManagers[index].FloatsIsLessThan(1))
+                {
+                    destroyIt = false;
+                }
+            }
+            if (destroyIt)
+            {
+                Destroy(gameObject);
             }
         }
     }
@@ -88,20 +121,16 @@ public class TriggerEnableObjects : MonoBehaviour
             {
                 objectToEnables[i].gameObject.SetActive(true);
                 objectToEnables[i].GetComponent<IAbsorbable>().InitialPosition = objectToEnables[i].transform.position;
-                //objectToEnables[i].GetComponent<IAbsorbable>().WakeObject();
                 if (pushObjectOnTriggered)
                 {
                     objectToEnables[i].transform.position = other.gameObject.transform.position;
                     var randomX = Random.Range(-5, 5);
                     var randomY = Random.Range(-5, 5);
                     var randomZ = Random.Range(-5, 5);
-                    var force = new Vector3(randomX, randomY, randomZ);
-                    _rbs[i].AddForce(force.normalized * Random.Range(0, 5), ForceMode.Impulse);
+                    var force = new Vector3(randomX, 5, randomZ);
+                    _rbs[i].AddForce( force * Random.Range(300, 350)* Time.deltaTime, ForceMode.Impulse);
                 }
-                
-                
             }
-            
         }
     }
 }

@@ -262,6 +262,8 @@ using UnityEngine.UI;
                     myObject.Player.GetComponentInChildren<ScaleShip>().SetScaleFactor(myObject.DataLevels[myObject.CurrentLevel].shipScaleAtTheEnd);
                     myObject.RemoveAllObjectPhysical();
                 }
+
+                Time.timeScale = EditorGUILayout.Slider("TimeScale",Time.timeScale, 0, 10);
             }
 
             if (Application.isPlaying) return;
