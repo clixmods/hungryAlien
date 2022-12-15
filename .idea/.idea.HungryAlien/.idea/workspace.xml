@@ -7,7 +7,9 @@
     <list default="true" id="db6ae1ff-23e2-4f3b-9ceb-e60a307727cd" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.HungryAlien/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.HungryAlien/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/map_default_prototype.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/map_default_prototype.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Level/Absorbable/ObjectPhysicsNotAbsorbable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Level/Absorbable/ObjectPhysicsNotAbsorbable.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Level/Editor/LevelManagerEditor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Level/Editor/LevelManagerEditor.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/TriggerEnableObjects.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TriggerEnableObjects.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserSettings/Layouts/CurrentMaximizeLayout.dwlt" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/Layouts/CurrentMaximizeLayout.dwlt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -182,7 +184,7 @@
       <workItem from="1670874038647" duration="10204000" />
       <workItem from="1670922332769" duration="6730000" />
       <workItem from="1671008810057" duration="1980000" />
-      <workItem from="1671041966496" duration="9243000" />
+      <workItem from="1671041966496" duration="12584000" />
     </task>
     <servers />
   </component>
