@@ -94,5 +94,11 @@ public class UICursor : MonoBehaviour
             default:
                 throw new ArgumentOutOfRangeException();
         }
+
+        if (LevelManager.Instance.State == GameState.Endgame)
+        {
+            gameObject.SetActive(false);
+            Cursor.visible = true;
+        }
     }
 }
