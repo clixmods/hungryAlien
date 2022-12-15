@@ -9,7 +9,8 @@ public enum GameState
 {
     Ingame,
     CameraIsMoving,
-    Endgame
+    Endgame,
+    TitleScreen
     
 }
 /// <summary>
@@ -119,7 +120,7 @@ public class LevelManager : MonoBehaviour
     #region Properties
 
     public float ShipStartScale => shipStartScale;
-    public GameState State { get; private set; }
+    public GameState State { get;  set; }
     public List<ObjectPhysics> CurrentObjectList => _objectPhysicsList;
     
     public DataLevel CurrentDataLevel
@@ -235,7 +236,7 @@ public class LevelManager : MonoBehaviour
         _lookAtTransform = new GameObject().transform;
         GameManager.CreateUI();
         AudioManager.PlayLoopSound(musicBackground,Vector3.zero, ref _audioPlayerBgMusic);
-        
+        State = GameState.TitleScreen;
     }
 
   

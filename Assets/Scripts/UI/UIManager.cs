@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
@@ -42,7 +43,7 @@ public class UIManager : MonoBehaviour
     void Start()
     {
         Util = this;
-        Time.timeScale = 0;
+        Time.timeScale = 1;
         isInMenu = true;
         menuPanel.SetActive(true);
         pausePanel.SetActive(false);
@@ -64,10 +65,10 @@ public class UIManager : MonoBehaviour
     {
         menuPanel.SetActive(false);
         GameManager.State = GameGlobalState.Ingame;
+        LevelManager.Instance.State = GameState.Ingame;
         Time.timeScale = 1;
         isInMenu = false;
     }
-
     public void OpenEndgamePanel()
     {
         endgamePanel.SetActive(true);

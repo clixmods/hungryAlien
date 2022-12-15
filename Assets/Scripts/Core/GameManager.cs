@@ -88,6 +88,7 @@ public class GameManager : MonoBehaviour
     public void RestartMap()
     {
         SceneManager.LoadScene(_currentMap);
+        State = GameGlobalState.Paused;
     }
     
     
