@@ -23,6 +23,8 @@ public class TriggerEnableObjects : MonoBehaviour
     private Collider _collider;
 
     public bool pushObject;
+
+    [SerializeField] private GameObject hintFX;
     private void Awake()
     {
         if (objectToDestroy == null)
@@ -116,7 +118,10 @@ public class TriggerEnableObjects : MonoBehaviour
 
             _collider.enabled = false;
             _isTriggered = true;
-           
+            if (hintFX != null)
+            {
+                hintFX.SetActive(false);
+            }
             for (int i = 0; i < objectToEnables.Length; i++)
             {
                 objectToEnables[i].gameObject.SetActive(true);

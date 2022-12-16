@@ -14,6 +14,7 @@ namespace Level
         {
             IsInAbsorbing = true;
             absorbingState = AbsorbingState.InProgress;
+            Rigidbody.isKinematic = true;
                 
             var destination = absorber.AbsorbePoint.position;
             float idkneedtobedefined = destination.y - transform.position.y;

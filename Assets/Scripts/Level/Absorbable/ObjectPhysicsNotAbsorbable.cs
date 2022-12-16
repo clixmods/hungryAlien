@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Level
@@ -20,6 +21,9 @@ namespace Level
         [SerializeField] private bool _sleepUntilAsborb;
         [SerializeField] private float _maxHeightAbsorbtion = 5;
         [SerializeField] private float _speedAbsorbsion = 1;
+
+        [SerializeField] private bool DestroyNotAbsorbdableObject = false;
+        [SerializeField] private List<TriggerEnableObjects> tamere;
         private void Start()
         {
             InitialPosition = transform.position;
@@ -46,6 +50,23 @@ namespace Level
             {
                 
                 Rigidbody.velocity = new Vector3(Rigidbody.velocity.x,0,Rigidbody.velocity.z);
+            }
+
+            if (DestroyNotAbsorbdableObject)
+            {
+                bool destroyit = true;
+                foreach (var item in tamere)
+                {
+                    if (item != null)
+                    {
+                        destroyit = false;
+                    }
+                }
+
+                if (destroyit)
+                {
+                    Destroy(gameObject);
+                }
             }
         }
 

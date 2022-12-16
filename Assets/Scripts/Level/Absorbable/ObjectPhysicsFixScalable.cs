@@ -48,6 +48,7 @@ namespace Level
         public override void OnAbsorb(Absorber absorber, out AbsorbingState absorbingState)
         {
             IsInAbsorbing = true;
+            Rigidbody.isKinematic = true;
             absorbingState = AbsorbingState.InProgress;
             var destination = absorber.AbsorbePoint.position;
             float idkneedtobedefined = destination.y - transform.position.y;

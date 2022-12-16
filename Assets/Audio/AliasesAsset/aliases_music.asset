@@ -20,7 +20,7 @@ MonoBehaviour:
     Tag: 
     MixerGroup: {fileID: 0}
     audio:
-    - {fileID: 8300000, guid: 68f72a70d9a3f234784a699853236df6, type: 3}
+    - {fileID: 8300000, guid: c343916747bd4b544b7053aa8b11eba4, type: 3}
     soundType: 0
     randomizeClips: 0
     Secondary: 
